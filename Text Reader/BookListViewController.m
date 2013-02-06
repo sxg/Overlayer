@@ -109,17 +109,51 @@
 
 - (IBAction)addBook:(id)sender
 {
-    NSString *newBookName = @"New Book 1";
+    //Search the Documents directory for a book called "New Book". If it exists, then look for "New Book 2" etc.
+    //There is a minor bug in this code - if "New Book", "New Book 2", and "New Book 4" exist, then the next book that is added will be "New Book 3" instead of "New Book 5"
+    bool alreadyExists;
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSArray *files = [fm contentsOfDirectoryAtPath:documentsDirectory error:nil];
+    int i = 1;
+    NSString *newBookName;
+    do {
+        alreadyExists = NO;
+        newBookName = @"New Book";
+        if (i > 1)
+        {
+            NSString *num = [[[NSNumber alloc] initWithInt:i] stringValue];
+            newBookName = [newBookName stringByAppendingString:@" "];
+            newBookName = [newBookName stringByAppendingString:num];
+        }
+        
+        for (NSString *fileName in files)
+        {
+            if ([fileName isEqualToString:newBookName])
+            {
+                alreadyExists = YES;
+            }
+        }
+        i++;
+    } while (alreadyExists);
+
+    //Take the name that does not exist, create a new book with it, and add it to the data source
     NSString *path = [documentsDirectory stringByAppendingPathComponent:newBookName];
-    
     [newBookName writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
-    
     [books setObject:path forKey:newBookName];
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[books count] inSection:0];
+    //Add the new book to the table
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([books count] - 1) inSection:0];
     NSArray *array = [[NSArray alloc] initWithObjects:indexPath, nil];
-    
     [self.tableView insertRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    //delete all files
+    /*NSFileManager *fm = [NSFileManager defaultManager];
+    NSArray* files = [fm contentsOfDirectoryAtPath:documentsDirectory error:nil];
+    for (NSString *name in files)
+    {
+        NSString *path = [documentsDirectory stringByAppendingPathComponent:name];
+        [fm removeItemAtPath:path error:nil];
+    }*/
 }
 
 #pragma mark - Table view data source
