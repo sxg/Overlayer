@@ -1,0 +1,411 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4A04BE1716A0B9AD009A9F8E /* sampleText9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A04BE1316A0B9AD009A9F8E /* sampleText9.jpg */; };
+		4A04BE1816A0B9AD009A9F8E /* sampleText10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A04BE1416A0B9AD009A9F8E /* sampleText10.jpg */; };
+		4A04BE1916A0B9AD009A9F8E /* sampleText11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A04BE1516A0B9AD009A9F8E /* sampleText11.jpg */; };
+		4A04BE1A16A0B9AD009A9F8E /* sampleText12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A04BE1616A0B9AD009A9F8E /* sampleText12.jpg */; };
+		4A04BE1F16A0BDBC009A9F8E /* sampleText13.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 4A04BE1C16A0BDBC009A9F8E /* sampleText13.JPG */; };
+		4A06B74716B62D410023767F /* DrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06B74616B62D410023767F /* DrawingView.m */; };
+		4A13914C169E4A9600926CBC /* sampleText3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A13914B169E4A9600926CBC /* sampleText3.jpg */; };
+		4A2F7545169CD98000DD7A03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2F7544169CD98000DD7A03 /* UIKit.framework */; };
+		4A2F7547169CD98000DD7A03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2F7546169CD98000DD7A03 /* Foundation.framework */; };
+		4A2F7549169CD98000DD7A03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2F7548169CD98000DD7A03 /* CoreGraphics.framework */; };
+		4A2F754F169CD98000DD7A03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F754D169CD98000DD7A03 /* InfoPlist.strings */; };
+		4A2F7551169CD98000DD7A03 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2F7550169CD98000DD7A03 /* main.m */; };
+		4A2F7555169CD98000DD7A03 /* TextReaderAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2F7554169CD98000DD7A03 /* TextReaderAppDelegate.m */; };
+		4A2F7557169CD98000DD7A03 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F7556169CD98000DD7A03 /* Default.png */; };
+		4A2F7559169CD98000DD7A03 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F7558169CD98000DD7A03 /* Default@2x.png */; };
+		4A2F755B169CD98000DD7A03 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F755A169CD98000DD7A03 /* Default-568h@2x.png */; };
+		4A2F755E169CD98000DD7A03 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F755C169CD98000DD7A03 /* MainStoryboard.storyboard */; };
+		4A2F7561169CD98000DD7A03 /* TextReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2F7560169CD98000DD7A03 /* TextReaderViewController.m */; };
+		4A2F7568169CDA1700DD7A03 /* sampleText.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F7567169CDA1700DD7A03 /* sampleText.jpg */; };
+		4A2F756E169D1AC400DD7A03 /* sampleText2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F756D169D1AC400DD7A03 /* sampleText2.gif */; };
+		4A7E194516B323910031A7A1 /* UIImage+LineDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E194416B323910031A7A1 /* UIImage+LineDrawer.m */; };
+		4A9625E4169F2F85007AB6D6 /* sampleText4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A9625E2169F2F85007AB6D6 /* sampleText4.jpg */; };
+		4A9625E5169F2F85007AB6D6 /* sampleText5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A9625E3169F2F85007AB6D6 /* sampleText5.jpg */; };
+		4A9625E8169F7EE1007AB6D6 /* sampleText6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A9625E7169F7EE1007AB6D6 /* sampleText6.jpg */; };
+		4A9625EA169F8B1A007AB6D6 /* sampleText7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A9625E9169F8B1A007AB6D6 /* sampleText7.jpg */; };
+		4A9625EC169F8EE0007AB6D6 /* sampleText8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A9625EB169F8EE0007AB6D6 /* sampleText8.jpg */; };
+		4A9625EE169F9453007AB6D6 /* sampleTextB.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A9625ED169F9453007AB6D6 /* sampleTextB.jpg */; };
+		4A9625F0169F96A1007AB6D6 /* sampleText5B.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A9625EF169F96A1007AB6D6 /* sampleText5B.jpg */; };
+		4AB487E116B74B00005960FA /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB487E016B74B00005960FA /* Character.m */; };
+		4ADC0B1616BB668D00815209 /* PhotoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC0B1516BB668D00815209 /* PhotoListViewController.m */; };
+		4AE6597616B4ADB700E0C76E /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE6597516B4ADB700E0C76E /* PhotoViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4A04BE1316A0B9AD009A9F8E /* sampleText9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText9.jpg; sourceTree = "<group>"; };
+		4A04BE1416A0B9AD009A9F8E /* sampleText10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText10.jpg; sourceTree = "<group>"; };
+		4A04BE1516A0B9AD009A9F8E /* sampleText11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText11.jpg; sourceTree = "<group>"; };
+		4A04BE1616A0B9AD009A9F8E /* sampleText12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText12.jpg; sourceTree = "<group>"; };
+		4A04BE1C16A0BDBC009A9F8E /* sampleText13.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText13.JPG; sourceTree = "<group>"; };
+		4A06B74516B62D410023767F /* DrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingView.h; sourceTree = "<group>"; };
+		4A06B74616B62D410023767F /* DrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingView.m; sourceTree = "<group>"; };
+		4A13914B169E4A9600926CBC /* sampleText3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText3.jpg; sourceTree = "<group>"; };
+		4A2F7540169CD98000DD7A03 /* Text Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Text Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A2F7544169CD98000DD7A03 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4A2F7546169CD98000DD7A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4A2F7548169CD98000DD7A03 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4A2F754C169CD98000DD7A03 /* Text Reader-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Text Reader-Info.plist"; sourceTree = "<group>"; };
+		4A2F754E169CD98000DD7A03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4A2F7550169CD98000DD7A03 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4A2F7552169CD98000DD7A03 /* Text Reader-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Text Reader-Prefix.pch"; sourceTree = "<group>"; };
+		4A2F7553169CD98000DD7A03 /* TextReaderAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextReaderAppDelegate.h; sourceTree = "<group>"; };
+		4A2F7554169CD98000DD7A03 /* TextReaderAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextReaderAppDelegate.m; sourceTree = "<group>"; };
+		4A2F7556169CD98000DD7A03 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		4A2F7558169CD98000DD7A03 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		4A2F755A169CD98000DD7A03 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		4A2F755D169CD98000DD7A03 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		4A2F755F169CD98000DD7A03 /* TextReaderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextReaderViewController.h; sourceTree = "<group>"; };
+		4A2F7560169CD98000DD7A03 /* TextReaderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextReaderViewController.m; sourceTree = "<group>"; };
+		4A2F7567169CDA1700DD7A03 /* sampleText.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText.jpg; sourceTree = "<group>"; };
+		4A2F756D169D1AC400DD7A03 /* sampleText2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sampleText2.gif; sourceTree = "<group>"; };
+		4A7E194316B323910031A7A1 /* UIImage+LineDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LineDrawer.h"; sourceTree = "<group>"; };
+		4A7E194416B323910031A7A1 /* UIImage+LineDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LineDrawer.m"; sourceTree = "<group>"; };
+		4A9625E2169F2F85007AB6D6 /* sampleText4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText4.jpg; sourceTree = "<group>"; };
+		4A9625E3169F2F85007AB6D6 /* sampleText5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText5.jpg; sourceTree = "<group>"; };
+		4A9625E7169F7EE1007AB6D6 /* sampleText6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText6.jpg; sourceTree = "<group>"; };
+		4A9625E9169F8B1A007AB6D6 /* sampleText7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText7.jpg; sourceTree = "<group>"; };
+		4A9625EB169F8EE0007AB6D6 /* sampleText8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText8.jpg; sourceTree = "<group>"; };
+		4A9625ED169F9453007AB6D6 /* sampleTextB.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleTextB.jpg; sourceTree = "<group>"; };
+		4A9625EF169F96A1007AB6D6 /* sampleText5B.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText5B.jpg; sourceTree = "<group>"; };
+		4AB487DF16B74B00005960FA /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
+		4AB487E016B74B00005960FA /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
+		4ADC0B1416BB668D00815209 /* PhotoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoListViewController.h; sourceTree = "<group>"; };
+		4ADC0B1516BB668D00815209 /* PhotoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoListViewController.m; sourceTree = "<group>"; };
+		4AE6597416B4ADB700E0C76E /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		4AE6597516B4ADB700E0C76E /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4A2F753D169CD98000DD7A03 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A2F7545169CD98000DD7A03 /* UIKit.framework in Frameworks */,
+				4A2F7547169CD98000DD7A03 /* Foundation.framework in Frameworks */,
+				4A2F7549169CD98000DD7A03 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4A2F7535169CD97F00DD7A03 = {
+			isa = PBXGroup;
+			children = (
+				4A2F754A169CD98000DD7A03 /* Text Reader */,
+				4A2F7543169CD98000DD7A03 /* Frameworks */,
+				4A2F7541169CD98000DD7A03 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4A2F7541169CD98000DD7A03 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4A2F7540169CD98000DD7A03 /* Text Reader.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4A2F7543169CD98000DD7A03 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4A2F7544169CD98000DD7A03 /* UIKit.framework */,
+				4A2F7546169CD98000DD7A03 /* Foundation.framework */,
+				4A2F7548169CD98000DD7A03 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4A2F754A169CD98000DD7A03 /* Text Reader */ = {
+			isa = PBXGroup;
+			children = (
+				4A2F7553169CD98000DD7A03 /* TextReaderAppDelegate.h */,
+				4A2F7554169CD98000DD7A03 /* TextReaderAppDelegate.m */,
+				4A2F755C169CD98000DD7A03 /* MainStoryboard.storyboard */,
+				4A2F755F169CD98000DD7A03 /* TextReaderViewController.h */,
+				4A2F7560169CD98000DD7A03 /* TextReaderViewController.m */,
+				4ADC0B1416BB668D00815209 /* PhotoListViewController.h */,
+				4ADC0B1516BB668D00815209 /* PhotoListViewController.m */,
+				4AE6597416B4ADB700E0C76E /* PhotoViewController.h */,
+				4AE6597516B4ADB700E0C76E /* PhotoViewController.m */,
+				4A06B74516B62D410023767F /* DrawingView.h */,
+				4A06B74616B62D410023767F /* DrawingView.m */,
+				4A7E194316B323910031A7A1 /* UIImage+LineDrawer.h */,
+				4A7E194416B323910031A7A1 /* UIImage+LineDrawer.m */,
+				4AB487DF16B74B00005960FA /* Character.h */,
+				4AB487E016B74B00005960FA /* Character.m */,
+				4A2F754B169CD98000DD7A03 /* Supporting Files */,
+			);
+			path = "Text Reader";
+			sourceTree = "<group>";
+		};
+		4A2F754B169CD98000DD7A03 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4A04BE1C16A0BDBC009A9F8E /* sampleText13.JPG */,
+				4A04BE1316A0B9AD009A9F8E /* sampleText9.jpg */,
+				4A04BE1416A0B9AD009A9F8E /* sampleText10.jpg */,
+				4A04BE1516A0B9AD009A9F8E /* sampleText11.jpg */,
+				4A04BE1616A0B9AD009A9F8E /* sampleText12.jpg */,
+				4A9625ED169F9453007AB6D6 /* sampleTextB.jpg */,
+				4A9625E2169F2F85007AB6D6 /* sampleText4.jpg */,
+				4A9625E3169F2F85007AB6D6 /* sampleText5.jpg */,
+				4A9625EF169F96A1007AB6D6 /* sampleText5B.jpg */,
+				4A9625E7169F7EE1007AB6D6 /* sampleText6.jpg */,
+				4A9625E9169F8B1A007AB6D6 /* sampleText7.jpg */,
+				4A9625EB169F8EE0007AB6D6 /* sampleText8.jpg */,
+				4A13914B169E4A9600926CBC /* sampleText3.jpg */,
+				4A2F756D169D1AC400DD7A03 /* sampleText2.gif */,
+				4A2F7567169CDA1700DD7A03 /* sampleText.jpg */,
+				4A2F754C169CD98000DD7A03 /* Text Reader-Info.plist */,
+				4A2F754D169CD98000DD7A03 /* InfoPlist.strings */,
+				4A2F7550169CD98000DD7A03 /* main.m */,
+				4A2F7552169CD98000DD7A03 /* Text Reader-Prefix.pch */,
+				4A2F7556169CD98000DD7A03 /* Default.png */,
+				4A2F7558169CD98000DD7A03 /* Default@2x.png */,
+				4A2F755A169CD98000DD7A03 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4A2F753F169CD98000DD7A03 /* Text Reader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A2F7564169CD98000DD7A03 /* Build configuration list for PBXNativeTarget "Text Reader" */;
+			buildPhases = (
+				4A2F753C169CD98000DD7A03 /* Sources */,
+				4A2F753D169CD98000DD7A03 /* Frameworks */,
+				4A2F753E169CD98000DD7A03 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Text Reader";
+			productName = "Text Reader";
+			productReference = 4A2F7540169CD98000DD7A03 /* Text Reader.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4A2F7537169CD97F00DD7A03 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TextReader;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Satyam Ghodasara";
+			};
+			buildConfigurationList = 4A2F753A169CD97F00DD7A03 /* Build configuration list for PBXProject "Text Reader" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4A2F7535169CD97F00DD7A03;
+			productRefGroup = 4A2F7541169CD98000DD7A03 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4A2F753F169CD98000DD7A03 /* Text Reader */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4A2F753E169CD98000DD7A03 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A2F754F169CD98000DD7A03 /* InfoPlist.strings in Resources */,
+				4A2F7557169CD98000DD7A03 /* Default.png in Resources */,
+				4A2F7559169CD98000DD7A03 /* Default@2x.png in Resources */,
+				4A2F755B169CD98000DD7A03 /* Default-568h@2x.png in Resources */,
+				4A2F755E169CD98000DD7A03 /* MainStoryboard.storyboard in Resources */,
+				4A2F7568169CDA1700DD7A03 /* sampleText.jpg in Resources */,
+				4A2F756E169D1AC400DD7A03 /* sampleText2.gif in Resources */,
+				4A13914C169E4A9600926CBC /* sampleText3.jpg in Resources */,
+				4A9625E4169F2F85007AB6D6 /* sampleText4.jpg in Resources */,
+				4A9625E5169F2F85007AB6D6 /* sampleText5.jpg in Resources */,
+				4A9625E8169F7EE1007AB6D6 /* sampleText6.jpg in Resources */,
+				4A9625EA169F8B1A007AB6D6 /* sampleText7.jpg in Resources */,
+				4A9625EC169F8EE0007AB6D6 /* sampleText8.jpg in Resources */,
+				4A9625EE169F9453007AB6D6 /* sampleTextB.jpg in Resources */,
+				4A9625F0169F96A1007AB6D6 /* sampleText5B.jpg in Resources */,
+				4A04BE1716A0B9AD009A9F8E /* sampleText9.jpg in Resources */,
+				4A04BE1816A0B9AD009A9F8E /* sampleText10.jpg in Resources */,
+				4A04BE1916A0B9AD009A9F8E /* sampleText11.jpg in Resources */,
+				4A04BE1A16A0B9AD009A9F8E /* sampleText12.jpg in Resources */,
+				4A04BE1F16A0BDBC009A9F8E /* sampleText13.JPG in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4A2F753C169CD98000DD7A03 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A2F7551169CD98000DD7A03 /* main.m in Sources */,
+				4A2F7555169CD98000DD7A03 /* TextReaderAppDelegate.m in Sources */,
+				4A2F7561169CD98000DD7A03 /* TextReaderViewController.m in Sources */,
+				4A7E194516B323910031A7A1 /* UIImage+LineDrawer.m in Sources */,
+				4AE6597616B4ADB700E0C76E /* PhotoViewController.m in Sources */,
+				4A06B74716B62D410023767F /* DrawingView.m in Sources */,
+				4AB487E116B74B00005960FA /* Character.m in Sources */,
+				4ADC0B1616BB668D00815209 /* PhotoListViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4A2F754D169CD98000DD7A03 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4A2F754E169CD98000DD7A03 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4A2F755C169CD98000DD7A03 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4A2F755D169CD98000DD7A03 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4A2F7562169CD98000DD7A03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		4A2F7563169CD98000DD7A03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4A2F7565169CD98000DD7A03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Text Reader/Text Reader-Prefix.pch";
+				INFOPLIST_FILE = "Text Reader/Text Reader-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		4A2F7566169CD98000DD7A03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Text Reader/Text Reader-Prefix.pch";
+				INFOPLIST_FILE = "Text Reader/Text Reader-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4A2F753A169CD97F00DD7A03 /* Build configuration list for PBXProject "Text Reader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A2F7562169CD98000DD7A03 /* Debug */,
+				4A2F7563169CD98000DD7A03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4A2F7564169CD98000DD7A03 /* Build configuration list for PBXNativeTarget "Text Reader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A2F7565169CD98000DD7A03 /* Debug */,
+				4A2F7566169CD98000DD7A03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4A2F7537169CD97F00DD7A03 /* Project object */;
+}
