@@ -12,7 +12,7 @@
 
 @property NSString *book;
 @property NSMutableArray *pages;
-@property NSString *fullPath;
+@property NSString *savePath;
 @property NSString *documentsDirectory;
 
 @end

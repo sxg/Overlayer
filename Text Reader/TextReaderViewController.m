@@ -29,22 +29,20 @@
 @synthesize bytesPerRow;
 @synthesize bitsPerComponent;
 @synthesize lineThickness;
-@synthesize toolbar;
 @synthesize drawingView;
 @synthesize imageAndPathView;
-@synthesize drawLinesButton;
 @synthesize loadingView;
 @synthesize loadingHUD;
 @synthesize loadingLabel;
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
+    
     //the views are unhidden in viewDidAppear:
     [self.view setHidden:YES];
     [self.tabBarController.view setHidden:YES];
-    
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
     backgroundImage = [UIImage imageNamed:nil];
     [self setWidth:0];
@@ -53,6 +51,10 @@
     bitsPerComponent = 8;
     bytesPerRow = bytesPerPixel * width;
     lineThickness = 1;
+    
+    _cameraButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:nil action:@selector(callCamera:)];
+    _drawLinesButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:@selector(drawLines)];
+    self.navigationItem.rightBarButtonItem = _cameraButton;
     
     backgroundQueue = dispatch_queue_create("backgroundQueue", NULL);
     
@@ -63,11 +65,6 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if (backgroundImage == nil)
-    {
-        [drawLinesButton setEnabled:NO];
-    }
-    
     //the views are initially hidden in viewDidLoad so that no UI is seen when the app initially loads
     [self.view setHidden:NO];
     [self.tabBarController.view setHidden:NO];
@@ -81,8 +78,6 @@
 
 - (void)callCamera:(bool)animated
 {
-    [toolbar setHidden:YES];
-    
     imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
@@ -102,7 +97,7 @@
         }
     }
     
-    [toolbar setHidden:NO];
+    self.navigationItem.rightBarButtonItem = _drawLinesButton;
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -124,11 +119,6 @@
     bytesPerRow = bytesPerPixel * width;
     drawingView = [[DrawingView alloc] initWithFrame:CGRectMake(0, 0, 768, 1024 - 20 - 49)];
     imageAndPathView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 768, 1024 - 20 - 49)];
-    
-    if (![drawLinesButton isEnabled])
-    {
-        [drawLinesButton setEnabled:YES];
-    }
     
     //add the image to the view...
     backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
@@ -209,12 +199,7 @@
     return [backgroundImageView superview];
 }
 
-- (IBAction)newPhoto:(id)sender
-{
-    [self callCamera:YES];
-}
-
-- (IBAction)drawLines:(id)sender
+- (void)drawLines
 {
     if (backgroundImage != nil)
     {
@@ -241,7 +226,7 @@
         [self.view addSubview:loadingHUD];
         
         dispatch_async(backgroundQueue, ^{
-            [drawLinesButton setEnabled:NO];
+            [_drawLinesButton setEnabled:NO];
             drawingView = [backgroundImage identifyCharactersWithlineThickness:lineThickness onView:drawingView bytesPerPixel:bytesPerPixel bitsPerComponent:bitsPerComponent];
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -249,6 +234,8 @@
                 [self saveWithLines];
                 [loadingView stopAnimating];
                 [loadingHUD removeFromSuperview];
+                self.navigationItem.rightBarButtonItem = _cameraButton;
+                [_drawLinesButton setEnabled:YES];
             });
         });
     }
@@ -256,18 +243,16 @@
 
 - (void)save
 {
-    NSString *imagePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/"];
-    NSArray *fileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:imagePath error:nil];
-    imagePath = [imagePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%i.png", ([fileList count] + 1)]];
+    NSArray *fileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:_savePath error:nil];
+    NSString *imagePath = [_savePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%i.png", ([fileList count] + 1)]];
     
     [UIImagePNGRepresentation(backgroundImage) writeToFile:imagePath atomically:YES];
 }
 
 - (void)saveWithLines
 {
-    NSString *imagePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/"];
-    NSArray *fileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:imagePath error:nil];
-    imagePath = [imagePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%i.png", ([fileList count] + 1)]];
+    NSArray *fileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:_savePath error:nil];
+    NSString *imagePath = [_savePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%i.png", ([fileList count] + 1)]];
     
     UIGraphicsBeginImageContext(imageAndPathView.bounds.size);
     [imageAndPathView.layer renderInContext:UIGraphicsGetCurrentContext()];

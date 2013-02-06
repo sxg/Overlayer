@@ -24,19 +24,18 @@
 @property NSUInteger bytesPerRow;
 @property NSUInteger bitsPerComponent;
 @property int lineThickness;
-@property IBOutlet UIToolbar *toolbar;
 @property DrawingView *drawingView;
 @property UIView *imageAndPathView;
-@property IBOutlet UIBarButtonItem *drawLinesButton;
 @property UIView *loadingHUD;
 @property UIActivityIndicatorView *loadingView;
 @property UILabel *loadingLabel;
+@property UIBarButtonItem *cameraButton;
+@property UIBarButtonItem *drawLinesButton;
+@property NSString *savePath;
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info;
-
-- (IBAction)newPhoto:(id)sender;
-- (IBAction)drawLines:(id)sender;
+- (void)drawLines;
 - (void)save;
 - (void)saveWithLines;
 

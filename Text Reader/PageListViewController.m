@@ -7,6 +7,7 @@
 //
 
 #import "PageListViewController.h"
+#import "TextReaderViewController.h"
 
 @interface PageListViewController ()
 
@@ -34,8 +35,8 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     NSFileManager *fm = [NSFileManager defaultManager];
-    _fullPath = [_documentsDirectory stringByAppendingPathComponent:_book];
-    _pages = [[fm contentsOfDirectoryAtPath:_fullPath error:nil] mutableCopy];
+    _savePath = [_documentsDirectory stringByAppendingPathComponent:_book];
+    _pages = [[fm contentsOfDirectoryAtPath:_savePath error:nil] mutableCopy];
 }
 
 - (void)didReceiveMemoryWarning
@@ -119,6 +120,15 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"CameraFromPages"])
+    {
+        TextReaderViewController *textReaderViewController = segue.destinationViewController;
+        [textReaderViewController setSavePath:_savePath];
+    }
 }
 
 @end
