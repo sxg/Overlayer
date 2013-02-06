@@ -10,7 +10,7 @@
 
 @interface BookListViewController : UITableViewController
 
-@property NSMutableDictionary *books;
+@property NSMutableArray *books;
 @property NSString *documentsDirectory;
 
 - (void)firstLoad;

@@ -41,53 +41,6 @@
     [self firstLoad];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    /*NSArray *updatedImageNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:mainPath error:nil];
-    bool update = false;
-    
-    if ([updatedImageNames count] != [[images allKeys] count])
-    {
-        update = true;
-    }
-    else
-    {
-        //[updatedImageNames count] should equal [imageNames count] in this else block
-        for (int i = 0; i < [updatedImageNames count]; i++)
-        {
-            NSString *updated = [updatedImageNames objectAtIndex:i];
-            NSString *original = [[images allKeys] objectAtIndex:i];
-            
-            if (![updated isEqualToString:original])
-            {
-                update = true;
-            }
-        }
-    }
-        
-    if (update)
-    {
-        for (NSString *imageName in updatedImageNames)
-        {
-            if (![[images allKeys] containsObject:imageName])
-            {
-                NSString *path = [mainPath stringByAppendingPathComponent:imageName];
-                UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
-                [images setObject:image forKey:imageName];
-            }
-        }
-        
-        for (NSString *imageName in [images allKeys])
-        {
-            if (![updatedImageNames containsObject:imageName])
-            {
-                [images removeObjectForKey:imageName];
-            }
-        }
-        [self.tableView reloadData];
-    }*/
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -97,14 +50,7 @@
 - (void)firstLoad
 {
     documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    NSMutableArray *bookNames = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDirectory error:nil] mutableCopy];
-    books = [[NSMutableDictionary alloc] initWithCapacity:[bookNames count]];
-    for (NSString *name in bookNames)
-    {
-        NSString *path = [documentsDirectory stringByAppendingPathComponent:name];
-        //UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
-        [books setObject:path forKey:name];
-    }
+    books = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDirectory error:nil] mutableCopy];
 }
 
 - (IBAction)addBook:(id)sender
@@ -138,22 +84,13 @@
 
     //Take the name that does not exist, create a new book with it, and add it to the data source
     NSString *path = [documentsDirectory stringByAppendingPathComponent:newBookName];
-    [newBookName writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
-    [books setObject:path forKey:newBookName];
+    [fm createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:nil];
+    [books addObject:newBookName];
     
     //Add the new book to the table
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([books count] - 1) inSection:0];
     NSArray *array = [[NSArray alloc] initWithObjects:indexPath, nil];
     [self.tableView insertRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationAutomatic];
-    
-    //delete all files
-    /*NSFileManager *fm = [NSFileManager defaultManager];
-    NSArray* files = [fm contentsOfDirectoryAtPath:documentsDirectory error:nil];
-    for (NSString *name in files)
-    {
-        NSString *path = [documentsDirectory stringByAppendingPathComponent:name];
-        [fm removeItemAtPath:path error:nil];
-    }*/
 }
 
 #pragma mark - Table view data source
@@ -177,11 +114,8 @@
     
     // Configure the cell...
     
-    NSString *name = @"";
-    name = [name stringByAppendingFormat:@"%i.png", (indexPath.row + 1)];
-    //UIImage *image = [images objectForKey:name];
-    //cell.imageView.image = image;
-    [cell.textLabel setText:[NSString stringWithFormat:@"%i.png", (indexPath.row + 1)]];
+    NSString *name = [books objectAtIndex:indexPath.row];
+    [cell.textLabel setText:name];
     
     return cell;
 }
