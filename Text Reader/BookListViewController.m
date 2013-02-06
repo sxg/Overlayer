@@ -9,11 +9,11 @@
 #import "PageViewController.h"
 #import "BookListViewController.h"
 
-@interface PageListViewController ()
+@interface BookListViewController ()
 
 @end
 
-@implementation PageListViewController
+@implementation BookListViewController
 
 @synthesize images;
 @synthesize mainPath;
