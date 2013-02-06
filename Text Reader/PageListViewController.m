@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
-#import "PhotoViewController.h"
-#import "PhotoListViewController.h"
+#import "PageViewController.h"
+#import "BookListViewController.h"
 
-@interface PhotoListViewController ()
+@interface PageListViewController ()
 
 @end
 
-@implementation PhotoListViewController
+@implementation PageListViewController
 
 @synthesize images;
 @synthesize mainPath;

@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
-#import "PhotoViewController.h"
+#import "PageViewController.h"
 
-@interface PhotoViewController ()
+@interface PageViewController ()
 
 @end
 
-@implementation PhotoViewController
+@implementation PageViewController
 
 @synthesize image;
 @synthesize imageView;

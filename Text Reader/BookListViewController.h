@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PhotoViewController.h"
+#import "PageViewController.h"
 
-@interface PhotoListViewController : UITableViewController
+@interface PageListViewController : UITableViewController
 
 @property NSMutableDictionary *images;
 @property NSString *mainPath;
-@property PhotoViewController *destination;
+@property PageViewController *destination;
 
 - (void)firstLoad;
 

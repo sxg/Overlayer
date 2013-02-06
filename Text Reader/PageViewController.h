@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PhotoViewController : UIViewController <UIScrollViewDelegate>
+@interface PageViewController : UIViewController <UIScrollViewDelegate>
 
 @property UIImage *image;
 @property UIImageView *imageView;

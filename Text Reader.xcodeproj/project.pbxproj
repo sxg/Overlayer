@@ -21,8 +21,8 @@
 		4A2F7561169CD98000DD7A03 /* TextReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2F7560169CD98000DD7A03 /* TextReaderViewController.m */; };
 		4A7E194516B323910031A7A1 /* UIImage+LineDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E194416B323910031A7A1 /* UIImage+LineDrawer.m */; };
 		4AB487E116B74B00005960FA /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB487E016B74B00005960FA /* Character.m */; };
-		4ADC0B1616BB668D00815209 /* PhotoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC0B1516BB668D00815209 /* PhotoListViewController.m */; };
-		4AE6597616B4ADB700E0C76E /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE6597516B4ADB700E0C76E /* PhotoViewController.m */; };
+		4ADC0B1616BB668D00815209 /* PageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC0B1516BB668D00815209 /* PageListViewController.m */; };
+		4AE6597616B4ADB700E0C76E /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE6597516B4ADB700E0C76E /* PageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,10 +48,10 @@
 		4A7E194416B323910031A7A1 /* UIImage+LineDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LineDrawer.m"; sourceTree = "<group>"; };
 		4AB487DF16B74B00005960FA /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
 		4AB487E016B74B00005960FA /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
-		4ADC0B1416BB668D00815209 /* PhotoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoListViewController.h; sourceTree = "<group>"; };
-		4ADC0B1516BB668D00815209 /* PhotoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoListViewController.m; sourceTree = "<group>"; };
-		4AE6597416B4ADB700E0C76E /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
-		4AE6597516B4ADB700E0C76E /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		4ADC0B1416BB668D00815209 /* BookListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookListViewController.h; sourceTree = "<group>"; };
+		4ADC0B1516BB668D00815209 /* PageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageListViewController.m; sourceTree = "<group>"; };
+		4AE6597416B4ADB700E0C76E /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
+		4AE6597516B4ADB700E0C76E /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,10 +103,10 @@
 				4A2F755C169CD98000DD7A03 /* MainStoryboard.storyboard */,
 				4A2F755F169CD98000DD7A03 /* TextReaderViewController.h */,
 				4A2F7560169CD98000DD7A03 /* TextReaderViewController.m */,
-				4ADC0B1416BB668D00815209 /* PhotoListViewController.h */,
-				4ADC0B1516BB668D00815209 /* PhotoListViewController.m */,
-				4AE6597416B4ADB700E0C76E /* PhotoViewController.h */,
-				4AE6597516B4ADB700E0C76E /* PhotoViewController.m */,
+				4ADC0B1416BB668D00815209 /* BookListViewController.h */,
+				4ADC0B1516BB668D00815209 /* PageListViewController.m */,
+				4AE6597416B4ADB700E0C76E /* PageViewController.h */,
+				4AE6597516B4ADB700E0C76E /* PageViewController.m */,
 				4A06B74516B62D410023767F /* DrawingView.h */,
 				4A06B74616B62D410023767F /* DrawingView.m */,
 				4A7E194316B323910031A7A1 /* UIImage+LineDrawer.h */,
@@ -203,10 +203,10 @@
 				4A2F7555169CD98000DD7A03 /* TextReaderAppDelegate.m in Sources */,
 				4A2F7561169CD98000DD7A03 /* TextReaderViewController.m in Sources */,
 				4A7E194516B323910031A7A1 /* UIImage+LineDrawer.m in Sources */,
-				4AE6597616B4ADB700E0C76E /* PhotoViewController.m in Sources */,
+				4AE6597616B4ADB700E0C76E /* PageViewController.m in Sources */,
 				4A06B74716B62D410023767F /* DrawingView.m in Sources */,
 				4AB487E116B74B00005960FA /* Character.m in Sources */,
-				4ADC0B1616BB668D00815209 /* PhotoListViewController.m in Sources */,
+				4ADC0B1616BB668D00815209 /* PageListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

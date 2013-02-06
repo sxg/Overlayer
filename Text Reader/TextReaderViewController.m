@@ -8,7 +8,7 @@
 
 #import "TextReaderViewController.h"
 #import "UIImage+LineDrawer.h"
-#import "PhotoListViewController.h"
+#import "BookListViewController.h"
 #import <dispatch/dispatch.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -57,7 +57,7 @@
     backgroundQueue = dispatch_queue_create("backgroundQueue", NULL);
     
     UINavigationController *navController = [[self.tabBarController viewControllers] objectAtIndex:1];
-    PhotoListViewController *plvc = [[navController viewControllers] objectAtIndex:0];
+    PageListViewController *plvc = [[navController viewControllers] objectAtIndex:0];
     [plvc firstLoad];
 }
 
