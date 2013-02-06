@@ -52,11 +52,12 @@
     bytesPerRow = bytesPerPixel * width;
     lineThickness = 1;
     
-    _cameraButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:nil action:@selector(callCamera:)];
-    _drawLinesButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:@selector(drawLines)];
+    _cameraButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(callCamera)];
+    _drawLinesButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(drawLines)];
+    [_drawLinesButton setTitle:@"Draw Lines"];
     self.navigationItem.rightBarButtonItem = _cameraButton;
     
-    backgroundQueue = dispatch_queue_create("backgroundQueue", NULL);
+    _backgroundQueue = dispatch_queue_create("backgroundQueue", NULL);
     
     //UINavigationController *navController = [[self.tabBarController viewControllers] objectAtIndex:1];
     //BookListViewController *plvc = [[navController viewControllers] objectAtIndex:0];
@@ -76,14 +77,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)callCamera:(bool)animated
+- (void)callCamera
 {
     imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self presentViewController:imagePicker animated:animated completion:nil];
+        [self presentViewController:imagePicker animated:YES completion:nil];
     }
     else if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum])
     {
@@ -225,7 +226,7 @@
         
         [self.view addSubview:loadingHUD];
         
-        dispatch_async(backgroundQueue, ^{
+        dispatch_async(_backgroundQueue, ^{
             [_drawLinesButton setEnabled:NO];
             drawingView = [backgroundImage identifyCharactersWithlineThickness:lineThickness onView:drawingView bytesPerPixel:bytesPerPixel bitsPerComponent:bitsPerComponent];
             

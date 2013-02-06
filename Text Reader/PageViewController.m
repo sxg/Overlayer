@@ -1,5 +1,5 @@
 //
-//  PhotoViewController.m
+//  PageViewController.m
 //  Text Reader
 //
 //  Created by Satyam Ghodasara on 1/26/13.

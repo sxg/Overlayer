@@ -44,7 +44,7 @@
             </objects>
             <point key="canvasLocation" x="1796" y="733"/>
         </scene>
-        <!--Page List View Controller - Pages-->
+        <!--Page List View Controller-->
         <scene sceneID="hBG-KD-awv">
             <objects>
                 <tableViewController id="75X-0l-0GD" customClass="PageListViewController" sceneMemberID="viewController">
@@ -71,7 +71,7 @@
                             <outlet property="delegate" destination="75X-0l-0GD" id="QqT-aY-nzw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Pages" id="tiq-tv-icw">
+                    <navigationItem key="navigationItem" id="tiq-tv-icw">
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="Cea-Fs-SJh">
                             <connections>
                                 <segue destination="exO-Je-KII" kind="push" identifier="CameraFromPages" id="vTN-44-xER"/>
@@ -131,35 +131,12 @@
             <point key="canvasLocation" x="2178" y="-588"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="BookListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BookListViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addBook:"/>
-            </relationships>
-        </class>
-        <class className="PageListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PageListViewController.h"/>
-        </class>
-        <class className="PageViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PageViewController.h"/>
-        </class>
-        <class className="TextReaderViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TextReaderViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="drawLines:"/>
-                <relationship kind="action" name="newPhoto:"/>
-                <relationship kind="outlet" name="drawLinesButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Rcr-ZB-YMI"/>
+        <segue reference="vTN-44-xER"/>
     </inferredMetricsTieBreakers>
 </document>

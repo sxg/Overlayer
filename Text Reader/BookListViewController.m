@@ -1,5 +1,5 @@
 //
-//  PhotoListViewController.m
+//  BookListViewController.m
 //  Text Reader
 //
 //  Created by Satyam Ghodasara on 1/31/13.
@@ -8,6 +8,7 @@
 
 #import "PageListViewController.h"
 #import "BookListViewController.h"
+#import "TextReaderViewController.h"
 
 @interface BookListViewController ()
 
@@ -55,6 +56,21 @@
 
 - (IBAction)addBook:(id)sender
 {
+    NSString *newBookName = [self getNewBookName];
+    
+    //Take the name that does not exist, create a new book with it, and add it to the data source
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:newBookName];
+    [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:nil];
+    [books addObject:newBookName];
+    
+    //Add the new book to the table
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([books count] - 1) inSection:0];
+    NSArray *array = [[NSArray alloc] initWithObjects:indexPath, nil];
+    [self.tableView insertRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (NSString*)getNewBookName
+{
     //Search the Documents directory for a book called "New Book". If it exists, then look for "New Book 2" etc.
     //There is a minor bug in this code - if "New Book", "New Book 2", and "New Book 4" exist, then the next book that is added will be "New Book 3" instead of "New Book 5"
     bool alreadyExists;
@@ -82,15 +98,7 @@
         i++;
     } while (alreadyExists);
 
-    //Take the name that does not exist, create a new book with it, and add it to the data source
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:newBookName];
-    [fm createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:nil];
-    [books addObject:newBookName];
-    
-    //Add the new book to the table
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([books count] - 1) inSection:0];
-    NSArray *array = [[NSArray alloc] initWithObjects:indexPath, nil];
-    [self.tableView insertRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationAutomatic];
+    return newBookName;
 }
 
 #pragma mark - Table view data source
@@ -187,7 +195,12 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];*/
     
     NSString *selectedBook = [books objectAtIndex:indexPath.row];
-    [pageListViewController setBook:selectedBook];
+    [_pageListViewController setBook:selectedBook];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    _pageListViewController.savePath = [_pageListViewController.documentsDirectory stringByAppendingPathComponent:_pageListViewController.book];
+    _pageListViewController.pages = [[fm contentsOfDirectoryAtPath:_pageListViewController.savePath error:nil] mutableCopy];
+    
+    _pageListViewController.navigationItem.title = _pageListViewController.book;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -197,8 +210,15 @@
         destination.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, destination.view.frame.size.width, destination.view.frame.size.height)];
         [destination.scrollView setDelegate:destination];*/
     
-        pageListViewController = segue.destinationViewController;
-        [pageListViewController setDocumentsDirectory:documentsDirectory];
+        _pageListViewController = segue.destinationViewController;
+        [_pageListViewController setDocumentsDirectory:documentsDirectory];
+    }
+    else if ([segue.identifier isEqualToString:@"CameraFromPages"])
+    {
+        NSString *savePath = [documentsDirectory stringByAppendingPathComponent:[self getNewBookName]];
+        [[NSFileManager defaultManager] createDirectoryAtPath:savePath withIntermediateDirectories:NO attributes:nil error:nil];
+        TextReaderViewController *textReaderViewController = segue.destinationViewController;
+        [textReaderViewController setSavePath:savePath];
     }
 }
 

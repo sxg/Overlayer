@@ -33,10 +33,6 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    NSFileManager *fm = [NSFileManager defaultManager];
-    _savePath = [_documentsDirectory stringByAppendingPathComponent:_book];
-    _pages = [[fm contentsOfDirectoryAtPath:_savePath error:nil] mutableCopy];
 }
 
 - (void)didReceiveMemoryWarning

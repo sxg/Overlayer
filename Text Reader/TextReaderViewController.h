@@ -9,10 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface TextReaderViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate, UIPopoverControllerDelegate>
-{
-    dispatch_queue_t backgroundQueue;
-}
 
+@property dispatch_queue_t backgroundQueue;
 @property UIImagePickerController *imagePicker;
 @property UIImage *backgroundImage;
 @property UIImageView *backgroundImageView;
@@ -35,6 +33,7 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info;
+- (void)callCamera;
 - (void)drawLines;
 - (void)save;
 - (void)saveWithLines;

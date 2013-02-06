@@ -1,5 +1,5 @@
 //
-//  PhotoListViewController.h
+//  BookListViewController.h
 //  Text Reader
 //
 //  Created by Satyam Ghodasara on 1/31/13.
@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PageListViewController.h"
 
 @interface BookListViewController : UITableViewController
-{
-    PageListViewController *pageListViewController;
-}
 
+@property PageListViewController *pageListViewController;
 @property NSMutableArray *books;
 @property NSString *documentsDirectory;
 
