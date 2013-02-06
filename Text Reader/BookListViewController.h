@@ -7,14 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PageViewController.h"
 
 @interface BookListViewController : UITableViewController
 
-@property NSMutableDictionary *images;
-@property NSString *mainPath;
-@property PageViewController *destination;
+@property NSMutableDictionary *books;
+@property NSString *documentsDirectory;
 
 - (void)firstLoad;
+- (IBAction)addBook:(id)sender;
 
 @end

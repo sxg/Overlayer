@@ -56,9 +56,9 @@
     
     backgroundQueue = dispatch_queue_create("backgroundQueue", NULL);
     
-    UINavigationController *navController = [[self.tabBarController viewControllers] objectAtIndex:1];
-    PageListViewController *plvc = [[navController viewControllers] objectAtIndex:0];
-    [plvc firstLoad];
+    //UINavigationController *navController = [[self.tabBarController viewControllers] objectAtIndex:1];
+    //BookListViewController *plvc = [[navController viewControllers] objectAtIndex:0];
+    //[plvc firstLoad];
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -22,6 +22,7 @@
 		4A7E194516B323910031A7A1 /* UIImage+LineDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E194416B323910031A7A1 /* UIImage+LineDrawer.m */; };
 		4AB487E116B74B00005960FA /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB487E016B74B00005960FA /* Character.m */; };
 		4ADC0B1616BB668D00815209 /* BookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC0B1516BB668D00815209 /* BookListViewController.m */; };
+		4ADDA66816C2C40900F7E7A3 /* PageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDA66716C2C40900F7E7A3 /* PageListViewController.m */; };
 		4AE6597616B4ADB700E0C76E /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE6597516B4ADB700E0C76E /* PageViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,8 @@
 		4AB487E016B74B00005960FA /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
 		4ADC0B1416BB668D00815209 /* BookListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookListViewController.h; sourceTree = "<group>"; };
 		4ADC0B1516BB668D00815209 /* BookListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookListViewController.m; sourceTree = "<group>"; };
+		4ADDA66616C2C40800F7E7A3 /* PageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageListViewController.h; sourceTree = "<group>"; };
+		4ADDA66716C2C40900F7E7A3 /* PageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageListViewController.m; sourceTree = "<group>"; };
 		4AE6597416B4ADB700E0C76E /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
 		4AE6597516B4ADB700E0C76E /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +108,8 @@
 				4A2F7560169CD98000DD7A03 /* TextReaderViewController.m */,
 				4ADC0B1416BB668D00815209 /* BookListViewController.h */,
 				4ADC0B1516BB668D00815209 /* BookListViewController.m */,
+				4ADDA66616C2C40800F7E7A3 /* PageListViewController.h */,
+				4ADDA66716C2C40900F7E7A3 /* PageListViewController.m */,
 				4AE6597416B4ADB700E0C76E /* PageViewController.h */,
 				4AE6597516B4ADB700E0C76E /* PageViewController.m */,
 				4A06B74516B62D410023767F /* DrawingView.h */,
@@ -207,6 +212,7 @@
 				4A06B74716B62D410023767F /* DrawingView.m in Sources */,
 				4AB487E116B74B00005960FA /* Character.m in Sources */,
 				4ADC0B1616BB668D00815209 /* BookListViewController.m in Sources */,
+				4ADDA66816C2C40900F7E7A3 /* PageListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

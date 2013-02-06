@@ -7,7 +7,6 @@
 //
 
 #import "TextReaderAppDelegate.h"
-#import "PhotoListViewController.h"
 
 @implementation TextReaderAppDelegate
 

@@ -15,9 +15,8 @@
 
 @implementation BookListViewController
 
-@synthesize images;
-@synthesize mainPath;
-@synthesize destination;
+@synthesize books;
+@synthesize documentsDirectory;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -36,10 +35,10 @@
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     //need to setup images and imageNames
-    //[self firstLoad];
+    [self firstLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -97,15 +96,30 @@
 
 - (void)firstLoad
 {
-    mainPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    NSMutableArray *imageNames = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:mainPath error:nil] mutableCopy];
-    images = [[NSMutableDictionary alloc] initWithCapacity:[imageNames count]];
-    for (NSString *name in imageNames)
+    documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSMutableArray *bookNames = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDirectory error:nil] mutableCopy];
+    books = [[NSMutableDictionary alloc] initWithCapacity:[bookNames count]];
+    for (NSString *name in bookNames)
     {
-        NSString *path = [mainPath stringByAppendingPathComponent:name];
+        NSString *path = [documentsDirectory stringByAppendingPathComponent:name];
         //UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
-        [images setObject:path forKey:name];
+        [books setObject:path forKey:name];
     }
+}
+
+- (IBAction)addBook:(id)sender
+{
+    NSString *newBookName = @"New Book 1";
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:newBookName];
+    
+    [newBookName writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    
+    [books setObject:path forKey:newBookName];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[books count] inSection:0];
+    NSArray *array = [[NSArray alloc] initWithObjects:indexPath, nil];
+    
+    [self.tableView insertRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 #pragma mark - Table view data source
@@ -119,12 +133,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [images count];
+    return [books count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ImageListing";
+    static NSString *CellIdentifier = @"Book";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
@@ -189,9 +203,9 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     
-    NSString *name = @"";
+    /*NSString *name = @"";
     name = [name stringByAppendingFormat:@"%i.png", (indexPath.row + 1)];
-    UIImage *image = [[UIImage alloc] initWithContentsOfFile:[images objectForKey:name]];
+    UIImage *image = [[UIImage alloc] initWithContentsOfFile:[books objectForKey:name]];
     destination.image = image;
     
     destination.imageView = [[UIImageView alloc] initWithImage:destination.image];
@@ -202,15 +216,15 @@
     [destination.scrollView setShowsHorizontalScrollIndicator:YES];
     [destination.view addSubview:destination.scrollView];
     
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];*/
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Detail"]) {
-        destination = segue.destinationViewController;
+       /* destination = segue.destinationViewController;
         [destination setHidesBottomBarWhenPushed:YES];
         destination.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, destination.view.frame.size.width, destination.view.frame.size.height)];
-        [destination.scrollView setDelegate:destination];
+        [destination.scrollView setDelegate:destination];*/
     }
 }
 
