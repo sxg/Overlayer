@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
-#import "PageViewController.h"
+#import "PageListViewController.h"
 #import "BookListViewController.h"
 
 @interface BookListViewController ()
@@ -91,8 +91,6 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([books count] - 1) inSection:0];
     NSArray *array = [[NSArray alloc] initWithObjects:indexPath, nil];
     [self.tableView insertRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationAutomatic];
-    
-    //just some BS here
 }
 
 #pragma mark - Table view data source
@@ -187,14 +185,20 @@
     [destination.view addSubview:destination.scrollView];
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];*/
+    
+    NSString *selectedBook = [books objectAtIndex:indexPath.row];
+    [pageListViewController setBook:selectedBook];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"Detail"]) {
+    if ([segue.identifier isEqualToString:@"ViewBook"]) {
        /* destination = segue.destinationViewController;
         [destination setHidesBottomBarWhenPushed:YES];
         destination.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, destination.view.frame.size.width, destination.view.frame.size.height)];
         [destination.scrollView setDelegate:destination];*/
+    
+        pageListViewController = segue.destinationViewController;
+        [pageListViewController setDocumentsDirectory:documentsDirectory];
     }
 }
 

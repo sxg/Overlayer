@@ -32,6 +32,10 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    NSFileManager *fm = [NSFileManager defaultManager];
+    _fullPath = [_documentsDirectory stringByAppendingPathComponent:_book];
+    _pages = [[fm contentsOfDirectoryAtPath:_fullPath error:nil] mutableCopy];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,9 +48,8 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

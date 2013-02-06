@@ -10,4 +10,9 @@
 
 @interface PageListViewController : UITableViewController
 
+@property NSString *book;
+@property NSMutableArray *pages;
+@property NSString *fullPath;
+@property NSString *documentsDirectory;
+
 @end

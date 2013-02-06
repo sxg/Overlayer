@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface BookListViewController : UITableViewController
+{
+    PageListViewController *pageListViewController;
+}
 
 @property NSMutableArray *books;
 @property NSString *documentsDirectory;
