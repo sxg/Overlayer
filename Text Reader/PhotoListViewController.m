@@ -39,12 +39,12 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     //need to setup images and imageNames
-    //[self firstLoad];  The images are loaded with the initial view controller (see TextReaderViewController.m's viewDidLoad)
+    //[self firstLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSArray *updatedImageNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:mainPath error:nil];
+    /*NSArray *updatedImageNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:mainPath error:nil];
     bool update = false;
     
     if ([updatedImageNames count] != [[images allKeys] count])
@@ -86,7 +86,7 @@
             }
         }
         [self.tableView reloadData];
-    }
+    }*/
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,8 +103,8 @@
     for (NSString *name in imageNames)
     {
         NSString *path = [mainPath stringByAppendingPathComponent:name];
-        UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
-        [images setObject:image forKey:name];
+        //UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
+        [images setObject:path forKey:name];
     }
 }
 
@@ -131,8 +131,8 @@
     
     NSString *name = @"";
     name = [name stringByAppendingFormat:@"%i.png", (indexPath.row + 1)];
-    UIImage *image = [images objectForKey:name];
-    cell.imageView.image = image;
+    //UIImage *image = [images objectForKey:name];
+    //cell.imageView.image = image;
     [cell.textLabel setText:[NSString stringWithFormat:@"%i.png", (indexPath.row + 1)]];
     
     return cell;
@@ -191,7 +191,7 @@
     
     NSString *name = @"";
     name = [name stringByAppendingFormat:@"%i.png", (indexPath.row + 1)];
-    UIImage *image = [images objectForKey:name];
+    UIImage *image = [[UIImage alloc] initWithContentsOfFile:[images objectForKey:name]];
     destination.image = image;
     
     destination.imageView = [[UIImageView alloc] initWithImage:destination.image];
