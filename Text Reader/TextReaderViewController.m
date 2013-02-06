@@ -59,8 +59,6 @@
     UINavigationController *navController = [[self.tabBarController viewControllers] objectAtIndex:1];
     PhotoListViewController *plvc = [[navController viewControllers] objectAtIndex:0];
     [plvc firstLoad];
-    
-    //just checking
 }
 
 - (void)viewDidAppear:(BOOL)animated
