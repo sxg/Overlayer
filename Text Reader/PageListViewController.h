@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
+#import "PageViewController.h"
 #import <UIKit/UIKit.h>
 
 @interface PageListViewController : UITableViewController
@@ -14,5 +15,6 @@
 @property NSMutableArray *pages;
 @property NSString *savePath;
 @property NSString *documentsDirectory;
+@property PageViewController *pageViewController;
 
 @end

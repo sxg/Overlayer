@@ -51,9 +51,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [_pages count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -62,6 +61,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+    NSString *name = [_pages objectAtIndex:indexPath.row];
+    [cell.textLabel setText:name];
     
     return cell;
 }
@@ -116,6 +117,20 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    
+    NSString *page = [_pages objectAtIndex:indexPath.row];
+    NSString *path = [_savePath stringByAppendingPathComponent:page];
+    
+    _pageViewController.image = [[UIImage alloc] initWithContentsOfFile:path];
+    _pageViewController.imageView = [[UIImageView alloc] initWithImage:_pageViewController.image];
+    [_pageViewController.scrollView addSubview:_pageViewController.imageView];
+    [_pageViewController.scrollView setContentSize:CGSizeMake(_pageViewController.image.size.width, _pageViewController.image.size.height)];
+    [_pageViewController.scrollView setMinimumZoomScale:1.0];
+    [_pageViewController.scrollView setMaximumZoomScale:3.0];
+    [_pageViewController.scrollView setShowsHorizontalScrollIndicator:YES];
+    [_pageViewController.view addSubview:_pageViewController.scrollView];
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -124,6 +139,12 @@
     {
         TextReaderViewController *textReaderViewController = segue.destinationViewController;
         [textReaderViewController setSavePath:_savePath];
+    }
+    else if ([segue.identifier isEqualToString:@"ViewPage"])
+    {
+        _pageViewController = segue.destinationViewController;
+        _pageViewController.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, _pageViewController.view.frame.size.width, _pageViewController.view.frame.size.height)];
+        [_pageViewController.scrollView setDelegate:_pageViewController];
     }
 }
 

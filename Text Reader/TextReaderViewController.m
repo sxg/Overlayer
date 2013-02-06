@@ -40,10 +40,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    //the views are unhidden in viewDidAppear:
-    [self.view setHidden:YES];
-    [self.tabBarController.view setHidden:YES];
-    
     backgroundImage = [UIImage imageNamed:nil];
     [self setWidth:0];
     [self setHeight:0];
@@ -53,22 +49,10 @@
     lineThickness = 1;
     
     _cameraButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(callCamera)];
-    _drawLinesButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(drawLines)];
-    [_drawLinesButton setTitle:@"Draw Lines"];
+    _drawLinesButton = [[UIBarButtonItem alloc] initWithTitle:@"Draw Lines" style:UIBarButtonItemStyleDone target:self action:@selector(drawLines)];
     self.navigationItem.rightBarButtonItem = _cameraButton;
     
     _backgroundQueue = dispatch_queue_create("backgroundQueue", NULL);
-    
-    //UINavigationController *navController = [[self.tabBarController viewControllers] objectAtIndex:1];
-    //BookListViewController *plvc = [[navController viewControllers] objectAtIndex:0];
-    //[plvc firstLoad];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    //the views are initially hidden in viewDidLoad so that no UI is seen when the app initially loads
-    [self.view setHidden:NO];
-    [self.tabBarController.view setHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning

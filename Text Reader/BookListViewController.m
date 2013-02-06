@@ -179,21 +179,6 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     
-    /*NSString *name = @"";
-    name = [name stringByAppendingFormat:@"%i.png", (indexPath.row + 1)];
-    UIImage *image = [[UIImage alloc] initWithContentsOfFile:[books objectForKey:name]];
-    destination.image = image;
-    
-    destination.imageView = [[UIImageView alloc] initWithImage:destination.image];
-    [destination.scrollView addSubview:destination.imageView];
-    [destination.scrollView setContentSize:CGSizeMake(destination.image.size.width, destination.image.size.height)];
-    [destination.scrollView setMinimumZoomScale:1.0];
-    [destination.scrollView setMaximumZoomScale:3.0];
-    [destination.scrollView setShowsHorizontalScrollIndicator:YES];
-    [destination.view addSubview:destination.scrollView];
-    
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];*/
-    
     NSString *selectedBook = [books objectAtIndex:indexPath.row];
     [_pageListViewController setBook:selectedBook];
     NSFileManager *fm = [NSFileManager defaultManager];
@@ -204,16 +189,11 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"ViewBook"]) {
-       /* destination = segue.destinationViewController;
-        [destination setHidesBottomBarWhenPushed:YES];
-        destination.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, destination.view.frame.size.width, destination.view.frame.size.height)];
-        [destination.scrollView setDelegate:destination];*/
-    
+    if ([segue.identifier isEqualToString:@"ViewBook"]) {    
         _pageListViewController = segue.destinationViewController;
         [_pageListViewController setDocumentsDirectory:documentsDirectory];
     }
-    else if ([segue.identifier isEqualToString:@"CameraFromPages"])
+    else if ([segue.identifier isEqualToString:@"CameraFromBooks"])
     {
         NSString *savePath = [documentsDirectory stringByAppendingPathComponent:[self getNewBookName]];
         [[NSFileManager defaultManager] createDirectoryAtPath:savePath withIntermediateDirectories:NO attributes:nil error:nil];
