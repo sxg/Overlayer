@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PageViewController.h"
 
-@interface PageListViewController : UITableViewController
+@interface BookListViewController : UITableViewController
 
 @property NSMutableDictionary *images;
 @property NSString *mainPath;
