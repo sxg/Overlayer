@@ -91,6 +91,8 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([books count] - 1) inSection:0];
     NSArray *array = [[NSArray alloc] initWithObjects:indexPath, nil];
     [self.tableView insertRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    //just some BS here
 }
 
 #pragma mark - Table view data source
