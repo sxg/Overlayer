@@ -59,12 +59,33 @@
 
 - (IBAction)addBook:(id)sender
 {
-    NSString *newBookName = [self getNewBookName];
+    _bookName = [self getBookName];
+    
+    //Setup the view controller for the popover
+    UIViewController *viewController = [[UIViewController alloc] init];
+    [viewController setContentSizeForViewInPopover:CGSizeMake(260, 125)];
+    [viewController.view setBackgroundColor:[UIColor whiteColor]];
+    
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(30, 60, 200, 35)];
+    [textField setDelegate:self];
+    [textField setReturnKeyType:UIReturnKeyDone];
+    [textField setBorderStyle:UITextBorderStyleRoundedRect];
+    [textField setBackgroundColor:[UIColor whiteColor]];
+    [textField setPlaceholder:_bookName];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(30, 25, 200, 35)];
+    [label setText:@"Enter the book name:"];
+    
+    [viewController.view addSubview:textField];
+    [viewController.view addSubview:label];
+    _popover = [[UIPopoverController alloc] initWithContentViewController:viewController];
+    
+    [_popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     
     //Take the name that does not exist, create a new book with it, and add it to the data source
-    NSString *path = [_documentsDirectory stringByAppendingPathComponent:newBookName];
+    NSString *path = [_documentsDirectory stringByAppendingPathComponent:_bookName];
     [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:nil];
-    [_books addObject:newBookName];
+    [_books addObject:_bookName];
     
     //Add the new book to the table
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([_books count] - 1) inSection:0];
@@ -72,10 +93,22 @@
     [self.tableView insertRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-- (NSString*)getNewBookName
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    _bookName = textField.text;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [_popover dismissPopoverAnimated:YES];
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (NSString*)getBookName
 {
     //Search the Documents directory for a book called "New Book". If it exists, then look for "New Book 2" etc.
-    //There is a minor bug in this code - if "New Book", "New Book 2", and "New Book 4" exist, then the next book that is added will be "New Book 3" instead of "New Book 5"
+    //There is a minor bug in this code - if "New Book", "New Book 2", and "New Book 4" are the only books that exist, then the next book that is added will be "New Book 3" instead of "New Book 5"
     bool alreadyExists;
     NSFileManager *fm = [NSFileManager defaultManager];
     NSArray *files = [fm contentsOfDirectoryAtPath:_documentsDirectory error:nil];
@@ -200,7 +233,7 @@
     }
     else if ([segue.identifier isEqualToString:@"CameraFromBooks"])
     {
-        NSString *savePath = [_documentsDirectory stringByAppendingPathComponent:[self getNewBookName]];
+        NSString *savePath = [_documentsDirectory stringByAppendingPathComponent:[self getBookName]];
         [[NSFileManager defaultManager] createDirectoryAtPath:savePath withIntermediateDirectories:NO attributes:nil error:nil];
         TextReaderViewController *textReaderViewController = segue.destinationViewController;
         [textReaderViewController setSavePath:savePath];
