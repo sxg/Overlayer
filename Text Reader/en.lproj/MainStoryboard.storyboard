@@ -35,7 +35,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="n76-KR-EQH">
                             <connections>
-                                <segue destination="exO-Je-KII" kind="push" identifier="CameraFromBooks" id="Rcr-ZB-YMI"/>
+                                <segue destination="exO-Je-KII" kind="modal" identifier="CameraFromBooks" id="Rcr-ZB-YMI"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -74,7 +74,7 @@
                     <navigationItem key="navigationItem" id="tiq-tv-icw">
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="Cea-Fs-SJh">
                             <connections>
-                                <segue destination="exO-Je-KII" kind="push" identifier="CameraFromPages" id="vTN-44-xER"/>
+                                <segue destination="exO-Je-KII" kind="modal" identifier="CameraFromPages" id="vTN-44-xER"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -119,7 +119,7 @@
             <objects>
                 <viewController id="exO-Je-KII" customClass="TextReaderViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l3A-EF-2W3">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
@@ -154,6 +154,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="vTN-44-xER"/>
+        <segue reference="Rcr-ZB-YMI"/>
     </inferredMetricsTieBreakers>
 </document>

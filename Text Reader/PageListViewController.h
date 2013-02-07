@@ -16,5 +16,6 @@
 @property NSString *savePath;
 @property NSString *documentsDirectory;
 @property PageViewController *pageViewController;
+@property BOOL edit;
 
 @end

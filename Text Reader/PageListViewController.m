@@ -30,9 +30,14 @@
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    //NSArray *buttonItems = [[NSArray alloc] initWithObjects:self.navigationItem.backBarButtonItem, self.editButtonItem, nil];
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.navigationItem.leftItemsSupplementBackButton = YES;
+    _edit = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -97,6 +102,11 @@
     }   
 }
 
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    _edit = editing;
+}
+
 /*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
@@ -125,20 +135,39 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     
-    NSString *page = [_pages objectAtIndex:indexPath.row];
-    NSString *path = [_savePath stringByAppendingPathComponent:page];
-    
-    _pageViewController.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, _pageViewController.view.frame.size.width, _pageViewController.view.frame.size.height)];
-    [_pageViewController.scrollView setDelegate:_pageViewController];
-    _pageViewController.image = [[UIImage alloc] initWithContentsOfFile:path];
-    _pageViewController.imageView = [[UIImageView alloc] initWithImage:_pageViewController.image];
-    [_pageViewController.scrollView addSubview:_pageViewController.imageView];
-    [_pageViewController.scrollView setContentSize:CGSizeMake(_pageViewController.imageView.image.size.width, _pageViewController.imageView.image.size.height)];
-    [_pageViewController.scrollView setMinimumZoomScale:1.0];
-    [_pageViewController.scrollView setMaximumZoomScale:3.0];
-    [_pageViewController.view addSubview:_pageViewController.scrollView];
-    
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (_edit == NO)
+    {
+        NSString *page = [_pages objectAtIndex:indexPath.row];
+        NSString *path = [_savePath stringByAppendingPathComponent:page];
+        
+        _pageViewController.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, _pageViewController.view.frame.size.width, _pageViewController.view.frame.size.height)];
+        [_pageViewController.scrollView setDelegate:_pageViewController];
+        _pageViewController.image = [[UIImage alloc] initWithContentsOfFile:path];
+        _pageViewController.imageView = [[UIImageView alloc] initWithImage:_pageViewController.image];
+        [_pageViewController.scrollView addSubview:_pageViewController.imageView];
+        [_pageViewController.scrollView setContentSize:CGSizeMake(_pageViewController.imageView.image.size.width, _pageViewController.imageView.image.size.height)];
+        [_pageViewController.scrollView setMinimumZoomScale:1.0];
+        [_pageViewController.scrollView setMaximumZoomScale:3.0];
+        [_pageViewController.view addSubview:_pageViewController.scrollView];
+        
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+    else if (_edit == YES)
+    {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        NSMutableArray *imagesToProcess = [[NSMutableArray alloc] init];
+        
+        if ([cell accessoryType] == UITableViewCellAccessoryNone)
+        {
+            [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+            [imagesToProcess addObject:[cell.textLabel text]];
+        }
+        else if ([cell accessoryType] == UITableViewCellAccessoryCheckmark)
+        {
+            [cell setAccessoryType:UITableViewCellAccessoryNone];
+            [imagesToProcess removeObject:[cell.textLabel text]];
+        }
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
