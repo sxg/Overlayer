@@ -55,6 +55,14 @@
     _backgroundQueue = dispatch_queue_create("backgroundQueue", NULL);
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (backgroundImage == nil)
+    {
+        [self callCamera];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

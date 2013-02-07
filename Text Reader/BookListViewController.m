@@ -16,9 +16,6 @@
 
 @implementation BookListViewController
 
-@synthesize books;
-@synthesize documentsDirectory;
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -42,6 +39,12 @@
     [self firstLoad];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    _books = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
+    [self.tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -50,8 +53,8 @@
 
 - (void)firstLoad
 {
-    documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    books = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDirectory error:nil] mutableCopy];
+    _documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    _books = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
 }
 
 - (IBAction)addBook:(id)sender
@@ -59,12 +62,12 @@
     NSString *newBookName = [self getNewBookName];
     
     //Take the name that does not exist, create a new book with it, and add it to the data source
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:newBookName];
+    NSString *path = [_documentsDirectory stringByAppendingPathComponent:newBookName];
     [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:nil];
-    [books addObject:newBookName];
+    [_books addObject:newBookName];
     
     //Add the new book to the table
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([books count] - 1) inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([_books count] - 1) inSection:0];
     NSArray *array = [[NSArray alloc] initWithObjects:indexPath, nil];
     [self.tableView insertRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationAutomatic];
 }
@@ -75,7 +78,7 @@
     //There is a minor bug in this code - if "New Book", "New Book 2", and "New Book 4" exist, then the next book that is added will be "New Book 3" instead of "New Book 5"
     bool alreadyExists;
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSArray *files = [fm contentsOfDirectoryAtPath:documentsDirectory error:nil];
+    NSArray *files = [fm contentsOfDirectoryAtPath:_documentsDirectory error:nil];
     int i = 1;
     NSString *newBookName;
     do {
@@ -112,7 +115,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [books count];
+    return [_books count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -122,7 +125,7 @@
     
     // Configure the cell...
     
-    NSString *name = [books objectAtIndex:indexPath.row];
+    NSString *name = [_books objectAtIndex:indexPath.row];
     [cell.textLabel setText:name];
     
     return cell;
@@ -179,7 +182,7 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     
-    NSString *selectedBook = [books objectAtIndex:indexPath.row];
+    NSString *selectedBook = [_books objectAtIndex:indexPath.row];
     [_pageListViewController setBook:selectedBook];
     NSFileManager *fm = [NSFileManager defaultManager];
     _pageListViewController.savePath = [_pageListViewController.documentsDirectory stringByAppendingPathComponent:_pageListViewController.book];
@@ -191,11 +194,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ViewBook"]) {    
         _pageListViewController = segue.destinationViewController;
-        [_pageListViewController setDocumentsDirectory:documentsDirectory];
+        [_pageListViewController setDocumentsDirectory:_documentsDirectory];
     }
     else if ([segue.identifier isEqualToString:@"CameraFromBooks"])
     {
-        NSString *savePath = [documentsDirectory stringByAppendingPathComponent:[self getNewBookName]];
+        NSString *savePath = [_documentsDirectory stringByAppendingPathComponent:[self getNewBookName]];
         [[NSFileManager defaultManager] createDirectoryAtPath:savePath withIntermediateDirectories:NO attributes:nil error:nil];
         TextReaderViewController *textReaderViewController = segue.destinationViewController;
         [textReaderViewController setSavePath:savePath];

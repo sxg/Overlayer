@@ -35,6 +35,12 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    _pages = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_savePath error:nil] mutableCopy];
+    [self.tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
