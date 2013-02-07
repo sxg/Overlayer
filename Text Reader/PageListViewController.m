@@ -73,28 +73,29 @@
     return cell;
 }
 
-/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        NSString *pageToDelete = [_pages objectAtIndex:indexPath.row];
+        NSString *pathToPage = [_savePath stringByAppendingPathComponent:pageToDelete];
+        [[NSFileManager defaultManager] removeItemAtPath:pathToPage error:nil];
+        [_pages removeObjectAtIndex:indexPath.row];
+        
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
 /*
 // Override to support rearranging the table view.
@@ -129,6 +130,7 @@
     
     _pageViewController.image = [[UIImage alloc] initWithContentsOfFile:path];
     _pageViewController.imageView = [[UIImageView alloc] initWithImage:_pageViewController.image];
+    [_pageViewController.imageView setFrame:CGRectMake(0, 0, _pageViewController.image.size.width, _pageViewController.image.size.height)];
     [_pageViewController.scrollView addSubview:_pageViewController.imageView];
     [_pageViewController.scrollView setContentSize:CGSizeMake(_pageViewController.image.size.width, _pageViewController.image.size.height)];
     [_pageViewController.scrollView setMinimumZoomScale:1.0];

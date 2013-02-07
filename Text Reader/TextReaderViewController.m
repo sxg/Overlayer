@@ -110,23 +110,19 @@
     [self setWidth:backgroundImage.size.width];
     [self setHeight:backgroundImage.size.height];
     bytesPerRow = bytesPerPixel * width;
-    drawingView = [[DrawingView alloc] initWithFrame:CGRectMake(0, 0, 768, 1024 - 20 - 49)];
-    imageAndPathView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 768, 1024 - 20 - 49)];
+    drawingView = [[DrawingView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+    imageAndPathView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
     
     //add the image to the view...
     backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
     
-    if (UIInterfaceOrientationIsPortrait([self interfaceOrientation]) && [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
     {
-        backgroundImageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, 768, 1024 - 20 - 49 - 44)];
-    }
-    else if (UIInterfaceOrientationIsLandscape([self interfaceOrientation]) && [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
-    {
-        backgroundImageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake( (1024 - backgroundImage.size.width) / 2, 44, backgroundImage.size.width, 768 - 20 - 49 - 44)];
+        backgroundImageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     }
     else if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
     {
-        backgroundImageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height - 44)];
+        backgroundImageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     }
     [backgroundImageScrollView setDelegate:self];
     [backgroundImageScrollView addSubview:backgroundImageView];
