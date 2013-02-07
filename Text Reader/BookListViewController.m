@@ -81,6 +81,11 @@
     _popover = [[UIPopoverController alloc] initWithContentViewController:viewController];
     
     [_popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    _bookName = textField.text;
     
     //Take the name that does not exist, create a new book with it, and add it to the data source
     NSString *path = [_documentsDirectory stringByAppendingPathComponent:_bookName];
@@ -91,15 +96,7 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([_books count] - 1) inSection:0];
     NSArray *array = [[NSArray alloc] initWithObjects:indexPath, nil];
     [self.tableView insertRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    _bookName = textField.text;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+    
     [_popover dismissPopoverAnimated:YES];
     [textField resignFirstResponder];
     return YES;

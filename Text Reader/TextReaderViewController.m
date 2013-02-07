@@ -116,14 +116,7 @@
     //add the image to the view...
     backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
     
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
-    {
-        backgroundImageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    }
-    else if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
-    {
-        backgroundImageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    }
+    backgroundImageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [backgroundImageScrollView setDelegate:self];
     [backgroundImageScrollView addSubview:backgroundImageView];
     [backgroundImageScrollView setContentSize:CGSizeMake(backgroundImageView.image.size.width, backgroundImageView.image.size.height)];
@@ -233,15 +226,15 @@
 - (void)save
 {
     NSArray *fileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:_savePath error:nil];
-    NSString *imagePath = [_savePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%i.png", ([fileList count] + 1)]];
+    _backgroundImageName = [NSString stringWithFormat:@"%i.png", ([fileList count] + 1)];
+    NSString *imagePath = [_savePath stringByAppendingPathComponent:_backgroundImageName];
     
     [UIImagePNGRepresentation(backgroundImage) writeToFile:imagePath atomically:YES];
 }
 
 - (void)saveWithLines
 {
-    NSArray *fileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:_savePath error:nil];
-    NSString *imagePath = [_savePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%i.png", ([fileList count] + 1)]];
+    NSString *imagePath = [_savePath stringByAppendingPathComponent:_backgroundImageName];
     
     UIGraphicsBeginImageContext(imageAndPathView.bounds.size);
     [imageAndPathView.layer renderInContext:UIGraphicsGetCurrentContext()];

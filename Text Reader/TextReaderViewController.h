@@ -30,6 +30,7 @@
 @property UIBarButtonItem *cameraButton;
 @property UIBarButtonItem *drawLinesButton;
 @property NSString *savePath;
+@property NSString *backgroundImageName;
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info;

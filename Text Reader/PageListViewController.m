@@ -128,14 +128,14 @@
     NSString *page = [_pages objectAtIndex:indexPath.row];
     NSString *path = [_savePath stringByAppendingPathComponent:page];
     
+    _pageViewController.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, _pageViewController.view.frame.size.width, _pageViewController.view.frame.size.height)];
+    [_pageViewController.scrollView setDelegate:_pageViewController];
     _pageViewController.image = [[UIImage alloc] initWithContentsOfFile:path];
     _pageViewController.imageView = [[UIImageView alloc] initWithImage:_pageViewController.image];
-    [_pageViewController.imageView setFrame:CGRectMake(0, 0, _pageViewController.image.size.width, _pageViewController.image.size.height)];
     [_pageViewController.scrollView addSubview:_pageViewController.imageView];
-    [_pageViewController.scrollView setContentSize:CGSizeMake(_pageViewController.image.size.width, _pageViewController.image.size.height)];
+    [_pageViewController.scrollView setContentSize:CGSizeMake(_pageViewController.imageView.image.size.width, _pageViewController.imageView.image.size.height)];
     [_pageViewController.scrollView setMinimumZoomScale:1.0];
     [_pageViewController.scrollView setMaximumZoomScale:3.0];
-    [_pageViewController.scrollView setShowsHorizontalScrollIndicator:YES];
     [_pageViewController.view addSubview:_pageViewController.scrollView];
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -151,8 +151,6 @@
     else if ([segue.identifier isEqualToString:@"ViewPage"])
     {
         _pageViewController = segue.destinationViewController;
-        _pageViewController.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, _pageViewController.view.frame.size.width, _pageViewController.view.frame.size.height)];
-        [_pageViewController.scrollView setDelegate:_pageViewController];
     }
 }
 
