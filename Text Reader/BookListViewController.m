@@ -59,28 +59,31 @@
 
 - (IBAction)addBook:(id)sender
 {
-    _bookName = [self getBookName];
-    
-    //Setup the view controller for the popover
-    UIViewController *viewController = [[UIViewController alloc] init];
-    [viewController setContentSizeForViewInPopover:CGSizeMake(260, 125)];
-    [viewController.view setBackgroundColor:[UIColor whiteColor]];
-    
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(30, 60, 200, 35)];
-    [textField setDelegate:self];
-    [textField setReturnKeyType:UIReturnKeyDone];
-    [textField setBorderStyle:UITextBorderStyleRoundedRect];
-    [textField setBackgroundColor:[UIColor whiteColor]];
-    [textField setPlaceholder:_bookName];
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(30, 25, 200, 35)];
-    [label setText:@"Enter the book name:"];
-    
-    [viewController.view addSubview:textField];
-    [viewController.view addSubview:label];
-    _popover = [[UIPopoverController alloc] initWithContentViewController:viewController];
-    
-    [_popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    if (_popover == nil || ![_popover isPopoverVisible])
+    {
+        _bookName = [self getBookName];
+        
+        //Setup the view controller for the popover
+        UIViewController *viewController = [[UIViewController alloc] init];
+        [viewController setContentSizeForViewInPopover:CGSizeMake(260, 125)];
+        [viewController.view setBackgroundColor:[UIColor whiteColor]];
+        
+        UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(30, 60, 200, 35)];
+        [textField setDelegate:self];
+        [textField setReturnKeyType:UIReturnKeyDone];
+        [textField setBorderStyle:UITextBorderStyleRoundedRect];
+        [textField setBackgroundColor:[UIColor whiteColor]];
+        [textField setPlaceholder:_bookName];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(30, 25, 200, 35)];
+        [label setText:@"Enter the book name:"];
+        
+        [viewController.view addSubview:textField];
+        [viewController.view addSubview:label];
+        _popover = [[UIPopoverController alloc] initWithContentViewController:viewController];
+        
+        [_popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

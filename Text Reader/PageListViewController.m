@@ -8,6 +8,10 @@
 
 #import "PageListViewController.h"
 #import "TextReaderViewController.h"
+#import "UIImage+LineDrawer.h"
+#import "DrawingView.h"
+#import <dispatch/dispatch.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface PageListViewController ()
 
@@ -35,9 +39,11 @@
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     //NSArray *buttonItems = [[NSArray alloc] initWithObjects:self.navigationItem.backBarButtonItem, self.editButtonItem, nil];
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    _drawLinesButton = [[UIBarButtonItem alloc] initWithTitle:@"Draw Lines" style:UIBarButtonItemStyleDone target:self action:@selector(drawLines)];
+    self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:self.editButtonItem, _drawLinesButton, nil];
     self.navigationItem.leftItemsSupplementBackButton = YES;
-    _edit = NO;
+    
+    _backgroundQueue = dispatch_queue_create("backgroundQueue", NULL);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -50,6 +56,44 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)drawLines
+{
+    dispatch_async(_backgroundQueue, ^{
+        for (NSString *pageName in _pages)
+        {
+            NSString *path = [_savePath stringByAppendingPathComponent:pageName];
+            UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
+            
+            //if the image is unprocessed since unprocessed images have not been sized down to 1024x768
+            if (image.size.width > 768)
+            {
+                image = [image imageScaledToSize:CGSizeMake(768, 1024)];
+                UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+                UIView *imageAndPathView = [[UIView alloc] initWithFrame:imageView.frame];
+                [imageAndPathView addSubview:imageView];
+                DrawingView *drawingView = [[DrawingView alloc] initWithFrame:imageView.frame];
+                [imageAndPathView addSubview:drawingView];
+                [imageAndPathView sendSubviewToBack:imageView];
+                
+                [image identifyCharactersWithlineThickness:1.0 onView:drawingView bytesPerPixel:4 bitsPerComponent:8];
+                [self saveWithLinesAndName:pageName onContainerView:imageAndPathView];
+            }
+        }
+    });
+}
+
+- (void)saveWithLinesAndName:(NSString*)pageName onContainerView:(UIView*)imageAndPathView
+{
+    NSString *imagePath = [_savePath stringByAppendingPathComponent:pageName];
+    
+    UIGraphicsBeginImageContext(imageAndPathView.bounds.size);
+    [imageAndPathView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    [UIImagePNGRepresentation(image) writeToFile:imagePath atomically:YES];
 }
 
 #pragma mark - Table view data source
@@ -104,7 +148,8 @@
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
-    _edit = editing;
+    [super setEditing:editing animated:animated];
+    [self.tableView setEditing:editing animated:animated];
 }
 
 /*
@@ -135,39 +180,22 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     
-    if (_edit == NO)
-    {
-        NSString *page = [_pages objectAtIndex:indexPath.row];
-        NSString *path = [_savePath stringByAppendingPathComponent:page];
-        
-        _pageViewController.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, _pageViewController.view.frame.size.width, _pageViewController.view.frame.size.height)];
-        [_pageViewController.scrollView setDelegate:_pageViewController];
-        _pageViewController.image = [[UIImage alloc] initWithContentsOfFile:path];
-        _pageViewController.imageView = [[UIImageView alloc] initWithImage:_pageViewController.image];
-        [_pageViewController.scrollView addSubview:_pageViewController.imageView];
-        [_pageViewController.scrollView setContentSize:CGSizeMake(_pageViewController.imageView.image.size.width, _pageViewController.imageView.image.size.height)];
-        [_pageViewController.scrollView setMinimumZoomScale:1.0];
-        [_pageViewController.scrollView setMaximumZoomScale:3.0];
-        [_pageViewController.view addSubview:_pageViewController.scrollView];
-        
-        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    }
-    else if (_edit == YES)
-    {
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        NSMutableArray *imagesToProcess = [[NSMutableArray alloc] init];
-        
-        if ([cell accessoryType] == UITableViewCellAccessoryNone)
-        {
-            [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
-            [imagesToProcess addObject:[cell.textLabel text]];
-        }
-        else if ([cell accessoryType] == UITableViewCellAccessoryCheckmark)
-        {
-            [cell setAccessoryType:UITableViewCellAccessoryNone];
-            [imagesToProcess removeObject:[cell.textLabel text]];
-        }
-    }
+    NSString *page = [_pages objectAtIndex:indexPath.row];
+    NSString *path = [_savePath stringByAppendingPathComponent:page];
+    
+    [self performSegueWithIdentifier:@"ViewPage" sender:self];
+    
+    _pageViewController.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, _pageViewController.view.frame.size.width, _pageViewController.view.frame.size.height)];
+    [_pageViewController.scrollView setDelegate:_pageViewController];
+    _pageViewController.image = [[UIImage alloc] initWithContentsOfFile:path];
+    _pageViewController.imageView = [[UIImageView alloc] initWithImage:_pageViewController.image];
+    [_pageViewController.scrollView addSubview:_pageViewController.imageView];
+    [_pageViewController.scrollView setContentSize:CGSizeMake(_pageViewController.imageView.image.size.width, _pageViewController.imageView.image.size.height)];
+    [_pageViewController.scrollView setMinimumZoomScale:1.0];
+    [_pageViewController.scrollView setMaximumZoomScale:3.0];
+    [_pageViewController.view addSubview:_pageViewController.scrollView];
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

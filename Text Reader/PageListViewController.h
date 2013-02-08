@@ -12,10 +12,11 @@
 @interface PageListViewController : UITableViewController
 
 @property NSString *book;
-@property NSMutableArray *pages;
+@property (nonatomic) NSMutableArray *pages;
 @property NSString *savePath;
 @property NSString *documentsDirectory;
 @property PageViewController *pageViewController;
-@property BOOL edit;
+@property UIBarButtonItem *drawLinesButton;
+@property dispatch_queue_t backgroundQueue;
 
 @end

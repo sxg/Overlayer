@@ -61,9 +61,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <connections>
-                                    <segue destination="sMX-am-LsL" kind="push" identifier="ViewPage" id="0ca-SB-74g"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -78,6 +75,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="sMX-am-LsL" kind="push" identifier="ViewPage" id="djb-nJ-nd8"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SPb-il-lBX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -131,29 +131,12 @@
             <point key="canvasLocation" x="2178" y="-588"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="BookListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BookListViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addBook:"/>
-            </relationships>
-        </class>
-        <class className="PageListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PageListViewController.h"/>
-        </class>
-        <class className="PageViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PageViewController.h"/>
-        </class>
-        <class className="TextReaderViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TextReaderViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Rcr-ZB-YMI"/>
+        <segue reference="vTN-44-xER"/>
     </inferredMetricsTieBreakers>
 </document>

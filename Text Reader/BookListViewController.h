@@ -12,7 +12,7 @@
 @interface BookListViewController : UITableViewController <UITextFieldDelegate>
 
 @property PageListViewController *pageListViewController;
-@property NSMutableArray *books;
+@property (nonatomic) NSMutableArray *books;
 @property NSString *documentsDirectory;
 @property UIPopoverController *popover;
 @property NSString *bookName;
