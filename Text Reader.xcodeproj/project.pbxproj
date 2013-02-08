@@ -7,13 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A04BE1716A0B9AD009A9F8E /* sampleText9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A04BE1316A0B9AD009A9F8E /* sampleText9.jpg */; };
-		4A04BE1816A0B9AD009A9F8E /* sampleText10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A04BE1416A0B9AD009A9F8E /* sampleText10.jpg */; };
-		4A04BE1916A0B9AD009A9F8E /* sampleText11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A04BE1516A0B9AD009A9F8E /* sampleText11.jpg */; };
-		4A04BE1A16A0B9AD009A9F8E /* sampleText12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A04BE1616A0B9AD009A9F8E /* sampleText12.jpg */; };
-		4A04BE1F16A0BDBC009A9F8E /* sampleText13.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 4A04BE1C16A0BDBC009A9F8E /* sampleText13.JPG */; };
 		4A06B74716B62D410023767F /* DrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06B74616B62D410023767F /* DrawingView.m */; };
-		4A13914C169E4A9600926CBC /* sampleText3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A13914B169E4A9600926CBC /* sampleText3.jpg */; };
 		4A2F7545169CD98000DD7A03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2F7544169CD98000DD7A03 /* UIKit.framework */; };
 		4A2F7547169CD98000DD7A03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2F7546169CD98000DD7A03 /* Foundation.framework */; };
 		4A2F7549169CD98000DD7A03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2F7548169CD98000DD7A03 /* CoreGraphics.framework */; };
@@ -25,30 +19,16 @@
 		4A2F755B169CD98000DD7A03 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F755A169CD98000DD7A03 /* Default-568h@2x.png */; };
 		4A2F755E169CD98000DD7A03 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F755C169CD98000DD7A03 /* MainStoryboard.storyboard */; };
 		4A2F7561169CD98000DD7A03 /* TextReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2F7560169CD98000DD7A03 /* TextReaderViewController.m */; };
-		4A2F7568169CDA1700DD7A03 /* sampleText.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F7567169CDA1700DD7A03 /* sampleText.jpg */; };
-		4A2F756E169D1AC400DD7A03 /* sampleText2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F756D169D1AC400DD7A03 /* sampleText2.gif */; };
 		4A7E194516B323910031A7A1 /* UIImage+LineDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E194416B323910031A7A1 /* UIImage+LineDrawer.m */; };
-		4A9625E4169F2F85007AB6D6 /* sampleText4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A9625E2169F2F85007AB6D6 /* sampleText4.jpg */; };
-		4A9625E5169F2F85007AB6D6 /* sampleText5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A9625E3169F2F85007AB6D6 /* sampleText5.jpg */; };
-		4A9625E8169F7EE1007AB6D6 /* sampleText6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A9625E7169F7EE1007AB6D6 /* sampleText6.jpg */; };
-		4A9625EA169F8B1A007AB6D6 /* sampleText7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A9625E9169F8B1A007AB6D6 /* sampleText7.jpg */; };
-		4A9625EC169F8EE0007AB6D6 /* sampleText8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A9625EB169F8EE0007AB6D6 /* sampleText8.jpg */; };
-		4A9625EE169F9453007AB6D6 /* sampleTextB.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A9625ED169F9453007AB6D6 /* sampleTextB.jpg */; };
-		4A9625F0169F96A1007AB6D6 /* sampleText5B.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A9625EF169F96A1007AB6D6 /* sampleText5B.jpg */; };
 		4AB487E116B74B00005960FA /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB487E016B74B00005960FA /* Character.m */; };
-		4ADC0B1616BB668D00815209 /* PhotoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC0B1516BB668D00815209 /* PhotoListViewController.m */; };
-		4AE6597616B4ADB700E0C76E /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE6597516B4ADB700E0C76E /* PhotoViewController.m */; };
+		4ADC0B1616BB668D00815209 /* BookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC0B1516BB668D00815209 /* BookListViewController.m */; };
+		4ADDA66816C2C40900F7E7A3 /* PageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDA66716C2C40900F7E7A3 /* PageListViewController.m */; };
+		4AE6597616B4ADB700E0C76E /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE6597516B4ADB700E0C76E /* PageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4A04BE1316A0B9AD009A9F8E /* sampleText9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText9.jpg; sourceTree = "<group>"; };
-		4A04BE1416A0B9AD009A9F8E /* sampleText10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText10.jpg; sourceTree = "<group>"; };
-		4A04BE1516A0B9AD009A9F8E /* sampleText11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText11.jpg; sourceTree = "<group>"; };
-		4A04BE1616A0B9AD009A9F8E /* sampleText12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText12.jpg; sourceTree = "<group>"; };
-		4A04BE1C16A0BDBC009A9F8E /* sampleText13.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText13.JPG; sourceTree = "<group>"; };
 		4A06B74516B62D410023767F /* DrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingView.h; sourceTree = "<group>"; };
 		4A06B74616B62D410023767F /* DrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingView.m; sourceTree = "<group>"; };
-		4A13914B169E4A9600926CBC /* sampleText3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText3.jpg; sourceTree = "<group>"; };
 		4A2F7540169CD98000DD7A03 /* Text Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Text Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A2F7544169CD98000DD7A03 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4A2F7546169CD98000DD7A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -65,23 +45,16 @@
 		4A2F755D169CD98000DD7A03 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		4A2F755F169CD98000DD7A03 /* TextReaderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextReaderViewController.h; sourceTree = "<group>"; };
 		4A2F7560169CD98000DD7A03 /* TextReaderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextReaderViewController.m; sourceTree = "<group>"; };
-		4A2F7567169CDA1700DD7A03 /* sampleText.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText.jpg; sourceTree = "<group>"; };
-		4A2F756D169D1AC400DD7A03 /* sampleText2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sampleText2.gif; sourceTree = "<group>"; };
 		4A7E194316B323910031A7A1 /* UIImage+LineDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LineDrawer.h"; sourceTree = "<group>"; };
 		4A7E194416B323910031A7A1 /* UIImage+LineDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LineDrawer.m"; sourceTree = "<group>"; };
-		4A9625E2169F2F85007AB6D6 /* sampleText4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText4.jpg; sourceTree = "<group>"; };
-		4A9625E3169F2F85007AB6D6 /* sampleText5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText5.jpg; sourceTree = "<group>"; };
-		4A9625E7169F7EE1007AB6D6 /* sampleText6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText6.jpg; sourceTree = "<group>"; };
-		4A9625E9169F8B1A007AB6D6 /* sampleText7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText7.jpg; sourceTree = "<group>"; };
-		4A9625EB169F8EE0007AB6D6 /* sampleText8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText8.jpg; sourceTree = "<group>"; };
-		4A9625ED169F9453007AB6D6 /* sampleTextB.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleTextB.jpg; sourceTree = "<group>"; };
-		4A9625EF169F96A1007AB6D6 /* sampleText5B.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sampleText5B.jpg; sourceTree = "<group>"; };
 		4AB487DF16B74B00005960FA /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
 		4AB487E016B74B00005960FA /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
-		4ADC0B1416BB668D00815209 /* PhotoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoListViewController.h; sourceTree = "<group>"; };
-		4ADC0B1516BB668D00815209 /* PhotoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoListViewController.m; sourceTree = "<group>"; };
-		4AE6597416B4ADB700E0C76E /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
-		4AE6597516B4ADB700E0C76E /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		4ADC0B1416BB668D00815209 /* BookListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookListViewController.h; sourceTree = "<group>"; };
+		4ADC0B1516BB668D00815209 /* BookListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookListViewController.m; sourceTree = "<group>"; };
+		4ADDA66616C2C40800F7E7A3 /* PageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageListViewController.h; sourceTree = "<group>"; };
+		4ADDA66716C2C40900F7E7A3 /* PageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageListViewController.m; sourceTree = "<group>"; };
+		4AE6597416B4ADB700E0C76E /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
+		4AE6597516B4ADB700E0C76E /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,10 +106,12 @@
 				4A2F755C169CD98000DD7A03 /* MainStoryboard.storyboard */,
 				4A2F755F169CD98000DD7A03 /* TextReaderViewController.h */,
 				4A2F7560169CD98000DD7A03 /* TextReaderViewController.m */,
-				4ADC0B1416BB668D00815209 /* PhotoListViewController.h */,
-				4ADC0B1516BB668D00815209 /* PhotoListViewController.m */,
-				4AE6597416B4ADB700E0C76E /* PhotoViewController.h */,
-				4AE6597516B4ADB700E0C76E /* PhotoViewController.m */,
+				4ADC0B1416BB668D00815209 /* BookListViewController.h */,
+				4ADC0B1516BB668D00815209 /* BookListViewController.m */,
+				4ADDA66616C2C40800F7E7A3 /* PageListViewController.h */,
+				4ADDA66716C2C40900F7E7A3 /* PageListViewController.m */,
+				4AE6597416B4ADB700E0C76E /* PageViewController.h */,
+				4AE6597516B4ADB700E0C76E /* PageViewController.m */,
 				4A06B74516B62D410023767F /* DrawingView.h */,
 				4A06B74616B62D410023767F /* DrawingView.m */,
 				4A7E194316B323910031A7A1 /* UIImage+LineDrawer.h */,
@@ -151,21 +126,6 @@
 		4A2F754B169CD98000DD7A03 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4A04BE1C16A0BDBC009A9F8E /* sampleText13.JPG */,
-				4A04BE1316A0B9AD009A9F8E /* sampleText9.jpg */,
-				4A04BE1416A0B9AD009A9F8E /* sampleText10.jpg */,
-				4A04BE1516A0B9AD009A9F8E /* sampleText11.jpg */,
-				4A04BE1616A0B9AD009A9F8E /* sampleText12.jpg */,
-				4A9625ED169F9453007AB6D6 /* sampleTextB.jpg */,
-				4A9625E2169F2F85007AB6D6 /* sampleText4.jpg */,
-				4A9625E3169F2F85007AB6D6 /* sampleText5.jpg */,
-				4A9625EF169F96A1007AB6D6 /* sampleText5B.jpg */,
-				4A9625E7169F7EE1007AB6D6 /* sampleText6.jpg */,
-				4A9625E9169F8B1A007AB6D6 /* sampleText7.jpg */,
-				4A9625EB169F8EE0007AB6D6 /* sampleText8.jpg */,
-				4A13914B169E4A9600926CBC /* sampleText3.jpg */,
-				4A2F756D169D1AC400DD7A03 /* sampleText2.gif */,
-				4A2F7567169CDA1700DD7A03 /* sampleText.jpg */,
 				4A2F754C169CD98000DD7A03 /* Text Reader-Info.plist */,
 				4A2F754D169CD98000DD7A03 /* InfoPlist.strings */,
 				4A2F7550169CD98000DD7A03 /* main.m */,
@@ -234,21 +194,6 @@
 				4A2F7559169CD98000DD7A03 /* Default@2x.png in Resources */,
 				4A2F755B169CD98000DD7A03 /* Default-568h@2x.png in Resources */,
 				4A2F755E169CD98000DD7A03 /* MainStoryboard.storyboard in Resources */,
-				4A2F7568169CDA1700DD7A03 /* sampleText.jpg in Resources */,
-				4A2F756E169D1AC400DD7A03 /* sampleText2.gif in Resources */,
-				4A13914C169E4A9600926CBC /* sampleText3.jpg in Resources */,
-				4A9625E4169F2F85007AB6D6 /* sampleText4.jpg in Resources */,
-				4A9625E5169F2F85007AB6D6 /* sampleText5.jpg in Resources */,
-				4A9625E8169F7EE1007AB6D6 /* sampleText6.jpg in Resources */,
-				4A9625EA169F8B1A007AB6D6 /* sampleText7.jpg in Resources */,
-				4A9625EC169F8EE0007AB6D6 /* sampleText8.jpg in Resources */,
-				4A9625EE169F9453007AB6D6 /* sampleTextB.jpg in Resources */,
-				4A9625F0169F96A1007AB6D6 /* sampleText5B.jpg in Resources */,
-				4A04BE1716A0B9AD009A9F8E /* sampleText9.jpg in Resources */,
-				4A04BE1816A0B9AD009A9F8E /* sampleText10.jpg in Resources */,
-				4A04BE1916A0B9AD009A9F8E /* sampleText11.jpg in Resources */,
-				4A04BE1A16A0B9AD009A9F8E /* sampleText12.jpg in Resources */,
-				4A04BE1F16A0BDBC009A9F8E /* sampleText13.JPG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,10 +208,11 @@
 				4A2F7555169CD98000DD7A03 /* TextReaderAppDelegate.m in Sources */,
 				4A2F7561169CD98000DD7A03 /* TextReaderViewController.m in Sources */,
 				4A7E194516B323910031A7A1 /* UIImage+LineDrawer.m in Sources */,
-				4AE6597616B4ADB700E0C76E /* PhotoViewController.m in Sources */,
+				4AE6597616B4ADB700E0C76E /* PageViewController.m in Sources */,
 				4A06B74716B62D410023767F /* DrawingView.m in Sources */,
 				4AB487E116B74B00005960FA /* Character.m in Sources */,
-				4ADC0B1616BB668D00815209 /* PhotoListViewController.m in Sources */,
+				4ADC0B1616BB668D00815209 /* BookListViewController.m in Sources */,
+				4ADDA66816C2C40900F7E7A3 /* PageListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

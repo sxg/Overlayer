@@ -1,18 +1,18 @@
 //
-//  PhotoViewController.m
+//  PageViewController.m
 //  Text Reader
 //
 //  Created by Satyam Ghodasara on 1/26/13.
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
-#import "PhotoViewController.h"
+#import "PageViewController.h"
 
-@interface PhotoViewController ()
+@interface PageViewController ()
 
 @end
 
-@implementation PhotoViewController
+@implementation PageViewController
 
 @synthesize image;
 @synthesize imageView;

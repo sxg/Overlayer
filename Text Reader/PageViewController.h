@@ -1,5 +1,5 @@
 //
-//  PhotoViewController.h
+//  PageViewController.h
 //  Text Reader
 //
 //  Created by Satyam Ghodasara on 1/26/13.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PhotoViewController : UIViewController <UIScrollViewDelegate>
+@interface PageViewController : UIViewController <UIScrollViewDelegate>
 
 @property UIImage *image;
 @property UIImageView *imageView;

@@ -9,10 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface TextReaderViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate, UIPopoverControllerDelegate>
-{
-    dispatch_queue_t backgroundQueue;
-}
 
+@property dispatch_queue_t backgroundQueue;
 @property UIImagePickerController *imagePicker;
 @property UIImage *backgroundImage;
 @property UIImageView *backgroundImageView;
@@ -24,19 +22,20 @@
 @property NSUInteger bytesPerRow;
 @property NSUInteger bitsPerComponent;
 @property int lineThickness;
-@property IBOutlet UIToolbar *toolbar;
 @property DrawingView *drawingView;
 @property UIView *imageAndPathView;
-@property IBOutlet UIBarButtonItem *drawLinesButton;
 @property UIView *loadingHUD;
 @property UIActivityIndicatorView *loadingView;
 @property UILabel *loadingLabel;
+@property UIBarButtonItem *cameraButton;
+@property UIBarButtonItem *drawLinesButton;
+@property NSString *savePath;
+@property NSString *backgroundImageName;
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info;
-
-- (IBAction)newPhoto:(id)sender;
-- (IBAction)drawLines:(id)sender;
+- (void)callCamera;
+- (void)drawLines;
 - (void)save;
 - (void)saveWithLines;
 

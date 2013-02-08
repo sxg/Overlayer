@@ -8,7 +8,7 @@
 
 #import "TextReaderViewController.h"
 #import "UIImage+LineDrawer.h"
-#import "PhotoListViewController.h"
+#import "BookListViewController.h"
 #import <dispatch/dispatch.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -29,20 +29,14 @@
 @synthesize bytesPerRow;
 @synthesize bitsPerComponent;
 @synthesize lineThickness;
-@synthesize toolbar;
 @synthesize drawingView;
 @synthesize imageAndPathView;
-@synthesize drawLinesButton;
 @synthesize loadingView;
 @synthesize loadingHUD;
 @synthesize loadingLabel;
 
 - (void)viewDidLoad
 {
-    //the views are unhidden in viewDidAppear:
-    [self.view setHidden:YES];
-    [self.tabBarController.view setHidden:YES];
-    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
@@ -54,23 +48,19 @@
     bytesPerRow = bytesPerPixel * width;
     lineThickness = 1;
     
-    backgroundQueue = dispatch_queue_create("backgroundQueue", NULL);
+    _cameraButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(callCamera)];
+    _drawLinesButton = [[UIBarButtonItem alloc] initWithTitle:@"Draw Lines" style:UIBarButtonItemStyleDone target:self action:@selector(drawLines)];
+    self.navigationItem.rightBarButtonItem = _cameraButton;
     
-    UINavigationController *navController = [[self.tabBarController viewControllers] objectAtIndex:1];
-    PhotoListViewController *plvc = [[navController viewControllers] objectAtIndex:0];
-    [plvc firstLoad];
+    _backgroundQueue = dispatch_queue_create("backgroundQueue", NULL);
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     if (backgroundImage == nil)
     {
-        [drawLinesButton setEnabled:NO];
+        [self callCamera];
     }
-    
-    //the views are initially hidden in viewDidLoad so that no UI is seen when the app initially loads
-    [self.view setHidden:NO];
-    [self.tabBarController.view setHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,16 +69,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)callCamera:(bool)animated
+- (void)callCamera
 {
-    [toolbar setHidden:YES];
-    
     imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self presentViewController:imagePicker animated:animated completion:nil];
+        [self presentViewController:imagePicker animated:YES completion:nil];
     }
     else if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum])
     {
@@ -102,7 +90,7 @@
         }
     }
     
-    [toolbar setHidden:NO];
+    self.navigationItem.rightBarButtonItem = _drawLinesButton;
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -122,29 +110,13 @@
     [self setWidth:backgroundImage.size.width];
     [self setHeight:backgroundImage.size.height];
     bytesPerRow = bytesPerPixel * width;
-    drawingView = [[DrawingView alloc] initWithFrame:CGRectMake(0, 0, 768, 1024 - 20 - 49)];
-    imageAndPathView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 768, 1024 - 20 - 49)];
-    
-    if (![drawLinesButton isEnabled])
-    {
-        [drawLinesButton setEnabled:YES];
-    }
+    drawingView = [[DrawingView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+    imageAndPathView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
     
     //add the image to the view...
     backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
     
-    if (UIInterfaceOrientationIsPortrait([self interfaceOrientation]) && [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
-    {
-        backgroundImageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, 768, 1024 - 20 - 49 - 44)];
-    }
-    else if (UIInterfaceOrientationIsLandscape([self interfaceOrientation]) && [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
-    {
-        backgroundImageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake( (1024 - backgroundImage.size.width) / 2, 44, backgroundImage.size.width, 768 - 20 - 49 - 44)];
-    }
-    else if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
-    {
-        backgroundImageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height - 44)];
-    }
+    backgroundImageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [backgroundImageScrollView setDelegate:self];
     [backgroundImageScrollView addSubview:backgroundImageView];
     [backgroundImageScrollView setContentSize:CGSizeMake(backgroundImageView.image.size.width, backgroundImageView.image.size.height)];
@@ -209,12 +181,7 @@
     return [backgroundImageView superview];
 }
 
-- (IBAction)newPhoto:(id)sender
-{
-    [self callCamera:YES];
-}
-
-- (IBAction)drawLines:(id)sender
+- (void)drawLines
 {
     if (backgroundImage != nil)
     {
@@ -240,8 +207,8 @@
         
         [self.view addSubview:loadingHUD];
         
-        dispatch_async(backgroundQueue, ^{
-            [drawLinesButton setEnabled:NO];
+        dispatch_async(_backgroundQueue, ^{
+            [_drawLinesButton setEnabled:NO];
             drawingView = [backgroundImage identifyCharactersWithlineThickness:lineThickness onView:drawingView bytesPerPixel:bytesPerPixel bitsPerComponent:bitsPerComponent];
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -249,6 +216,8 @@
                 [self saveWithLines];
                 [loadingView stopAnimating];
                 [loadingHUD removeFromSuperview];
+                self.navigationItem.rightBarButtonItem = _cameraButton;
+                [_drawLinesButton setEnabled:YES];
             });
         });
     }
@@ -256,18 +225,16 @@
 
 - (void)save
 {
-    NSString *imagePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/"];
-    NSArray *fileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:imagePath error:nil];
-    imagePath = [imagePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%i.png", ([fileList count] + 1)]];
+    NSArray *fileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:_savePath error:nil];
+    _backgroundImageName = [NSString stringWithFormat:@"%i.png", ([fileList count] + 1)];
+    NSString *imagePath = [_savePath stringByAppendingPathComponent:_backgroundImageName];
     
     [UIImagePNGRepresentation(backgroundImage) writeToFile:imagePath atomically:YES];
 }
 
 - (void)saveWithLines
 {
-    NSString *imagePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/"];
-    NSArray *fileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:imagePath error:nil];
-    imagePath = [imagePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%i.png", ([fileList count] + 1)]];
+    NSString *imagePath = [_savePath stringByAppendingPathComponent:_backgroundImageName];
     
     UIGraphicsBeginImageContext(imageAndPathView.bounds.size);
     [imageAndPathView.layer renderInContext:UIGraphicsGetCurrentContext()];
