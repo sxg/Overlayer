@@ -10,6 +10,7 @@
 #import "TextReaderViewController.h"
 #import "UIImage+LineDrawer.h"
 #import "DrawingView.h"
+#import "PageListViewCell.h"
 #import <dispatch/dispatch.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -63,6 +64,14 @@
     dispatch_async(_backgroundQueue, ^{
         for (NSString *pageName in _pages)
         {
+            int i = [_pages indexOfObject:pageName];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            PageListViewCell *cell = (PageListViewCell*) [self.tableView cellForRowAtIndexPath:indexPath];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [cell resizeAndAddLoadingIndicator];
+            });
+            
             NSString *path = [_savePath stringByAppendingPathComponent:pageName];
             UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
             
@@ -80,6 +89,10 @@
                 [image identifyCharactersWithlineThickness:1.0 onView:drawingView bytesPerPixel:4 bitsPerComponent:8];
                 [self saveWithLinesAndName:pageName onContainerView:imageAndPathView];
             }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [cell resizeAndRemoveLoadingIndicator];
+            });
         }
     });
 }
@@ -113,11 +126,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Page";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    PageListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
     NSString *name = [_pages objectAtIndex:indexPath.row];
-    [cell.textLabel setText:name];
+    [cell.label setText:name];
     
     return cell;
 }
