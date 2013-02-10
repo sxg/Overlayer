@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="9xh-UJ-bre">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="9xh-UJ-bre">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -35,7 +35,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="n76-KR-EQH">
                             <connections>
-                                <segue destination="exO-Je-KII" kind="modal" identifier="CameraFromBooks" id="Rcr-ZB-YMI"/>
+                                <segue destination="exO-Je-KII" kind="push" identifier="CameraFromBooks" id="Rcr-ZB-YMI"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -60,11 +60,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="748" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qb8-iu-8cz">
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="ibe-hc-i1A"/>
-                                                <constraint firstAttribute="width" constant="356" id="m4I-zC-hCT"/>
-                                            </constraints>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qb8-iu-8cz">
+                                            <rect key="frame" x="21" y="11" width="356" height="21"/>
                                             <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -72,10 +69,6 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <constraints>
-                                    <constraint firstItem="Qb8-iu-8cz" firstAttribute="top" secondItem="nDc-Vt-Ji1" secondAttribute="top" constant="11" id="B01-1t-eIj"/>
-                                    <constraint firstItem="Qb8-iu-8cz" firstAttribute="leading" secondItem="nDc-Vt-Ji1" secondAttribute="leading" constant="21" id="kOn-Ry-QTb"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="label" destination="Qb8-iu-8cz" id="RAw-M2-BzC"/>
                                 </connections>
@@ -89,7 +82,7 @@
                     <navigationItem key="navigationItem" id="tiq-tv-icw">
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="Cea-Fs-SJh">
                             <connections>
-                                <segue destination="exO-Je-KII" kind="modal" identifier="CameraFromPages" id="vTN-44-xER"/>
+                                <segue destination="exO-Je-KII" kind="push" identifier="CameraFromPages" id="vTN-44-xER"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -137,7 +130,7 @@
             <objects>
                 <viewController id="exO-Je-KII" customClass="TextReaderViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l3A-EF-2W3">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
@@ -155,9 +148,6 @@
             <relationships>
                 <relationship kind="action" name="addBook:"/>
             </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
         <class className="PageListViewCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PageListViewCell.h"/>
@@ -181,6 +171,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Rcr-ZB-YMI"/>
+        <segue reference="vTN-44-xER"/>
     </inferredMetricsTieBreakers>
 </document>

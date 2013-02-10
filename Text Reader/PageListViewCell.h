@@ -12,8 +12,9 @@
 
 @property UIActivityIndicatorView *loadingIndicator;
 @property IBOutlet UILabel *label;
+@property bool isProcessing;
 
-- (void)resizeAndAddLoadingIndicator;
-- (void)resizeAndRemoveLoadingIndicator;
+- (void)resizeAndAddLoadingIndicator:(BOOL)animated;
+- (void)resizeAndRemoveLoadingIndicator:(BOOL)animated;
 
 @end

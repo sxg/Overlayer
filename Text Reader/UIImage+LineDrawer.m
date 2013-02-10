@@ -161,6 +161,8 @@
     CGContextRelease(context);
     CGColorSpaceRelease(colorSpaceRef);
     free(rawData);
+    free(rawDataCopy);
+    free(histogram);
     
     UIImage *newImage = [UIImage imageWithCGImage:newCGImage];
     
@@ -205,6 +207,8 @@
             
         }
     }
+    
+    CGContextRelease(context);
     
     return [self drawCharacterLines:characters onView:view lineThickness:lineThickness bytesPerPixel:bytesPerPixel bitsPerComponent:bitsPerComponent];
 }

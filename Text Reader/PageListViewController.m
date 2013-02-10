@@ -67,9 +67,10 @@
             int i = [_pages indexOfObject:pageName];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
             PageListViewCell *cell = (PageListViewCell*) [self.tableView cellForRowAtIndexPath:indexPath];
+            [cell setIsProcessing:YES];
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                [cell resizeAndAddLoadingIndicator];
+                [cell resizeAndAddLoadingIndicator:YES];
             });
             
             NSString *path = [_savePath stringByAppendingPathComponent:pageName];
@@ -90,8 +91,10 @@
                 [self saveWithLinesAndName:pageName onContainerView:imageAndPathView];
             }
             
+            [cell setIsProcessing:NO];
+            
             dispatch_async(dispatch_get_main_queue(), ^{
-                [cell resizeAndRemoveLoadingIndicator];
+                [cell resizeAndRemoveLoadingIndicator:YES];
             });
         }
     });
@@ -131,6 +134,9 @@
     // Configure the cell...
     NSString *name = [_pages objectAtIndex:indexPath.row];
     [cell.label setText:name];
+    if ([cell isProcessing]) {
+        [cell resizeAndAddLoadingIndicator:NO];
+    }
     
     return cell;
 }

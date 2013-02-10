@@ -15,6 +15,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        _isProcessing = NO;
     }
     return self;
 }
@@ -26,38 +27,50 @@
     // Configure the view for the selected state
 }
 
-- (void)resizeAndAddLoadingIndicator
+- (void)resizeAndAddLoadingIndicator:(BOOL)animated
 {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.3];
-    [UIView setAnimationDelay:0];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    if (animated)
+    {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.3];
+        [UIView setAnimationDelay:0];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    }
     
     //UILabel *label = (UILabel*) [self viewWithTag:100];
     [self.label setCenter:CGPointMake(self.label.center.x + 20, self.label.center.y)];
+    
+    if (animated)
+    {
+        [UIView commitAnimations];
+    }
     
     _loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [_loadingIndicator setFrame:CGRectMake(10, self.label.frame.origin.y, 20, 20)];
     [self addSubview:_loadingIndicator];
     [_loadingIndicator startAnimating];
-    
-    [UIView commitAnimations];
 }
 
-- (void)resizeAndRemoveLoadingIndicator
+- (void)resizeAndRemoveLoadingIndicator:(BOOL)animated
 {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.3];
-    [UIView setAnimationDelay:0];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    if (animated)
+    {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.3];
+        [UIView setAnimationDelay:0];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    }
     
     //UILabel *label = (UILabel*) [self viewWithTag:100];
     [self.label setCenter:CGPointMake(self.label.center.x - 20, self.label.center.y)];
     
+    if (animated)
+    {
+        [UIView commitAnimations];
+    }
+    
     [_loadingIndicator stopAnimating];
     [_loadingIndicator removeFromSuperview];
-    
-    [UIView commitAnimations];
 }
 
 @end
