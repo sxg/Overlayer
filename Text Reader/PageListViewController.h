@@ -7,9 +7,10 @@
 //
 
 #import "PageViewController.h"
+#import "TextReaderViewController.h"
 #import <UIKit/UIKit.h>
 
-@interface PageListViewController : UITableViewController
+@interface PageListViewController : UITableViewController <TextReaderViewControllerDelegate>
 
 @property NSString *book;
 @property (nonatomic) NSMutableArray *pages;

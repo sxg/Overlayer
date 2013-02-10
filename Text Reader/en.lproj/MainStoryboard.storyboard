@@ -101,9 +101,32 @@
                     <view key="view" contentMode="scaleToFill" id="MjO-BJ-hd0">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="GMJ-ei-0Iy">
+                                <rect key="frame" x="0.0" y="916" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Previous" id="bdj-vA-v6X">
+                                        <connections>
+                                            <action selector="previous:" destination="sMX-am-LsL" id="8zC-F0-6oo"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="M7K-1b-r6t"/>
+                                    <barButtonItem title="Next" id="xuC-9p-zdZ">
+                                        <connections>
+                                            <action selector="next:" destination="sMX-am-LsL" id="jTt-EK-szq"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="cq4-8A-iSh"/>
+                    <connections>
+                        <outlet property="nextButton" destination="xuC-9p-zdZ" id="mIN-id-q0d"/>
+                        <outlet property="previousButton" destination="bdj-vA-v6X" id="gvR-YW-s43"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vvk-1V-tJ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

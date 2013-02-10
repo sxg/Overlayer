@@ -14,10 +14,6 @@
 
 @implementation PageViewController
 
-@synthesize image;
-@synthesize imageView;
-@synthesize scrollView;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -41,7 +37,53 @@
 
 - (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
-    return imageView;
+    return _imageView;
+}
+
+- (IBAction)previous:(id)sender
+{
+    if (_currentPageIndex > 0)
+    {
+        _currentPageIndex--;
+        
+        if (![_nextButton isEnabled])
+        {
+            [_nextButton setEnabled:YES];
+        }
+        
+        NSString *page = [_pages objectAtIndex:_currentPageIndex];
+        NSString *path = [_savePath stringByAppendingPathComponent:page];
+        _imageView.image = [[UIImage alloc] initWithContentsOfFile:path];
+        [self.navigationItem setTitle:page];
+        
+        if (_currentPageIndex == 0)
+        {
+            [_previousButton setEnabled:NO];
+        }
+    }
+}
+
+- (IBAction)next:(id)sender
+{
+    if (_currentPageIndex < [_pages count] - 1)
+    {
+        _currentPageIndex++;
+
+        if (![_previousButton isEnabled])
+        {
+            [_previousButton setEnabled:YES];
+        }
+        
+        NSString *page = [_pages objectAtIndex:_currentPageIndex];
+        NSString *path = [_savePath stringByAppendingPathComponent:page];
+        _imageView.image = [[UIImage alloc] initWithContentsOfFile:path];
+        [self.navigationItem setTitle:page];
+        
+        if (_currentPageIndex == [_pages count] - 1)
+        {
+            [_nextButton setEnabled:NO];
+        }
+    }
 }
 
 @end

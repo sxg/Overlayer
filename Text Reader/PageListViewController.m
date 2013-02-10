@@ -208,7 +208,12 @@
     
     [self performSegueWithIdentifier:@"ViewPage" sender:self];
     
-    _pageViewController.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, _pageViewController.view.frame.size.width, _pageViewController.view.frame.size.height)];
+    _pageViewController.pages = _pages;
+    _pageViewController.savePath = _savePath;
+    _pageViewController.currentPageIndex = indexPath.row;
+    [_pageViewController.navigationItem setTitle:page];
+    
+    _pageViewController.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, _pageViewController.view.frame.size.width, _pageViewController.view.frame.size.height - 44)];
     [_pageViewController.scrollView setDelegate:_pageViewController];
     _pageViewController.image = [[UIImage alloc] initWithContentsOfFile:path];
     _pageViewController.imageView = [[UIImageView alloc] initWithImage:_pageViewController.image];
@@ -218,6 +223,15 @@
     [_pageViewController.scrollView setMaximumZoomScale:3.0];
     [_pageViewController.view addSubview:_pageViewController.scrollView];
     
+    if (_pageViewController.currentPageIndex == 0)
+    {
+        [_pageViewController.previousButton setEnabled:NO];
+    }
+    if (_pageViewController.currentPageIndex == [_pageViewController.pages count] - 1)
+    {
+        [_pageViewController.nextButton setEnabled:NO];
+    }
+    
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -226,12 +240,23 @@
     if ([segue.identifier isEqualToString:@"CameraFromPages"])
     {
         TextReaderViewController *textReaderViewController = segue.destinationViewController;
+        [textReaderViewController setDelegate:self];
         [textReaderViewController setSavePath:_savePath];
     }
     else if ([segue.identifier isEqualToString:@"ViewPage"])
     {
         _pageViewController = segue.destinationViewController;
     }
+}
+
+- (void)finishedSavingFile:(NSString *)fileName
+{
+    _pages = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_savePath error:nil] mutableCopy];
+    
+    NSSortDescriptor *numericalSort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:YES selector:@selector(localizedStandardCompare:)];
+    [_pages sortUsingDescriptors:[NSArray arrayWithObject:numericalSort]];
+    
+    [self.tableView reloadData];
 }
 
 @end

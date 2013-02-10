@@ -8,6 +8,12 @@
 #import "DrawingView.h"
 #import <UIKit/UIKit.h>
 
+@protocol TextReaderViewControllerDelegate <NSObject>
+
+- (void)finishedSavingFile:(NSString*)fileName;
+
+@end
+
 @interface TextReaderViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate, UIPopoverControllerDelegate>
 
 @property dispatch_queue_t backgroundQueue;
@@ -31,6 +37,7 @@
 @property UIBarButtonItem *drawLinesButton;
 @property NSString *savePath;
 @property NSString *backgroundImageName;
+@property id <TextReaderViewControllerDelegate> delegate;
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info;

@@ -13,5 +13,13 @@
 @property UIImage *image;
 @property UIImageView *imageView;
 @property UIScrollView *scrollView;
+@property NSArray *pages;
+@property NSString *savePath;
+@property int currentPageIndex;
+@property IBOutlet UIBarButtonItem *previousButton;
+@property IBOutlet UIBarButtonItem *nextButton;
+
+- (IBAction)previous:(id)sender;
+- (IBAction)next:(id)sender;
 
 @end

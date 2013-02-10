@@ -232,6 +232,7 @@
         NSString *imagePath = [_savePath stringByAppendingPathComponent:_backgroundImageName];
         
         [UIImagePNGRepresentation(backgroundImage) writeToFile:imagePath atomically:YES];
+        [_delegate finishedSavingFile:_backgroundImageName];
     });
 }
 
@@ -246,6 +247,7 @@
         UIGraphicsEndImageContext();
         
         [UIImagePNGRepresentation(image) writeToFile:imagePath atomically:YES];
+        [_delegate finishedSavingFile:_backgroundImageName];
     });
 }
 
