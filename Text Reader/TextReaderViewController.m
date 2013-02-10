@@ -225,23 +225,27 @@
 
 - (void)save
 {
-    NSArray *fileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:_savePath error:nil];
-    _backgroundImageName = [NSString stringWithFormat:@"%i.png", ([fileList count] + 1)];
-    NSString *imagePath = [_savePath stringByAppendingPathComponent:_backgroundImageName];
-    
-    [UIImagePNGRepresentation(backgroundImage) writeToFile:imagePath atomically:YES];
+    dispatch_async(_backgroundQueue, ^{
+        NSArray *fileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:_savePath error:nil];
+        _backgroundImageName = [NSString stringWithFormat:@"%i.png", ([fileList count] + 1)];
+        NSString *imagePath = [_savePath stringByAppendingPathComponent:_backgroundImageName];
+        
+        [UIImagePNGRepresentation(backgroundImage) writeToFile:imagePath atomically:YES];
+    });
 }
 
 - (void)saveWithLines
 {
-    NSString *imagePath = [_savePath stringByAppendingPathComponent:_backgroundImageName];
-    
-    UIGraphicsBeginImageContext(imageAndPathView.bounds.size);
-    [imageAndPathView.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    [UIImagePNGRepresentation(image) writeToFile:imagePath atomically:YES];
+    dispatch_async(_backgroundQueue, ^{
+        NSString *imagePath = [_savePath stringByAppendingPathComponent:_backgroundImageName];
+        
+        UIGraphicsBeginImageContext(imageAndPathView.bounds.size);
+        [imageAndPathView.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        [UIImagePNGRepresentation(image) writeToFile:imagePath atomically:YES];
+    });
 }
 
 @end
