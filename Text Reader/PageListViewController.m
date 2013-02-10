@@ -50,6 +50,10 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     _pages = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_savePath error:nil] mutableCopy];
+    
+    NSSortDescriptor *numericalSort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:YES selector:@selector(localizedStandardCompare:)];
+    [_pages sortUsingDescriptors:[NSArray arrayWithObject:numericalSort]];
+    
     [self.tableView reloadData];
 }
 

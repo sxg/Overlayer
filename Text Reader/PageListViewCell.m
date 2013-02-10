@@ -37,8 +37,7 @@
         [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
     }
     
-    //UILabel *label = (UILabel*) [self viewWithTag:100];
-    [self.label setCenter:CGPointMake(self.label.center.x + 20, self.label.center.y)];
+    [self.label setCenter:CGPointMake(190, self.label.center.y)];
     
     if (animated)
     {
@@ -61,8 +60,7 @@
         [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
     }
     
-    //UILabel *label = (UILabel*) [self viewWithTag:100];
-    [self.label setCenter:CGPointMake(self.label.center.x - 20, self.label.center.y)];
+    [self.label setCenter:CGPointMake(170, self.label.center.y)];
     
     if (animated)
     {

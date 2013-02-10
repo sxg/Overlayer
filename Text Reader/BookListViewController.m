@@ -223,6 +223,9 @@
     _pageListViewController.savePath = [_pageListViewController.documentsDirectory stringByAppendingPathComponent:_pageListViewController.book];
     _pageListViewController.pages = [[fm contentsOfDirectoryAtPath:_pageListViewController.savePath error:nil] mutableCopy];
     
+    NSSortDescriptor *numericalSort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:YES selector:@selector(localizedStandardCompare:)];
+    [_pageListViewController.pages sortUsingDescriptors:[NSArray arrayWithObject:numericalSort]];
+    
     _pageListViewController.navigationItem.title = _pageListViewController.book;
 }
 
