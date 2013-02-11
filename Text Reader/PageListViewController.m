@@ -213,7 +213,8 @@
     _pageViewController.currentPageIndex = indexPath.row;
     [_pageViewController.navigationItem setTitle:page];
     
-    _pageViewController.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, _pageViewController.view.frame.size.width, _pageViewController.view.frame.size.height - 44)];
+    _pageViewController.scrollView = [[UIScrollView alloc] init];
+    
     [_pageViewController.scrollView setDelegate:_pageViewController];
     _pageViewController.image = [[UIImage alloc] initWithContentsOfFile:path];
     _pageViewController.imageView = [[UIImageView alloc] initWithImage:_pageViewController.image];
@@ -230,6 +231,15 @@
     if (_pageViewController.currentPageIndex == [_pageViewController.pages count] - 1)
     {
         [_pageViewController.nextButton setEnabled:NO];
+    }
+    
+    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation))
+    {
+        [_pageViewController.scrollView setFrame:CGRectMake(0, 0, _pageViewController.view.frame.size.width, _pageViewController.view.frame.size.height - 44)];
+    }
+    else if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
+    {
+        [_pageViewController.scrollView setFrame:CGRectMake(([UIScreen mainScreen].bounds.size.height - _pageViewController.imageView.image.size.width) / 2, 0, _pageViewController.imageView.image.size.width, [UIScreen mainScreen].bounds.size.width - 44 - 20 - 44)];
     }
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];

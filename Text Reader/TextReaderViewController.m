@@ -138,28 +138,13 @@
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     //reverse self.view.frame.size.height and self.view.frame.size.width since the rotation hasn't happened yet
-    if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation) && [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation))
     {
-        if (backgroundImage.size.width >= 1024)
-        {
-            [backgroundImageScrollView setFrame:CGRectMake( 0, 44, 1024, 768 - 20 - 49 - 44)];
-        }
-        else
-        {
-            [backgroundImageScrollView setFrame:CGRectMake( (1024 - backgroundImage.size.width) / 2, 44, backgroundImage.size.width, 768 - 20 - 49 - 44)];
-        }
+        [backgroundImageScrollView setFrame:CGRectMake(([UIScreen mainScreen].bounds.size.height - backgroundImageScrollView.frame.size.width) / 2, 0, backgroundImageScrollView.frame.size.width, [UIScreen mainScreen].bounds.size.width - 44 - 20)];
     }
-    else if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation) && [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    else if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
     {
-        [backgroundImageScrollView setFrame:CGRectMake(0, 44, 768, 1024 - 20 - 49 - 44)];
-    }
-    else if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation) && [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
-    {
-        [backgroundImageScrollView setFrame:CGRectMake(0, 44, 480, 320 - 20 - 49 - 44)];
-    }
-    else if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation) && [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
-    {
-        [backgroundImageScrollView setFrame:CGRectMake(0, 44, 320, 480 - 20 - 49 - 44)];
+        [backgroundImageScrollView setFrame:CGRectMake(0, 0, backgroundImageScrollView.frame.size.width, [UIScreen mainScreen].bounds.size.height - 44 - 20)];
     }
 }
 
