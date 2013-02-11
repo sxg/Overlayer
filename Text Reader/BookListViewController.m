@@ -6,11 +6,25 @@
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
+/*
+    This is a UITableViewController, and it is the initial view controller. BookListViewController (BLVC) contains only one section,
+    and it lists all the "books" that have been created with the app. Books are simply folders within which are images of pages. The
+    only public method is addBook:, which allows the user to create a new book through a popover. If the camera button is touched and
+    a picture is taken, then a new book folder is automatically created, and the new picture goes into the new folder. Books are listed
+    in alphabetic order. 
+ 
+    _books is an array containing the string names of all the books.
+    _documentsDirectory is the string path of the Documents directory of the app
+ */
+
 #import "PageListViewController.h"
 #import "BookListViewController.h"
 #import "TextReaderViewController.h"
 
 @interface BookListViewController ()
+
+@property PageListViewController *pageListViewController;
+@property UIPopoverController *popover;
 
 @end
 
@@ -35,12 +49,14 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    //need to setup images and imageNames
-    [self firstLoad];
+    //  need to setup images and imageNames
+    _documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    _books = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    //  Look for new folders AKA books
     _books = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
     [self.tableView reloadData];
 }
@@ -51,19 +67,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)firstLoad
-{
-    _documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    _books = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
-}
+#pragma mark - Public methods
 
+// Allow the user to add a new book by interacting with a textfield within a popover
 - (IBAction)addBook:(id)sender
 {
     if (_popover == nil || ![_popover isPopoverVisible])
     {
-        _bookName = [self getBookName];
+        //  Get a default book name of the form "New Book %i" that doesn't already exist
+        NSString* bookName = [self getDefaultBookName];
         
-        //Setup the view controller for the popover
+        //  Setup the view controller for the popover
         UIViewController *viewController = [[UIViewController alloc] init];
         [viewController setContentSizeForViewInPopover:CGSizeMake(260, 125)];
         [viewController.view setBackgroundColor:[UIColor whiteColor]];
@@ -73,7 +87,7 @@
         [textField setReturnKeyType:UIReturnKeyDone];
         [textField setBorderStyle:UITextBorderStyleRoundedRect];
         [textField setBackgroundColor:[UIColor whiteColor]];
-        [textField setPlaceholder:_bookName];
+        [textField setText:bookName];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(30, 25, 200, 35)];
         [label setText:@"Enter the book name:"];
@@ -82,33 +96,19 @@
         [viewController.view addSubview:label];
         _popover = [[UIPopoverController alloc] initWithContentViewController:viewController];
         
+        //  Present the popover
         [_popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     }
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    _bookName = textField.text;
-    
-    //Take the name that does not exist, create a new book with it, and add it to the data source
-    NSString *path = [_documentsDirectory stringByAppendingPathComponent:_bookName];
-    [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:nil];
-    [_books addObject:_bookName];
-    
-    //Add the new book to the table
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([_books count] - 1) inSection:0];
-    NSArray *array = [[NSArray alloc] initWithObjects:indexPath, nil];
-    [self.tableView insertRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationAutomatic];
-    
-    [_popover dismissPopoverAnimated:YES];
-    [textField resignFirstResponder];
-    return YES;
-}
+#pragma mark - Helper methods
 
-- (NSString*)getBookName
+//  Search the Documents directory for a book called "New Book". If it exists, then look for "New Book 2" etc.
+- (NSString*)getDefaultBookName
 {
-    //Search the Documents directory for a book called "New Book". If it exists, then look for "New Book 2" etc.
-    //There is a minor bug in this code - if "New Book", "New Book 2", and "New Book 4" are the only books that exist, then the next book that is added will be "New Book 3" instead of "New Book 5"
+    //  There is a minor bug in this code - if "New Book", "New Book 2", and "New Book 4" are the only books that exist, then the next book that is added will be "New Book 3" instead of "New Book 5"
+    //  Another minor bug: the numbers within the books will be sorted alphabetically and not numerically, so "New Book 10" will appear before "New Book 2"
+
     bool alreadyExists;
     NSFileManager *fm = [NSFileManager defaultManager];
     NSArray *files = [fm contentsOfDirectoryAtPath:_documentsDirectory error:nil];
@@ -117,6 +117,8 @@
     do {
         alreadyExists = NO;
         newBookName = @"New Book";
+        
+        //  Don't append a number to the end of the first "New Book", but do it to all subsequent "New Book"s
         if (i > 1)
         {
             NSString *num = [[[NSNumber alloc] initWithInt:i] stringValue];
@@ -124,6 +126,7 @@
             newBookName = [newBookName stringByAppendingString:num];
         }
         
+        //  Look for a book AKA folder named newBookName in the Documents folder
         for (NSString *fileName in files)
         {
             if ([fileName isEqualToString:newBookName])
@@ -132,9 +135,37 @@
             }
         }
         i++;
+        
+        //  Keep going until you find a book name that has not already been taken
     } while (alreadyExists);
 
     return newBookName;
+}
+
+#pragma mark - Text field delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    NSString *bookName = textField.text;
+    
+    //  Add the new book only if the name does not already exist
+    if (![_books containsObject:bookName])
+    {
+        //  Create a new folder by the name the user specifies in the textfield, and add it to the data source _books
+        NSString *path = [_documentsDirectory stringByAppendingPathComponent:bookName];
+        [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:nil];
+        [_books addObject:bookName];
+        
+        //  Add the new book to the table
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([_books count] - 1) inSection:0];
+        [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    
+    //  Remove the popover and the keyboard
+    [_popover dismissPopoverAnimated:YES];
+    [textField resignFirstResponder];
+    
+    return YES;
 }
 
 #pragma mark - Table view data source
@@ -158,6 +189,7 @@
     
     // Configure the cell...
     
+    //  Give the book's cell the same name as the book's folder
     NSString *name = [_books objectAtIndex:indexPath.row];
     [cell.textLabel setText:name];
     
@@ -182,6 +214,7 @@
         [[NSFileManager defaultManager] removeItemAtPath:pathToBook error:nil];
         [_books removeObjectAtIndex:indexPath.row];
         
+        //  Remove the row from the table
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -207,6 +240,7 @@
 
 #pragma mark - Table view delegate
 
+//  Go to the PageListViewController if the user selected a book from the table (called after prepareForSegue:)
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
@@ -217,26 +251,33 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     
+    //  Get the name of the selected book, tell PLVC the book name, tell PLVC the path to that book, and set PLVC up with all the names of pages contained in that book folder
     NSString *selectedBook = [_books objectAtIndex:indexPath.row];
     [_pageListViewController setBook:selectedBook];
     NSFileManager *fm = [NSFileManager defaultManager];
     _pageListViewController.savePath = [_pageListViewController.documentsDirectory stringByAppendingPathComponent:_pageListViewController.book];
     _pageListViewController.pages = [[fm contentsOfDirectoryAtPath:_pageListViewController.savePath error:nil] mutableCopy];
     
+    //  Sort names of pages numerically so that 10.png does not come before 2.png
     NSSortDescriptor *numericalSort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:YES selector:@selector(localizedStandardCompare:)];
     [_pageListViewController.pages sortUsingDescriptors:[NSArray arrayWithObject:numericalSort]];
     
+    //  Set PLVC's navbar's title to the name of the book
     _pageListViewController.navigationItem.title = _pageListViewController.book;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"ViewBook"]) {    
+    //  Go to the PageListViewController if the user selected a book from the table
+    if ([segue.identifier isEqualToString:@"ViewBook"]) {
+        //  Get the PLVC that's about to come into view, and tell it where the app's Documents directory is
         _pageListViewController = segue.destinationViewController;
         [_pageListViewController setDocumentsDirectory:_documentsDirectory];
     }
+    //  Go to the TextReaderViewController if the user wants to take a picture from here (BLVC)
     else if ([segue.identifier isEqualToString:@"CameraFromBooks"])
     {
-        NSString *savePath = [_documentsDirectory stringByAppendingPathComponent:[self getBookName]];
+        //  Since a book name has not been specified but the user wants to take a picture, get a default book name, make a folder with that name, create a path to that folder, and give TRVC that path so it knows where to save the picture
+        NSString *savePath = [_documentsDirectory stringByAppendingPathComponent:[self getDefaultBookName]];
         [[NSFileManager defaultManager] createDirectoryAtPath:savePath withIntermediateDirectories:NO attributes:nil error:nil];
         TextReaderViewController *textReaderViewController = segue.destinationViewController;
         [textReaderViewController setSavePath:savePath];

@@ -11,13 +11,9 @@
 
 @interface BookListViewController : UITableViewController <UITextFieldDelegate>
 
-@property PageListViewController *pageListViewController;
 @property (nonatomic) NSMutableArray *books;
 @property NSString *documentsDirectory;
-@property UIPopoverController *popover;
-@property NSString *bookName;
 
-- (void)firstLoad;
 - (IBAction)addBook:(id)sender;
 
 @end
