@@ -16,25 +16,20 @@
 
 @interface TextReaderViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate, UIPopoverControllerDelegate>
 
-@property dispatch_queue_t backgroundQueue;
-@property UIImagePickerController *imagePicker;
-@property UIImage *backgroundImage;
-@property UIImageView *backgroundImageView;
-@property UIScrollView *backgroundImageScrollView;
-@property UIPopoverController *popOver;
-@property int height;
-@property int width;
-@property NSUInteger bytesPerPixel;
-@property NSUInteger bytesPerRow;
-@property NSUInteger bitsPerComponent;
-@property int lineThickness;
-@property DrawingView *drawingView;
-@property UIView *imageAndPathView;
-@property UIView *loadingHUD;
-@property UIActivityIndicatorView *loadingView;
-@property UILabel *loadingLabel;
-@property UIBarButtonItem *cameraButton;
-@property UIBarButtonItem *drawLinesButton;
+@property (readonly)dispatch_queue_t backgroundQueue;
+@property (readonly)UIImage *backgroundImage;
+@property (readonly)UIImageView *backgroundImageView;
+@property (readonly)UIScrollView *backgroundImageScrollView;
+@property (readonly)int height;
+@property (readonly)int width;
+@property (readonly)NSUInteger bytesPerPixel;
+@property (readonly)NSUInteger bytesPerRow;
+@property (readonly)NSUInteger bitsPerComponent;
+@property (readonly)int lineThickness;
+@property (readonly)DrawingView *drawingView;
+@property (readonly)UIView *imageAndPathView;
+@property (readonly)UIBarButtonItem *cameraButton;
+@property (readonly)UIBarButtonItem *drawLinesButton;
 @property NSString *savePath;
 @property NSString *backgroundImageName;
 @property id <TextReaderViewControllerDelegate> delegate;
