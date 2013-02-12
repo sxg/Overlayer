@@ -10,7 +10,7 @@
 
 @protocol TextReaderViewControllerDelegate <NSObject>
 
-- (void)finishedSavingFile:(NSString*)fileName;
+- (void)finishedSavingImage:(NSString*)fileName;
 
 @end
 

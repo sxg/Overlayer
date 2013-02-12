@@ -7,7 +7,7 @@
 //
 
 /*
-    This is a UITableViewController, and it is the initial view controller. BookListViewController (BLVC) contains only one section,
+    This is a UITableViewController subclass, and it is the initial view controller. BookListViewController (BLVC) contains only one section,
     and it lists all the "books" that have been created with the app. Books are simply folders within which are images of pages. The
     only public method is addBook:, which allows the user to create a new book through a popover. If the camera button is touched and
     a picture is taken, then a new book folder is automatically created, and the new picture goes into the new folder. Books are listed
@@ -15,6 +15,8 @@
  
     _books is an array containing the string names of all the books.
     _documentsDirectory is the string path of the Documents directory of the app
+    _pageListViewController is a reference to the view controller that will be called upon selecting a book from the table
+    _popover is the popover that appears when the add button is touched to add a new book
  */
 
 #import "PageListViewController.h"
@@ -48,6 +50,8 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    
     
     //  need to setup images and imageNames
     _documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
@@ -265,6 +269,8 @@
     //  Set PLVC's navbar's title to the name of the book
     _pageListViewController.navigationItem.title = _pageListViewController.book;
 }
+
+#pragma mark - Segue control
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     //  Go to the PageListViewController if the user selected a book from the table

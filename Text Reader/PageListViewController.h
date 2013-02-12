@@ -16,8 +16,5 @@
 @property (nonatomic) NSMutableArray *pages;
 @property NSString *savePath;
 @property NSString *documentsDirectory;
-@property PageViewController *pageViewController;
-@property UIBarButtonItem *drawLinesButton;
-@property dispatch_queue_t backgroundQueue;
 
 @end
