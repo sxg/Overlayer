@@ -13,7 +13,7 @@
     a picture is taken, then a new book folder is automatically created, and the new picture goes into the new folder. Books are listed
     in alphabetic order. 
  
-    _books is an array containing the string names of all the books.
+    _books is an array containing the string names of all the books and the data source for the table
     _documentsDirectory is the string path of the Documents directory of the app
     _pageListViewController is a reference to the view controller that will be called upon selecting a book from the table
     _popover is the popover that appears when the add button is touched to add a new book

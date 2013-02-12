@@ -10,6 +10,15 @@
     This is a UIViewController subclass, and it displays the image selected in PageListViewController inside of a UIScrollView. Previous
     and next buttons appear on a toolbar at the bottom of the view. The buttons are only enabled if there is a next or previous page. This
     view controller has customized rotation handling.
+ 
+    _image is the image of the page to be displayed
+    _imageView displays _image
+    _scrollView holds _imageView to allow zooming and scrolling
+    _pages is an array holding the file names of all the pages in the current book
+    _savePath is a string holding the path to the current book folder
+    _currentPageIndex is an int specifying which page in _pages we are currently displaying
+    _previousButton is the toolbar button that lets users view the previous page
+    _nextButton is the toolbar button that lets users view the next page
  */
 
 #import "PageViewController.h"

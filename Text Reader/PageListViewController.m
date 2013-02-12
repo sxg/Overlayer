@@ -15,7 +15,7 @@
     images that have not yet had strikethroughs added to them in a background thread.
  
     _book is the string name of the current book
-    _pages is an array containing the string names of all the page image file names in the current book folder
+    _pages is an array containing the string names of all the page image file names in the current book folder and the data source for the table
     _savePath is a string path that points to the current book folder
     _documentsDirectory is a string path that points to the app's Documents directory
     _pageViewController is a reference to the view controller that will be called upon selecting a page from the table
