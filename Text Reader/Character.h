@@ -19,5 +19,6 @@
 - (Character*)initWithPoints:(NSArray*)arrayOfPoints;
 - (NSArray*)averageYValuesSplitCharacterInto:(int)splits;
 - (NSArray*)xSplitPoints:(int)splits;
+- (int)wordHeight;
 
 @end

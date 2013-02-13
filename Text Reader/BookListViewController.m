@@ -25,6 +25,8 @@
 
 @interface BookListViewController ()
 
+@property (nonatomic) NSMutableArray *books;
+@property NSString *documentsDirectory;
 @property PageListViewController *pageListViewController;
 @property UIPopoverController *popover;
 

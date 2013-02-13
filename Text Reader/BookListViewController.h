@@ -11,9 +11,6 @@
 
 @interface BookListViewController : UITableViewController <UITextFieldDelegate>
 
-@property (nonatomic) NSMutableArray *books;
-@property NSString *documentsDirectory;
-
 - (IBAction)addBook:(id)sender;
 
 @end

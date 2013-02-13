@@ -70,7 +70,7 @@
     _bytesPerPixel = 4;
     _bitsPerComponent = 8;
     _bytesPerRow = _bytesPerPixel * _width;
-    _lineThickness = 1;
+    _lineThickness = 1.75;
     
     //  Setup interface buttons. The "Draw Lines" button should only be shown if the background image exists and is unprocessed.
     _cameraButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(callCamera)];

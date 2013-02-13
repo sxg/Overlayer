@@ -111,7 +111,7 @@
         }
     }
     
-    const int THRESHOLD = [self otsusMethod:histogram size:(CGImageGetWidth(imageRef) * CGImageGetHeight(imageRef))];
+    const int THRESHOLD = 0.85 * [self otsusMethod:histogram size:(CGImageGetWidth(imageRef) * CGImageGetHeight(imageRef))];
     
     for (int y = 0; y < CGImageGetHeight(imageRef); y++)
     {
@@ -185,7 +185,7 @@
     
     
     const int LOWER_THRESHOLD = 20; //minimum number of adjacent black pixels that will define a character
-    //const int UPPER_THRESHOLD = 1500; //maximum number of adjacent black pixels that will define a character
+    const int UPPER_THRESHOLD = 7000; //maximum number of adjacent black pixels that will define a character
     
     //array of characters, which are arrays of pixel byte indexes
     NSMutableArray *characters = [[NSMutableArray alloc] init];
@@ -199,7 +199,7 @@
             if (rawData[byteIndex] == 0.0)
             {
                 Character *c = [self floodFill:rawData x:x y:y height:CGImageGetHeight(imageRef) width:CGImageGetWidth(imageRef) bytesPerPixel:bytesPerPixel bytesPerRow:bytesPerRow];
-                if ([[c points] count] > LOWER_THRESHOLD)// && [tempArray count] < UPPER_THRESHOLD)
+                if ([[c points] count] > LOWER_THRESHOLD && [[c points] count] < UPPER_THRESHOLD)
                 {
                     [characters addObject:c];
                 }

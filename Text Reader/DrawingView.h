@@ -8,12 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DrawingView : UIView {
-    UIBezierPath *path;
-}
+@interface DrawingView : UIView
 
 @property UIBezierPath *path;
-
-- (void)drawStuff;
 
 @end

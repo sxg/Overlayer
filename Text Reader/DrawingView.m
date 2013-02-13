@@ -6,11 +6,30 @@
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
+/*
+    This is a subclass of UIView, and it serves as a sort of transparency upon which the strikethroughs can be drawn by the UIBezierPath.
+    The processing of the picture will output sets of coordinates that describe where the strikethroughs should be drawn. In order to preserve
+    the original image, the drawing will occur on this view.
+ 
+    _path is the UIBezierPath that will draw all the strikethroughs
+ */
+
 #import "DrawingView.h"
 
 @implementation DrawingView
 
 @synthesize path;
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        //  Create the path and set the background of this view to be transparent
+        path = [[UIBezierPath alloc] init];
+        [self setBackgroundColor:[UIColor clearColor]];
+    }
+    return self;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -18,25 +37,18 @@
     if (self) {
         // Initialization code
         
-        //Make sure initWithFrame: is called or else the path will not be initialized!
+        //  Create the path and set the background of this view to be transparent
         path = [[UIBezierPath alloc] init];
         [self setBackgroundColor:[UIColor clearColor]];
     }
     return self;
 }
 
-- (void)drawRect:(CGRect)rect // (5)
+- (void)drawRect:(CGRect)rect
 {
-    [[UIColor blueColor] setStroke];
+    //  Set the color of the path and draw it
+    [[UIColor blackColor] setStroke];
     [path stroke];
-}
-
-- (void)drawStuff
-{
-    [path moveToPoint:CGPointMake(30, 30)];
-    [path addLineToPoint:CGPointMake(50, 30)];
-    [path addLineToPoint:CGPointMake(70, 50)];
-    [self setNeedsDisplay];
 }
 
 @end
