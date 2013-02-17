@@ -111,22 +111,4 @@
     return splitPoints;
 }
 
-//  This method calculates the height of a word based on the most common highest and lowest y values for a given x value
-- (int)wordHeight
-{
-    //  (rightX - leftX + 1) is the length (width) of the character, the max number of unique x values
-    int length = rightX - leftX + 1;
-    NSMutableArray *histogramOfTopYValues = [[NSMutableArray alloc] initWithCapacity:length];
-    NSMutableArray *histogramOfBottomYValues = [[NSMutableArray alloc] initWithCapacity:length];
-    
-    //  zero the arrays
-    for (int i = 0; i < length; i++)
-    {
-        [histogramOfTopYValues setObject:0 atIndexedSubscript:i];
-        [histogramOfBottomYValues setObject:0 atIndexedSubscript:i];
-    }
-    
-    
-}
-
 @end

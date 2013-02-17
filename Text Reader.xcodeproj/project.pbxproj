@@ -19,6 +19,11 @@
 		4A2F7559169CD98000DD7A03 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F7558169CD98000DD7A03 /* Default@2x.png */; };
 		4A2F755B169CD98000DD7A03 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F755A169CD98000DD7A03 /* Default-568h@2x.png */; };
 		4A2F755E169CD98000DD7A03 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F755C169CD98000DD7A03 /* MainStoryboard.storyboard */; };
+		4A4F69D516D168D300093AB5 /* Amoon_ComicSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A4F69D416D168D300093AB5 /* Amoon_ComicSans.ttf */; };
+		4A6A867916CF32B200D2B3A5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A867816CF32B200D2B3A5 /* icon.png */; };
+		4A6A867B16CF32B500D2B3A5 /* icon2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A867A16CF32B500D2B3A5 /* icon2x.png */; };
+		4A6A867D16CF3B3D00D2B3A5 /* iconx2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A867C16CF3B3D00D2B3A5 /* iconx2.png */; };
+		4A6A867F16CF3B4800D2B3A5 /* Untitled-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A867E16CF3B4800D2B3A5 /* Untitled-1.png */; };
 		4A7E194516B323910031A7A1 /* UIImage+LineDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E194416B323910031A7A1 /* UIImage+LineDrawer.m */; };
 		4AAB842516C6B2FE00BE13FD /* PageListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB842416C6B2FE00BE13FD /* PageListViewCell.m */; };
 		4AB487E116B74B00005960FA /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB487E016B74B00005960FA /* Character.m */; };
@@ -46,6 +51,11 @@
 		4A2F755A169CD98000DD7A03 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4A2F755D169CD98000DD7A03 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		4A2F755F169CD98000DD7A03 /* TextReaderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextReaderViewController.h; sourceTree = "<group>"; };
+		4A4F69D416D168D300093AB5 /* Amoon_ComicSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Amoon_ComicSans.ttf; sourceTree = "<group>"; };
+		4A6A867816CF32B200D2B3A5 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
+		4A6A867A16CF32B500D2B3A5 /* icon2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon2x.png; path = ../icon2x.png; sourceTree = "<group>"; };
+		4A6A867C16CF3B3D00D2B3A5 /* iconx2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconx2.png; path = ../iconx2.png; sourceTree = "<group>"; };
+		4A6A867E16CF3B4800D2B3A5 /* Untitled-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Untitled-1.png"; path = "../Untitled-1.png"; sourceTree = "<group>"; };
 		4A7E194316B323910031A7A1 /* UIImage+LineDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LineDrawer.h"; sourceTree = "<group>"; };
 		4A7E194416B323910031A7A1 /* UIImage+LineDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LineDrawer.m"; sourceTree = "<group>"; };
 		4AAB842316C6B2FE00BE13FD /* PageListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageListViewCell.h; sourceTree = "<group>"; };
@@ -147,6 +157,11 @@
 		4A2F754B169CD98000DD7A03 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4A4F69D416D168D300093AB5 /* Amoon_ComicSans.ttf */,
+				4A6A867E16CF3B4800D2B3A5 /* Untitled-1.png */,
+				4A6A867C16CF3B3D00D2B3A5 /* iconx2.png */,
+				4A6A867A16CF32B500D2B3A5 /* icon2x.png */,
+				4A6A867816CF32B200D2B3A5 /* icon.png */,
 				4A2F754C169CD98000DD7A03 /* Text Reader-Info.plist */,
 				4A2F754D169CD98000DD7A03 /* InfoPlist.strings */,
 				4A2F7550169CD98000DD7A03 /* main.m */,
@@ -215,6 +230,11 @@
 				4A2F7559169CD98000DD7A03 /* Default@2x.png in Resources */,
 				4A2F755B169CD98000DD7A03 /* Default-568h@2x.png in Resources */,
 				4A2F755E169CD98000DD7A03 /* MainStoryboard.storyboard in Resources */,
+				4A6A867916CF32B200D2B3A5 /* icon.png in Resources */,
+				4A6A867B16CF32B500D2B3A5 /* icon2x.png in Resources */,
+				4A6A867D16CF3B3D00D2B3A5 /* iconx2.png in Resources */,
+				4A6A867F16CF3B4800D2B3A5 /* Untitled-1.png in Resources */,
+				4A4F69D516D168D300093AB5 /* Amoon_ComicSans.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,8 +289,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -285,8 +305,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "D420BFAC-E542-4201-ACBF-D304DD7597BA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D420BFAC-E542-4201-ACBF-D304DD7597BA";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -301,8 +321,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -310,8 +330,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "D420BFAC-E542-4201-ACBF-D304DD7597BA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D420BFAC-E542-4201-ACBF-D304DD7597BA";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -321,15 +341,15 @@
 		4A2F7565169CD98000DD7A03 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Text Reader/Text Reader-Prefix.pch";
 				INFOPLIST_FILE = "Text Reader/Text Reader-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "D420BFAC-E542-4201-ACBF-D304DD7597BA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D420BFAC-E542-4201-ACBF-D304DD7597BA";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -338,15 +358,15 @@
 		4A2F7566169CD98000DD7A03 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Text Reader/Text Reader-Prefix.pch";
 				INFOPLIST_FILE = "Text Reader/Text Reader-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "D420BFAC-E542-4201-ACBF-D304DD7597BA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D420BFAC-E542-4201-ACBF-D304DD7597BA";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

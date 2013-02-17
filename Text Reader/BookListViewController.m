@@ -93,9 +93,11 @@
         [textField setReturnKeyType:UIReturnKeyDone];
         [textField setBorderStyle:UITextBorderStyleRoundedRect];
         [textField setBackgroundColor:[UIColor whiteColor]];
+        [textField setFont:[UIFont fontWithName:@"Amoon1" size:17]];
         [textField setText:bookName];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(30, 25, 200, 35)];
+        [label setFont:[UIFont fontWithName:@"Amoon1" size:17]];
         [label setText:@"Enter the book name:"];
         
         [viewController.view addSubview:textField];
@@ -197,6 +199,7 @@
     
     //  Give the book's cell the same name as the book's folder
     NSString *name = [_books objectAtIndex:indexPath.row];
+    [cell.textLabel setFont:[UIFont fontWithName:@"Amoon1" size:20]];
     [cell.textLabel setText:name];
     
     return cell;

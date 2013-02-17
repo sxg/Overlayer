@@ -12,9 +12,7 @@
 
 @interface UIImage (LineDrawer)
 
-- (UIImage*)makeBlackAndWhiteWithbytesPerPixel:(int)bytesPerPixel bitsPerComponent:(int)bitsPerComponent;
 - (DrawingView*)identifyCharactersWithlineThickness:(int)lineThickness onView:(DrawingView*)view bytesPerPixel:(int)bytesPerPixel bitsPerComponent:(int)bitsPerComponent;
-- (UIImage*)rotateToOrientation:(UIImageOrientation)orientation;
 - (UIImage*)imageScaledToSize:(CGSize)newSize;
 
 @end

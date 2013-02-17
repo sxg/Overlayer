@@ -14,6 +14,9 @@
 {
     // Override point for customization after application launch.
     
+    //  Customize the navbar
+    [self customizeAppearance];
+    
     return YES;
 }
 							
@@ -42,6 +45,23 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)customizeAppearance
+{
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                          [UIFont fontWithName:@"Amoon1" size:20],
+                                                          UITextAttributeFont,
+                                                          nil]];
+    
+    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                          [UIFont fontWithName:@"Amoon1" size:12],
+                                                          UITextAttributeFont,
+                                                          nil] forState:UIControlStateNormal];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                    [UIFont fontWithName:@"Amoon1" size:12],
+                                                    UITextAttributeFont,
+                                                    nil] forState:UIControlStateDisabled];
 }
 
 @end

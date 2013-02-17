@@ -72,10 +72,11 @@
     _bytesPerRow = _bytesPerPixel * _width;
     _lineThickness = 1.75;
     
-    //  Setup interface buttons. The "Draw Lines" button should only be shown if the background image exists and is unprocessed.
+    //  Setup interface buttons. The "Draw Lines" button should only be enabled if the background image exists and is unprocessed.
     _cameraButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(callCamera)];
     _drawLinesButton = [[UIBarButtonItem alloc] initWithTitle:@"Draw Lines" style:UIBarButtonItemStyleDone target:self action:@selector(drawLines)];
-    self.navigationItem.rightBarButtonItem = _cameraButton;
+    [_drawLinesButton setEnabled:NO];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:_cameraButton, _drawLinesButton, nil];
     
     //  Setup the background queue
     _backgroundQueue = dispatch_queue_create("backgroundQueue", NULL);
@@ -157,7 +158,6 @@
                 [loadingView stopAnimating];
                 [loadingHUD removeFromSuperview];
                 self.navigationItem.rightBarButtonItem = _cameraButton;
-                [_drawLinesButton setEnabled:YES];
             });
         });
     }
@@ -185,8 +185,7 @@
         }
     }
     
-    //  Since the camera has been called, replace the camera button with the "Draw Lines" button
-    self.navigationItem.rightBarButtonItem = _drawLinesButton;
+    [_drawLinesButton setEnabled:YES];
 }
 
 #pragma mark - Helper methods

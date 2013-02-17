@@ -199,6 +199,7 @@
     
     //  Set the PageListViewCell's UILabel's text to the file name of the image it is supposed to open
     NSString *name = [_pages objectAtIndex:indexPath.row];
+    [cell.label setFont:[UIFont fontWithName:@"Amoon1" size:20]];
     [cell.label setText:name];
     
     //  If this PageListViewCell is currently being processed, then shift the UILabel and add the UIActivityIndicator without an animation
