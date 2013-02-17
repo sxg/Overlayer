@@ -241,9 +241,9 @@
         
         //  Compare the distance between the top and bottom lines and adjust the offset of the bottom line accordingly
         int offset = 0;
-        if (roughStdDev < 3)
+        if (roughStdDev < 2)
         {
-            offset = roughStdDev;
+            offset = roughStdDev * 2;
         }
         
         //  Calculate the slope of the line to be drawn
