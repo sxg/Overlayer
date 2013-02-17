@@ -12,8 +12,10 @@
 
 @implementation UIImage (LineDrawer)
 
+//  Otsu's Method of generating a binary image from a grayscale image. This method takes a histogram of the frequencies of grayscale pixel colors (0-255), and the total number of pixels in the image. The ideal threshold (0-255) for determining which pixels should be colored black and which should be colored white is returned.
 - (int)otsusMethod:(int*)histogram size:(int)numPixels
 {
+    //  Initialize maximum variance and threshold
     float maxVar = 0;
     int threshold = 0;
     
@@ -25,26 +27,25 @@
         float weightedSumb = 0;
         float weightedSumf = 0;
         
+        //  Sums for the background
         for (int b = 0; b < t; b++)
         {
-            //sumb += [[histogram objectAtIndex:b] intValue];
             sumb += histogram[b];
-            //weightedSumb += b * [[histogram objectAtIndex:b] intValue];
             weightedSumb += b * histogram[b];
         }
         wb = sumb / numPixels;
         mub = weightedSumb / sumb;
         
+        //  Sums for the foreground
         for (int f = t; f < 256; f++)
         {
-            //sumf += [[histogram objectAtIndex:f] intValue];
             sumf += histogram[f];
-            //weightedSumf += f * [[histogram objectAtIndex:f] intValue];
             weightedSumf += f * histogram[f];
         }
         wf = sumf / numPixels;
         muf = weightedSumf / sumf;
         
+        //  Only keep the threshold that gives the maximum variance
         float var = wb * wf * (mub - muf) * (mub - muf);
         if (var > maxVar)
         {
@@ -215,15 +216,18 @@
 
 - (DrawingView*)drawCharacterLines:(NSMutableArray*)characters onView:(DrawingView*)view lineThickness:(int)lineThickness bytesPerPixel:(int)bytesPerPixel bitsPerComponent:(int)bitsPerComponent
 {
+    //  Iterate through every "cluster" of black pixels
     for (int i = 0; i < [characters count]; i++)
     {
         Character *currentCharacter = [characters objectAtIndex:i];
         int roughStdDev = (currentCharacter.bottomY - currentCharacter.topY) / 8;
         UIBezierPath *path = [view path];
         [path setLineWidth:lineThickness];
-        const int THRESHOLD_WIDTH = 25;
         NSArray *avgYValues;
         NSArray *xSplitPoints;
+        
+        //  Split words greater than the threshold into three parts, and split smaller words into two parts
+        const int THRESHOLD_WIDTH = 25;
         int width = currentCharacter.rightX - currentCharacter.leftX;
         if (width > THRESHOLD_WIDTH)
         {
@@ -235,31 +239,46 @@
             avgYValues = [currentCharacter averageYValuesSplitCharacterInto:2];
         }
         
+        //  Compare the distance between the top and bottom lines and adjust the offset of the bottom line accordingly
+        int offset = 0;
+        if (roughStdDev < 3)
+        {
+            offset = roughStdDev;
+        }
+        
+        //  Calculate the slope of the line to be drawn
         int y2 = [[avgYValues objectAtIndex:([avgYValues count] - 1)] intValue];
         int y1 = [[avgYValues objectAtIndex:0] intValue];
         int x2 = [currentCharacter rightX];
         int x1 = [currentCharacter leftX];
         float slope = (y2 - y1) / (x2 - x1);
         
+        //  Ignore lines that have a slope greater than 10 or less than -10 since they probably aren't words, and draw the lines based on the width of the word as described earlier.
         if (slope < 10 && slope > -10) {
             if (width > THRESHOLD_WIDTH)
             {
+                //  Draw the top line
                 [path moveToPoint:CGPointMake([[xSplitPoints objectAtIndex:0] intValue], [[avgYValues objectAtIndex:0] intValue] - roughStdDev)];
                 [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:2] intValue], [[avgYValues objectAtIndex:1] intValue] - roughStdDev)];
                 [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:4] intValue], [[avgYValues objectAtIndex:2] intValue] - roughStdDev)];
                 
-                [path moveToPoint:CGPointMake([[xSplitPoints objectAtIndex:0] intValue], [[avgYValues objectAtIndex:0] intValue] + roughStdDev)];
-                [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:2] intValue], [[avgYValues objectAtIndex:1] intValue] + roughStdDev)];
-                [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:4] intValue], [[avgYValues objectAtIndex:2] intValue] + roughStdDev)];
+                //  Draw the bottom line
+                [path moveToPoint:CGPointMake([[xSplitPoints objectAtIndex:0] intValue], [[avgYValues objectAtIndex:0] intValue] + roughStdDev + offset)];
+                [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:2] intValue], [[avgYValues objectAtIndex:1] intValue] + roughStdDev + offset)];
+                [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:4] intValue], [[avgYValues objectAtIndex:2] intValue] + roughStdDev + offset)];
+                
                 [view setNeedsDisplay];
             }
             else
             {
+                //  Draw the top line
                 [path moveToPoint:CGPointMake(currentCharacter.leftX, [[avgYValues objectAtIndex:0] intValue] - roughStdDev)];
                 [path addLineToPoint:CGPointMake(currentCharacter.rightX, [[avgYValues objectAtIndex:1] intValue] - roughStdDev)];
                 
+                //  Draw the bottom line
                 [path moveToPoint:CGPointMake(currentCharacter.leftX, [[avgYValues objectAtIndex:0] intValue] + roughStdDev)];
                 [path addLineToPoint:CGPointMake(currentCharacter.rightX, [[avgYValues objectAtIndex:1] intValue] + roughStdDev)];
+                
                 [view setNeedsDisplay];
             }
         }
@@ -346,7 +365,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 - (UIImage *)imageScaledToSize:(CGSize)newSize
 {
-    //UIGraphicsBeginImageContext(newSize);
     UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
     [self drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();

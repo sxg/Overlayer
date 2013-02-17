@@ -47,6 +47,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+//  This method changes the font on the navbar and navbar buttons to Amoon1 using the appearance proxy
 - (void)customizeAppearance
 {
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
