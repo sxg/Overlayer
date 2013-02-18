@@ -54,8 +54,10 @@
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
+    //  Show the built-in toolbar so that 
+    [self.navigationController setToolbarHidden:NO];
     
-    //  need to setup images and imageNames
+    //  Need to setup images and imageNames
     _documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     _books = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
 }

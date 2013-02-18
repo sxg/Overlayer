@@ -308,7 +308,7 @@
     //  Configure the UIScrollView's size based on the current interface orientation. If the interface is portrait, then make the image take up the entire view, and if it's landscape, then horizontally center the image, but don't zoom in. 44 is the height of the navbar and toolbar, and 20 is the height of the status bar.
     if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation))
     {
-        [_pageViewController.scrollView setFrame:CGRectMake(0, 0, _pageViewController.view.frame.size.width, _pageViewController.view.frame.size.height - 44)];
+        [_pageViewController.scrollView setFrame:CGRectMake(0, 0, _pageViewController.view.frame.size.width, _pageViewController.view.frame.size.height)];
     }
     else if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
     {
