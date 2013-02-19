@@ -22,6 +22,7 @@
 #import "PageListViewController.h"
 #import "BookListViewController.h"
 #import "TextReaderViewController.h"
+#import "SettingsViewController.h"
 
 @interface BookListViewController ()
 
@@ -54,7 +55,7 @@
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
-    //  Show the built-in toolbar so that 
+    //  Show the navigation controller's built-in toolbar
     [self.navigationController setToolbarHidden:NO];
     
     //  Need to setup images and imageNames

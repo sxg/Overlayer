@@ -170,7 +170,7 @@
     return newImage;
 }
 
-- (DrawingView*)identifyCharactersWithlineThickness:(int)lineThickness onView:(DrawingView*)view bytesPerPixel:(int)bytesPerPixel bitsPerComponent:(int)bitsPerComponent
+- (DrawingView*)identifyCharactersWithlineThickness:(float)lineThickness onView:(DrawingView*)view bytesPerPixel:(int)bytesPerPixel bitsPerComponent:(int)bitsPerComponent
 {
     int bytesPerRow = bytesPerPixel * self.size.width;
     UIImage *blackAndWhiteImage = [self makeBlackAndWhiteWithbytesPerPixel:bytesPerPixel bitsPerComponent:bitsPerComponent];
@@ -214,7 +214,7 @@
     return [self drawCharacterLines:characters onView:view lineThickness:lineThickness bytesPerPixel:bytesPerPixel bitsPerComponent:bitsPerComponent];
 }
 
-- (DrawingView*)drawCharacterLines:(NSMutableArray*)characters onView:(DrawingView*)view lineThickness:(int)lineThickness bytesPerPixel:(int)bytesPerPixel bitsPerComponent:(int)bitsPerComponent
+- (DrawingView*)drawCharacterLines:(NSMutableArray*)characters onView:(DrawingView*)view lineThickness:(float)lineThickness bytesPerPixel:(int)bytesPerPixel bitsPerComponent:(int)bitsPerComponent
 {
     //  Iterate through every "cluster" of black pixels
     for (int i = 0; i < [characters count]; i++)

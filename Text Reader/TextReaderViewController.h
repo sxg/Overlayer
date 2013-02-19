@@ -25,7 +25,7 @@
 @property (readonly)NSUInteger bytesPerPixel;
 @property (readonly)NSUInteger bytesPerRow;
 @property (readonly)NSUInteger bitsPerComponent;
-@property (readonly)int lineThickness;
+@property (readonly)float lineThickness;
 @property (readonly)DrawingView *drawingView;
 @property (readonly)UIView *imageAndPathView;
 @property (readonly)UIBarButtonItem *cameraButton;

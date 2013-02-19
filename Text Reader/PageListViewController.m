@@ -127,8 +127,23 @@
                 [imageAndPathView addSubview:drawingView];
                 [imageAndPathView sendSubviewToBack:imageView];
                 
+                //  Get the strikethrough width from user defaults if it is set
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                NSNumber *lineThicknessWrapper = [defaults objectForKey:@"strikethroughWidth"];
+                float lineThickness;
+                if (lineThicknessWrapper == nil)
+                {
+                    lineThickness = 1.0;
+                    //  Save 1.0 as the line thickness in user defaults
+                    [defaults setObject:[[NSNumber alloc] initWithFloat:1.0] forKey:@"strikethroughWidth"];
+                }
+                else
+                {
+                    lineThickness = [lineThicknessWrapper floatValue];
+                }
+                
                 //  The first method actually draws the strikethroughs on the drawingView, and the second method consolidates the strikethroughs and the original image into one image and saves it with the same name as the original image
-                [image identifyCharactersWithlineThickness:1.0 onView:drawingView bytesPerPixel:4 bitsPerComponent:8];
+                [image identifyCharactersWithlineThickness:lineThickness onView:drawingView bytesPerPixel:4 bitsPerComponent:8];
                 [self saveWithLinesAndName:pageName onContainerView:imageAndPathView];
             }
             

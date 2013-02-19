@@ -48,7 +48,7 @@
 @property (readwrite)NSUInteger bytesPerPixel;
 @property (readwrite)NSUInteger bytesPerRow;
 @property (readwrite)NSUInteger bitsPerComponent;
-@property (readwrite)int lineThickness;
+@property (readwrite)float lineThickness;
 @property (readwrite)DrawingView *drawingView;
 @property (readwrite)UIView *imageAndPathView;
 @property (readwrite)UIBarButtonItem *cameraButton;
@@ -63,14 +63,27 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    //  Setup ivars
+    //  Setup easy ivars
     _backgroundImage = [UIImage imageNamed:nil];
     [self setWidth:0];
     [self setHeight:0];
     _bytesPerPixel = 4;
     _bitsPerComponent = 8;
     _bytesPerRow = _bytesPerPixel * _width;
-    _lineThickness = 1.75;
+    
+    //  Setup ivars by looking up user settings
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *lineThicknessWrapper = [defaults objectForKey:@"strikethroughWidth"];
+    if (lineThicknessWrapper == nil)
+    {
+        _lineThickness = 1.0;
+        //  Save 1.0 as the line thickness in user defaults
+        [defaults setObject:[[NSNumber alloc] initWithFloat:1.0] forKey:@"strikethroughWidth"];
+    }
+    else
+    {
+        _lineThickness = [lineThicknessWrapper floatValue];
+    }
     
     //  Setup interface buttons. The "Draw Lines" button should only be enabled if the background image exists and is unprocessed.
     _cameraButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(callCamera)];

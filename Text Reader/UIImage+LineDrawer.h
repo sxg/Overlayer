@@ -12,7 +12,7 @@
 
 @interface UIImage (LineDrawer)
 
-- (DrawingView*)identifyCharactersWithlineThickness:(int)lineThickness onView:(DrawingView*)view bytesPerPixel:(int)bytesPerPixel bitsPerComponent:(int)bitsPerComponent;
+- (DrawingView*)identifyCharactersWithlineThickness:(float)lineThickness onView:(DrawingView*)view bytesPerPixel:(int)bytesPerPixel bitsPerComponent:(int)bitsPerComponent;
 - (UIImage*)imageScaledToSize:(CGSize)newSize;
 
 @end

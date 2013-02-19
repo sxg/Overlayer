@@ -19,12 +19,15 @@
 		4A2F7559169CD98000DD7A03 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F7558169CD98000DD7A03 /* Default@2x.png */; };
 		4A2F755B169CD98000DD7A03 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F755A169CD98000DD7A03 /* Default-568h@2x.png */; };
 		4A2F755E169CD98000DD7A03 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F755C169CD98000DD7A03 /* MainStoryboard.storyboard */; };
+		4A39942E16D2F69300D65D25 /* SettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A39942D16D2F69300D65D25 /* SettingsCell.m */; };
+		4A39943416D303CA00D65D25 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A39943316D303CA00D65D25 /* SettingsViewController.m */; };
 		4A4F69D516D168D300093AB5 /* Amoon_ComicSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A4F69D416D168D300093AB5 /* Amoon_ComicSans.ttf */; };
 		4A6A867916CF32B200D2B3A5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A867816CF32B200D2B3A5 /* icon.png */; };
 		4A6A867B16CF32B500D2B3A5 /* icon2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A867A16CF32B500D2B3A5 /* icon2x.png */; };
 		4A6A867D16CF3B3D00D2B3A5 /* iconx2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A867C16CF3B3D00D2B3A5 /* iconx2.png */; };
 		4A6A867F16CF3B4800D2B3A5 /* Untitled-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A867E16CF3B4800D2B3A5 /* Untitled-1.png */; };
 		4A7E194516B323910031A7A1 /* UIImage+LineDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E194416B323910031A7A1 /* UIImage+LineDrawer.m */; };
+		4AA249C916D32CF5003EC23E /* SettingsStrikethroughWidthDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA249C816D32CF5003EC23E /* SettingsStrikethroughWidthDetailViewController.m */; };
 		4AAB842516C6B2FE00BE13FD /* PageListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB842416C6B2FE00BE13FD /* PageListViewCell.m */; };
 		4AB487E116B74B00005960FA /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB487E016B74B00005960FA /* Character.m */; };
 		4ADC0B1616BB668D00815209 /* BookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC0B1516BB668D00815209 /* BookListViewController.m */; };
@@ -51,6 +54,10 @@
 		4A2F755A169CD98000DD7A03 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4A2F755D169CD98000DD7A03 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		4A2F755F169CD98000DD7A03 /* TextReaderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextReaderViewController.h; sourceTree = "<group>"; };
+		4A39942C16D2F69300D65D25 /* SettingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsCell.h; sourceTree = "<group>"; };
+		4A39942D16D2F69300D65D25 /* SettingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsCell.m; sourceTree = "<group>"; };
+		4A39943216D303CA00D65D25 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		4A39943316D303CA00D65D25 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		4A4F69D416D168D300093AB5 /* Amoon_ComicSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Amoon_ComicSans.ttf; sourceTree = "<group>"; };
 		4A6A867816CF32B200D2B3A5 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
 		4A6A867A16CF32B500D2B3A5 /* icon2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon2x.png; path = ../icon2x.png; sourceTree = "<group>"; };
@@ -58,6 +65,8 @@
 		4A6A867E16CF3B4800D2B3A5 /* Untitled-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Untitled-1.png"; path = "../Untitled-1.png"; sourceTree = "<group>"; };
 		4A7E194316B323910031A7A1 /* UIImage+LineDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LineDrawer.h"; sourceTree = "<group>"; };
 		4A7E194416B323910031A7A1 /* UIImage+LineDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LineDrawer.m"; sourceTree = "<group>"; };
+		4AA249C716D32CF5003EC23E /* SettingsStrikethroughWidthDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsStrikethroughWidthDetailViewController.h; sourceTree = "<group>"; };
+		4AA249C816D32CF5003EC23E /* SettingsStrikethroughWidthDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsStrikethroughWidthDetailViewController.m; sourceTree = "<group>"; };
 		4AAB842316C6B2FE00BE13FD /* PageListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageListViewCell.h; sourceTree = "<group>"; };
 		4AAB842416C6B2FE00BE13FD /* PageListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageListViewCell.m; sourceTree = "<group>"; };
 		4AB487DF16B74B00005960FA /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
@@ -87,14 +96,18 @@
 		4A23395B16CAC07400772782 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4A2F755F169CD98000DD7A03 /* TextReaderViewController.h */,
-				4A23395916CABAD300772782 /* TextReaderViewController.m */,
 				4ADC0B1416BB668D00815209 /* BookListViewController.h */,
 				4ADC0B1516BB668D00815209 /* BookListViewController.m */,
 				4ADDA66616C2C40800F7E7A3 /* PageListViewController.h */,
 				4ADDA66716C2C40900F7E7A3 /* PageListViewController.m */,
+				4A2F755F169CD98000DD7A03 /* TextReaderViewController.h */,
+				4A23395916CABAD300772782 /* TextReaderViewController.m */,
 				4AE6597416B4ADB700E0C76E /* PageViewController.h */,
 				4AE6597516B4ADB700E0C76E /* PageViewController.m */,
+				4A39943216D303CA00D65D25 /* SettingsViewController.h */,
+				4A39943316D303CA00D65D25 /* SettingsViewController.m */,
+				4AA249C716D32CF5003EC23E /* SettingsStrikethroughWidthDetailViewController.h */,
+				4AA249C816D32CF5003EC23E /* SettingsStrikethroughWidthDetailViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -110,6 +123,8 @@
 				4A7E194416B323910031A7A1 /* UIImage+LineDrawer.m */,
 				4AB487DF16B74B00005960FA /* Character.h */,
 				4AB487E016B74B00005960FA /* Character.m */,
+				4A39942C16D2F69300D65D25 /* SettingsCell.h */,
+				4A39942D16D2F69300D65D25 /* SettingsCell.m */,
 			);
 			name = "Custom Classes and Categories";
 			sourceTree = "<group>";
@@ -255,6 +270,9 @@
 				4ADDA66816C2C40900F7E7A3 /* PageListViewController.m in Sources */,
 				4AAB842516C6B2FE00BE13FD /* PageListViewCell.m in Sources */,
 				4A23395A16CABAD300772782 /* TextReaderViewController.m in Sources */,
+				4A39942E16D2F69300D65D25 /* SettingsCell.m in Sources */,
+				4A39943416D303CA00D65D25 /* SettingsViewController.m in Sources */,
+				4AA249C916D32CF5003EC23E /* SettingsStrikethroughWidthDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
