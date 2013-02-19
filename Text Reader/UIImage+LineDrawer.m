@@ -9,7 +9,6 @@
 #import "Character.h"
 #import "DrawingView.h"
 #import "UIImage+LineDrawer.h"
-#import "Line.c"
 
 @implementation UIImage (LineDrawer)
 
@@ -227,9 +226,6 @@
         NSArray *avgYValues;
         NSArray *xSplitPoints;
         
-        //
-        NSArray *lines = [[NSMutableArray alloc] init];
-        
         //  Split words greater than the threshold into three parts, and split smaller words into two parts
         const int THRESHOLD_WIDTH = 25;
         int width = currentCharacter.rightX - currentCharacter.leftX;
@@ -237,14 +233,10 @@
         {
             avgYValues = [currentCharacter averageYValuesSplitCharacterInto:3];
             xSplitPoints = [currentCharacter xSplitPoints:3];
-            //
-            lines = [currentCharacter constructBestFitLines:3];
         }
         else
         {
             avgYValues = [currentCharacter averageYValuesSplitCharacterInto:2];
-            //
-            lines = [currentCharacter constructBestFitLines:2];
         }
         
         //  Compare the distance between the top and bottom lines and adjust the offset of the bottom line accordingly
@@ -265,7 +257,7 @@
         if (slope < 10 && slope > -10) {
             if (width > THRESHOLD_WIDTH)
             {
-                /*//  Draw the top line
+                //  Draw the top line
                 [path moveToPoint:CGPointMake([[xSplitPoints objectAtIndex:0] intValue], [[avgYValues objectAtIndex:0] intValue] - roughStdDev)];
                 [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:2] intValue], [[avgYValues objectAtIndex:1] intValue] - roughStdDev)];
                 [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:4] intValue], [[avgYValues objectAtIndex:2] intValue] - roughStdDev)];
@@ -273,34 +265,7 @@
                 //  Draw the bottom line
                 [path moveToPoint:CGPointMake([[xSplitPoints objectAtIndex:0] intValue], [[avgYValues objectAtIndex:0] intValue] + roughStdDev + offset)];
                 [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:2] intValue], [[avgYValues objectAtIndex:1] intValue] + roughStdDev + offset)];
-                [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:4] intValue], [[avgYValues objectAtIndex:2] intValue] + roughStdDev + offset)];*/
-                
-                struct Line line1;
-                struct Line line2;
-                struct Line line3;
-                
-                if (strcmp([[lines objectAtIndex:0] objCType], @encode(struct Line)) == 0)
-                {
-                    [[lines objectAtIndex:0] getValue:&line1];
-                }
-                if (strcmp([[lines objectAtIndex:1] objCType], @encode(struct Line)) == 0)
-                {
-                    [[lines objectAtIndex:1] getValue:&line2];
-                }
-                if (strcmp([[lines objectAtIndex:2] objCType], @encode(struct Line)) == 0)
-                {
-                    [[lines objectAtIndex:0] getValue:&line3];
-                }
-                
-                int y1 = (float)(line1.m * [[xSplitPoints objectAtIndex:0] intValue]) + line1.b;
-                int y2 = (float)(line2.m * [[xSplitPoints objectAtIndex:1] intValue]) + line2.b;
-                int y3 = (float)(line3.m * [[xSplitPoints objectAtIndex:2] intValue]) + line3.b;
-                
-                
-                //  Draw the top line
-                [path moveToPoint:CGPointMake([[xSplitPoints objectAtIndex:0] intValue], y1)];
-                [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:2] intValue], y2)];
-                [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:4] intValue], y3)];
+                [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:4] intValue], [[avgYValues objectAtIndex:2] intValue] + roughStdDev + offset)];
                 
                 [view setNeedsDisplay];
             }

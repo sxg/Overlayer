@@ -19,6 +19,5 @@
 - (Character*)initWithPoints:(NSArray*)arrayOfPoints;
 - (NSArray*)averageYValuesSplitCharacterInto:(int)splits;
 - (NSArray*)xSplitPoints:(int)splits;
-- (NSArray*)constructBestFitLines:(int)splits;
 
 @end

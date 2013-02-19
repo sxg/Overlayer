@@ -7,7 +7,6 @@
 //
 
 #import "Character.h"
-#import "Line.c"
 
 @implementation Character
 
@@ -110,58 +109,6 @@
     [splitPoints addObject:[NSNumber numberWithInt:rightX]];
     
     return splitPoints;
-}
-
-- (NSArray*)constructBestFitLines:(int)splits
-{
-    NSMutableArray *lines = [[NSMutableArray alloc] initWithCapacity:splits];
-    
-    for (int currentSplitNumber = 0; currentSplitNumber < splits; currentSplitNumber++)
-    {
-        int sumX = 0;
-        int sumX2 = 0;
-        int sumY = 0;
-        int sumXY = 0;
-        int count = 0;
-        struct Line newLine;
-        int minX = (currentSplitNumber * ((rightX - leftX) / splits)) + leftX;
-        int maxX = ((currentSplitNumber + 1) * ((rightX - leftX) / splits)) + leftX - 1;
-        if (currentSplitNumber == 0)
-        {
-            minX = leftX;
-        }
-        else if (currentSplitNumber == splits - 1)
-        {
-            maxX = rightX;
-        }
-        
-        for (int j = 0; j < [points count]; j++)
-        {
-            CGPoint currentPoint = [[points objectAtIndex:j] CGPointValue];
-            
-            if (currentPoint.x >= minX && currentPoint.x <= maxX)
-            {
-                sumX += currentPoint.x;
-                sumX2 += pow(currentPoint.x, 2);
-                sumY += currentPoint.y;
-                sumXY += currentPoint.x * currentPoint.y;
-                count++;
-            }
-        }
-        
-        float xMean = (float)sumX / (float)count;
-        float yMean = (float)sumY / (float)count;
-        float slope = (float)(sumXY - (sumX * yMean)) / (float)(sumX2 - (sumX * xMean));
-        int yInt = yMean - slope * xMean;
-        
-        newLine.m = slope;
-        newLine.b = yInt;
-        
-        NSValue *newLineValue = [NSValue valueWithBytes:&newLine objCType:@encode(struct Line)];
-        [lines addObject:newLineValue];
-    }
-    
-    return lines;
 }
 
 @end

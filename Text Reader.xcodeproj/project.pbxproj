@@ -26,7 +26,6 @@
 		4A6A867B16CF32B500D2B3A5 /* icon2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A867A16CF32B500D2B3A5 /* icon2x.png */; };
 		4A6A867D16CF3B3D00D2B3A5 /* iconx2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A867C16CF3B3D00D2B3A5 /* iconx2.png */; };
 		4A6A867F16CF3B4800D2B3A5 /* Untitled-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A867E16CF3B4800D2B3A5 /* Untitled-1.png */; };
-		4A74819716D43ED000E1F210 /* Line.c in Sources */ = {isa = PBXBuildFile; fileRef = 4A74819616D43ED000E1F210 /* Line.c */; };
 		4A7E194516B323910031A7A1 /* UIImage+LineDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E194416B323910031A7A1 /* UIImage+LineDrawer.m */; };
 		4AA249C916D32CF5003EC23E /* SettingsStrikethroughWidthDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA249C816D32CF5003EC23E /* SettingsStrikethroughWidthDetailViewController.m */; };
 		4AAB842516C6B2FE00BE13FD /* PageListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB842416C6B2FE00BE13FD /* PageListViewCell.m */; };
@@ -64,7 +63,6 @@
 		4A6A867A16CF32B500D2B3A5 /* icon2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon2x.png; path = ../icon2x.png; sourceTree = "<group>"; };
 		4A6A867C16CF3B3D00D2B3A5 /* iconx2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconx2.png; path = ../iconx2.png; sourceTree = "<group>"; };
 		4A6A867E16CF3B4800D2B3A5 /* Untitled-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Untitled-1.png"; path = "../Untitled-1.png"; sourceTree = "<group>"; };
-		4A74819616D43ED000E1F210 /* Line.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Line.c; sourceTree = "<group>"; };
 		4A7E194316B323910031A7A1 /* UIImage+LineDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LineDrawer.h"; sourceTree = "<group>"; };
 		4A7E194416B323910031A7A1 /* UIImage+LineDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LineDrawer.m"; sourceTree = "<group>"; };
 		4AA249C716D32CF5003EC23E /* SettingsStrikethroughWidthDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsStrikethroughWidthDetailViewController.h; sourceTree = "<group>"; };
@@ -125,7 +123,6 @@
 				4A7E194416B323910031A7A1 /* UIImage+LineDrawer.m */,
 				4AB487DF16B74B00005960FA /* Character.h */,
 				4AB487E016B74B00005960FA /* Character.m */,
-				4A74819616D43ED000E1F210 /* Line.c */,
 				4A39942C16D2F69300D65D25 /* SettingsCell.h */,
 				4A39942D16D2F69300D65D25 /* SettingsCell.m */,
 			);
@@ -276,7 +273,6 @@
 				4A39942E16D2F69300D65D25 /* SettingsCell.m in Sources */,
 				4A39943416D303CA00D65D25 /* SettingsViewController.m in Sources */,
 				4AA249C916D32CF5003EC23E /* SettingsStrikethroughWidthDetailViewController.m in Sources */,
-				4A74819716D43ED000E1F210 /* Line.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
