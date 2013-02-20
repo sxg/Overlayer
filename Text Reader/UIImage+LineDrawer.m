@@ -220,11 +220,11 @@
     for (int i = 0; i < [characters count]; i++)
     {
         Character *currentCharacter = [characters objectAtIndex:i];
-        int roughStdDev = (currentCharacter.bottomY - currentCharacter.topY) / 8;
         UIBezierPath *path = [view path];
         [path setLineWidth:lineThickness];
         NSArray *avgYValues;
         NSArray *xSplitPoints;
+        int offset = sqrt((currentCharacter.bottomY - currentCharacter.topY));// roughStdDev * 2;
         
         //  Split words greater than the threshold into three parts, and split smaller words into two parts
         const int THRESHOLD_WIDTH = 25;
@@ -239,13 +239,6 @@
             avgYValues = [currentCharacter averageYValuesSplitCharacterInto:2];
         }
         
-        //  Compare the distance between the top and bottom lines and adjust the offset of the bottom line accordingly
-        int offset = 0;
-        if (roughStdDev < 2)
-        {
-            offset = roughStdDev * 2;
-        }
-        
         //  Calculate the slope of the line to be drawn
         int y2 = [[avgYValues objectAtIndex:([avgYValues count] - 1)] intValue];
         int y1 = [[avgYValues objectAtIndex:0] intValue];
@@ -258,26 +251,26 @@
             if (width > THRESHOLD_WIDTH)
             {
                 //  Draw the top line
-                [path moveToPoint:CGPointMake([[xSplitPoints objectAtIndex:0] intValue], [[avgYValues objectAtIndex:0] intValue] - roughStdDev)];
-                [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:2] intValue], [[avgYValues objectAtIndex:1] intValue] - roughStdDev)];
-                [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:4] intValue], [[avgYValues objectAtIndex:2] intValue] - roughStdDev)];
+                [path moveToPoint:CGPointMake([[xSplitPoints objectAtIndex:0] intValue], [[avgYValues objectAtIndex:0] intValue])];
+                [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:2] intValue], [[avgYValues objectAtIndex:1] intValue])];
+                [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:4] intValue], [[avgYValues objectAtIndex:2] intValue])];
                 
                 //  Draw the bottom line
-                [path moveToPoint:CGPointMake([[xSplitPoints objectAtIndex:0] intValue], [[avgYValues objectAtIndex:0] intValue] + roughStdDev + offset)];
-                [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:2] intValue], [[avgYValues objectAtIndex:1] intValue] + roughStdDev + offset)];
-                [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:4] intValue], [[avgYValues objectAtIndex:2] intValue] + roughStdDev + offset)];
+                [path moveToPoint:CGPointMake([[xSplitPoints objectAtIndex:0] intValue], [[avgYValues objectAtIndex:0] intValue] + offset)];
+                [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:2] intValue], [[avgYValues objectAtIndex:1] intValue] + offset)];
+                [path addLineToPoint:CGPointMake([[xSplitPoints objectAtIndex:4] intValue], [[avgYValues objectAtIndex:2] intValue] + offset)];
                 
                 [view setNeedsDisplay];
             }
             else
             {
                 //  Draw the top line
-                [path moveToPoint:CGPointMake(currentCharacter.leftX, [[avgYValues objectAtIndex:0] intValue] - roughStdDev)];
-                [path addLineToPoint:CGPointMake(currentCharacter.rightX, [[avgYValues objectAtIndex:1] intValue] - roughStdDev)];
+                [path moveToPoint:CGPointMake(currentCharacter.leftX, [[avgYValues objectAtIndex:0] intValue])];
+                [path addLineToPoint:CGPointMake(currentCharacter.rightX, [[avgYValues objectAtIndex:1] intValue])];
                 
                 //  Draw the bottom line
-                [path moveToPoint:CGPointMake(currentCharacter.leftX, [[avgYValues objectAtIndex:0] intValue] + roughStdDev)];
-                [path addLineToPoint:CGPointMake(currentCharacter.rightX, [[avgYValues objectAtIndex:1] intValue] + roughStdDev)];
+                [path moveToPoint:CGPointMake(currentCharacter.leftX, [[avgYValues objectAtIndex:0] intValue] + offset)];
+                [path addLineToPoint:CGPointMake(currentCharacter.rightX, [[avgYValues objectAtIndex:1] intValue] + offset)];
                 
                 [view setNeedsDisplay];
             }

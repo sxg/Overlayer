@@ -150,7 +150,7 @@
         UILabel *loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 120, 130, 22)];
         loadingLabel.backgroundColor = [UIColor clearColor];
         loadingLabel.textColor = [UIColor whiteColor];
-        loadingLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18 ];
+        loadingLabel.font = [UIFont fontWithName:@"Amoon1" size:18 ];
         loadingLabel.textAlignment = NSTextAlignmentCenter;
         loadingLabel.text = @"Drawing Lines";
         [loadingHUD addSubview:loadingLabel];
