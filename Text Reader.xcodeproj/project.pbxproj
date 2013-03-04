@@ -307,8 +307,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Satyam Ghodasara";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Satyam Ghodasara";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -323,8 +323,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "D420BFAC-E542-4201-ACBF-D304DD7597BA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D420BFAC-E542-4201-ACBF-D304DD7597BA";
+				PROVISIONING_PROFILE = "730A59A4-DC77-431D-9900-2FB1F1F3428B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "730A59A4-DC77-431D-9900-2FB1F1F3428B";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -339,8 +339,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Satyam Ghodasara";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Satyam Ghodasara";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -348,8 +348,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "D420BFAC-E542-4201-ACBF-D304DD7597BA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D420BFAC-E542-4201-ACBF-D304DD7597BA";
+				PROVISIONING_PROFILE = "730A59A4-DC77-431D-9900-2FB1F1F3428B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "730A59A4-DC77-431D-9900-2FB1F1F3428B";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -359,16 +359,16 @@
 		4A2F7565169CD98000DD7A03 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Satyam Ghodasara";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Satyam Ghodasara";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Text Reader/Text Reader-Prefix.pch";
 				INFOPLIST_FILE = "Text Reader/Text Reader-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D420BFAC-E542-4201-ACBF-D304DD7597BA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D420BFAC-E542-4201-ACBF-D304DD7597BA";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE = "730A59A4-DC77-431D-9900-2FB1F1F3428B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "730A59A4-DC77-431D-9900-2FB1F1F3428B";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -376,16 +376,16 @@
 		4A2F7566169CD98000DD7A03 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Satyam Ghodasara";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Satyam Ghodasara";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Text Reader/Text Reader-Prefix.pch";
 				INFOPLIST_FILE = "Text Reader/Text Reader-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D420BFAC-E542-4201-ACBF-D304DD7597BA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D420BFAC-E542-4201-ACBF-D304DD7597BA";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE = "730A59A4-DC77-431D-9900-2FB1F1F3428B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "730A59A4-DC77-431D-9900-2FB1F1F3428B";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
