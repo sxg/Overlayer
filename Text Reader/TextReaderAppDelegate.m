@@ -57,13 +57,19 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void)linkWithDropbox
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    //  Check to see if the user's Dropbox account is linked to Text Reader
-    if (![[DBSession sharedSession] isLinked])
+    if ([[DBSession sharedSession] handleOpenURL:url])
     {
-        [[DBSession sharedSession] linkFromController:<#(UIViewController *)#>]
+        if ([[DBSession sharedSession] isLinked])
+        {
+            NSLog(@"App succesfully linked!");
+        }
+        
+        return YES;
     }
+    
+    return NO;
 }
 
 //  This method changes the font on the navbar and navbar buttons to Amoon1 using the appearance proxy

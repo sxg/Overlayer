@@ -23,6 +23,7 @@
 #import "BookListViewController.h"
 #import "TextReaderViewController.h"
 #import "SettingsViewController.h"
+#import <DropboxSDK/DropboxSDK.h>
 
 @interface BookListViewController ()
 
@@ -54,6 +55,9 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    
+    //  Link Dropbox
+    [self linkWithDropbox];
     
     //  Show the navigation controller's built-in toolbar
     [self.navigationController setToolbarHidden:NO];
@@ -114,6 +118,48 @@
 
 #pragma mark - Helper methods
 
+- (void)linkWithDropbox
+{
+    //  Check to see if the user's Dropbox account is linked to Text Reader
+    if (![[DBSession sharedSession] isLinked])
+    {
+        [[DBSession sharedSession] linkFromController:self];
+        
+        //  Initial sync
+        [self syncWithDropbox];
+    }
+}
+
+- (DBRestClient*)restClient
+{
+    if (!_restClient) {
+        _restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+        _restClient.delegate = self;
+    }
+    
+    return _restClient;
+}
+
+- (void)syncWithDropbox
+{
+    //  Iterate through each file and folder in the local Documents directory and upload to Dropbox
+    NSArray *folders = [[[NSFileManager defaultManager] contentsAtPath:_documentsDirectory] copy];
+    for (NSString *folder in folders)
+    {
+        NSString *currentFolderPath = [_documentsDirectory stringByAppendingPathComponent:folder];
+        NSArray *files = [[[NSFileManager defaultManager] contentsAtPath:currentFolderPath] copy];
+        
+        for (NSString *file in files)
+        {
+            NSString *currentFilePath = [currentFolderPath stringByAppendingPathComponent:file];
+            NSString *destPath = [[@"/" stringByAppendingPathComponent:folder] stringByAppendingPathComponent:file];
+            
+            //  Upload the file
+            [[self restClient] uploadFile:file toPath:destPath withParentRev:nil fromPath:currentFilePath];
+        }
+    }
+}
+
 //  Search the Documents directory for a book called "New Book". If it exists, then look for "New Book 2" etc.
 - (NSString*)getDefaultBookName
 {
@@ -153,6 +199,18 @@
     return newBookName;
 }
 
+#pragma mark - Dropbox delegate
+
+- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata
+{
+    NSLog(@"File uploaded successfully to path: %@", metadata.path);
+}
+
+- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error
+{
+    NSLog(@"File upload failed with error - %@", error);
+}
+
 #pragma mark - Text field delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -166,6 +224,9 @@
         NSString *path = [_documentsDirectory stringByAppendingPathComponent:bookName];
         [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:nil];
         [_books addObject:bookName];
+        
+        //  Create the folder on Dropbox
+        [[self restClient] createFolder:[@"/" stringByAppendingPathComponent:bookName]];
         
         //  Add the new book to the table
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([_books count] - 1) inSection:0];

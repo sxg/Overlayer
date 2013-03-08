@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <DropboxSDK/DropboxSDK.h>
 #import "PageListViewController.h"
 
-@interface BookListViewController : UITableViewController <UITextFieldDelegate>
+@interface BookListViewController : UITableViewController <UITextFieldDelegate, DBRestClientDelegate>
+
+@property (nonatomic) DBRestClient *restClient;
 
 - (IBAction)addBook:(id)sender;
 
