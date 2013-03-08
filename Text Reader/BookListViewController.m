@@ -249,12 +249,22 @@
 #pragma mark - TextReaderViewControl delegate
 
 //  TextReaderViewController calls this when an image has been saved. This implementation makes the PLVC refresh the table's data and display so that the newly saved image can be seen immediately.
-- (void)finishedSavingImage:(NSString *)fileName toPath:(NSString *)path
+- (void)finishedSavingImage:(NSString *)fileName toPath:(NSString *)path uploadToDropbox:(bool)shouldUpload
 {
-    //  Save image to Dropbox
-    NSArray *pathComponents = [path componentsSeparatedByString:@"/"];
-    NSString *destDir = [@"/" stringByAppendingPathComponent:[pathComponents objectAtIndex:([pathComponents count] - 2)]];
-    [[self restClient] uploadFile:fileName toPath:destDir withParentRev:nil fromPath:path];
+    if (shouldUpload)
+    {
+        //  Save image to Dropbox
+        NSArray *pathComponents = [path componentsSeparatedByString:@"/"];
+        NSString *destDir = [@"/" stringByAppendingPathComponent:[pathComponents objectAtIndex:([pathComponents count] - 2)]];
+        [[self restClient] uploadFile:fileName toPath:destDir fromPath:path];
+    }
+    
+    //  All the image names in the current book folder
+    _books = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
+    
+    //  Sort the image names numerically so that 10.png does not come before 2.png
+    NSSortDescriptor *numericalSort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:YES selector:@selector(localizedStandardCompare:)];
+    [_books sortUsingDescriptors:[NSArray arrayWithObject:numericalSort]];
     
     [self.tableView reloadData];
 }

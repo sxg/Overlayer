@@ -11,7 +11,7 @@
 @protocol TextReaderViewControllerDelegate <NSObject>
 
 @optional
-- (void)finishedSavingImage:(NSString*)fileName toPath:(NSString*)path;
+- (void)finishedSavingImage:(NSString*)fileName toPath:(NSString*)path uploadToDropbox:(bool)shouldUpload;
 
 @end
 

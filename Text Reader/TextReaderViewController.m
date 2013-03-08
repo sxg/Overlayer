@@ -215,8 +215,9 @@
         //  Save the image and inform the delegate that saving has completed
         [UIImagePNGRepresentation(_backgroundImage) writeToFile:imagePath atomically:YES];
         
+        //  Dropbox rest client methods MUST be called from the main thread
         dispatch_async(dispatch_get_main_queue(), ^{
-            [_delegate finishedSavingImage:_backgroundImageName toPath:imagePath];
+            [_delegate finishedSavingImage:_backgroundImageName toPath:imagePath uploadToDropbox:NO];
         });
     });
 }
@@ -237,8 +238,9 @@
         //  Save the image and inform the delegate that saving has completed
         [UIImagePNGRepresentation(image) writeToFile:imagePath atomically:YES];
         
+        //  Dropbox rest client methods MUST be called from the main thread
         dispatch_async(dispatch_get_main_queue(), ^{
-            [_delegate finishedSavingImage:_backgroundImageName toPath:imagePath];
+            [_delegate finishedSavingImage:_backgroundImageName toPath:imagePath uploadToDropbox:YES];
         });
     });
 }

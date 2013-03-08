@@ -145,7 +145,11 @@
                 
                 //  The first method actually draws the strikethroughs on the drawingView, and the second method consolidates the strikethroughs and the original image into one image and saves it with the same name as the original image
                 [image identifyCharactersWithlineThickness:lineThickness onView:drawingView bytesPerPixel:4 bitsPerComponent:8];
-                [self saveWithLinesAndName:pageName onContainerView:imageAndPathView];
+                
+                //  Dropbox rest client MUST be used on main thread
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self saveWithLinesAndName:pageName onContainerView:imageAndPathView];
+                });
             }
             
             //  Mark the cell as not currently processing
@@ -176,7 +180,7 @@
     //  Save the new image
     [UIImagePNGRepresentation(image) writeToFile:imagePath atomically:YES];
     
-    [self finishedSavingImage:pageName toPath:imagePath];
+    [self finishedSavingImage:pageName toPath:imagePath uploadToDropbox:YES];
 }
 
 - (DBRestClient*)restClient
@@ -204,11 +208,14 @@
 #pragma mark - TextReaderViewControl delegate
 
 //  TextReaderViewController calls this when an image has been saved. This implementation makes the PLVC refresh the table's data and display so that the newly saved image can be seen immediately.
-- (void)finishedSavingImage:(NSString *)fileName toPath:(NSString *)path
+- (void)finishedSavingImage:(NSString *)fileName toPath:(NSString *)path uploadToDropbox:(bool)shouldUpload
 {
-    //  Save image to Dropbox
-    NSString *destDir = [@"/" stringByAppendingPathComponent:_book];
-    [[self restClient] uploadFile:fileName toPath:destDir withParentRev:nil fromPath:path];
+    if (shouldUpload)
+    {
+        //  Save image to Dropbox
+        NSString *destDir = [@"/" stringByAppendingPathComponent:_book];
+        [[self restClient] uploadFile:fileName toPath:destDir fromPath:path];
+    }
     
     //  All the image names in the current book folder
     _pages = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_savePath error:nil] mutableCopy];
