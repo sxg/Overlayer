@@ -10,6 +10,7 @@
 
 @protocol SettingsStrikethroughWidthDetailViewControllerDelegate <NSObject>
 
+@required
 - (void)sswdvcDidFinishPickingStrikethroughWidth:(float)width;
 
 @end
