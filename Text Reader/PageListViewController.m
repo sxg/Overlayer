@@ -29,6 +29,7 @@
 #import "DrawingView.h"
 #import "PageListViewCell.h"
 #import <dispatch/dispatch.h>
+#import <DropboxSDK/DropboxSDK.h>
 #import <QuartzCore/QuartzCore.h>
 
 @interface PageListViewController ()
@@ -174,13 +175,41 @@
     
     //  Save the new image
     [UIImagePNGRepresentation(image) writeToFile:imagePath atomically:YES];
+    
+    [self finishedSavingImage:pageName toPath:imagePath];
+}
+
+- (DBRestClient*)restClient
+{
+    if (!_restClient) {
+        _restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+        _restClient.delegate = self;
+    }
+    
+    return _restClient;
+}
+
+#pragma mark - Dropbox delegate
+
+- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata
+{
+    NSLog(@"File uploaded successfully to path: %@", metadata.path);
+}
+
+- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error
+{
+    NSLog(@"File upload failed with error - %@", error);
 }
 
 #pragma mark - TextReaderViewControl delegate
 
 //  TextReaderViewController calls this when an image has been saved. This implementation makes the PLVC refresh the table's data and display so that the newly saved image can be seen immediately.
-- (void)finishedSavingImage:(NSString *)fileName
+- (void)finishedSavingImage:(NSString *)fileName toPath:(NSString *)path
 {
+    //  Save image to Dropbox
+    NSString *destDir = [@"/" stringByAppendingPathComponent:_book];
+    [[self restClient] uploadFile:fileName toPath:destDir withParentRev:nil fromPath:path];
+    
     //  All the image names in the current book folder
     _pages = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_savePath error:nil] mutableCopy];
     

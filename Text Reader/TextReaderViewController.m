@@ -214,7 +214,10 @@
         
         //  Save the image and inform the delegate that saving has completed
         [UIImagePNGRepresentation(_backgroundImage) writeToFile:imagePath atomically:YES];
-        [_delegate finishedSavingImage:_backgroundImageName];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_delegate finishedSavingImage:_backgroundImageName toPath:imagePath];
+        });
     });
 }
 
@@ -233,7 +236,10 @@
         
         //  Save the image and inform the delegate that saving has completed
         [UIImagePNGRepresentation(image) writeToFile:imagePath atomically:YES];
-        [_delegate finishedSavingImage:_backgroundImageName];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_delegate finishedSavingImage:_backgroundImageName toPath:imagePath];
+        });
     });
 }
 
@@ -295,19 +301,5 @@
 {
     return [_backgroundImageView superview];
 }
-
-/*- (void)scrollViewDidZoom:(UIScrollView *)scrollView
- {
- UIView *subView = [scrollView.subviews objectAtIndex:0];
- 
- CGFloat offsetX = (scrollView.bounds.size.width > scrollView.contentSize.width)?
- (scrollView.bounds.size.width - scrollView.contentSize.width) * 0.5 : 0.0;
- 
- CGFloat offsetY = (scrollView.bounds.size.height > scrollView.contentSize.height)?
- (scrollView.bounds.size.height - scrollView.contentSize.height) * 0.5 : 0.0;
- 
- subView.center = CGPointMake(scrollView.contentSize.width * 0.5 + offsetX,
- scrollView.contentSize.height * 0.5 + offsetY);
- }*/
 
 @end

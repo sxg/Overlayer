@@ -10,7 +10,7 @@
 #import <DropboxSDK/DropboxSDK.h>
 #import "PageListViewController.h"
 
-@interface BookListViewController : UITableViewController <UITextFieldDelegate, DBRestClientDelegate>
+@interface BookListViewController : UITableViewController <UITextFieldDelegate, DBRestClientDelegate, TextReaderViewControllerDelegate>
 
 @property (nonatomic) DBRestClient *restClient;
 

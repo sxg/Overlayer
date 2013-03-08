@@ -54,10 +54,7 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    
-    //  Link Dropbox
-    [self linkWithDropbox];
+
     
     //  Show the navigation controller's built-in toolbar
     [self.navigationController setToolbarHidden:NO];
@@ -65,6 +62,15 @@
     //  Need to setup images and imageNames
     _documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     _books = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
+    
+    //  Link Dropbox
+    [self linkWithDropbox];
+    
+    //  test
+    /*NSString *localPath = [[_documentsDirectory stringByAppendingPathComponent:@"New Book 4"] stringByAppendingPathComponent:@"1.png"];
+    NSString *fileName = @"1.png";
+    NSString *dropboxPath = @"/New Book 4";
+    [[self restClient] uploadFile:fileName toPath:dropboxPath withParentRev:nil fromPath:localPath];*/
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -240,6 +246,19 @@
     return YES;
 }
 
+#pragma mark - TextReaderViewControl delegate
+
+//  TextReaderViewController calls this when an image has been saved. This implementation makes the PLVC refresh the table's data and display so that the newly saved image can be seen immediately.
+- (void)finishedSavingImage:(NSString *)fileName toPath:(NSString *)path
+{
+    //  Save image to Dropbox
+    NSArray *pathComponents = [path componentsSeparatedByString:@"/"];
+    NSString *destDir = [@"/" stringByAppendingPathComponent:[pathComponents objectAtIndex:([pathComponents count] - 2)]];
+    [[self restClient] uploadFile:fileName toPath:destDir withParentRev:nil fromPath:path];
+    
+    [self.tableView reloadData];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -356,6 +375,7 @@
         [[NSFileManager defaultManager] createDirectoryAtPath:savePath withIntermediateDirectories:NO attributes:nil error:nil];
         TextReaderViewController *textReaderViewController = segue.destinationViewController;
         [textReaderViewController setSavePath:savePath];
+        [textReaderViewController setDelegate:self];
     }
 }
 
