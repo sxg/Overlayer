@@ -209,15 +209,21 @@
     dispatch_async(_backgroundQueue, ^{
         //  Get the appropriate directory and file name for the new image to be saved
         NSArray *fileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:_savePath error:nil];
-        for (int i = 0; i < [fileList count]; i++)
+        if ([fileList count] != 0)
         {
-            NSString *checkName = [NSString stringWithFormat:@"%i.png", (i + 1)];
-            if (![fileList containsObject:checkName])
+            for (int i = 0; i < [fileList count]; i++)
             {
-                _backgroundImageName = checkName;
+                NSString *checkName = [NSString stringWithFormat:@"%i.png", (i + 1)];
+                if (![fileList containsObject:checkName])
+                {
+                    _backgroundImageName = checkName;
+                }
             }
         }
-       // _backgroundImageName = [NSString stringWithFormat:@"%i.png", ([fileList count] + 1)];
+        else
+        {
+            _backgroundImageName = @"1.png";
+        }
         NSString *imagePath = [_savePath stringByAppendingPathComponent:_backgroundImageName];
         
         //  Save the image and inform the delegate that saving has completed
