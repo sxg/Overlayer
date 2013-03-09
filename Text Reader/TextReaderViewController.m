@@ -159,13 +159,12 @@
         
         //  Do all the processing on a background thread and disable the "Draw Lines" button that activated this whole process while processing is occurring
         dispatch_async(_backgroundQueue, ^{
-            [_drawLinesButton setEnabled:NO];
-            
             //  All of the processing happens in this method. drawingView is a custom UIView that has the lines drawn on it.
             _drawingView = [_backgroundImage identifyCharactersWithlineThickness:_lineThickness onView:_drawingView bytesPerPixel:_bytesPerPixel bitsPerComponent:_bitsPerComponent];
             
             //  Make UI changes and save the image with the strikethroughs on the main thread after processing is finished
             dispatch_async(dispatch_get_main_queue(), ^{
+                [_drawLinesButton setEnabled:NO];
                 [_drawingView setNeedsDisplay];
                 [self saveWithLines];
                 [loadingView stopAnimating];
@@ -209,20 +208,18 @@
     dispatch_async(_backgroundQueue, ^{
         //  Get the appropriate directory and file name for the new image to be saved
         NSArray *fileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:_savePath error:nil];
-        if ([fileList count] != 0)
+        int i = 0;
+        for (i = 0; i < [fileList count]; i++)
         {
-            for (int i = 0; i < [fileList count]; i++)
+            NSString *checkName = [NSString stringWithFormat:@"%i.png", (i + 1)];
+            if (![fileList containsObject:checkName])
             {
-                NSString *checkName = [NSString stringWithFormat:@"%i.png", (i + 1)];
-                if (![fileList containsObject:checkName])
-                {
-                    _backgroundImageName = checkName;
-                }
+                _backgroundImageName = checkName;
             }
         }
-        else
+        if (_backgroundImageName == nil)
         {
-            _backgroundImageName = @"1.png";
+            _backgroundImageName = [NSString stringWithFormat:@"%i.png", (i + 1)];
         }
         NSString *imagePath = [_savePath stringByAppendingPathComponent:_backgroundImageName];
         
