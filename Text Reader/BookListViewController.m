@@ -401,8 +401,14 @@
     else if ([segue.identifier isEqualToString:@"CameraFromBooks"])
     {
         //  Since a book name has not been specified but the user wants to take a picture, get a default book name, make a folder with that name, create a path to that folder, and give TRVC that path so it knows where to save the picture
-        NSString *savePath = [_documentsDirectory stringByAppendingPathComponent:[self getDefaultBookName]];
+        NSString *defaultBookName = [self getDefaultBookName];
+        NSString *savePath = [_documentsDirectory stringByAppendingPathComponent:defaultBookName];
         [[NSFileManager defaultManager] createDirectoryAtPath:savePath withIntermediateDirectories:NO attributes:nil error:nil];
+        
+        //  Create book folder on Dropbox
+        NSString *dropboxPath = [@"/" stringByAppendingPathComponent:defaultBookName];
+        [[self restClient] createFolder:dropboxPath];
+        
         TextReaderViewController *textReaderViewController = segue.destinationViewController;
         [textReaderViewController setSavePath:savePath];
         [textReaderViewController setDelegate:self];
