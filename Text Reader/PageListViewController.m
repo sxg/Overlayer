@@ -37,6 +37,7 @@
 @property PageViewController *pageViewController;
 @property UIBarButtonItem *drawLinesButton;
 @property dispatch_queue_t backgroundQueue;
+@property DBMetadata *folderMetadata;
 
 @end
 
@@ -205,6 +206,14 @@
     NSLog(@"File upload failed with error - %@", error);
 }
 
+- (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata
+{
+    if (metadata.isDirectory)
+    {
+        _folderMetadata = metadata;
+    }
+}
+
 #pragma mark - TextReaderViewControl delegate
 
 //  TextReaderViewController calls this when an image has been saved. This implementation makes the PLVC refresh the table's data and display so that the newly saved image can be seen immediately.
@@ -214,7 +223,20 @@
     {
         //  Save image to Dropbox
         NSString *destDir = [@"/" stringByAppendingPathComponent:_book];
-        [[self restClient] uploadFile:fileName toPath:destDir fromPath:path];
+        
+        //  Look for an existing file
+        [[self restClient] loadMetadata:destDir];
+        NSString *parentRev = nil;
+        for (DBMetadata *file in _folderMetadata.contents)
+        {
+            if ([file.filename isEqualToString:fileName])
+            {
+                parentRev = file.rev;
+            }
+        }
+        _folderMetadata = nil;
+        
+        [[self restClient] uploadFile:fileName toPath:destDir withParentRev:parentRev fromPath:path];
     }
     
     //  All the image names in the current book folder
@@ -277,6 +299,10 @@
         NSString *pathToPage = [_savePath stringByAppendingPathComponent:pageToDelete];
         [[NSFileManager defaultManager] removeItemAtPath:pathToPage error:nil];
         [_pages removeObjectAtIndex:indexPath.row];
+        
+        //  Delete from Dropbox
+        NSString *dropboxPath = [[@"/" stringByAppendingPathComponent:_book] stringByAppendingPathComponent:pageToDelete];
+        [[self restClient] deletePath:dropboxPath];
         
         //  Remove the row from the table as well
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];

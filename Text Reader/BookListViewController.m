@@ -31,6 +31,7 @@
 @property NSString *documentsDirectory;
 @property PageListViewController *pageListViewController;
 @property UIPopoverController *popover;
+@property DBMetadata *folderMetadata;
 
 @end
 
@@ -65,12 +66,6 @@
     
     //  Link Dropbox
     [self linkWithDropbox];
-    
-    //  test
-    /*NSString *localPath = [[_documentsDirectory stringByAppendingPathComponent:@"New Book 4"] stringByAppendingPathComponent:@"1.png"];
-    NSString *fileName = @"1.png";
-    NSString *dropboxPath = @"/New Book 4";
-    [[self restClient] uploadFile:fileName toPath:dropboxPath withParentRev:nil fromPath:localPath];*/
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -217,6 +212,14 @@
     NSLog(@"File upload failed with error - %@", error);
 }
 
+- (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata
+{
+    if (metadata.isDirectory)
+    {
+        _folderMetadata = metadata;
+    }
+}
+
 #pragma mark - Text field delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -256,7 +259,20 @@
         //  Save image to Dropbox
         NSArray *pathComponents = [path componentsSeparatedByString:@"/"];
         NSString *destDir = [@"/" stringByAppendingPathComponent:[pathComponents objectAtIndex:([pathComponents count] - 2)]];
-        [[self restClient] uploadFile:fileName toPath:destDir fromPath:path];
+        
+        //  Look for an existing file
+        [[self restClient] loadMetadata:destDir];
+        NSString *parentRev = nil;
+        for (DBMetadata *file in _folderMetadata.contents)
+        {
+            if ([file.filename isEqualToString:fileName])
+            {
+                parentRev = file.rev;
+            }
+        }
+        _folderMetadata = nil;
+        
+        [[self restClient] uploadFile:fileName toPath:destDir withParentRev:parentRev fromPath:path];
     }
     
     //  All the image names in the current book folder
@@ -315,6 +331,10 @@
         NSString *pathToBook = [_documentsDirectory stringByAppendingPathComponent:bookToDelete];
         [[NSFileManager defaultManager] removeItemAtPath:pathToBook error:nil];
         [_books removeObjectAtIndex:indexPath.row];
+        
+        //  Delete from Dropbox
+        NSString *dropboxPath = [@"/" stringByAppendingPathComponent:bookToDelete];
+        [[self restClient] deletePath:dropboxPath];
         
         //  Remove the row from the table
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
