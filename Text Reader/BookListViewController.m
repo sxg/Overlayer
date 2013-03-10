@@ -27,6 +27,7 @@
 
 @interface BookListViewController ()
 
+@property IBOutlet UICollectionView *cv;
 @property (nonatomic) NSMutableArray *books;
 @property NSString *documentsDirectory;
 @property PageListViewController *pageListViewController;
@@ -36,15 +37,6 @@
 @end
 
 @implementation BookListViewController
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -64,6 +56,9 @@
     _documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     _books = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
     
+    //  Setup collection view
+    [self.cv registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"BookCell"];
+    
     //  Link Dropbox
     [self linkWithDropbox];
 }
@@ -72,7 +67,7 @@
 {
     //  Look for new folders AKA books
     _books = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
-    [self.tableView reloadData];
+    [self.cv reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -239,7 +234,7 @@
         
         //  Add the new book to the table
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([_books count] - 1) inSection:0];
-        [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.cv insertItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
     }
     
     //  Remove the popover and the keyboard
@@ -282,110 +277,51 @@
     NSSortDescriptor *numericalSort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:YES selector:@selector(localizedStandardCompare:)];
     [_books sortUsingDescriptors:[NSArray arrayWithObject:numericalSort]];
     
-    [self.tableView reloadData];
+    [self.cv reloadData];
 }
 
-#pragma mark - Table view data source
+#pragma mark - Collection view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    // Return the number of sections.
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
+    //  The collection view will be populated with only books
     return [_books count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    static NSString *CellIdentifier = @"Book";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    //  Give the book's cell the same name as the book's folder
-    NSString *name = [_books objectAtIndex:indexPath.row];
-    [cell.textLabel setFont:[UIFont fontWithName:@"Amoon1" size:20]];
-    [cell.textLabel setText:name];
+    //  The only section is the section that displays the books
+    return 1;
+}
+
+- (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BookCell" forIndexPath:indexPath];
+    if (indexPath.row == 1)
+        cell.backgroundColor = [UIColor whiteColor];
+    else
+        cell.backgroundColor = [UIColor blueColor];
     
     return cell;
 }
 
+#pragma mark - Collection view delegate
 
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+
 }
 
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - Collection view flow layout delegate
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        NSString *bookToDelete = [_books objectAtIndex:indexPath.row];
-        NSString *pathToBook = [_documentsDirectory stringByAppendingPathComponent:bookToDelete];
-        [[NSFileManager defaultManager] removeItemAtPath:pathToBook error:nil];
-        [_books removeObjectAtIndex:indexPath.row];
-        
-        //  Delete from Dropbox
-        NSString *dropboxPath = [@"/" stringByAppendingPathComponent:bookToDelete];
-        [[self restClient] deletePath:dropboxPath];
-        
-        //  Remove the row from the table
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    return CGSizeMake(200, 200);
 }
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
-//  Go to the PageListViewController if the user selected a book from the table (called after prepareForSegue:)
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-    
-    //  Get the name of the selected book, tell PLVC the book name, tell PLVC the path to that book, and set PLVC up with all the names of pages contained in that book folder
-    NSString *selectedBook = [_books objectAtIndex:indexPath.row];
-    [_pageListViewController setBook:selectedBook];
-    NSFileManager *fm = [NSFileManager defaultManager];
-    _pageListViewController.savePath = [_pageListViewController.documentsDirectory stringByAppendingPathComponent:_pageListViewController.book];
-    _pageListViewController.pages = [[fm contentsOfDirectoryAtPath:_pageListViewController.savePath error:nil] mutableCopy];
-    
-    //  Sort names of pages numerically so that 10.png does not come before 2.png
-    NSSortDescriptor *numericalSort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:YES selector:@selector(localizedStandardCompare:)];
-    [_pageListViewController.pages sortUsingDescriptors:[NSArray arrayWithObject:numericalSort]];
-    
-    //  Set PLVC's navbar's title to the name of the book
-    _pageListViewController.navigationItem.title = _pageListViewController.book;
+    return UIEdgeInsetsMake(15, 15, 15, 15);
 }
 
 #pragma mark - Segue control
