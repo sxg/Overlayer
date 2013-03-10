@@ -21,6 +21,7 @@
 
 #import "PageListViewController.h"
 #import "BookListViewController.h"
+#import "BookListViewCell.h"
 #import "TextReaderViewController.h"
 #import "SettingsViewController.h"
 #import <DropboxSDK/DropboxSDK.h>
@@ -55,9 +56,6 @@
     //  Need to setup images and imageNames
     _documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     _books = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
-    
-    //  Setup collection view
-    [self.cv registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"BookCell"];
     
     //  Link Dropbox
     [self linkWithDropbox];
@@ -296,11 +294,9 @@
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BookCell" forIndexPath:indexPath];
-    if (indexPath.row == 1)
-        cell.backgroundColor = [UIColor whiteColor];
-    else
-        cell.backgroundColor = [UIColor blueColor];
+    BookListViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BookCell" forIndexPath:indexPath];
+    cell.bookTitle.text = [_books objectAtIndex:indexPath.row];
+    [cell.bookTitle setFont:[UIFont fontWithName:@"Amoon1" size:17]];
     
     return cell;
 }
@@ -309,19 +305,33 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    //  Get the name of the selected book, tell PLVC the book name, tell PLVC the path to that book, and set PLVC up with all the names of pages contained in that book folder
+    NSString *selectedBook = [_books objectAtIndex:indexPath.row];
+    [_pageListViewController setBook:selectedBook];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    _pageListViewController.savePath = [_pageListViewController.documentsDirectory stringByAppendingPathComponent:_pageListViewController.book];
+    _pageListViewController.pages = [[fm contentsOfDirectoryAtPath:_pageListViewController.savePath error:nil] mutableCopy];
+    
+    //  Sort names of pages numerically so that 10.png does not come before 2.png
+    NSSortDescriptor *numericalSort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:YES selector:@selector(localizedStandardCompare:)];
+    [_pageListViewController.pages sortUsingDescriptors:[NSArray arrayWithObject:numericalSort]];
+    
+    //  Set PLVC's navbar's title to the name of the book
+    _pageListViewController.navigationItem.title = _pageListViewController.book;
+    
+    //[self performSegueWithIdentifier:@"ViewBook" sender:self];
 }
 
 #pragma mark - Collection view flow layout delegate
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(200, 200);
+    return CGSizeMake(215, 275);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(15, 15, 15, 15);
+    return UIEdgeInsetsMake(25, 25, 25, 25);
 }
 
 #pragma mark - Segue control
