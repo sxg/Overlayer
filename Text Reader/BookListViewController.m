@@ -34,6 +34,7 @@
 @property PageListViewController *pageListViewController;
 @property UIPopoverController *popover;
 @property DBMetadata *folderMetadata;
+@property (nonatomic) DBRestClient *restClient;
 
 @end
 

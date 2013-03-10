@@ -38,6 +38,8 @@
 		4AE6597616B4ADB700E0C76E /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE6597516B4ADB700E0C76E /* PageViewController.m */; };
 		4AEA2AE316ED1D8100AB9AE5 /* BookListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA2AE216ED1D8100AB9AE5 /* BookListViewCell.m */; };
 		4AEA2AE516ED232B00AB9AE5 /* bookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA2AE416ED232B00AB9AE5 /* bookIcon.png */; };
+		4AEA2AE816ED2ACF00AB9AE5 /* closebox.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA2AE616ED2ACF00AB9AE5 /* closebox.png */; };
+		4AEA2AE916ED2ACF00AB9AE5 /* closebox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA2AE716ED2ACF00AB9AE5 /* closebox@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +90,8 @@
 		4AEA2AE116ED1D8100AB9AE5 /* BookListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookListViewCell.h; sourceTree = "<group>"; };
 		4AEA2AE216ED1D8100AB9AE5 /* BookListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookListViewCell.m; sourceTree = "<group>"; };
 		4AEA2AE416ED232B00AB9AE5 /* bookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bookIcon.png; path = Images/bookIcon.png; sourceTree = "<group>"; };
+		4AEA2AE616ED2ACF00AB9AE5 /* closebox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closebox.png; sourceTree = "<group>"; };
+		4AEA2AE716ED2ACF00AB9AE5 /* closebox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closebox@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +195,8 @@
 		4A2F754B169CD98000DD7A03 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4AEA2AE616ED2ACF00AB9AE5 /* closebox.png */,
+				4AEA2AE716ED2ACF00AB9AE5 /* closebox@2x.png */,
 				4AEA2AE416ED232B00AB9AE5 /* bookIcon.png */,
 				4A4F69D416D168D300093AB5 /* Amoon_ComicSans.ttf */,
 				4A6A867E16CF3B4800D2B3A5 /* Untitled-1.png */,
@@ -272,6 +278,8 @@
 				4A6A867F16CF3B4800D2B3A5 /* Untitled-1.png in Resources */,
 				4A4F69D516D168D300093AB5 /* Amoon_ComicSans.ttf in Resources */,
 				4AEA2AE516ED232B00AB9AE5 /* bookIcon.png in Resources */,
+				4AEA2AE816ED2ACF00AB9AE5 /* closebox.png in Resources */,
+				4AEA2AE916ED2ACF00AB9AE5 /* closebox@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

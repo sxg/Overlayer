@@ -12,8 +12,6 @@
 
 @interface BookListViewController : UIViewController <UITextFieldDelegate, DBRestClientDelegate, TextReaderViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic) DBRestClient *restClient;
-
 - (IBAction)addBook:(id)sender;
 
 @end
