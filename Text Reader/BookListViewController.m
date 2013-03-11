@@ -62,6 +62,9 @@
     NSArray *bookTitles = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
     [self initializeBooks:bookTitles];
     
+    //  Set collection view's background
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"collectionViewBackground.png"]]];
+    
     //  Link Dropbox
     [self linkWithDropbox];
 }

@@ -36,6 +36,7 @@
 		4ADAF69616ED5A0500123D2B /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAF69516ED5A0500123D2B /* Book.m */; };
 		4ADAF69916ED5B1300123D2B /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAF69816ED5B1300123D2B /* Page.m */; };
 		4ADAF69B16ED706300123D2B /* Changelog.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4ADAF69A16ED706300123D2B /* Changelog.rtf */; };
+		4ADAF69D16ED7D7700123D2B /* collectionViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADAF69C16ED7D7600123D2B /* collectionViewBackground.png */; };
 		4ADC0B1616BB668D00815209 /* BookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC0B1516BB668D00815209 /* BookListViewController.m */; };
 		4ADDA66816C2C40900F7E7A3 /* PageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDA66716C2C40900F7E7A3 /* PageListViewController.m */; };
 		4AE6597616B4ADB700E0C76E /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE6597516B4ADB700E0C76E /* PageViewController.m */; };
@@ -89,6 +90,7 @@
 		4ADAF69716ED5B1300123D2B /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
 		4ADAF69816ED5B1300123D2B /* Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page.m; sourceTree = "<group>"; };
 		4ADAF69A16ED706300123D2B /* Changelog.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Changelog.rtf; sourceTree = "<group>"; };
+		4ADAF69C16ED7D7600123D2B /* collectionViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = collectionViewBackground.png; path = Images/collectionViewBackground.png; sourceTree = "<group>"; };
 		4ADC0B1416BB668D00815209 /* BookListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookListViewController.h; sourceTree = "<group>"; };
 		4ADC0B1516BB668D00815209 /* BookListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookListViewController.m; sourceTree = "<group>"; };
 		4ADDA66616C2C40800F7E7A3 /* PageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageListViewController.h; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 		4A2F754B169CD98000DD7A03 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4ADAF69C16ED7D7600123D2B /* collectionViewBackground.png */,
 				4AEA2AE616ED2ACF00AB9AE5 /* closebox.png */,
 				4AEA2AE716ED2ACF00AB9AE5 /* closebox@2x.png */,
 				4AEA2AE416ED232B00AB9AE5 /* bookIcon.png */,
@@ -294,6 +297,7 @@
 				4AEA2AE816ED2ACF00AB9AE5 /* closebox.png in Resources */,
 				4AEA2AE916ED2ACF00AB9AE5 /* closebox@2x.png in Resources */,
 				4ADAF69B16ED706300123D2B /* Changelog.rtf in Resources */,
+				4ADAF69D16ED7D7700123D2B /* collectionViewBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
