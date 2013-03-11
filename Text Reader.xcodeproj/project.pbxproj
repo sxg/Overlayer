@@ -33,6 +33,9 @@
 		4AA249C916D32CF5003EC23E /* SettingsStrikethroughWidthDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA249C816D32CF5003EC23E /* SettingsStrikethroughWidthDetailViewController.m */; };
 		4AAB842516C6B2FE00BE13FD /* PageListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB842416C6B2FE00BE13FD /* PageListViewCell.m */; };
 		4AB487E116B74B00005960FA /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB487E016B74B00005960FA /* Character.m */; };
+		4ADAF69616ED5A0500123D2B /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAF69516ED5A0500123D2B /* Book.m */; };
+		4ADAF69916ED5B1300123D2B /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAF69816ED5B1300123D2B /* Page.m */; };
+		4ADAF69B16ED706300123D2B /* Changelog.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4ADAF69A16ED706300123D2B /* Changelog.rtf */; };
 		4ADC0B1616BB668D00815209 /* BookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC0B1516BB668D00815209 /* BookListViewController.m */; };
 		4ADDA66816C2C40900F7E7A3 /* PageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDA66716C2C40900F7E7A3 /* PageListViewController.m */; };
 		4AE6597616B4ADB700E0C76E /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE6597516B4ADB700E0C76E /* PageViewController.m */; };
@@ -81,6 +84,11 @@
 		4AAB842416C6B2FE00BE13FD /* PageListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageListViewCell.m; sourceTree = "<group>"; };
 		4AB487DF16B74B00005960FA /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
 		4AB487E016B74B00005960FA /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
+		4ADAF69416ED5A0500123D2B /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
+		4ADAF69516ED5A0500123D2B /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
+		4ADAF69716ED5B1300123D2B /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
+		4ADAF69816ED5B1300123D2B /* Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page.m; sourceTree = "<group>"; };
+		4ADAF69A16ED706300123D2B /* Changelog.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Changelog.rtf; sourceTree = "<group>"; };
 		4ADC0B1416BB668D00815209 /* BookListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookListViewController.h; sourceTree = "<group>"; };
 		4ADC0B1516BB668D00815209 /* BookListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookListViewController.m; sourceTree = "<group>"; };
 		4ADDA66616C2C40800F7E7A3 /* PageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageListViewController.h; sourceTree = "<group>"; };
@@ -133,6 +141,10 @@
 		4A23395C16CAC08A00772782 /* Custom Classes and Categories */ = {
 			isa = PBXGroup;
 			children = (
+				4ADAF69416ED5A0500123D2B /* Book.h */,
+				4ADAF69516ED5A0500123D2B /* Book.m */,
+				4ADAF69716ED5B1300123D2B /* Page.h */,
+				4ADAF69816ED5B1300123D2B /* Page.m */,
 				4AEA2AE116ED1D8100AB9AE5 /* BookListViewCell.h */,
 				4AEA2AE216ED1D8100AB9AE5 /* BookListViewCell.m */,
 				4AAB842316C6B2FE00BE13FD /* PageListViewCell.h */,
@@ -210,6 +222,7 @@
 				4A2F7556169CD98000DD7A03 /* Default.png */,
 				4A2F7558169CD98000DD7A03 /* Default@2x.png */,
 				4A2F755A169CD98000DD7A03 /* Default-568h@2x.png */,
+				4ADAF69A16ED706300123D2B /* Changelog.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -280,6 +293,7 @@
 				4AEA2AE516ED232B00AB9AE5 /* bookIcon.png in Resources */,
 				4AEA2AE816ED2ACF00AB9AE5 /* closebox.png in Resources */,
 				4AEA2AE916ED2ACF00AB9AE5 /* closebox@2x.png in Resources */,
+				4ADAF69B16ED706300123D2B /* Changelog.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +334,8 @@
 				4A39943416D303CA00D65D25 /* SettingsViewController.m in Sources */,
 				4AA249C916D32CF5003EC23E /* SettingsStrikethroughWidthDetailViewController.m in Sources */,
 				4AEA2AE316ED1D8100AB9AE5 /* BookListViewCell.m in Sources */,
+				4ADAF69616ED5A0500123D2B /* Book.m in Sources */,
+				4ADAF69916ED5B1300123D2B /* Page.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

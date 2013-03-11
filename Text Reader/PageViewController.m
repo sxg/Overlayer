@@ -21,6 +21,7 @@
     _nextButton is the toolbar button that lets users view the next page
  */
 
+#import "Page.h"
 #import "PageViewController.h"
 
 @interface PageViewController ()
@@ -82,10 +83,9 @@
         }
         
         //  Set the previous image to _imageView's image and the navbar title to the previous image's file name
-        NSString *page = [_pages objectAtIndex:_currentPageIndex];
-        NSString *path = [_savePath stringByAppendingPathComponent:page];
-        _imageView.image = [[UIImage alloc] initWithContentsOfFile:path];
-        [self.navigationItem setTitle:page];
+        Page *page = [_book.pages objectAtIndex:_currentPageIndex];
+        _imageView.image = [page pageImage];
+        [self.navigationItem setTitle:[page pageName]];
         
         //  If we are now on the first page of the book, then disable the previous button
         if (_currentPageIndex == 0)
@@ -99,7 +99,7 @@
 - (IBAction)next:(id)sender
 {
     //  The button should only work if the current page isn't the last page
-    if (_currentPageIndex < [_pages count] - 1)
+    if (_currentPageIndex < [_book.pages count] - 1)
     {
         //  Set the current page index to the next page index
         _currentPageIndex++;
@@ -111,13 +111,12 @@
         }
         
         //  Set the next image to _imageView's image and the navbar title to the next image's file name
-        NSString *page = [_pages objectAtIndex:_currentPageIndex];
-        NSString *path = [_savePath stringByAppendingPathComponent:page];
-        _imageView.image = [[UIImage alloc] initWithContentsOfFile:path];
-        [self.navigationItem setTitle:page];
+        Page *page = [_book.pages objectAtIndex:_currentPageIndex];
+        _imageView.image = [page pageImage];
+        [self.navigationItem setTitle:[page pageName]];
         
         //  If we are now on the last page of the book, then disable the next button
-        if (_currentPageIndex == [_pages count] - 1)
+        if (_currentPageIndex == [_book.pages count] - 1)
         {
             [_nextButton setEnabled:NO];
         }

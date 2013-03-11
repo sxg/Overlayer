@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
+#import "Book.h"
 #import <UIKit/UIKit.h>
 
 @interface PageViewController : UIViewController <UIScrollViewDelegate>
@@ -13,7 +14,7 @@
 @property UIImage *image;
 @property UIImageView *imageView;
 @property UIScrollView *scrollView;
-@property NSArray *pages;
+@property Book *book;
 @property NSString *savePath;
 @property int currentPageIndex;
 @property IBOutlet UIBarButtonItem *previousButton;

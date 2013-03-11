@@ -28,6 +28,7 @@
 #import "UIImage+LineDrawer.h"
 #import "DrawingView.h"
 #import "PageListViewCell.h"
+#import "Page.h"
 #import <dispatch/dispatch.h>
 #import <DropboxSDK/DropboxSDK.h>
 #import <QuartzCore/QuartzCore.h>
@@ -75,13 +76,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    //  Everytime this view appears the table's list of pages needs to be refreshed
-    _pages = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_savePath error:nil] mutableCopy];
-    
-    //  Sort the page names numerically instead of alphabetically so that 10.png does not appear before 2.png
-    NSSortDescriptor *numericalSort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:YES selector:@selector(localizedStandardCompare:)];
-    [_pages sortUsingDescriptors:[NSArray arrayWithObject:numericalSort]];
-    
+    _book = [[Book alloc] initWithPath:_savePath];
     [self.tableView reloadData];
 }
 
@@ -98,10 +93,10 @@
 {
     dispatch_async(_backgroundQueue, ^{
         //  Iterate through all the page file names in this book individually
-        for (NSString *pageName in _pages)
+        for (Page *page in [_book pages])
         {
             //  Get the PageListViewCell corresponding to the current page file name and mark it as currently processing
-            int i = [_pages indexOfObject:pageName];
+            int i = [[_book pages] indexOfObject:page];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
             PageListViewCell *cell = (PageListViewCell*) [self.tableView cellForRowAtIndexPath:indexPath];
             [cell setIsProcessing:YES];
@@ -112,8 +107,7 @@
             });
             
             //  Get the actual image object and store it in a UIImage
-            NSString *path = [_savePath stringByAppendingPathComponent:pageName];
-            UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
+            UIImage *image = [page pageImage];
             
             //  If the image is unprocessed since unprocessed images have not been sized down to 1024x768
             if (image.size.width > 768)
@@ -149,7 +143,7 @@
                 
                 //  Dropbox rest client MUST be used on main thread
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self saveWithLinesAndName:pageName onContainerView:imageAndPathView];
+                    [self saveWithLinesAndName:[page pageName] onContainerView:imageAndPathView];
                 });
             }
             
@@ -222,7 +216,7 @@
     if (shouldUpload)
     {
         //  Save image to Dropbox
-        NSString *destDir = [@"/" stringByAppendingPathComponent:_book];
+        NSString *destDir = [@"/" stringByAppendingPathComponent:_book.title];
         
         //  Look for an existing file
         [[self restClient] loadMetadata:destDir];
@@ -239,13 +233,8 @@
         [[self restClient] uploadFile:fileName toPath:destDir withParentRev:parentRev fromPath:path];
     }
     
-    //  All the image names in the current book folder
-    _pages = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_savePath error:nil] mutableCopy];
-    
-    //  Sort the image names numerically so that 10.png does not come before 2.png
-    NSSortDescriptor *numericalSort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:YES selector:@selector(localizedStandardCompare:)];
-    [_pages sortUsingDescriptors:[NSArray arrayWithObject:numericalSort]];
-    
+    //  Reload the book and the table
+    _book = [[Book alloc] initWithPath:_savePath];
     [self.tableView reloadData];
 }
 
@@ -260,7 +249,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [_pages count];
+    return [_book.pages count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -271,9 +260,9 @@
     // Configure the cell...
     
     //  Set the PageListViewCell's UILabel's text to the file name of the image it is supposed to open
-    NSString *name = [_pages objectAtIndex:indexPath.row];
+    Page *page = (Page*)[_book.pages objectAtIndex:indexPath.row];
     [cell.label setFont:[UIFont fontWithName:@"Amoon1" size:20]];
-    [cell.label setText:name];
+    [cell.label setText:[page pageName]];
     
     //  If this PageListViewCell is currently being processed, then shift the UILabel and add the UIActivityIndicator without an animation
     if ([cell isProcessing]) {
@@ -295,13 +284,13 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        NSString *pageToDelete = [_pages objectAtIndex:indexPath.row];
-        NSString *pathToPage = [_savePath stringByAppendingPathComponent:pageToDelete];
+        Page *pageToDelete = (Page*)[_book.pages objectAtIndex:indexPath.row];
+        NSString *pathToPage = pageToDelete.pagePath;
         [[NSFileManager defaultManager] removeItemAtPath:pathToPage error:nil];
-        [_pages removeObjectAtIndex:indexPath.row];
+        [_book.pages removeObjectAtIndex:indexPath.row];
         
         //  Delete from Dropbox
-        NSString *dropboxPath = [[@"/" stringByAppendingPathComponent:_book] stringByAppendingPathComponent:pageToDelete];
+        NSString *dropboxPath = [[@"/" stringByAppendingPathComponent:_book.title] stringByAppendingPathComponent:[pageToDelete pageName]];
         [[self restClient] deletePath:dropboxPath];
         
         //  Remove the row from the table as well
@@ -349,22 +338,21 @@
     
     
     //  Get the selected page and the path to that page
-    NSString *page = [_pages objectAtIndex:indexPath.row];
-    NSString *path = [_savePath stringByAppendingPathComponent:page];
+    Page *page = [_book.pages objectAtIndex:indexPath.row];
     
     //  Perform the segue to PageViewController manually since in the Storyboard the segue is not setup to activate upon selecting a cell. This is because I want to allow users to also select specific cells that they would like to process (this functionality has not been implemented yet). Since selecting a cell is an ambiguous action, the segue is not performed simply on detecting a selection but on this specific type of selection.
     [self performSegueWithIdentifier:@"ViewPage" sender:self];
     
     //  Setup PageViewController's ivars and navbar title
-    _pageViewController.pages = _pages;
+    _pageViewController.book = _book;
     _pageViewController.savePath = _savePath;
     _pageViewController.currentPageIndex = indexPath.row;
-    [_pageViewController.navigationItem setTitle:page];
+    [_pageViewController.navigationItem setTitle:[page pageName]];
     
     //  Create and configure a UIScrollView within which the selected image will be displayed, and get the selected image in a UIImage, and put it in a UIImageView
     _pageViewController.scrollView = [[UIScrollView alloc] init];
     [_pageViewController.scrollView setDelegate:_pageViewController];
-    _pageViewController.image = [[UIImage alloc] initWithContentsOfFile:path];
+    _pageViewController.image = [page pageImage];
     _pageViewController.imageView = [[UIImageView alloc] initWithImage:_pageViewController.image];
     [_pageViewController.scrollView addSubview:_pageViewController.imageView];
     [_pageViewController.scrollView setContentSize:CGSizeMake(_pageViewController.imageView.image.size.width, _pageViewController.imageView.image.size.height)];
@@ -377,7 +365,7 @@
     {
         [_pageViewController.previousButton setEnabled:NO];
     }
-    if (_pageViewController.currentPageIndex == [_pageViewController.pages count] - 1)
+    if (_pageViewController.currentPageIndex == [_pageViewController.book.pages count] - 1)
     {
         [_pageViewController.nextButton setEnabled:NO];
     }

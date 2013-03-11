@@ -24,6 +24,7 @@
 #import "BookListViewCell.h"
 #import "TextReaderViewController.h"
 #import "SettingsViewController.h"
+#import "Book.h"
 #import <DropboxSDK/DropboxSDK.h>
 
 @interface BookListViewController ()
@@ -50,13 +51,16 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
+    //  init variables
+    _books = [[NSMutableArray alloc] init];
     
     //  Show the navigation controller's built-in toolbar
     [self.navigationController setToolbarHidden:NO];
     
     //  Need to setup images and imageNames
     _documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    _books = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
+    NSArray *bookTitles = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
+    [self initializeBooks:bookTitles];
     
     //  Link Dropbox
     [self linkWithDropbox];
@@ -65,7 +69,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     //  Look for new folders AKA books
-    _books = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
+    NSArray *bookTitles = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
+    [self initializeBooks:bookTitles];
     [self.cv reloadData];
 }
 
@@ -112,6 +117,17 @@
 }
 
 #pragma mark - Helper methods
+
+- (void)initializeBooks:(NSArray*)bookTitles
+{
+    _books = [[NSMutableArray alloc] init];
+    for (NSString *bookTitle in bookTitles)
+    {
+        NSString *bookPath = [_documentsDirectory stringByAppendingPathComponent:bookTitle];
+        Book *book = [[Book alloc] initWithPath:bookPath];
+        [_books addObject:book];
+    }
+}
 
 - (void)linkWithDropbox
 {
@@ -218,15 +234,25 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    //  Look for this book name in the list of books
     NSString *bookName = textField.text;
+    BOOL found = false;
+    for (Book *book in _books)
+    {
+        if ([book.title isEqualToString:bookName])
+        {
+            found = true;
+        }
+    }
     
     //  Add the new book only if the name does not already exist
-    if (![_books containsObject:bookName])
+    if (!found)
     {
         //  Create a new folder by the name the user specifies in the textfield, and add it to the data source _books
         NSString *path = [_documentsDirectory stringByAppendingPathComponent:bookName];
         [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:nil];
-        [_books addObject:bookName];
+        Book *book = [[Book alloc] initWithPath:path];
+        [_books addObject:book];
         
         //  Create the folder on Dropbox
         [[self restClient] createFolder:[@"/" stringByAppendingPathComponent:bookName]];
@@ -270,12 +296,8 @@
     }
     
     //  All the image names in the current book folder
-    _books = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
-    
-    //  Sort the image names numerically so that 10.png does not come before 2.png
-    NSSortDescriptor *numericalSort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:YES selector:@selector(localizedStandardCompare:)];
-    [_books sortUsingDescriptors:[NSArray arrayWithObject:numericalSort]];
-    
+    NSArray *bookTitles = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
+    [self initializeBooks:bookTitles];
     [self.cv reloadData];
 }
 
@@ -296,7 +318,7 @@
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BookListViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BookCell" forIndexPath:indexPath];
-    cell.bookTitle.text = [_books objectAtIndex:indexPath.row];
+    cell.bookTitle.text = ((Book*)[_books objectAtIndex:indexPath.row]).title;
     [cell.bookTitle setFont:[UIFont fontWithName:@"Amoon1" size:17]];
     
     return cell;
@@ -307,20 +329,12 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     //  Get the name of the selected book, tell PLVC the book name, tell PLVC the path to that book, and set PLVC up with all the names of pages contained in that book folder
-    NSString *selectedBook = [_books objectAtIndex:indexPath.row];
+    Book *selectedBook = (Book*)[_books objectAtIndex:indexPath.row];
     [_pageListViewController setBook:selectedBook];
-    NSFileManager *fm = [NSFileManager defaultManager];
-    _pageListViewController.savePath = [_pageListViewController.documentsDirectory stringByAppendingPathComponent:_pageListViewController.book];
-    _pageListViewController.pages = [[fm contentsOfDirectoryAtPath:_pageListViewController.savePath error:nil] mutableCopy];
-    
-    //  Sort names of pages numerically so that 10.png does not come before 2.png
-    NSSortDescriptor *numericalSort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:YES selector:@selector(localizedStandardCompare:)];
-    [_pageListViewController.pages sortUsingDescriptors:[NSArray arrayWithObject:numericalSort]];
+    _pageListViewController.savePath = [_pageListViewController.documentsDirectory stringByAppendingPathComponent:_pageListViewController.book.title];
     
     //  Set PLVC's navbar's title to the name of the book
-    _pageListViewController.navigationItem.title = _pageListViewController.book;
-    
-    //[self performSegueWithIdentifier:@"ViewBook" sender:self];
+    _pageListViewController.navigationItem.title = _pageListViewController.book.title;
 }
 
 #pragma mark - Collection view flow layout delegate
