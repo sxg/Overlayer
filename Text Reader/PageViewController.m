@@ -23,8 +23,12 @@
 
 #import "Page.h"
 #import "PageViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface PageViewController ()
+
+@property UIView *pageIndicator;
+@property UILabel *indicatorLabel;
 
 @end
 
@@ -65,11 +69,47 @@
     }
 }
 
+#pragma mark - Helper methods
+
+- (void)setupPageIndicator
+{
+    //  Setup the page indicator (translucent bubble that says "x of y")
+    _pageIndicator = [[UIView alloc] initWithFrame:CGRectMake(30, 30, 80, 30)];
+    _pageIndicator.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    _pageIndicator.clipsToBounds = YES;
+    _pageIndicator.layer.cornerRadius = 15.0;
+    _pageIndicator.userInteractionEnabled = NO;
+    
+    _indicatorLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+    _indicatorLabel.backgroundColor = [UIColor clearColor];
+    _indicatorLabel.textColor = [UIColor whiteColor];
+    _indicatorLabel.font = [UIFont fontWithName:@"Amoon1" size:17];
+    _indicatorLabel.textAlignment = NSTextAlignmentCenter;
+    _indicatorLabel.text = [NSString stringWithFormat:@"%i of %i", (_currentPageIndex + 1), [_book.pages count]];
+    [_pageIndicator addSubview:_indicatorLabel];
+    
+    [self.view addSubview:_pageIndicator];
+    
+    //  The fade out animation
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationDelay:2.0];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    
+    _pageIndicator.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    _indicatorLabel.alpha = 0;
+    
+    [UIView commitAnimations];
+}
+
 #pragma mark - Interface button actions
 
 //  This is enacted when the previous buton is touched to go to the previous page
 - (IBAction)previous:(id)sender
 {
+    //  Get rid of the page indicator every time you change the page. Setup the new one at the end of this method.
+    [_pageIndicator removeFromSuperview];
+    
     //  The button should only work if the current page isn't the first page
     if (_currentPageIndex > 0)
     {
@@ -85,19 +125,24 @@
         //  Set the previous image to _imageView's image and the navbar title to the previous image's file name
         Page *page = [_book.pages objectAtIndex:_currentPageIndex];
         _imageView.image = [page pageImage];
-        [self.navigationItem setTitle:[page pageName]];
         
         //  If we are now on the first page of the book, then disable the previous button
         if (_currentPageIndex == 0)
         {
             [_previousButton setEnabled:NO];
         }
+        
+        //  Setup the page indicator (translucent bubble that says "x of y")
+        [self setupPageIndicator];
     }
 }
 
 //  This is enacted when the next button is touched to go to the next page
 - (IBAction)next:(id)sender
 {
+    //  Get rid of the page indicator every time you change the page. Setup the new one at the end of this method.
+    [_pageIndicator removeFromSuperview];
+    
     //  The button should only work if the current page isn't the last page
     if (_currentPageIndex < [_book.pages count] - 1)
     {
@@ -113,13 +158,15 @@
         //  Set the next image to _imageView's image and the navbar title to the next image's file name
         Page *page = [_book.pages objectAtIndex:_currentPageIndex];
         _imageView.image = [page pageImage];
-        [self.navigationItem setTitle:[page pageName]];
         
         //  If we are now on the last page of the book, then disable the next button
         if (_currentPageIndex == [_book.pages count] - 1)
         {
             [_nextButton setEnabled:NO];
         }
+        
+        //  Setup the page indicator (translucent bubble that says "x of y")
+        [self setupPageIndicator];
     }
 }
 

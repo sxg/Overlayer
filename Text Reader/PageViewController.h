@@ -20,6 +20,7 @@
 @property IBOutlet UIBarButtonItem *previousButton;
 @property IBOutlet UIBarButtonItem *nextButton;
 
+- (void)setupPageIndicator;
 - (IBAction)previous:(id)sender;
 - (IBAction)next:(id)sender;
 

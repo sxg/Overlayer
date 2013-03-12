@@ -347,7 +347,7 @@
     _pageViewController.book = _book;
     _pageViewController.savePath = _savePath;
     _pageViewController.currentPageIndex = indexPath.row;
-    [_pageViewController.navigationItem setTitle:[page pageName]];
+    [_pageViewController.navigationItem setTitle:_book.title];
     
     //  Create and configure a UIScrollView within which the selected image will be displayed, and get the selected image in a UIImage, and put it in a UIImageView
     _pageViewController.scrollView = [[UIScrollView alloc] init];
@@ -380,6 +380,9 @@
         //  The x coordinate is half the difference between the device's width and the image's width. This centers the image horizontally.
         [_pageViewController.scrollView setFrame:CGRectMake(([UIScreen mainScreen].bounds.size.height - _pageViewController.imageView.image.size.width) / 2, 0, _pageViewController.imageView.image.size.width, [UIScreen mainScreen].bounds.size.width - 44 - 20 - 44)];
     }
+    
+    //  Setup the page indicator
+    [_pageViewController setupPageIndicator];
     
     //  In case the cell is not deselected automatically do it manually
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
