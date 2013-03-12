@@ -62,8 +62,14 @@
     NSArray *bookTitles = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
     [self initializeBooks:bookTitles];
     
-    //  Set collection view's background
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"collectionViewBackground.png"]]];
+    //  Set background
+    [self.navigationController.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"collectionViewBackground.png"]]];
+    
+    //  Set navbar color
+    float grayVal = ((float)66/(float)255);
+    UIColor *customGray = [UIColor colorWithRed:grayVal green:grayVal blue:grayVal alpha:1.0];
+    [self.navigationController.navigationBar setTintColor:customGray];
+    [self.navigationController.toolbar setTintColor:customGray];
     
     //  Link Dropbox
     [self linkWithDropbox];
