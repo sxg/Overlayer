@@ -39,6 +39,9 @@
     
     //  Setup the navbar
     [self.navigationController setNavigationBarHidden:NO];
+    float grayVal = ((float)66/(float)255);
+    UIColor *customGray = [UIColor colorWithRed:grayVal green:grayVal blue:grayVal alpha:1.0];
+    [self.navigationController.navigationBar setTintColor:customGray];
     
     //  Setup the defualt strikethrough value if not already set
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

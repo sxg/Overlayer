@@ -59,7 +59,7 @@
     
     //  Need to setup images and imageNames
     _documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    NSArray *bookTitles = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
+    NSMutableArray *bookTitles = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
     [self initializeBooks:bookTitles];
     
     //  Set background
@@ -78,7 +78,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     //  Look for new folders AKA books
-    NSArray *bookTitles = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
+    NSMutableArray *bookTitles = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
     [self initializeBooks:bookTitles];
     [self.cv reloadData];
 }
@@ -127,9 +127,14 @@
 
 #pragma mark - Helper methods
 
-- (void)initializeBooks:(NSArray*)bookTitles
+- (void)initializeBooks:(NSMutableArray*)bookTitles
 {
     _books = [[NSMutableArray alloc] init];
+    
+    //  Sort names of pages numerically so that 10.png does not come before 2.png
+    NSSortDescriptor *numericalSort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:YES selector:@selector(localizedStandardCompare:)];
+    [bookTitles sortUsingDescriptors:[NSArray arrayWithObject:numericalSort]];
+    
     for (NSString *bookTitle in bookTitles)
     {
         NSString *bookPath = [_documentsDirectory stringByAppendingPathComponent:bookTitle];
@@ -305,7 +310,7 @@
     }
     
     //  All the image names in the current book folder
-    NSArray *bookTitles = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
+    NSMutableArray *bookTitles = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:_documentsDirectory error:nil] mutableCopy];
     [self initializeBooks:bookTitles];
     [self.cv reloadData];
 }

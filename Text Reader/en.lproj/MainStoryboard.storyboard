@@ -408,7 +408,7 @@
                     <toolbarItems>
                         <barButtonItem title="Settings" id="8Yk-i8-lrm">
                             <connections>
-                                <segue destination="arV-8Y-Eqc" kind="modal" modalPresentationStyle="formSheet" modalTransitionStyle="coverVertical" id="StV-8f-QY1"/>
+                                <segue destination="arV-8Y-Eqc" kind="modal" identifier="" modalPresentationStyle="formSheet" modalTransitionStyle="coverVertical" id="StV-8f-QY1"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
