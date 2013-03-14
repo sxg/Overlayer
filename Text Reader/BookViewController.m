@@ -255,10 +255,22 @@
 
 - (IBAction)openBook:(id)sender
 {
-    //  Close this modal VC
-    [self dismissViewControllerAnimated:NO completion:nil];
+    if ([_book.pages count] == 0)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Can't Open %@", _book.title]
+                                                        message:[NSString stringWithFormat:@"%@ has no pages to open.", _book.title]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [alert show];
+    }
+    else
+    {
+        //  Close this modal VC
+        [self dismissViewControllerAnimated:NO completion:nil];
+        
+        [_bookListViewController performSegueWithIdentifier:@"ViewPage" sender:self];
+    }
     
-    [_bookListViewController performSegueWithIdentifier:@"ViewPage" sender:self];
 }
 
 - (IBAction)addPage:(id)sender
