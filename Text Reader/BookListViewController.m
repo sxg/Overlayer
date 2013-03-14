@@ -67,7 +67,14 @@
     [self initializeBooks:bookTitles];
     
     //  Set background
-    [self.navigationController.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"collectionViewBackground.png"]]];
+    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation))
+    {
+        [self.navigationController.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"collectionViewBackground.png"]]];
+    }
+    else {
+        [self.navigationController.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"collectionViewBackgroundRotated.png"]]];
+        
+    }
     
     //  Set navbar color
     float grayVal = ((float)66/(float)255);
@@ -91,6 +98,18 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
+    {
+        [self.navigationController.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"collectionViewBackground.png"]]];
+    }
+    else {
+        [self.navigationController.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"collectionViewBackgroundRotated.png"]]];
+        
+    }
 }
 
 #pragma mark - Public methods
