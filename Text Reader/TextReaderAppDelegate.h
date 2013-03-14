@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
+#import "Book.h"
 #import <UIKit/UIKit.h>
 
 @interface TextReaderAppDelegate : UIResponder <UIApplicationDelegate, UIImagePickerControllerDelegate>

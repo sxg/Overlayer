@@ -22,6 +22,7 @@
 #import "PageListViewController.h"
 #import "BookListViewController.h"
 #import "BookListViewCell.h"
+#import "BookViewController.h"
 #import "TextReaderViewController.h"
 #import "SettingsViewController.h"
 #import "Book.h"
@@ -32,7 +33,7 @@
 @property IBOutlet UICollectionView *cv;
 @property (nonatomic) NSMutableArray *books;
 @property NSString *documentsDirectory;
-@property PageListViewController *pageListViewController;
+@property BookViewController *bookViewController;
 @property UIPopoverController *popover;
 @property DBMetadata *folderMetadata;
 @property (nonatomic) DBRestClient *restClient;
@@ -280,6 +281,9 @@
     [_popover dismissPopoverAnimated:YES];
     [textField resignFirstResponder];
     
+    //  Reload the collection view
+    [self viewDidAppear:YES];
+    
     return YES;
 }
 
@@ -344,11 +348,13 @@
 {
     //  Get the name of the selected book, tell PLVC the book name, tell PLVC the path to that book, and set PLVC up with all the names of pages contained in that book folder
     Book *selectedBook = (Book*)[_books objectAtIndex:indexPath.row];
-    [_pageListViewController setBook:selectedBook];
-    _pageListViewController.savePath = [_pageListViewController.documentsDirectory stringByAppendingPathComponent:_pageListViewController.book.title];
+    [_bookViewController setBook:selectedBook];
+    _bookViewController.savePath = [_bookViewController.documentsDirectory stringByAppendingPathComponent:_bookViewController.book.title];
+    _bookViewController.bookTitle.text = selectedBook.title;
+    _bookViewController.numPages.text = [NSString stringWithFormat:@"%i", [selectedBook.pages count]];
     
     //  Set PLVC's navbar's title to the name of the book
-    _pageListViewController.navigationItem.title = _pageListViewController.book.title;
+    _bookViewController.navigationItem.title = _bookViewController.book.title;
 }
 
 #pragma mark - Collection view flow layout delegate
@@ -369,8 +375,9 @@
     //  Go to the PageListViewController if the user selected a book from the table
     if ([segue.identifier isEqualToString:@"ViewBook"]) {
         //  Get the PLVC that's about to come into view, and tell it where the app's Documents directory is
-        _pageListViewController = segue.destinationViewController;
-        [_pageListViewController setDocumentsDirectory:_documentsDirectory];
+        _bookViewController = (BookViewController*) ((UINavigationController*) segue.destinationViewController).topViewController;
+        _bookViewController.bookListViewController = self;
+        _bookViewController.documentsDirectory = _documentsDirectory;
     }
     //  Go to the TextReaderViewController if the user wants to take a picture from here (BLVC)
     else if ([segue.identifier isEqualToString:@"CameraFromBooks"])
