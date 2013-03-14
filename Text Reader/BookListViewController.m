@@ -398,20 +398,30 @@
         [textReaderViewController setSavePath:savePath];
         [textReaderViewController setDelegate:self];
     }
+    else if ([segue.identifier isEqualToString:@"CameraFromDetail"])
+    {
+        Book *book = ((BookViewController*)sender).book;
+        NSString *savePath = [_documentsDirectory stringByAppendingPathComponent:book.title];
+        
+        TextReaderViewController *textReaderViewController = segue.destinationViewController;
+        [textReaderViewController setSavePath:savePath];
+        [textReaderViewController setDelegate:sender];
+    }
     else if ([segue.identifier isEqualToString:@"ViewPage"])
     {
         _pageViewController = segue.destinationViewController;
-        [self setupPageViewControllerSegueWithPage:[_bookToOpen.pages objectAtIndex:0] andIndex:0];
+        Book *book = ((BookViewController*)sender).book;
+        [self setupPageViewControllerSegueWithBook:book Page:[book.pages objectAtIndex:0] Index:0];
     }
 }
 
-- (void)setupPageViewControllerSegueWithPage:(Page*)page andIndex:(NSUInteger)index
+- (void)setupPageViewControllerSegueWithBook:(Book*)book Page:(Page*)page Index:(NSUInteger)index
 {
     //  Setup PageViewController's ivars and navbar title
-    _pageViewController.book = _bookToOpen;
-    _pageViewController.savePath = [_documentsDirectory stringByAppendingPathComponent:_bookToOpen.title];
+    _pageViewController.book = book;
+    _pageViewController.savePath = [_documentsDirectory stringByAppendingPathComponent:book.title];
     _pageViewController.currentPageIndex = index;
-    [_pageViewController.navigationItem setTitle:_bookToOpen.title];
+    [_pageViewController.navigationItem setTitle:book.title];
     
     //  Create and configure a UIScrollView within which the selected image will be displayed, and get the selected image in a UIImage, and put it in a UIImageView
     _pageViewController.scrollView = [[UIScrollView alloc] init];

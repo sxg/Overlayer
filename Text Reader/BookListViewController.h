@@ -13,8 +13,6 @@
 
 @interface BookListViewController : UIViewController <UITextFieldDelegate, DBRestClientDelegate, TextReaderViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property Book *bookToOpen;
-
 - (IBAction)addBook:(id)sender;
 
 @end

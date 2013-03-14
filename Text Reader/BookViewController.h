@@ -25,5 +25,6 @@
 - (IBAction)closeModalViewController:(id)sender;
 - (IBAction)deleteBook:(id)sender;
 - (IBAction)openBook:(id)sender;
+- (IBAction)addPage:(id)sender;
 
 @end

@@ -169,6 +169,26 @@
     return _restClient;
 }
 
+#pragma mark - Dropbox delegate
+
+- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata
+{
+    NSLog(@"File uploaded successfully to path: %@", metadata.path);
+}
+
+- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error
+{
+    NSLog(@"File upload failed with error - %@", error);
+}
+
+- (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata
+{
+    if (metadata.isDirectory)
+    {
+        _folderMetadata = metadata;
+    }
+}
+
 #pragma mark - Alert view delegate
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -231,58 +251,6 @@
         [textReaderViewController setDelegate:self];
         [textReaderViewController setSavePath:_savePath];
     }
-    //  If a page's cell in the table has been selected, then setup PageViewController
-    /*else if ([segue.identifier isEqualToString:@"ViewPage"])
-    {
-        _pageViewController = segue.destinationViewController;
-        [self setupPageViewControllerSegueWithPage:[_book.pages objectAtIndex:0] andIndex:0];
-    }*/
-}
-
-//  Page is the page that should be displayed in PVC, and index is the index of that page
-- (void)setupPageViewControllerSegueWithPage:(Page*)page andIndex:(NSUInteger)index
-{
-    //  Setup PageViewController's ivars and navbar title
-    _pageViewController.book = _book;
-    _pageViewController.savePath = _savePath;
-    _pageViewController.currentPageIndex = index;
-    [_pageViewController.navigationItem setTitle:_book.title];
-    
-    //  Create and configure a UIScrollView within which the selected image will be displayed, and get the selected image in a UIImage, and put it in a UIImageView
-    _pageViewController.scrollView = [[UIScrollView alloc] init];
-    [_pageViewController.scrollView setDelegate:_pageViewController];
-    _pageViewController.image = [page pageImage];
-    _pageViewController.imageView = [[UIImageView alloc] initWithImage:_pageViewController.image];
-    [_pageViewController.scrollView addSubview:_pageViewController.imageView];
-    [_pageViewController.scrollView setContentSize:CGSizeMake(_pageViewController.imageView.image.size.width, _pageViewController.imageView.image.size.height)];
-    [_pageViewController.scrollView setMinimumZoomScale:1.0];
-    [_pageViewController.scrollView setMaximumZoomScale:3.0];
-    [_pageViewController.view addSubview:_pageViewController.scrollView];
-    
-    //  If the selected page is the first page, then disable the previous button. If the selected page is the last page, then disable the next button. Two "if"s are used in case there is only one image in the book and the first page is also the last page.
-    if (_pageViewController.currentPageIndex == 0)
-    {
-        [_pageViewController.previousButton setEnabled:NO];
-    }
-    if (_pageViewController.currentPageIndex == [_pageViewController.book.pages count] - 1)
-    {
-        [_pageViewController.nextButton setEnabled:NO];
-    }
-    
-    //  Configure the UIScrollView's size based on the current interface orientation. If the interface is portrait, then make the image take up the entire view, and if it's landscape, then horizontally center the image, but don't zoom in. 44 is the height of the navbar and toolbar, and 20 is the height of the status bar.
-    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation))
-    {
-        [_pageViewController.scrollView setFrame:CGRectMake(0, 0, _pageViewController.view.frame.size.width, _pageViewController.view.frame.size.height)];
-    }
-    else if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
-    {
-        //  The x coordinate is half the difference between the device's width and the image's width. This centers the image horizontally.
-        [_pageViewController.scrollView setFrame:CGRectMake(([UIScreen mainScreen].bounds.size.height - _pageViewController.imageView.image.size.width) / 2, 0, _pageViewController.imageView.image.size.width, [UIScreen mainScreen].bounds.size.width - 44 - 20 - 44)];
-    }
-    
-    //  Setup the page indicator
-    [_pageViewController setupPageIndicator];
-    
 }
 
 - (IBAction)openBook:(id)sender
@@ -290,8 +258,15 @@
     //  Close this modal VC
     [self dismissViewControllerAnimated:NO completion:nil];
     
-    _bookListViewController.bookToOpen = _book;
-    [_bookListViewController performSegueWithIdentifier:@"ViewPage" sender:_bookListViewController];
+    [_bookListViewController performSegueWithIdentifier:@"ViewPage" sender:self];
+}
+
+- (IBAction)addPage:(id)sender
+{
+    //  Close this modal VC
+    [self dismissViewControllerAnimated:NO completion:nil];
+    
+    [_bookListViewController performSegueWithIdentifier:@"CameraFromDetail" sender:self];
 }
 
 @end

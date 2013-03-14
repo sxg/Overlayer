@@ -295,7 +295,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vvk-1V-tJ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4686" y="537"/>
+            <point key="canvasLocation" x="3632" y="1181"/>
         </scene>
         <!--Book List View Controller-->
         <scene sceneID="DUq-8z-uyI">
@@ -372,6 +372,7 @@
                     <connections>
                         <outlet property="cv" destination="V6N-EW-dBs" id="4rR-YT-ogo"/>
                         <segue destination="sMX-am-LsL" kind="push" identifier="ViewPage" id="n9e-Jb-E4Y"/>
+                        <segue destination="exO-Je-KII" kind="push" identifier="CameraFromDetail" id="1nI-lE-rsc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="03Q-Dj-7SX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -421,7 +422,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="HZm-yd-rlT"/>
                         <barButtonItem systemItem="camera" id="pJR-ep-zbI">
                             <connections>
-                                <segue destination="exO-Je-KII" kind="push" identifier="CameraFromDetail" id="A3y-QR-K2E"/>
+                                <action selector="addPage:" destination="kRa-es-a7W" id="67Y-4I-kEi"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -450,14 +451,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bNi-QA-XWo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3632" y="739"/>
+            <point key="canvasLocation" x="3810" y="329"/>
         </scene>
         <!--Text Reader View Controller-->
         <scene sceneID="mvp-5h-mWx">
             <objects>
                 <viewController id="exO-Je-KII" customClass="TextReaderViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l3A-EF-2W3">
-                        <rect key="frame" x="0.0" y="64" width="540" height="512"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="916"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
@@ -502,7 +503,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LZR-Hc-k98" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2940" y="733"/>
+            <point key="canvasLocation" x="3104" y="329"/>
         </scene>
     </scenes>
     <resources>
@@ -514,6 +515,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="A3y-QR-K2E"/>
+        <segue reference="1nI-lE-rsc"/>
     </inferredMetricsTieBreakers>
 </document>
