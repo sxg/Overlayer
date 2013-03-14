@@ -21,7 +21,6 @@
 		4A2F7557169CD98000DD7A03 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F7556169CD98000DD7A03 /* Default.png */; };
 		4A2F7559169CD98000DD7A03 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F7558169CD98000DD7A03 /* Default@2x.png */; };
 		4A2F755B169CD98000DD7A03 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F755A169CD98000DD7A03 /* Default-568h@2x.png */; };
-		4A2F755E169CD98000DD7A03 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F755C169CD98000DD7A03 /* MainStoryboard.storyboard */; };
 		4A39942E16D2F69300D65D25 /* SettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A39942D16D2F69300D65D25 /* SettingsCell.m */; };
 		4A39943416D303CA00D65D25 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A39943316D303CA00D65D25 /* SettingsViewController.m */; };
 		4A4F69D516D168D300093AB5 /* Amoon_ComicSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A4F69D416D168D300093AB5 /* Amoon_ComicSans.ttf */; };
@@ -45,6 +44,7 @@
 		4AEA2AE816ED2ACF00AB9AE5 /* closebox.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA2AE616ED2ACF00AB9AE5 /* closebox.png */; };
 		4AEA2AE916ED2ACF00AB9AE5 /* closebox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA2AE716ED2ACF00AB9AE5 /* closebox@2x.png */; };
 		4AF183DB16F166C200C8F163 /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF183DA16F166C200C8F163 /* BookViewController.m */; };
+		4AF183E116F185EB00C8F163 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AF183DF16F185EB00C8F163 /* MainStoryboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,7 +67,6 @@
 		4A2F7556169CD98000DD7A03 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4A2F7558169CD98000DD7A03 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		4A2F755A169CD98000DD7A03 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		4A2F755D169CD98000DD7A03 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		4A2F755F169CD98000DD7A03 /* TextReaderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextReaderViewController.h; sourceTree = "<group>"; };
 		4A39942C16D2F69300D65D25 /* SettingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsCell.h; sourceTree = "<group>"; };
 		4A39942D16D2F69300D65D25 /* SettingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsCell.m; sourceTree = "<group>"; };
@@ -105,6 +104,7 @@
 		4AEA2AE716ED2ACF00AB9AE5 /* closebox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closebox@2x.png"; sourceTree = "<group>"; };
 		4AF183D916F166C200C8F163 /* BookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookViewController.h; sourceTree = "<group>"; };
 		4AF183DA16F166C200C8F163 /* BookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookViewController.m; sourceTree = "<group>"; };
+		4AF183E016F185EB00C8F163 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "Text Reader/en.lproj/MainStoryboard.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,7 +203,7 @@
 			children = (
 				4A2F7553169CD98000DD7A03 /* TextReaderAppDelegate.h */,
 				4A2F7554169CD98000DD7A03 /* TextReaderAppDelegate.m */,
-				4A2F755C169CD98000DD7A03 /* MainStoryboard.storyboard */,
+				4AF183DF16F185EB00C8F163 /* MainStoryboard.storyboard */,
 				4A23395B16CAC07400772782 /* View Controllers */,
 				4A23395C16CAC08A00772782 /* Custom Classes and Categories */,
 				4A2F754B169CD98000DD7A03 /* Supporting Files */,
@@ -292,7 +292,6 @@
 				4A2F7557169CD98000DD7A03 /* Default.png in Resources */,
 				4A2F7559169CD98000DD7A03 /* Default@2x.png in Resources */,
 				4A2F755B169CD98000DD7A03 /* Default-568h@2x.png in Resources */,
-				4A2F755E169CD98000DD7A03 /* MainStoryboard.storyboard in Resources */,
 				4A6A867916CF32B200D2B3A5 /* icon.png in Resources */,
 				4A6A867B16CF32B500D2B3A5 /* icon2x.png in Resources */,
 				4A6A867D16CF3B3D00D2B3A5 /* iconx2.png in Resources */,
@@ -303,6 +302,7 @@
 				4AEA2AE916ED2ACF00AB9AE5 /* closebox@2x.png in Resources */,
 				4ADAF69B16ED706300123D2B /* Changelog.rtf in Resources */,
 				4ADAF69D16ED7D7700123D2B /* collectionViewBackground.png in Resources */,
+				4AF183E116F185EB00C8F163 /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,12 +360,13 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		4A2F755C169CD98000DD7A03 /* MainStoryboard.storyboard */ = {
+		4AF183DF16F185EB00C8F163 /* MainStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				4A2F755D169CD98000DD7A03 /* en */,
+				4AF183E016F185EB00C8F163 /* en */,
 			);
 			name = MainStoryboard.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

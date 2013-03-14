@@ -21,8 +21,10 @@
 
 #import "PageListViewController.h"
 #import "BookListViewController.h"
+#import "Page.h"
 #import "BookListViewCell.h"
 #import "BookViewController.h"
+#import "PageViewController.h"
 #import "TextReaderViewController.h"
 #import "SettingsViewController.h"
 #import "Book.h"
@@ -34,6 +36,7 @@
 @property (nonatomic) NSMutableArray *books;
 @property NSString *documentsDirectory;
 @property BookViewController *bookViewController;
+@property PageViewController *pageViewController;
 @property UIPopoverController *popover;
 @property DBMetadata *folderMetadata;
 @property (nonatomic) DBRestClient *restClient;
@@ -395,6 +398,56 @@
         [textReaderViewController setSavePath:savePath];
         [textReaderViewController setDelegate:self];
     }
+    else if ([segue.identifier isEqualToString:@"ViewPage"])
+    {
+        _pageViewController = segue.destinationViewController;
+        [self setupPageViewControllerSegueWithPage:[_bookToOpen.pages objectAtIndex:0] andIndex:0];
+    }
+}
+
+- (void)setupPageViewControllerSegueWithPage:(Page*)page andIndex:(NSUInteger)index
+{
+    //  Setup PageViewController's ivars and navbar title
+    _pageViewController.book = _bookToOpen;
+    _pageViewController.savePath = [_documentsDirectory stringByAppendingPathComponent:_bookToOpen.title];
+    _pageViewController.currentPageIndex = index;
+    [_pageViewController.navigationItem setTitle:_bookToOpen.title];
+    
+    //  Create and configure a UIScrollView within which the selected image will be displayed, and get the selected image in a UIImage, and put it in a UIImageView
+    _pageViewController.scrollView = [[UIScrollView alloc] init];
+    [_pageViewController.scrollView setDelegate:_pageViewController];
+    _pageViewController.image = [page pageImage];
+    _pageViewController.imageView = [[UIImageView alloc] initWithImage:_pageViewController.image];
+    [_pageViewController.scrollView addSubview:_pageViewController.imageView];
+    [_pageViewController.scrollView setContentSize:CGSizeMake(_pageViewController.imageView.image.size.width, _pageViewController.imageView.image.size.height)];
+    [_pageViewController.scrollView setMinimumZoomScale:1.0];
+    [_pageViewController.scrollView setMaximumZoomScale:3.0];
+    [_pageViewController.view addSubview:_pageViewController.scrollView];
+    
+    //  If the selected page is the first page, then disable the previous button. If the selected page is the last page, then disable the next button. Two "if"s are used in case there is only one image in the book and the first page is also the last page.
+    if (_pageViewController.currentPageIndex == 0)
+    {
+        [_pageViewController.previousButton setEnabled:NO];
+    }
+    if (_pageViewController.currentPageIndex == [_pageViewController.book.pages count] - 1)
+    {
+        [_pageViewController.nextButton setEnabled:NO];
+    }
+    
+    //  Configure the UIScrollView's size based on the current interface orientation. If the interface is portrait, then make the image take up the entire view, and if it's landscape, then horizontally center the image, but don't zoom in. 44 is the height of the navbar and toolbar, and 20 is the height of the status bar.
+    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation))
+    {
+        [_pageViewController.scrollView setFrame:CGRectMake(0, 0, _pageViewController.view.frame.size.width, _pageViewController.view.frame.size.height - 44 - 44)];
+    }
+    else if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
+    {
+        //  The x coordinate is half the difference between the device's width and the image's width. This centers the image horizontally.
+        [_pageViewController.scrollView setFrame:CGRectMake(([UIScreen mainScreen].bounds.size.height - _pageViewController.imageView.image.size.width) / 2, 0, _pageViewController.imageView.image.size.width, [UIScreen mainScreen].bounds.size.width - 44 - 20 - 44)];
+    }
+    
+    //  Setup the page indicator
+    [_pageViewController setupPageIndicator];
+    
 }
 
 @end

@@ -232,11 +232,11 @@
         [textReaderViewController setSavePath:_savePath];
     }
     //  If a page's cell in the table has been selected, then setup PageViewController
-    else if ([segue.identifier isEqualToString:@"ViewPage"])
+    /*else if ([segue.identifier isEqualToString:@"ViewPage"])
     {
         _pageViewController = segue.destinationViewController;
         [self setupPageViewControllerSegueWithPage:[_book.pages objectAtIndex:0] andIndex:0];
-    }
+    }*/
 }
 
 //  Page is the page that should be displayed in PVC, and index is the index of that page
@@ -282,7 +282,16 @@
     
     //  Setup the page indicator
     [_pageViewController setupPageIndicator];
+    
+}
 
+- (IBAction)openBook:(id)sender
+{
+    //  Close this modal VC
+    [self dismissViewControllerAnimated:NO completion:nil];
+    
+    _bookListViewController.bookToOpen = _book;
+    [_bookListViewController performSegueWithIdentifier:@"ViewPage" sender:_bookListViewController];
 }
 
 @end

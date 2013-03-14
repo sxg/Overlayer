@@ -47,6 +47,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    //  Setup toolbar and navbar
+    [self.navigationController setToolbarHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning
