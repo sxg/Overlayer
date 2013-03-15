@@ -45,6 +45,7 @@
 		4AEA2AE516ED232B00AB9AE5 /* bookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA2AE416ED232B00AB9AE5 /* bookIcon.png */; };
 		4AEA2AE816ED2ACF00AB9AE5 /* closebox.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA2AE616ED2ACF00AB9AE5 /* closebox.png */; };
 		4AEA2AE916ED2ACF00AB9AE5 /* closebox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA2AE716ED2ACF00AB9AE5 /* closebox@2x.png */; };
+		4AEE09B416F3C21600C9D967 /* ClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEE09B316F3C21600C9D967 /* ClipView.m */; };
 		4AF183DB16F166C200C8F163 /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF183DA16F166C200C8F163 /* BookViewController.m */; };
 		4AF183E116F185EB00C8F163 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AF183DF16F185EB00C8F163 /* MainStoryboard.storyboard */; };
 /* End PBXBuildFile section */
@@ -106,6 +107,8 @@
 		4AEA2AE416ED232B00AB9AE5 /* bookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bookIcon.png; path = Images/bookIcon.png; sourceTree = "<group>"; };
 		4AEA2AE616ED2ACF00AB9AE5 /* closebox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closebox.png; sourceTree = "<group>"; };
 		4AEA2AE716ED2ACF00AB9AE5 /* closebox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closebox@2x.png"; sourceTree = "<group>"; };
+		4AEE09B216F3C21600C9D967 /* ClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClipView.h; sourceTree = "<group>"; };
+		4AEE09B316F3C21600C9D967 /* ClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClipView.m; sourceTree = "<group>"; };
 		4AF183D916F166C200C8F163 /* BookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookViewController.h; sourceTree = "<group>"; };
 		4AF183DA16F166C200C8F163 /* BookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookViewController.m; sourceTree = "<group>"; };
 		4AF183E016F185EB00C8F163 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "Text Reader/en.lproj/MainStoryboard.storyboard"; sourceTree = "<group>"; };
@@ -168,6 +171,8 @@
 				4AB487E016B74B00005960FA /* Character.m */,
 				4A39942C16D2F69300D65D25 /* SettingsCell.h */,
 				4A39942D16D2F69300D65D25 /* SettingsCell.m */,
+				4AEE09B216F3C21600C9D967 /* ClipView.h */,
+				4AEE09B316F3C21600C9D967 /* ClipView.m */,
 			);
 			name = "Custom Classes and Categories";
 			sourceTree = "<group>";
@@ -354,6 +359,7 @@
 				4ADAF69616ED5A0500123D2B /* Book.m in Sources */,
 				4ADAF69916ED5B1300123D2B /* Page.m in Sources */,
 				4AF183DB16F166C200C8F163 /* BookViewController.m in Sources */,
+				4AEE09B416F3C21600C9D967 /* ClipView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

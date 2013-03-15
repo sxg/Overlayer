@@ -27,9 +27,11 @@
 #import "PageViewController.h"
 #import "TextReaderViewController.h"
 #import "SettingsViewController.h"
+#import "ClipView.h"
 #import "Book.h"
 #import <DropboxSDK/DropboxSDK.h>
 #import <dispatch/dispatch.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface BookListViewController ()
 
@@ -391,11 +393,18 @@
         {
             NSString *imagePath = [_bookViewController.savePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%i.png", (i + 1)]];
             UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:imagePath]];
-            [imageView setFrame:CGRectMake(i * (198 + 20), 0, 198, 264)];
+            [imageView setFrame:CGRectMake(i * (275 + 20), 0, 275, 337)];
+            imageView.layer.shadowColor = [UIColor blackColor].CGColor;
+            imageView.layer.shadowOpacity = 0.35;
+            imageView.layer.shadowOffset = CGSizeMake(4, 4);
+            imageView.layer.shadowRadius = 1.0;
+            imageView.clipsToBounds = NO;
+            
             
             [_bookViewController.scrollingPages addSubview:imageView];
         }
-        [_bookViewController.scrollingPages setContentSize:CGSizeMake([selectedBook.pages count] * (198 + 20), 264)];
+        [_bookViewController.scrollingPages setClipsToBounds:NO];
+        [_bookViewController.scrollingPages setContentSize:CGSizeMake([selectedBook.pages count] * (275 + 20), 337)];
     });
 }
 

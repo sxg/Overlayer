@@ -12,6 +12,7 @@
 #import "UIImage+LineDrawer.h"
 #import "DrawingView.h"
 #import "Page.h"
+#import "ClipView.h"
 #import <dispatch/dispatch.h>
 #import <DropboxSDK/DropboxSDK.h>
 #import <QuartzCore/QuartzCore.h>
@@ -26,6 +27,7 @@
 @property IBOutlet UIBarButtonItem *openButton;
 @property IBOutlet UIBarButtonItem *deleteButton;
 @property IBOutlet UIBarButtonItem *cameraButton;
+@property IBOutlet ClipView *clipView;
 
 @end
 
@@ -46,6 +48,8 @@
 	// Do any additional setup after loading the view
     
     [self.navigationController setToolbarHidden:NO];
+    [_clipView setClipsToBounds:YES];
+    [_clipView setScrollingPages:_scrollingPages];
     
     //  Set navbar color
     float grayVal = ((float)66/(float)255);
