@@ -18,6 +18,7 @@
 @property (nonatomic) Book *book;
 @property IBOutlet UILabel *bookTitle;
 @property IBOutlet UILabel *numPages;
+@property IBOutlet UIScrollView *scrollingPages;
 @property NSString *savePath;
 @property NSString *documentsDirectory;
 @property BookListViewController *bookListViewController;

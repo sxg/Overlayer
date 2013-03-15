@@ -392,6 +392,10 @@
                         <rect key="frame" x="0.0" y="64" width="540" height="512"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="scrollviewBackground.png" id="njR-Om-d2y">
+                                <rect key="frame" x="0.0" y="135" width="540" height="377"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fxr-7S-pzS">
                                 <rect key="frame" x="20" y="20" width="505" height="78"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -400,16 +404,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Pages" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wzU-JW-hia">
-                                <rect key="frame" x="53" y="106" width="49" height="21"/>
+                                <rect key="frame" x="51" y="77" width="151" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" id="UVj-Ib-MH8">
-                                <rect key="frame" x="0.0" y="364" width="540" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </pageControl>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="Bmx-1K-Jqh">
+                                <rect key="frame" x="0.0" y="135" width="540" height="377"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <inset key="contentInset" minX="25" minY="25" maxX="10" maxY="25"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -447,6 +452,7 @@
                         <outlet property="deleteButton" destination="2sK-X8-brT" id="Wce-re-zUU"/>
                         <outlet property="numPages" destination="wzU-JW-hia" id="mT0-8r-U2m"/>
                         <outlet property="openButton" destination="SGN-Rh-rWB" id="WO0-aZ-m1J"/>
+                        <outlet property="scrollingPages" destination="Bmx-1K-Jqh" id="peW-VV-fhQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bNi-QA-XWo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -508,6 +514,7 @@
     </scenes>
     <resources>
         <image name="bookIcon.png" width="193" height="250"/>
+        <image name="scrollviewBackground.png" width="540" height="377"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>

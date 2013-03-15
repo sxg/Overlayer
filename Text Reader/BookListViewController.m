@@ -29,6 +29,7 @@
 #import "SettingsViewController.h"
 #import "Book.h"
 #import <DropboxSDK/DropboxSDK.h>
+#import <dispatch/dispatch.h>
 
 @interface BookListViewController ()
 
@@ -40,6 +41,7 @@
 @property UIPopoverController *popover;
 @property DBMetadata *folderMetadata;
 @property (nonatomic) DBRestClient *restClient;
+@property dispatch_queue_t backgroundQueue;
 
 @end
 
@@ -84,6 +86,9 @@
     
     //  Link Dropbox
     [self linkWithDropbox];
+    
+    //  Create the background queue
+    _backgroundQueue = dispatch_queue_create("backgroundQueue", NULL);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -373,10 +378,25 @@
     [_bookViewController setBook:selectedBook];
     _bookViewController.savePath = [_bookViewController.documentsDirectory stringByAppendingPathComponent:_bookViewController.book.title];
     _bookViewController.bookTitle.text = selectedBook.title;
-    _bookViewController.numPages.text = [NSString stringWithFormat:@"%i", [selectedBook.pages count]];
+    [_bookViewController.bookTitle setFont:[UIFont fontWithName:@"Amoon1" size:50]];
+    _bookViewController.numPages.text = [NSString stringWithFormat:@"%i pages", [selectedBook.pages count]];
+    [_bookViewController.numPages setFont:[UIFont fontWithName:@"Amoon1" size:17]];
     
     //  Set PLVC's navbar's title to the name of the book
     _bookViewController.navigationItem.title = _bookViewController.book.title;
+    
+    //  Setup scrollview and images
+    dispatch_async(_backgroundQueue, ^{
+        for (int i = 0; i < [selectedBook.pages count]; i++)
+        {
+            NSString *imagePath = [_bookViewController.savePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%i.png", (i + 1)]];
+            UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:imagePath]];
+            [imageView setFrame:CGRectMake(i * (198 + 20), 0, 198, 264)];
+            
+            [_bookViewController.scrollingPages addSubview:imageView];
+        }
+        [_bookViewController.scrollingPages setContentSize:CGSizeMake([selectedBook.pages count] * (198 + 20), 264)];
+    });
 }
 
 #pragma mark - Collection view flow layout delegate
