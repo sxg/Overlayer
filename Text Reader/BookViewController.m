@@ -239,9 +239,18 @@
     
     //  Reload the book and the table
     _book = [[Book alloc] initWithPath:_savePath];
-    
-#warning update the page control
-    //[self.tableView reloadData];
+}
+
+#pragma mark - Gesture recognizer delegate
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    return YES;
 }
 
 #pragma mark - Segue control
@@ -283,6 +292,12 @@
     [self dismissViewControllerAnimated:NO completion:nil];
     
     [_bookListViewController performSegueWithIdentifier:@"CameraFromDetail" sender:self];
+}
+
+- (IBAction)imageViewTapped:(id)sender
+{
+    //int x = ((UIImageView*)sender).frame.origin.x;
+    NSLog(@"%i", 5);
 }
 
 @end

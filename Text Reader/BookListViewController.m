@@ -400,10 +400,17 @@
             imageView.layer.shadowRadius = 1.0;
             imageView.clipsToBounds = NO;
             
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:_bookViewController action:@selector(imageViewTapped:)];
+            tap.delegate = _bookViewController;
+            tap.numberOfTapsRequired = 1;
+            tap.numberOfTouchesRequired = 1;
+            [imageView setUserInteractionEnabled:YES];
+            [imageView addGestureRecognizer:tap];
             
             [_bookViewController.scrollingPages addSubview:imageView];
         }
         [_bookViewController.scrollingPages setClipsToBounds:NO];
+        [_bookViewController.scrollingPages setCanCancelContentTouches:YES];
         [_bookViewController.scrollingPages setContentSize:CGSizeMake([selectedBook.pages count] * (275 + 20), 337)];
     });
 }

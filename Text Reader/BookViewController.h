@@ -12,7 +12,7 @@
 #import <DropboxSDK/DropboxSDK.h>
 #import <UIKit/UIKit.h>
 
-@interface BookViewController : UIViewController <TextReaderViewControllerDelegate, DBRestClientDelegate, UIAlertViewDelegate>
+@interface BookViewController : UIViewController <TextReaderViewControllerDelegate, DBRestClientDelegate, UIAlertViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic) DBRestClient *restClient;
 @property (nonatomic) Book *book;
@@ -27,5 +27,6 @@
 - (IBAction)deleteBook:(id)sender;
 - (IBAction)openBook:(id)sender;
 - (IBAction)addPage:(id)sender;
+- (IBAction)imageViewTapped:(id)sender;
 
 @end
