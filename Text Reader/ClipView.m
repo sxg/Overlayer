@@ -19,6 +19,7 @@
     return self;
 }
 
+//  This overrides the normal hittest method. This way, the scrollview and the imageviews within it work as intended.
 - (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent*)event
 {
     UIView* child = nil;
