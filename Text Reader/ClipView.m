@@ -19,13 +19,22 @@
     return self;
 }
 
-- (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+- (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent*)event
 {
-    if ([self pointInside:point withEvent:event])
+    UIView* child = nil;
+    if ((child = [super hitTest:point withEvent:event]) == self)
     {
-        return _scrollingPages;
+        for (UIView *subview in self.scrollingPages.subviews)
+        {
+            CGPoint newPoint = [subview convertPoint:point fromView:self];
+            if ([subview pointInside:newPoint withEvent:event])
+            {
+                return subview;
+            }
+        }
+    	return self.scrollingPages;
     }
-    return nil;
+    return child;
 }
 
 /*

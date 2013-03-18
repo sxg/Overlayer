@@ -39,7 +39,6 @@
 @property (nonatomic) NSMutableArray *books;
 @property NSString *documentsDirectory;
 @property BookViewController *bookViewController;
-@property PageViewController *pageViewController;
 @property UIPopoverController *popover;
 @property DBMetadata *folderMetadata;
 @property (nonatomic) DBRestClient *restClient;
@@ -436,6 +435,7 @@
         _bookViewController = (BookViewController*) ((UINavigationController*) segue.destinationViewController).topViewController;
         _bookViewController.bookListViewController = self;
         _bookViewController.documentsDirectory = _documentsDirectory;
+        _bookViewController.indexOfPageToOpen = -1;
     }
     //  Go to the TextReaderViewController if the user wants to take a picture from here (BLVC)
     else if ([segue.identifier isEqualToString:@"CameraFromBooks"])
@@ -466,7 +466,14 @@
     {
         _pageViewController = segue.destinationViewController;
         Book *book = ((BookViewController*)sender).book;
-        [self setupPageViewControllerSegueWithBook:book Page:[book.pages objectAtIndex:0] Index:0];
+        int indexOfPageToOpen = ((BookViewController*)sender).indexOfPageToOpen;
+        
+        if (indexOfPageToOpen == -1)
+            [self setupPageViewControllerSegueWithBook:book Page:[book.pages objectAtIndex:0] Index:0];
+        else
+            [self setupPageViewControllerSegueWithBook:book Page:[book.pages objectAtIndex:indexOfPageToOpen] Index:indexOfPageToOpen];
+        
+        ((BookViewController*)sender).indexOfPageToOpen = -1;
     }
 }
 

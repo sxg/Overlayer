@@ -296,8 +296,11 @@
 
 - (IBAction)imageViewTapped:(id)sender
 {
-    //int x = ((UIImageView*)sender).frame.origin.x;
-    NSLog(@"%i", 5);
+    int x = ((UIImageView*)((UITapGestureRecognizer*)sender).view).frame.origin.x;
+    _indexOfPageToOpen = x / (275 + 20);
+
+    [self dismissViewControllerAnimated:NO completion:nil];
+    [_bookListViewController performSegueWithIdentifier:@"ViewPage" sender:self];
 }
 
 @end

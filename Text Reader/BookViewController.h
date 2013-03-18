@@ -22,6 +22,7 @@
 @property NSString *savePath;
 @property NSString *documentsDirectory;
 @property BookListViewController *bookListViewController;
+@property int indexOfPageToOpen;
 
 - (IBAction)closeModalViewController:(id)sender;
 - (IBAction)deleteBook:(id)sender;
