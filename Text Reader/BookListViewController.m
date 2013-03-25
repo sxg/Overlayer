@@ -294,6 +294,7 @@
         //  Create a new folder by the name the user specifies in the textfield, and add it to the data source _books
         NSString *path = [_documentsDirectory stringByAppendingPathComponent:bookName];
         [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:nil];
+        [[NSFileManager defaultManager] createDirectoryAtPath:[path stringByAppendingPathComponent:@"small"] withIntermediateDirectories:NO attributes:nil error:nil];
         Book *book = [[Book alloc] initWithPath:path];
         [_books addObject:book];
         
@@ -390,7 +391,7 @@
     dispatch_async(_backgroundQueue, ^{
         for (int i = 0; i < [selectedBook.pages count]; i++)
         {
-            NSString *imagePath = [_bookViewController.savePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%i.png", (i + 1)]];
+            NSString *imagePath = [[_bookViewController.savePath stringByAppendingPathComponent:@"small"] stringByAppendingPathComponent:[NSString stringWithFormat:@"%i.png", (i + 1)]];
             UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:imagePath]];
             [imageView setFrame:CGRectMake(i * (275 + 20), 0, 275, 337)];
             imageView.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -444,6 +445,7 @@
         NSString *defaultBookName = [self getDefaultBookName];
         NSString *savePath = [_documentsDirectory stringByAppendingPathComponent:defaultBookName];
         [[NSFileManager defaultManager] createDirectoryAtPath:savePath withIntermediateDirectories:NO attributes:nil error:nil];
+        [[NSFileManager defaultManager] createDirectoryAtPath:[savePath stringByAppendingPathComponent:@"small"] withIntermediateDirectories:NO attributes:nil error:nil];
         
         //  Create book folder on Dropbox
         NSString *dropboxPath = [@"/" stringByAppendingPathComponent:defaultBookName];

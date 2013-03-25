@@ -21,6 +21,7 @@
         _path = path;
         
         NSMutableArray *pageNames = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil] mutableCopy];
+        [pageNames removeObject:@"small"];
         
         //  Sort names of pages numerically so that 10.png does not come before 2.png
         NSSortDescriptor *numericalSort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:YES selector:@selector(localizedStandardCompare:)];

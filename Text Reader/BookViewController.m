@@ -150,6 +150,7 @@
 {
     //  The path to the new image
     NSString *imagePath = [_savePath stringByAppendingPathComponent:pageName];
+    NSString *smallImagePath = [[_savePath stringByAppendingPathComponent:@"small"] stringByAppendingPathComponent:pageName];
     
     //  Setup a new graphics context from the container view and create an image from that context
     UIGraphicsBeginImageContext(imageAndPathView.bounds.size);
@@ -159,6 +160,8 @@
     
     //  Save the new image
     [UIImagePNGRepresentation(image) writeToFile:imagePath atomically:YES];
+    UIImage *smallImage = [image imageScaledToSize:CGSizeMake(275/2, 337/2)];
+    [UIImagePNGRepresentation(smallImage) writeToFile:smallImagePath atomically:YES];
     
     [self finishedSavingImage:pageName toPath:imagePath uploadToDropbox:YES];
 }

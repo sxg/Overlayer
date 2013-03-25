@@ -222,9 +222,12 @@
             _backgroundImageName = [NSString stringWithFormat:@"%i.png", (i + 1)];
         }
         NSString *imagePath = [_savePath stringByAppendingPathComponent:_backgroundImageName];
+        NSString *smallImagePath = [[_savePath stringByAppendingPathComponent:@"small"] stringByAppendingPathComponent:_backgroundImageName];
         
         //  Save the image and inform the delegate that saving has completed
         [UIImagePNGRepresentation(_backgroundImage) writeToFile:imagePath atomically:YES];
+        UIImage *smallImage = [_backgroundImage imageScaledToSize:CGSizeMake(275/2, 337/2)];
+        [UIImagePNGRepresentation(smallImage) writeToFile:smallImagePath atomically:YES];
         
         //  Dropbox rest client methods MUST be called from the main thread
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -239,6 +242,7 @@
     dispatch_async(_backgroundQueue, ^{
         //  Get the path to the original image
         NSString *imagePath = [_savePath stringByAppendingPathComponent:_backgroundImageName];
+        NSString *smallImagePath = [[_savePath stringByAppendingPathComponent:@"small"] stringByAppendingPathComponent:_backgroundImageName];
         
         //  Consolidate imageAndPathView's two subviews into a single image
         UIGraphicsBeginImageContext(_imageAndPathView.bounds.size);
@@ -248,6 +252,8 @@
         
         //  Save the image and inform the delegate that saving has completed
         [UIImagePNGRepresentation(image) writeToFile:imagePath atomically:YES];
+        UIImage *smallImage = [image imageScaledToSize:CGSizeMake(275/2, 337/2)];
+        [UIImagePNGRepresentation(smallImage) writeToFile:smallImagePath atomically:YES];
         
         //  Dropbox rest client methods MUST be called from the main thread
         dispatch_async(dispatch_get_main_queue(), ^{
