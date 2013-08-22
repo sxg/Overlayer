@@ -30,7 +30,6 @@
 #import "PageListViewCell.h"
 #import "Page.h"
 #import <dispatch/dispatch.h>
-#import <DropboxSDK/DropboxSDK.h>
 #import <QuartzCore/QuartzCore.h>
 
 @interface PageListViewController ()
@@ -38,7 +37,6 @@
 @property PageViewController *pageViewController;
 @property UIBarButtonItem *drawLinesButton;
 @property dispatch_queue_t backgroundQueue;
-@property DBMetadata *folderMetadata;
 
 @end
 
@@ -76,7 +74,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    _book = [[Book alloc] initWithPath:_savePath];
+    //_book = [[Book alloc] initWithPath:_savePath];
     [self.tableView reloadData];
 }
 
@@ -93,7 +91,7 @@
 {
     dispatch_async(_backgroundQueue, ^{
         //  Iterate through all the page file names in this book individually
-        for (Page *page in [_book pages])
+        /*for (Page *page in [_book pages])
         {
             //  Get the PageListViewCell corresponding to the current page file name and mark it as currently processing
             int i = [[_book pages] indexOfObject:page];
@@ -154,7 +152,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [cell resizeAndRemoveLoadingIndicator:YES];
             });
-        }
+        }*/
     });
 }
 
@@ -178,63 +176,13 @@
     [self finishedSavingImage:pageName toPath:imagePath uploadToDropbox:YES];
 }
 
-- (DBRestClient*)restClient
-{
-    if (!_restClient) {
-        _restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
-        _restClient.delegate = self;
-    }
-    
-    return _restClient;
-}
-
-#pragma mark - Dropbox delegate
-
-- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata
-{
-    NSLog(@"File uploaded successfully to path: %@", metadata.path);
-}
-
-- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error
-{
-    NSLog(@"File upload failed with error - %@", error);
-}
-
-- (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata
-{
-    if (metadata.isDirectory)
-    {
-        _folderMetadata = metadata;
-    }
-}
-
 #pragma mark - TextReaderViewControl delegate
 
 //  TextReaderViewController calls this when an image has been saved. This implementation makes the PLVC refresh the table's data and display so that the newly saved image can be seen immediately.
 - (void)finishedSavingImage:(NSString *)fileName toPath:(NSString *)path uploadToDropbox:(bool)shouldUpload
 {
-    if (shouldUpload)
-    {
-        //  Save image to Dropbox
-        NSString *destDir = [@"/" stringByAppendingPathComponent:_book.title];
         
-        //  Look for an existing file
-        [[self restClient] loadMetadata:destDir];
-        NSString *parentRev = nil;
-        for (DBMetadata *file in _folderMetadata.contents)
-        {
-            if ([file.filename isEqualToString:fileName])
-            {
-                parentRev = file.rev;
-            }
-        }
-        _folderMetadata = nil;
-        
-        [[self restClient] uploadFile:fileName toPath:destDir withParentRev:parentRev fromPath:path];
-    }
-    
     //  Reload the book and the table
-    _book = [[Book alloc] initWithPath:_savePath];
     [self.tableView reloadData];
 }
 
@@ -244,32 +192,6 @@
 {
     // Return the number of sections.
     return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return [_book.pages count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Page";
-    PageListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    //  Set the PageListViewCell's UILabel's text to the file name of the image it is supposed to open
-    Page *page = (Page*)[_book.pages objectAtIndex:indexPath.row];
-    [cell.label setFont:[UIFont fontWithName:@"Amoon1" size:20]];
-    [cell.label setText:[page pageName]];
-    
-    //  If this PageListViewCell is currently being processed, then shift the UILabel and add the UIActivityIndicator without an animation
-    if ([cell isProcessing]) {
-        [cell resizeAndAddLoadingIndicator:NO];
-    }
-    
-    return cell;
 }
 
 // Override to support conditional editing of the table view.
@@ -284,14 +206,14 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        Page *pageToDelete = (Page*)[_book.pages objectAtIndex:indexPath.row];
-        NSString *pathToPage = pageToDelete.pagePath;
-        [[NSFileManager defaultManager] removeItemAtPath:pathToPage error:nil];
-        [_book.pages removeObjectAtIndex:indexPath.row];
+        //Page *pageToDelete = (Page*)[_book.pages objectAtIndex:indexPath.row];
+        //NSString *pathToPage = pageToDelete.pagePath;
+        //[[NSFileManager defaultManager] removeItemAtPath:pathToPage error:nil];
+        //[_book.pages removeObjectAtIndex:indexPath.row];
         
         //  Delete from Dropbox
-        NSString *dropboxPath = [[@"/" stringByAppendingPathComponent:_book.title] stringByAppendingPathComponent:[pageToDelete pageName]];
-        [[self restClient] deletePath:dropboxPath];
+       // NSString *dropboxPath = [[@"/" stringByAppendingPathComponent:_book.title] stringByAppendingPathComponent:[pageToDelete pageName]];
+        //[[self restClient] deletePath:dropboxPath];
         
         //  Remove the row from the table as well
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -338,7 +260,7 @@
     
     
     //  Get the selected page and the path to that page
-    Page *page = [_book.pages objectAtIndex:indexPath.row];
+    //Page *page = [_book.pages objectAtIndex:indexPath.row];
     
     //  Perform the segue to PageViewController manually since in the Storyboard the segue is not setup to activate upon selecting a cell. This is because I want to allow users to also select specific cells that they would like to process (this functionality has not been implemented yet). Since selecting a cell is an ambiguous action, the segue is not performed simply on detecting a selection but on this specific type of selection.
     [self performSegueWithIdentifier:@"ViewPage" sender:self];
@@ -352,7 +274,7 @@
     //  Create and configure a UIScrollView within which the selected image will be displayed, and get the selected image in a UIImage, and put it in a UIImageView
     _pageViewController.scrollView = [[UIScrollView alloc] init];
     [_pageViewController.scrollView setDelegate:_pageViewController];
-    _pageViewController.image = [page pageImage];
+    //_pageViewController.image = [page pageImage];
     _pageViewController.imageView = [[UIImageView alloc] initWithImage:_pageViewController.image];
     [_pageViewController.scrollView addSubview:_pageViewController.imageView];
     [_pageViewController.scrollView setContentSize:CGSizeMake(_pageViewController.imageView.image.size.width, _pageViewController.imageView.image.size.height)];
@@ -365,10 +287,10 @@
     {
         [_pageViewController.previousButton setEnabled:NO];
     }
-    if (_pageViewController.currentPageIndex == [_pageViewController.book.pages count] - 1)
+    /*if (_pageViewController.currentPageIndex == [_pageViewController.book.pages count] - 1)
     {
         [_pageViewController.nextButton setEnabled:NO];
-    }
+    }*/
     
     //  Configure the UIScrollView's size based on the current interface orientation. If the interface is portrait, then make the image take up the entire view, and if it's landscape, then horizontally center the image, but don't zoom in. 44 is the height of the navbar and toolbar, and 20 is the height of the status bar.
     if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation))

@@ -29,6 +29,7 @@
 
 @property UIView *pageIndicator;
 @property UILabel *indicatorLabel;
+@property UIDocumentInteractionController *diController;
 
 @end
 
@@ -51,6 +52,9 @@
     //  Setup toolbar and navbar
     [self.navigationController setToolbarHidden:NO];
     [self.navigationController setNavigationBarHidden:NO];
+    
+    NSString *path = [_savePath stringByAppendingFormat:@"/%i.png", _currentPageIndex + 1];
+    _diController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:path]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,7 +93,7 @@
     _indicatorLabel.textColor = [UIColor whiteColor];
     _indicatorLabel.font = [UIFont fontWithName:@"Amoon1" size:17];
     _indicatorLabel.textAlignment = NSTextAlignmentCenter;
-    _indicatorLabel.text = [NSString stringWithFormat:@"%i of %i", (_currentPageIndex + 1), [_book.pages count]];
+    //_indicatorLabel.text = [NSString stringWithFormat:@"%i of %i", (_currentPageIndex + 1), [_book.pages count]];
     [_pageIndicator addSubview:_indicatorLabel];
     
     [self.view addSubview:_pageIndicator];
@@ -127,8 +131,8 @@
         }
         
         //  Set the previous image to _imageView's image and the navbar title to the previous image's file name
-        Page *page = [_book.pages objectAtIndex:_currentPageIndex];
-        _imageView.image = [page pageImage];
+        //Page *page = [_book.pages objectAtIndex:_currentPageIndex];
+        //_imageView.image = [page pageImage];
         
         //  If we are now on the first page of the book, then disable the previous button
         if (_currentPageIndex == 0)
@@ -148,7 +152,7 @@
     [_pageIndicator removeFromSuperview];
     
     //  The button should only work if the current page isn't the last page
-    if (_currentPageIndex < [_book.pages count] - 1)
+    /*if (_currentPageIndex < [_book.pages count] - 1)
     {
         //  Set the current page index to the next page index
         _currentPageIndex++;
@@ -171,7 +175,12 @@
         
         //  Setup the page indicator (translucent bubble that says "x of y")
         [self setupPageIndicator];
-    }
+    }*/
+}
+
+- (IBAction)openIn:(id)sender
+{
+    [_diController presentOpenInMenuFromBarButtonItem:_actionButton animated:YES];
 }
 
 #pragma mark - UIScrollView delegate methods

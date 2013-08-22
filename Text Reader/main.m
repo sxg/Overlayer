@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TextReaderAppDelegate.h"
+#import "SGTextReaderAppDelegate.h"
 
 int main(int argc, char *argv[])
 {

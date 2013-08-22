@@ -8,14 +8,12 @@
 
 #import "PageViewController.h"
 #import "TextReaderViewController.h"
-#import "Book.h"
+#import "SGBook.h"
 #import <UIKit/UIKit.h>
-#import <DropboxSDK/DropboxSDK.h>
 
-@interface PageListViewController : UITableViewController <TextReaderViewControllerDelegate, DBRestClientDelegate>
+@interface PageListViewController : UITableViewController <TextReaderViewControllerDelegate>
 
-@property (nonatomic) DBRestClient *restClient;
-@property (nonatomic) Book *book;
+@property (nonatomic) SGBook *book;
 @property NSString *savePath;
 @property NSString *documentsDirectory;
 

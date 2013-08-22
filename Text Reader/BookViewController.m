@@ -14,20 +14,19 @@
 #import "Page.h"
 #import "ClipView.h"
 #import <dispatch/dispatch.h>
-#import <DropboxSDK/DropboxSDK.h>
 #import <QuartzCore/QuartzCore.h>
 
 @interface BookViewController ()
 
 @property PageViewController *pageViewController;
 @property dispatch_queue_t backgroundQueue;
-@property DBMetadata *folderMetadata;
 @property IBOutlet UIBarButtonItem *closeButton;
 @property UIBarButtonItem *drawLinesButton;
 @property IBOutlet UIBarButtonItem *openButton;
 @property IBOutlet UIBarButtonItem *deleteButton;
 @property IBOutlet UIBarButtonItem *cameraButton;
 @property IBOutlet ClipView *clipView;
+@property UIView *processingHUD;
 
 @end
 
@@ -60,6 +59,9 @@
     //  Setup draw lines button
     _drawLinesButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(drawLines)];
     _drawLinesButton.title = @"Draw Lines";
+    
+    //  Setup background queue
+    _backgroundQueue = dispatch_queue_create("backgroundQueue", NULL);
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,15 +72,40 @@
 
 #pragma mark - UI button methods
 
+- (IBAction)processPages:(id)sender
+{
+    //  Setup the graphical overlay
+    _processingHUD = [[UIView alloc] initWithFrame:CGRectMake(0, 135, self.view.frame.size.width, 805)];
+    _processingHUD.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.65];
+    
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    [activityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityIndicator.center = CGPointMake(_processingHUD.frame.size.width / 2, _processingHUD.frame.size.height / 4 - 50);
+    [_processingHUD addSubview:activityIndicator];
+    [activityIndicator startAnimating];
+    
+    UILabel *processingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 75)];
+    processingLabel.text = @"Processing";
+    processingLabel.font = [UIFont fontWithName:@"Amoon1" size:21];
+    processingLabel.textColor = [UIColor whiteColor];
+    processingLabel.textAlignment = NSTextAlignmentCenter;
+    processingLabel.backgroundColor = [UIColor clearColor];
+    processingLabel.center = CGPointMake(_processingHUD.frame.size.width / 2, _processingHUD.frame.size.height / 4);
+    [_processingHUD addSubview:processingLabel];
+    
+    [self.view addSubview:_processingHUD];
+    
+    
+    //  Do the actual processing
+    [self drawLines];
+}
+
 - (void)drawLines
 {
     dispatch_async(_backgroundQueue, ^{
         //  Iterate through all the page file names in this book individually
-        for (Page *page in [_book pages])
+        /*for (Page *page in [_book pages])
         {
-            //  Get the PageListViewCell corresponding to the current page file name and mark it as currently processing
-#warning mark the page in page control as processing
-            
             //  Get the actual image object and store it in a UIImage
             UIImage *image = [page pageImage];
             
@@ -112,19 +139,20 @@
                 }
                 
                 //  The first method actually draws the strikethroughs on the drawingView, and the second method consolidates the strikethroughs and the original image into one image and saves it with the same name as the original image
-                [image identifyCharactersWithlineThickness:lineThickness onView:drawingView bytesPerPixel:4 bitsPerComponent:8];
+                drawingView = [image identifyCharactersWithlineThickness:lineThickness onView:drawingView bytesPerPixel:4 bitsPerComponent:8];
                 
                 //  Dropbox rest client MUST be used on main thread
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    [drawingView setNeedsDisplay];
                     [self saveWithLinesAndName:[page pageName] onContainerView:imageAndPathView];
                 });
             }
             
             //  Unshift the UILabel and remove the UIActivityIndicator on the main thread
             dispatch_async(dispatch_get_main_queue(), ^{
-#warning undo the page control modifications/animations
+                [_processingHUD removeFromSuperview];
             });
-        }
+        }*/
     });
 }
 
@@ -166,36 +194,6 @@
     [self finishedSavingImage:pageName toPath:imagePath uploadToDropbox:YES];
 }
 
-- (DBRestClient*)restClient
-{
-    if (!_restClient) {
-        _restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
-        _restClient.delegate = self;
-    }
-    
-    return _restClient;
-}
-
-#pragma mark - Dropbox delegate
-
-- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata
-{
-    NSLog(@"File uploaded successfully to path: %@", metadata.path);
-}
-
-- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error
-{
-    NSLog(@"File upload failed with error - %@", error);
-}
-
-- (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata
-{
-    if (metadata.isDirectory)
-    {
-        _folderMetadata = metadata;
-    }
-}
-
 #pragma mark - Alert view delegate
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -208,8 +206,7 @@
         [[NSFileManager defaultManager] removeItemAtPath:_savePath error:nil];
         
         //  Delete from Dropbox
-        NSString *path = [@"/" stringByAppendingPathComponent:_book.title];
-        [[self restClient] deletePath:path];
+        //NSString *path = [@"/" stringByAppendingPathComponent:_book.title];
         
         //  Reload the collection view
         [_bookListViewController viewDidAppear:YES];
@@ -220,28 +217,7 @@
 
 - (void)finishedSavingImage:(NSString *)fileName toPath:(NSString *)path uploadToDropbox:(bool)shouldUpload
 {
-    if (shouldUpload)
-    {
-        //  Save image to Dropbox
-        NSString *destDir = [@"/" stringByAppendingPathComponent:_book.title];
-        
-        //  Look for an existing file
-        [[self restClient] loadMetadata:destDir];
-        NSString *parentRev = nil;
-        for (DBMetadata *file in _folderMetadata.contents)
-        {
-            if ([file.filename isEqualToString:fileName])
-            {
-                parentRev = file.rev;
-            }
-        }
-        _folderMetadata = nil;
-        
-        [[self restClient] uploadFile:fileName toPath:destDir withParentRev:parentRev fromPath:path];
-    }
     
-    //  Reload the book and the table
-    _book = [[Book alloc] initWithPath:_savePath];
 }
 
 #pragma mark - Gesture recognizer delegate
@@ -271,7 +247,7 @@
 
 - (IBAction)openBook:(id)sender
 {
-    if ([_book.pages count] == 0)
+    /*if ([_book.pages count] == 0)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Can't Open %@", _book.title]
                                                         message:[NSString stringWithFormat:@"%@ has no pages to open.", _book.title]
@@ -285,7 +261,7 @@
         [self dismissViewControllerAnimated:NO completion:nil];
         
         [_bookListViewController performSegueWithIdentifier:@"ViewPage" sender:self];
-    }
+    }*/
     
 }
 

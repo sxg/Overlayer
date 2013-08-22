@@ -6,16 +6,14 @@
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
-#import "Book.h"
+#import "SGBook.h"
 #import "BookListViewController.h"
 #import "TextReaderViewController.h"
-#import <DropboxSDK/DropboxSDK.h>
 #import <UIKit/UIKit.h>
 
-@interface BookViewController : UIViewController <TextReaderViewControllerDelegate, DBRestClientDelegate, UIAlertViewDelegate, UIGestureRecognizerDelegate>
+@interface BookViewController : UIViewController <TextReaderViewControllerDelegate, UIAlertViewDelegate, UIGestureRecognizerDelegate>
 
-@property (nonatomic) DBRestClient *restClient;
-@property (nonatomic) Book *book;
+@property (nonatomic) SGBook *book;
 @property IBOutlet UILabel *bookTitle;
 @property IBOutlet UILabel *numPages;
 @property IBOutlet UIScrollView *scrollingPages;
@@ -29,5 +27,6 @@
 - (IBAction)openBook:(id)sender;
 - (IBAction)addPage:(id)sender;
 - (IBAction)imageViewTapped:(id)sender;
+- (IBAction)processPages:(id)sender;
 
 @end

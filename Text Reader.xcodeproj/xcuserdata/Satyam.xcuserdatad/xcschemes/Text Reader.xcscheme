@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4A2F753F169CD98000DD7A03"
                BuildableName = "Text Reader.app"
-               BlueprintName = "Text Reader"
+               BlueprintName = "TextReader"
                ReferencedContainer = "container:Text Reader.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,13 +28,23 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4AA884D717C4559D000A4764"
+               BuildableName = "TextReaderUnitTests.octest"
+               BlueprintName = "TextReaderUnitTests"
+               ReferencedContainer = "container:Text Reader.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4A2F753F169CD98000DD7A03"
             BuildableName = "Text Reader.app"
-            BlueprintName = "Text Reader"
+            BlueprintName = "TextReader"
             ReferencedContainer = "container:Text Reader.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -53,7 +63,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4A2F753F169CD98000DD7A03"
             BuildableName = "Text Reader.app"
-            BlueprintName = "Text Reader"
+            BlueprintName = "TextReader"
             ReferencedContainer = "container:Text Reader.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -71,7 +81,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4A2F753F169CD98000DD7A03"
             BuildableName = "Text Reader.app"
-            BlueprintName = "Text Reader"
+            BlueprintName = "TextReader"
             ReferencedContainer = "container:Text Reader.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

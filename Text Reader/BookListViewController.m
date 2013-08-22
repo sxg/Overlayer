@@ -28,7 +28,7 @@
 #import "TextReaderViewController.h"
 #import "SettingsViewController.h"
 #import "ClipView.h"
-#import "Book.h"
+#import "SGBook.h"
 #import <DropboxSDK/DropboxSDK.h>
 #import <dispatch/dispatch.h>
 #import <QuartzCore/QuartzCore.h>
@@ -84,9 +84,6 @@
     UIColor *customGray = [UIColor colorWithRed:grayVal green:grayVal blue:grayVal alpha:1.0];
     [self.navigationController.navigationBar setTintColor:customGray];
     [self.navigationController.toolbar setTintColor:customGray];
-    
-    //  Link Dropbox
-    [self linkWithDropbox];
     
     //  Create the background queue
     _backgroundQueue = dispatch_queue_create("backgroundQueue", NULL);
@@ -166,51 +163,9 @@
     
     for (NSString *bookTitle in bookTitles)
     {
-        NSString *bookPath = [_documentsDirectory stringByAppendingPathComponent:bookTitle];
-        Book *book = [[Book alloc] initWithPath:bookPath];
-        [_books addObject:book];
-    }
-}
-
-- (void)linkWithDropbox
-{
-    //  Check to see if the user's Dropbox account is linked to Text Reader
-    if (![[DBSession sharedSession] isLinked])
-    {
-        [[DBSession sharedSession] linkFromController:self];
-        
-        //  Initial sync
-        [self syncWithDropbox];
-    }
-}
-
-- (DBRestClient*)restClient
-{
-    if (!_restClient) {
-        _restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
-        _restClient.delegate = self;
-    }
-    
-    return _restClient;
-}
-
-- (void)syncWithDropbox
-{
-    //  Iterate through each file and folder in the local Documents directory and upload to Dropbox
-    NSArray *folders = [[[NSFileManager defaultManager] contentsAtPath:_documentsDirectory] copy];
-    for (NSString *folder in folders)
-    {
-        NSString *currentFolderPath = [_documentsDirectory stringByAppendingPathComponent:folder];
-        NSArray *files = [[[NSFileManager defaultManager] contentsAtPath:currentFolderPath] copy];
-        
-        for (NSString *file in files)
-        {
-            NSString *currentFilePath = [currentFolderPath stringByAppendingPathComponent:file];
-            NSString *destPath = [[@"/" stringByAppendingPathComponent:folder] stringByAppendingPathComponent:file];
-            
-            //  Upload the file
-            [[self restClient] uploadFile:file toPath:destPath withParentRev:nil fromPath:currentFilePath];
-        }
+        //NSString *bookPath = [_documentsDirectory stringByAppendingPathComponent:bookTitle];
+        //SGBook *book = [[SGBook alloc] initWithPath:bookPath];
+        //[_books addObject:book];
     }
 }
 
@@ -280,7 +235,7 @@
     //  Look for this book name in the list of books
     NSString *bookName = textField.text;
     BOOL found = false;
-    for (Book *book in _books)
+    for (SGBook *book in _books)
     {
         if ([book.title isEqualToString:bookName])
         {
@@ -295,8 +250,8 @@
         NSString *path = [_documentsDirectory stringByAppendingPathComponent:bookName];
         [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:nil];
         [[NSFileManager defaultManager] createDirectoryAtPath:[path stringByAppendingPathComponent:@"small"] withIntermediateDirectories:NO attributes:nil error:nil];
-        Book *book = [[Book alloc] initWithPath:path];
-        [_books addObject:book];
+        //SGBook *book = [[SGBook alloc] initWithPath:path];
+        //[_books addObject:book];
         
         //  Create the folder on Dropbox
         [[self restClient] createFolder:[@"/" stringByAppendingPathComponent:bookName]];
@@ -365,7 +320,7 @@
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BookListViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BookCell" forIndexPath:indexPath];
-    cell.bookTitle.text = ((Book*)[_books objectAtIndex:indexPath.row]).title;
+    cell.bookTitle.text = ((SGBook *)[_books objectAtIndex:indexPath.row]).title;
     [cell.bookTitle setFont:[UIFont fontWithName:@"Amoon1" size:17]];
     
     return cell;
@@ -376,12 +331,15 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     //  Get the name of the selected book, tell PLVC the book name, tell PLVC the path to that book, and set PLVC up with all the names of pages contained in that book folder
-    Book *selectedBook = (Book*)[_books objectAtIndex:indexPath.row];
-    [_bookViewController setBook:selectedBook];
+    SGBook *selectedBook = (SGBook *)[_books objectAtIndex:indexPath.row];
+    //NSString *bookPath = [_documentsDirectory stringByAppendingPathComponent:selectedBook.title];
+    //SGBook *book = [[SGBook alloc] initWithPath:bookPath];
+    //[_books replaceObjectAtIndex:indexPath.row withObject:book];
+    //[_bookViewController setBook:book];
     _bookViewController.savePath = [_bookViewController.documentsDirectory stringByAppendingPathComponent:_bookViewController.book.title];
     _bookViewController.bookTitle.text = selectedBook.title;
     [_bookViewController.bookTitle setFont:[UIFont fontWithName:@"Amoon1" size:50]];
-    _bookViewController.numPages.text = [NSString stringWithFormat:@"%i pages", [selectedBook.pages count]];
+    //_bookViewController.numPages.text = [NSString stringWithFormat:@"%i pages", [selectedBook.pages count]];
     [_bookViewController.numPages setFont:[UIFont fontWithName:@"Amoon1" size:17]];
     
     //  Set PLVC's navbar's title to the name of the book
@@ -389,7 +347,7 @@
     
     //  Setup scrollview and images
     dispatch_async(_backgroundQueue, ^{
-        for (int i = 0; i < [selectedBook.pages count]; i++)
+    /*    for (int i = 0; i < [selectedBook.pages count]; i++)
         {
             NSString *imagePath = [[_bookViewController.savePath stringByAppendingPathComponent:@"small"] stringByAppendingPathComponent:[NSString stringWithFormat:@"%i.png", (i + 1)]];
             UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:imagePath]];
@@ -411,7 +369,7 @@
         }
         [_bookViewController.scrollingPages setClipsToBounds:NO];
         [_bookViewController.scrollingPages setCanCancelContentTouches:YES];
-        [_bookViewController.scrollingPages setContentSize:CGSizeMake([selectedBook.pages count] * (275 + 20), 337)];
+        [_bookViewController.scrollingPages setContentSize:CGSizeMake([selectedBook.pages count] * (275 + 20), 337)];*/
     });
 }
 
@@ -457,7 +415,7 @@
     }
     else if ([segue.identifier isEqualToString:@"CameraFromDetail"])
     {
-        Book *book = ((BookViewController*)sender).book;
+        SGBook *book = ((BookViewController*)sender).book;
         NSString *savePath = [_documentsDirectory stringByAppendingPathComponent:book.title];
         
         TextReaderViewController *textReaderViewController = segue.destinationViewController;
@@ -466,20 +424,20 @@
     }
     else if ([segue.identifier isEqualToString:@"ViewPage"])
     {
-        _pageViewController = segue.destinationViewController;
-        Book *book = ((BookViewController*)sender).book;
-        int indexOfPageToOpen = ((BookViewController*)sender).indexOfPageToOpen;
+        //_pageViewController = segue.destinationViewController;
+        //SGBook *book = ((BookViewController*)sender).book;
+        //int indexOfPageToOpen = ((BookViewController*)sender).indexOfPageToOpen;
         
-        if (indexOfPageToOpen == -1)
+        /*if (indexOfPageToOpen == -1)
             [self setupPageViewControllerSegueWithBook:book Page:[book.pages objectAtIndex:0] Index:0];
         else
-            [self setupPageViewControllerSegueWithBook:book Page:[book.pages objectAtIndex:indexOfPageToOpen] Index:indexOfPageToOpen];
+            [self setupPageViewControllerSegueWithBook:book Page:[book.pages objectAtIndex:indexOfPageToOpen] Index:indexOfPageToOpen];*/
         
         ((BookViewController*)sender).indexOfPageToOpen = -1;
     }
 }
 
-- (void)setupPageViewControllerSegueWithBook:(Book*)book Page:(Page*)page Index:(NSUInteger)index
+- (void)setupPageViewControllerSegueWithBook:(SGBook *)book Page:(Page*)page Index:(NSUInteger)index
 {
     //  Setup PageViewController's ivars and navbar title
     _pageViewController.book = book;
@@ -503,10 +461,10 @@
     {
         [_pageViewController.previousButton setEnabled:NO];
     }
-    if (_pageViewController.currentPageIndex == [_pageViewController.book.pages count] - 1)
+    /*if (_pageViewController.currentPageIndex == [_pageViewController.book.pages count] - 1)
     {
         [_pageViewController.nextButton setEnabled:NO];
-    }
+    }*/
     
     //  Configure the UIScrollView's size based on the current interface orientation. If the interface is portrait, then make the image take up the entire view, and if it's landscape, then horizontally center the image, but don't zoom in. 44 is the height of the navbar and toolbar, and 20 is the height of the status bar.
     if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation))

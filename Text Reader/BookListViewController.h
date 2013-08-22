@@ -6,17 +6,16 @@
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
-#import "Book.h"
+#import "SGBook.h"
 #import "Page.h"
 #import <UIKit/UIKit.h>
-#import <DropboxSDK/DropboxSDK.h>
 #import "PageListViewController.h"
 
-@interface BookListViewController : UIViewController <UITextFieldDelegate, DBRestClientDelegate, TextReaderViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface BookListViewController : UIViewController <UITextFieldDelegate, TextReaderViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property PageViewController *pageViewController;
 
 - (IBAction)addBook:(id)sender;
-- (void)setupPageViewControllerSegueWithBook:(Book*)book Page:(Page*)page Index:(NSUInteger)index;
+- (void)setupPageViewControllerSegueWithBook:(SGBook*)book Page:(Page*)page Index:(NSUInteger)index;
 
 @end
