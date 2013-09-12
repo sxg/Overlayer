@@ -39,7 +39,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    UISplitViewController *splitVC = (UISplitViewController *)self.parentViewController;
+    UISplitViewController *splitVC = (UISplitViewController *)self.parentViewController.parentViewController;
     _bookVC = (SGBookViewController *)[[splitVC viewControllers] lastObject];
     
     _books = [[NSMutableArray alloc] init];
@@ -90,13 +90,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    _bookVC.label.text = [[_books objectAtIndex:indexPath.row] title];
 }
 
 #pragma mark - Segue

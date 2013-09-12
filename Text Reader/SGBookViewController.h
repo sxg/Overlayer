@@ -10,4 +10,6 @@
 
 @interface SGBookViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet UILabel *label;
+
 @end
