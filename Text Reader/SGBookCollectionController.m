@@ -7,6 +7,7 @@
 //
 
 #import "SGBookCollectionController.h"
+#import "SGPageListController.h"
 #import "SGBookCollectionCell.h"
 #import "SGBook.h"
 
@@ -76,6 +77,12 @@
 
 #pragma mark - Collection view delegate
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    SGBook *book = [_books objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"viewBook" sender:book];
+}
+
 #pragma mark - Collection view flow layout delegate
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -95,6 +102,13 @@
     if ([segue.identifier isEqualToString:@"addBook"]) {
         SGAddBookController *addBookVC = (SGAddBookController *)[[segue.destinationViewController viewControllers] lastObject];
         addBookVC.delegate = self;
+    }
+    else if ([segue.identifier isEqualToString:@"viewBook"]) {
+        UISplitViewController *splitVC = (UISplitViewController *)segue.destinationViewController;
+        SGBook *book = (SGBook *)sender;
+        
+        SGPageListController *pageListVC = (SGPageListController *)[[[[splitVC viewControllers] objectAtIndex:0] viewControllers] lastObject];
+        [pageListVC setBook:book];
     }
 }
 

@@ -56,8 +56,6 @@
 		4AEA2AE916ED2ACF00AB9AE5 /* closebox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA2AE716ED2ACF00AB9AE5 /* closebox@2x.png */; };
 		4AEE09B716F3D7A200C9D967 /* ClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEE09B616F3D7A200C9D967 /* ClipView.m */; };
 		4AF183E116F185EB00C8F163 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AF183DF16F185EB00C8F163 /* MainStoryboard.storyboard */; };
-		4AFED92A17E15197007E6209 /* SGBookCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED92917E15196007E6209 /* SGBookCollectionController.m */; };
-		4AFED92B17E15197007E6209 /* SGBookCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED92917E15196007E6209 /* SGBookCollectionController.m */; };
 		4AFED92F17E15240007E6209 /* SGBookCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED92E17E15240007E6209 /* SGBookCollectionCell.m */; };
 		4AFED93017E15240007E6209 /* SGBookCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED92E17E15240007E6209 /* SGBookCollectionCell.m */; };
 		4AFED93317E15E58007E6209 /* SGAddBookController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93217E15E57007E6209 /* SGAddBookController.m */; };
@@ -122,8 +120,6 @@
 		4AEE09B516F3D7A200C9D967 /* ClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClipView.h; sourceTree = "<group>"; };
 		4AEE09B616F3D7A200C9D967 /* ClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClipView.m; sourceTree = "<group>"; };
 		4AF183E016F185EB00C8F163 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "Text Reader/en.lproj/MainStoryboard.storyboard"; sourceTree = "<group>"; };
-		4AFED92817E15196007E6209 /* SGBookCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBookCollectionController.h; sourceTree = "<group>"; };
-		4AFED92917E15196007E6209 /* SGBookCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBookCollectionController.m; sourceTree = "<group>"; };
 		4AFED92D17E15240007E6209 /* SGBookCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBookCollectionCell.h; sourceTree = "<group>"; };
 		4AFED92E17E15240007E6209 /* SGBookCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBookCollectionCell.m; sourceTree = "<group>"; };
 		4AFED93117E15E57007E6209 /* SGAddBookController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGAddBookController.h; sourceTree = "<group>"; };
@@ -172,8 +168,6 @@
 			children = (
 				4AA884FF17C45A6B000A4764 /* TextReaderViewController.h */,
 				4AA8850017C45A6B000A4764 /* TextReaderViewController.m */,
-				4AFED92817E15196007E6209 /* SGBookCollectionController.h */,
-				4AFED92917E15196007E6209 /* SGBookCollectionController.m */,
 				4AFED93117E15E57007E6209 /* SGAddBookController.h */,
 				4AFED93217E15E57007E6209 /* SGAddBookController.m */,
 				4ADC0B1416BB668D00815209 /* BookListViewController.h */,
@@ -524,7 +518,6 @@
 				4AA249C916D32CF5003EC23E /* SettingsStrikethroughWidthDetailViewController.m in Sources */,
 				4ADAF69616ED5A0500123D2B /* SGBook.m in Sources */,
 				4AEE09B716F3D7A200C9D967 /* ClipView.m in Sources */,
-				4AFED92A17E15197007E6209 /* SGBookCollectionController.m in Sources */,
 				4AFED92F17E15240007E6209 /* SGBookCollectionCell.m in Sources */,
 				4AFED93317E15E58007E6209 /* SGAddBookController.m in Sources */,
 			);
@@ -538,7 +531,6 @@
 				4AA8850417C45A6B000A4764 /* TextReaderViewController.m in Sources */,
 				4AA8850517C45C40000A4764 /* SGBook.m in Sources */,
 				4AA8850617C45C44000A4764 /* DrawingView.m in Sources */,
-				4AFED92B17E15197007E6209 /* SGBookCollectionController.m in Sources */,
 				4AFED93017E15240007E6209 /* SGBookCollectionCell.m in Sources */,
 				4AFED93417E15E58007E6209 /* SGAddBookController.m in Sources */,
 			);
