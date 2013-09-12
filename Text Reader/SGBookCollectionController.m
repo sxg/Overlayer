@@ -93,7 +93,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"addBook"]) {
-        SGAddBookController *addBookVC = (SGAddBookController *)segue.destinationViewController;
+        SGAddBookController *addBookVC = (SGAddBookController *)[[segue.destinationViewController viewControllers] lastObject];
         addBookVC.delegate = self;
     }
 }
