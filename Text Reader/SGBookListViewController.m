@@ -57,8 +57,9 @@
 {
     SGBook *book = [[SGBook alloc] initWithTitle:title];
     [_books addObject:book];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:(_books.count - 1) inSection:0];
     
-    [self.tableView reloadData];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 #pragma mark - Table view data source
