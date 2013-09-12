@@ -10,6 +10,12 @@
 #import <QuartzCore/QuartzCore.h>
 #import <CoreGraphics/CoreGraphics.h>
 
+@interface SGBook()
+
+@property (nonatomic, readwrite, strong) NSMutableArray *pages;
+
+@end
+
 @implementation SGBook
 
 - (id)initWithTitle:(NSString *)title
@@ -17,16 +23,19 @@
     self = [super init];
     if (self) {
         _title = title;
+        _pages = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
-#warning save path is not correct
 - (NSString *)savePath
 {
     //  Save path is ".../Documents/Book Title.pdf"
     NSString *fileName = [_title stringByAppendingString:@".pdf"];
-    return [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:fileName];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    return [documentsDirectory stringByAppendingPathComponent:fileName];
 }
 
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03FE3D7C6F764DE69D536915 /* libPods-TextReader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB9DF93EE1AE488CB78DCD13 /* libPods-TextReader.a */; };
+		485EBC36F94943D5B29FCC4F /* libPods-TextReaderUnitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8D78A92A2BF4E20AD7DAEB9 /* libPods-TextReaderUnitTests.a */; };
 		4A04D64316EA758600FA0440 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A04D64216EA758600FA0440 /* DropboxSDK.framework */; };
 		4A04D64616EA75DC00FA0440 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A04D64416EA75BA00FA0440 /* Security.framework */; };
 		4A04D64916EA75F000FA0440 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A04D64716EA75E400FA0440 /* QuartzCore.framework */; };
@@ -35,7 +37,7 @@
 		4AA884DB17C4559D000A4764 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2F7544169CD98000DD7A03 /* UIKit.framework */; };
 		4AA884DC17C4559D000A4764 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2F7546169CD98000DD7A03 /* Foundation.framework */; };
 		4AA884E217C4559D000A4764 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4AA884E017C4559D000A4764 /* InfoPlist.strings */; };
-		4AA884F817C456BE000A4764 /* SGBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA884F717C456BE000A4764 /* SGBookTests.m */; };
+		4AA884F817C456BE000A4764 /* SGBookTestst.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA884F717C456BE000A4764 /* SGBookTestst.m */; };
 		4AA8850417C45A6B000A4764 /* TextReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA8850017C45A6B000A4764 /* TextReaderViewController.m */; };
 		4AA8850517C45C40000A4764 /* SGBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAF69516ED5A0500123D2B /* SGBook.m */; };
 		4AA8850617C45C44000A4764 /* DrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06B74616B62D410023767F /* DrawingView.m */; };
@@ -46,16 +48,20 @@
 		4AAB842516C6B2FE00BE13FD /* PageListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB842416C6B2FE00BE13FD /* PageListViewCell.m */; };
 		4AB487E116B74B00005960FA /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB487E016B74B00005960FA /* Character.m */; };
 		4ADAF69616ED5A0500123D2B /* SGBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAF69516ED5A0500123D2B /* SGBook.m */; };
-		4ADAF69916ED5B1300123D2B /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAF69816ED5B1300123D2B /* Page.m */; };
 		4ADAF69B16ED706300123D2B /* Changelog.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4ADAF69A16ED706300123D2B /* Changelog.rtf */; };
 		4ADAF69D16ED7D7700123D2B /* collectionViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADAF69C16ED7D7600123D2B /* collectionViewBackground.png */; };
 		4ADC0B1616BB668D00815209 /* BookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADC0B1516BB668D00815209 /* BookListViewController.m */; };
-		4AEA2AE316ED1D8100AB9AE5 /* BookListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA2AE216ED1D8100AB9AE5 /* BookListViewCell.m */; };
 		4AEA2AE516ED232B00AB9AE5 /* bookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA2AE416ED232B00AB9AE5 /* bookIcon.png */; };
 		4AEA2AE816ED2ACF00AB9AE5 /* closebox.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA2AE616ED2ACF00AB9AE5 /* closebox.png */; };
 		4AEA2AE916ED2ACF00AB9AE5 /* closebox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA2AE716ED2ACF00AB9AE5 /* closebox@2x.png */; };
 		4AEE09B716F3D7A200C9D967 /* ClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEE09B616F3D7A200C9D967 /* ClipView.m */; };
 		4AF183E116F185EB00C8F163 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AF183DF16F185EB00C8F163 /* MainStoryboard.storyboard */; };
+		4AFED92A17E15197007E6209 /* SGBookCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED92917E15196007E6209 /* SGBookCollectionController.m */; };
+		4AFED92B17E15197007E6209 /* SGBookCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED92917E15196007E6209 /* SGBookCollectionController.m */; };
+		4AFED92F17E15240007E6209 /* SGBookCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED92E17E15240007E6209 /* SGBookCollectionCell.m */; };
+		4AFED93017E15240007E6209 /* SGBookCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED92E17E15240007E6209 /* SGBookCollectionCell.m */; };
+		4AFED93317E15E58007E6209 /* SGAddBookController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93217E15E57007E6209 /* SGAddBookController.m */; };
+		4AFED93417E15E58007E6209 /* SGAddBookController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93217E15E57007E6209 /* SGAddBookController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,7 +70,7 @@
 		4A04D64716EA75E400FA0440 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4A06B74516B62D410023767F /* DrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingView.h; sourceTree = "<group>"; };
 		4A06B74616B62D410023767F /* DrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingView.m; sourceTree = "<group>"; };
-		4A2F7540169CD98000DD7A03 /* Text Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Text Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A2F7540169CD98000DD7A03 /* TextReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A2F7544169CD98000DD7A03 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4A2F7546169CD98000DD7A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4A2F7548169CD98000DD7A03 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -97,8 +103,7 @@
 		4AA884DF17C4559D000A4764 /* TextReaderUnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TextReaderUnitTests-Info.plist"; sourceTree = "<group>"; };
 		4AA884E117C4559D000A4764 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4AA884E617C4559D000A4764 /* TextReaderUnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TextReaderUnitTests-Prefix.pch"; sourceTree = "<group>"; };
-		4AA884F617C456BE000A4764 /* SGBookTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBookTests.h; sourceTree = "<group>"; };
-		4AA884F717C456BE000A4764 /* SGBookTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBookTests.m; sourceTree = "<group>"; };
+		4AA884F717C456BE000A4764 /* SGBookTestst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBookTestst.m; sourceTree = "<group>"; };
 		4AA884FF17C45A6B000A4764 /* TextReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextReaderViewController.h; sourceTree = "<group>"; };
 		4AA8850017C45A6B000A4764 /* TextReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextReaderViewController.m; sourceTree = "<group>"; };
 		4AAB842316C6B2FE00BE13FD /* PageListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageListViewCell.h; sourceTree = "<group>"; };
@@ -107,20 +112,26 @@
 		4AB487E016B74B00005960FA /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
 		4ADAF69416ED5A0500123D2B /* SGBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBook.h; sourceTree = "<group>"; };
 		4ADAF69516ED5A0500123D2B /* SGBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBook.m; sourceTree = "<group>"; };
-		4ADAF69716ED5B1300123D2B /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
-		4ADAF69816ED5B1300123D2B /* Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page.m; sourceTree = "<group>"; };
 		4ADAF69A16ED706300123D2B /* Changelog.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Changelog.rtf; sourceTree = "<group>"; };
 		4ADAF69C16ED7D7600123D2B /* collectionViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = collectionViewBackground.png; path = Images/collectionViewBackground.png; sourceTree = "<group>"; };
 		4ADC0B1416BB668D00815209 /* BookListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookListViewController.h; sourceTree = "<group>"; };
 		4ADC0B1516BB668D00815209 /* BookListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookListViewController.m; sourceTree = "<group>"; };
-		4AEA2AE116ED1D8100AB9AE5 /* BookListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookListViewCell.h; sourceTree = "<group>"; };
-		4AEA2AE216ED1D8100AB9AE5 /* BookListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookListViewCell.m; sourceTree = "<group>"; };
 		4AEA2AE416ED232B00AB9AE5 /* bookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bookIcon.png; path = Images/bookIcon.png; sourceTree = "<group>"; };
 		4AEA2AE616ED2ACF00AB9AE5 /* closebox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closebox.png; sourceTree = "<group>"; };
 		4AEA2AE716ED2ACF00AB9AE5 /* closebox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closebox@2x.png"; sourceTree = "<group>"; };
 		4AEE09B516F3D7A200C9D967 /* ClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClipView.h; sourceTree = "<group>"; };
 		4AEE09B616F3D7A200C9D967 /* ClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClipView.m; sourceTree = "<group>"; };
 		4AF183E016F185EB00C8F163 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "Text Reader/en.lproj/MainStoryboard.storyboard"; sourceTree = "<group>"; };
+		4AFED92817E15196007E6209 /* SGBookCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBookCollectionController.h; sourceTree = "<group>"; };
+		4AFED92917E15196007E6209 /* SGBookCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBookCollectionController.m; sourceTree = "<group>"; };
+		4AFED92D17E15240007E6209 /* SGBookCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBookCollectionCell.h; sourceTree = "<group>"; };
+		4AFED92E17E15240007E6209 /* SGBookCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBookCollectionCell.m; sourceTree = "<group>"; };
+		4AFED93117E15E57007E6209 /* SGAddBookController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGAddBookController.h; sourceTree = "<group>"; };
+		4AFED93217E15E57007E6209 /* SGAddBookController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGAddBookController.m; sourceTree = "<group>"; };
+		8B12D195B1154E009C69C5F7 /* Pods-TextReaderUnitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextReaderUnitTests.xcconfig"; path = "Pods/Pods-TextReaderUnitTests.xcconfig"; sourceTree = "<group>"; };
+		C8D78A92A2BF4E20AD7DAEB9 /* libPods-TextReaderUnitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TextReaderUnitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB9DF93EE1AE488CB78DCD13 /* libPods-TextReader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TextReader.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F70B8DCE68494B65B7AA5613 /* Pods-TextReader.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextReader.xcconfig"; path = "Pods/Pods-TextReader.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +145,7 @@
 				4A2F7547169CD98000DD7A03 /* Foundation.framework in Frameworks */,
 				4A2F7549169CD98000DD7A03 /* CoreGraphics.framework in Frameworks */,
 				4A04D64316EA758600FA0440 /* DropboxSDK.framework in Frameworks */,
+				03FE3D7C6F764DE69D536915 /* libPods-TextReader.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +160,7 @@
 				4AA8850817C47DC5000A4764 /* Security.framework in Frameworks */,
 				4AA8850917C47DC5000A4764 /* DropboxSDK.framework in Frameworks */,
 				4AA8850A17C47DC5000A4764 /* CoreGraphics.framework in Frameworks */,
+				485EBC36F94943D5B29FCC4F /* libPods-TextReaderUnitTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +172,10 @@
 			children = (
 				4AA884FF17C45A6B000A4764 /* TextReaderViewController.h */,
 				4AA8850017C45A6B000A4764 /* TextReaderViewController.m */,
+				4AFED92817E15196007E6209 /* SGBookCollectionController.h */,
+				4AFED92917E15196007E6209 /* SGBookCollectionController.m */,
+				4AFED93117E15E57007E6209 /* SGAddBookController.h */,
+				4AFED93217E15E57007E6209 /* SGAddBookController.m */,
 				4ADC0B1416BB668D00815209 /* BookListViewController.h */,
 				4ADC0B1516BB668D00815209 /* BookListViewController.m */,
 				4A39943216D303CA00D65D25 /* SettingsViewController.h */,
@@ -169,17 +186,13 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
-		4A23395C16CAC08A00772782 /* Custom Classes and Categories */ = {
+		4A23395C16CAC08A00772782 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				4AEE09B516F3D7A200C9D967 /* ClipView.h */,
 				4AEE09B616F3D7A200C9D967 /* ClipView.m */,
 				4ADAF69416ED5A0500123D2B /* SGBook.h */,
 				4ADAF69516ED5A0500123D2B /* SGBook.m */,
-				4ADAF69716ED5B1300123D2B /* Page.h */,
-				4ADAF69816ED5B1300123D2B /* Page.m */,
-				4AEA2AE116ED1D8100AB9AE5 /* BookListViewCell.h */,
-				4AEA2AE216ED1D8100AB9AE5 /* BookListViewCell.m */,
 				4AAB842316C6B2FE00BE13FD /* PageListViewCell.h */,
 				4AAB842416C6B2FE00BE13FD /* PageListViewCell.m */,
 				4A06B74516B62D410023767F /* DrawingView.h */,
@@ -191,7 +204,7 @@
 				4A39942C16D2F69300D65D25 /* SettingsCell.h */,
 				4A39942D16D2F69300D65D25 /* SettingsCell.m */,
 			);
-			name = "Custom Classes and Categories";
+			name = Models;
 			sourceTree = "<group>";
 		};
 		4A2F7535169CD97F00DD7A03 = {
@@ -201,13 +214,15 @@
 				4AA884DD17C4559D000A4764 /* TextReaderUnitTests */,
 				4A2F7543169CD98000DD7A03 /* Frameworks */,
 				4A2F7541169CD98000DD7A03 /* Products */,
+				F70B8DCE68494B65B7AA5613 /* Pods-TextReader.xcconfig */,
+				8B12D195B1154E009C69C5F7 /* Pods-TextReaderUnitTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
 		4A2F7541169CD98000DD7A03 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4A2F7540169CD98000DD7A03 /* Text Reader.app */,
+				4A2F7540169CD98000DD7A03 /* TextReader.app */,
 				4AA884D817C4559D000A4764 /* TextReaderUnitTests.octest */,
 			);
 			name = Products;
@@ -223,6 +238,8 @@
 				4A2F7546169CD98000DD7A03 /* Foundation.framework */,
 				4A2F7548169CD98000DD7A03 /* CoreGraphics.framework */,
 				4AA884D917C4559D000A4764 /* SenTestingKit.framework */,
+				DB9DF93EE1AE488CB78DCD13 /* libPods-TextReader.a */,
+				C8D78A92A2BF4E20AD7DAEB9 /* libPods-TextReaderUnitTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -234,7 +251,8 @@
 				4A2F7554169CD98000DD7A03 /* SGTextReaderAppDelegate.m */,
 				4AF183DF16F185EB00C8F163 /* MainStoryboard.storyboard */,
 				4A23395B16CAC07400772782 /* View Controllers */,
-				4A23395C16CAC08A00772782 /* Custom Classes and Categories */,
+				4A23395C16CAC08A00772782 /* Models */,
+				4AFED92C17E15216007E6209 /* Views */,
 				4A2F754B169CD98000DD7A03 /* Supporting Files */,
 			);
 			path = "Text Reader";
@@ -269,8 +287,7 @@
 		4AA884DD17C4559D000A4764 /* TextReaderUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				4AA884F617C456BE000A4764 /* SGBookTests.h */,
-				4AA884F717C456BE000A4764 /* SGBookTests.m */,
+				4AA884F717C456BE000A4764 /* SGBookTestst.m */,
 				4AA884DE17C4559D000A4764 /* Supporting Files */,
 			);
 			path = TextReaderUnitTests;
@@ -286,6 +303,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		4AFED92C17E15216007E6209 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4AFED92D17E15240007E6209 /* SGBookCollectionCell.h */,
+				4AFED92E17E15240007E6209 /* SGBookCollectionCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -293,10 +319,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4A2F7564169CD98000DD7A03 /* Build configuration list for PBXNativeTarget "TextReader" */;
 			buildPhases = (
+				A30DAF9A9B634347AA495B23 /* Check Pods Manifest.lock */,
 				4A5BE3D716EAF5F000CCDFA1 /* ShellScript */,
 				4A2F753C169CD98000DD7A03 /* Sources */,
 				4A2F753D169CD98000DD7A03 /* Frameworks */,
 				4A2F753E169CD98000DD7A03 /* Resources */,
+				52781BA277554E108160785C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -304,17 +332,19 @@
 			);
 			name = TextReader;
 			productName = "Text Reader";
-			productReference = 4A2F7540169CD98000DD7A03 /* Text Reader.app */;
+			productReference = 4A2F7540169CD98000DD7A03 /* TextReader.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4AA884D717C4559D000A4764 /* TextReaderUnitTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4AA884E717C4559D000A4764 /* Build configuration list for PBXNativeTarget "TextReaderUnitTests" */;
 			buildPhases = (
+				E698F3B474D2482984F0EA57 /* Check Pods Manifest.lock */,
 				4AA884D317C4559D000A4764 /* Sources */,
 				4AA884D417C4559D000A4764 /* Frameworks */,
 				4AA884D517C4559D000A4764 /* Resources */,
 				4AA884D617C4559D000A4764 /* ShellScript */,
+				E513A3A030F5437CB78591D8 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -415,6 +445,66 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		52781BA277554E108160785C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-TextReader-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A30DAF9A9B634347AA495B23 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E513A3A030F5437CB78591D8 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-TextReaderUnitTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E698F3B474D2482984F0EA57 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -432,10 +522,11 @@
 				4A39942E16D2F69300D65D25 /* SettingsCell.m in Sources */,
 				4A39943416D303CA00D65D25 /* SettingsViewController.m in Sources */,
 				4AA249C916D32CF5003EC23E /* SettingsStrikethroughWidthDetailViewController.m in Sources */,
-				4AEA2AE316ED1D8100AB9AE5 /* BookListViewCell.m in Sources */,
 				4ADAF69616ED5A0500123D2B /* SGBook.m in Sources */,
-				4ADAF69916ED5B1300123D2B /* Page.m in Sources */,
 				4AEE09B716F3D7A200C9D967 /* ClipView.m in Sources */,
+				4AFED92A17E15197007E6209 /* SGBookCollectionController.m in Sources */,
+				4AFED92F17E15240007E6209 /* SGBookCollectionCell.m in Sources */,
+				4AFED93317E15E58007E6209 /* SGAddBookController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,10 +534,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AA884F817C456BE000A4764 /* SGBookTests.m in Sources */,
+				4AA884F817C456BE000A4764 /* SGBookTestst.m in Sources */,
 				4AA8850417C45A6B000A4764 /* TextReaderViewController.m in Sources */,
 				4AA8850517C45C40000A4764 /* SGBook.m in Sources */,
 				4AA8850617C45C44000A4764 /* DrawingView.m in Sources */,
+				4AFED92B17E15197007E6209 /* SGBookCollectionController.m in Sources */,
+				4AFED93017E15240007E6209 /* SGBookCollectionCell.m in Sources */,
+				4AFED93417E15E58007E6209 /* SGAddBookController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +635,7 @@
 		};
 		4A2F7565169CD98000DD7A03 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F70B8DCE68494B65B7AA5613 /* Pods-TextReader.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
@@ -551,7 +646,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Text Reader/Text Reader-Prefix.pch";
 				INFOPLIST_FILE = "Text Reader/Text Reader-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "AD6465DA-ABC3-4046-890A-201033F0C64B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AD6465DA-ABC3-4046-890A-201033F0C64B";
@@ -562,6 +657,7 @@
 		};
 		4A2F7566169CD98000DD7A03 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F70B8DCE68494B65B7AA5613 /* Pods-TextReader.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
@@ -572,7 +668,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Text Reader/Text Reader-Prefix.pch";
 				INFOPLIST_FILE = "Text Reader/Text Reader-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "AD6465DA-ABC3-4046-890A-201033F0C64B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AD6465DA-ABC3-4046-890A-201033F0C64B";
@@ -583,6 +679,7 @@
 		};
 		4AA884E817C4559D000A4764 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B12D195B1154E009C69C5F7 /* Pods-TextReaderUnitTests.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -603,6 +700,7 @@
 		};
 		4AA884E917C4559D000A4764 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B12D195B1154E009C69C5F7 /* Pods-TextReaderUnitTests.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -649,6 +747,7 @@
 				4AA884E917C4559D000A4764 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -22,7 +22,6 @@
 #import "PageListViewController.h"
 #import "BookListViewController.h"
 #import "Page.h"
-#import "BookListViewCell.h"
 #import "BookViewController.h"
 #import "PageViewController.h"
 #import "TextReaderViewController.h"
@@ -317,14 +316,14 @@
     return 1;
 }
 
-- (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    BookListViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BookCell" forIndexPath:indexPath];
-    cell.bookTitle.text = ((SGBook *)[_books objectAtIndex:indexPath.row]).title;
-    [cell.bookTitle setFont:[UIFont fontWithName:@"Amoon1" size:17]];
-    
-    return cell;
-}
+//- (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    BookListViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BookCell" forIndexPath:indexPath];
+//    cell.bookTitle.text = ((SGBook *)[_books objectAtIndex:indexPath.row]).title;
+//    [cell.bookTitle setFont:[UIFont fontWithName:@"Amoon1" size:17]];
+//    
+//    return cell;
+//}
 
 #pragma mark - Collection view delegate
 

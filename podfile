@@ -1,0 +1,11 @@
+# Podfile
+
+platform :ios, '5.0'
+
+target :TextReaderUnitTests, :exclusive => true do
+	pod 'Kiwi'
+end
+
+target :TextReader, :exclusive => true do
+	pod 'MBProgressHUD'
+end

@@ -11,9 +11,8 @@
 @interface SGBook : NSObject
 
 @property (nonatomic, readonly, copy) NSString *title;
+@property (nonatomic, readonly, strong) NSArray *pages;
 
 - (id)initWithTitle:(NSString *)title;
-- (NSString *)savePath;
-- (void)addPage:(UIImageView *)imageView;
 
 @end
