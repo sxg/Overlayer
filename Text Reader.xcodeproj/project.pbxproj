@@ -62,6 +62,8 @@
 		4AFED93417E15E58007E6209 /* SGAddBookController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93217E15E57007E6209 /* SGAddBookController.m */; };
 		4AFED93B17E171B1007E6209 /* SGBookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93A17E171B1007E6209 /* SGBookListViewController.m */; };
 		4AFED93C17E171B1007E6209 /* SGBookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93A17E171B1007E6209 /* SGBookListViewController.m */; };
+		4AFED93F17E17545007E6209 /* SGBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93E17E17545007E6209 /* SGBookViewController.m */; };
+		4AFED94017E17545007E6209 /* SGBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93E17E17545007E6209 /* SGBookViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +130,8 @@
 		4AFED93217E15E57007E6209 /* SGAddBookController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGAddBookController.m; sourceTree = "<group>"; };
 		4AFED93917E171B1007E6209 /* SGBookListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBookListViewController.h; sourceTree = "<group>"; };
 		4AFED93A17E171B1007E6209 /* SGBookListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBookListViewController.m; sourceTree = "<group>"; };
+		4AFED93D17E17545007E6209 /* SGBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBookViewController.h; sourceTree = "<group>"; };
+		4AFED93E17E17545007E6209 /* SGBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBookViewController.m; sourceTree = "<group>"; };
 		8B12D195B1154E009C69C5F7 /* Pods-TextReaderUnitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextReaderUnitTests.xcconfig"; path = "Pods/Pods-TextReaderUnitTests.xcconfig"; sourceTree = "<group>"; };
 		C8D78A92A2BF4E20AD7DAEB9 /* libPods-TextReaderUnitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TextReaderUnitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB9DF93EE1AE488CB78DCD13 /* libPods-TextReader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TextReader.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +180,8 @@
 				4AFED93A17E171B1007E6209 /* SGBookListViewController.m */,
 				4AFED93117E15E57007E6209 /* SGAddBookController.h */,
 				4AFED93217E15E57007E6209 /* SGAddBookController.m */,
+				4AFED93D17E17545007E6209 /* SGBookViewController.h */,
+				4AFED93E17E17545007E6209 /* SGBookViewController.m */,
 				4ADC0B1416BB668D00815209 /* BookListViewController.h */,
 				4ADC0B1516BB668D00815209 /* BookListViewController.m */,
 				4A39943216D303CA00D65D25 /* SettingsViewController.h */,
@@ -527,6 +533,7 @@
 				4AFED92F17E15240007E6209 /* SGBookCollectionCell.m in Sources */,
 				4AFED93317E15E58007E6209 /* SGAddBookController.m in Sources */,
 				4AFED93B17E171B1007E6209 /* SGBookListViewController.m in Sources */,
+				4AFED93F17E17545007E6209 /* SGBookViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +548,7 @@
 				4AFED93017E15240007E6209 /* SGBookCollectionCell.m in Sources */,
 				4AFED93417E15E58007E6209 /* SGAddBookController.m in Sources */,
 				4AFED93C17E171B1007E6209 /* SGBookListViewController.m in Sources */,
+				4AFED94017E17545007E6209 /* SGBookViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

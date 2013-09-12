@@ -7,9 +7,12 @@
 //
 
 #import "SGBookListViewController.h"
+#import "SGBookViewController.h"
 #import "SGBook.h"
 
 @interface SGBookListViewController ()
+
+@property (nonatomic, weak) SGBookViewController *bookVC;
 
 @property (nonatomic, readwrite, strong) NSMutableArray *books;
 
@@ -35,6 +38,9 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    UISplitViewController *splitVC = (UISplitViewController *)self.parentViewController;
+    _bookVC = (SGBookViewController *)[[splitVC viewControllers] lastObject];
     
     _books = [[NSMutableArray alloc] init];
 }
