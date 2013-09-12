@@ -278,16 +278,16 @@
             </objects>
             <point key="canvasLocation" x="2016" y="688"/>
         </scene>
-        <!--Table View Controller - Root View Controller-->
+        <!--Book List View Controller - Books-->
         <scene sceneID="RSL-wM-J1W">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="kg1-qv-hyb" sceneMemberID="viewController">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="kg1-qv-hyb" customClass="SGBookListViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="uyP-yS-Ja0">
                         <rect key="frame" x="0.0" y="64" width="320" height="788"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="6IU-B2-kdc">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="bookCell" id="6IU-B2-kdc">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -302,7 +302,13 @@
                             <outlet property="delegate" destination="kg1-qv-hyb" id="jZw-lO-cg6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="2Ro-cs-kdO"/>
+                    <navigationItem key="navigationItem" title="Books" id="2Ro-cs-kdO">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="jbN-eD-fYF">
+                            <connections>
+                                <segue destination="Lyt-Nu-OGD" kind="modal" identifier="addBook" modalPresentationStyle="formSheet" id="O8U-Bk-8Vz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ad9-gP-fbe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -357,17 +363,17 @@
             <objects>
                 <tableViewController id="gvd-rk-FjB" customClass="SGAddBookController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="FKV-wS-DhA">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <rect key="frame" x="0.0" y="64" width="540" height="556"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection id="d4d-Hu-Lp9">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="NfY-uQ-AhF">
-                                        <rect key="frame" x="0.0" y="30" width="768" height="46"/>
+                                        <rect key="frame" x="0.0" y="30" width="540" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="45" y="1" width="678" height="43"/>
+                                            <rect key="frame" x="31" y="1" width="478" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Book Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d42-R4-lN7">
@@ -435,6 +441,9 @@
             <relationships>
                 <relationship kind="outlet" name="bookTitleTextField" candidateClass="UITextField"/>
             </relationships>
+        </class>
+        <class className="SGBookListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SGBookListViewController.h"/>
         </class>
         <class className="SettingsStrikethroughWidthDetailViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsStrikethroughWidthDetailViewController.h"/>
