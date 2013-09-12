@@ -59,6 +59,9 @@
     [_books addObject:book];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:(_books.count - 1) inSection:0];
     
+    NSString *bookDirectory = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:title];
+    [[NSFileManager defaultManager] createDirectoryAtPath:bookDirectory withIntermediateDirectories:NO attributes:nil error:nil];
+    
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
@@ -96,7 +99,11 @@
 {
     if (UITableViewCellEditingStyleDelete) {
         
+        SGBook *book = [_books objectAtIndex:indexPath.row];
         [_books removeObjectAtIndex:indexPath.row];
+        
+        NSString *bookDirectory = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:book.title];
+        [[NSFileManager defaultManager] removeItemAtPath:bookDirectory error:nil];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
