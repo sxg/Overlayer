@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SGBook.h"
 
 @interface SGBookViewController : UIViewController
+
+@property (nonatomic, readwrite, strong) SGBook *book;
 
 @property (nonatomic, weak) IBOutlet UILabel *label;
 

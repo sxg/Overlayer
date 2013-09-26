@@ -1,0 +1,11 @@
+# Podfile
+
+platform :ios, '5.0'
+
+target :LogisticsUnitTests, :exclusive => true do
+	pod 'Kiwi'
+end
+
+target :Logistics, :exclusive => true d
+	pod 'MBProgressHUD'
+end

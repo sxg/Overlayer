@@ -31,7 +31,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    UISplitViewController *splitVC = (UISplitViewController *)self.parentViewController;
+    UISplitViewController *splitVC = (UISplitViewController *)self.parentViewController.parentViewController;
     _bookListVC = (SGBookListViewController *)[[[[splitVC viewControllers] objectAtIndex:0] viewControllers] lastObject];
 }
 
@@ -39,6 +39,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setBook:(SGBook *)book
+{
+    [self.navigationItem setTitle:book.title];
+    _book = book;
 }
 
 @end

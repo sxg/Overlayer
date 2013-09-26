@@ -40,9 +40,11 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     UISplitViewController *splitVC = (UISplitViewController *)self.parentViewController.parentViewController;
-    _bookVC = (SGBookViewController *)[[splitVC viewControllers] lastObject];
+    _bookVC = (SGBookViewController *)[[[[splitVC viewControllers] lastObject] viewControllers] lastObject];
     
     _books = [[NSMutableArray alloc] init];
+    
+    //NSArray *
 }
 
 - (void)didReceiveMemoryWarning
@@ -114,6 +116,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     _bookVC.label.text = [[_books objectAtIndex:indexPath.row] title];
+    [_bookVC setBook:[_books objectAtIndex:indexPath.row]];
 }
 
 #pragma mark - Segue
