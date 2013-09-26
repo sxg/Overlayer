@@ -43,8 +43,12 @@
     _bookVC = (SGBookViewController *)[[[[splitVC viewControllers] lastObject] viewControllers] lastObject];
     
     _books = [[NSMutableArray alloc] init];
-    
-    //NSArray *
+    NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSArray *bookDirectories = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDirectory error:nil];
+    for (NSString *bookDirectoryName in bookDirectories) {
+        SGBook *book = [[SGBook alloc] initWithTitle:bookDirectoryName];
+        [_books addObject:book];
+    }
 }
 
 - (void)didReceiveMemoryWarning
