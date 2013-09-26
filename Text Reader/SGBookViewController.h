@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SGBook.h"
 
-@interface SGBookViewController : UIViewController
+@interface SGBookViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, readwrite, strong) SGBook *book;
 

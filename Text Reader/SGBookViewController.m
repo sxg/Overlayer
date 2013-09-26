@@ -31,6 +31,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [self.navigationItem setTitle:_book.title];
+    
     UISplitViewController *splitVC = (UISplitViewController *)self.parentViewController.parentViewController;
     _bookListVC = (SGBookListViewController *)[[[[splitVC viewControllers] objectAtIndex:0] viewControllers] lastObject];
 }
@@ -41,10 +43,36 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setBook:(SGBook *)book
+#pragma mark - UI Actions
+
+- (IBAction)takePicture:(id)sender
 {
-    [self.navigationItem setTitle:book.title];
-    _book = book;
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIImagePickerController *cameraVC = [[UIImagePickerController alloc] init];
+        [cameraVC setDelegate:self];
+        [cameraVC setSourceType:UIImagePickerControllerSourceTypeCamera];
+        [self presentViewController:cameraVC animated:YES completion:nil];
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Camera Unavailable" message:@"There is no camera available on this device" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+#pragma mark - Camera delegate
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [_book addPage:image];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

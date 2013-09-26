@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TextReaderAppDelegate : UIResponder <UIApplicationDelegate, UIImagePickerControllerDelegate>
+@interface TextReaderAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

@@ -24,6 +24,7 @@
 		4A2F755B169CD98000DD7A03 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F755A169CD98000DD7A03 /* Default-568h@2x.png */; };
 		4A39942E16D2F69300D65D25 /* SettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A39942D16D2F69300D65D25 /* SettingsCell.m */; };
 		4A39943416D303CA00D65D25 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A39943316D303CA00D65D25 /* SettingsViewController.m */; };
+		4A3F155917F3E01E00C21FB0 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A867816CF32B200D2B3A5 /* icon.png */; };
 		4A4F69D516D168D300093AB5 /* Amoon_ComicSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A4F69D416D168D300093AB5 /* Amoon_ComicSans.ttf */; };
 		4A56312F16F2862E003A3E49 /* collectionViewBackgroundRotated.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A56312E16F2862E003A3E49 /* collectionViewBackgroundRotated.png */; };
 		4A56313116F29837003A3E49 /* scrollviewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A56313016F29837003A3E49 /* scrollviewBackground.png */; };
@@ -47,6 +48,7 @@
 		4AA8850A17C47DC5000A4764 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2F7548169CD98000DD7A03 /* CoreGraphics.framework */; };
 		4AAB842516C6B2FE00BE13FD /* PageListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB842416C6B2FE00BE13FD /* PageListViewCell.m */; };
 		4AB487E116B74B00005960FA /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB487E016B74B00005960FA /* Character.m */; };
+		4AD2B23917F3E0D200556956 /* bookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA2AE416ED232B00AB9AE5 /* bookIcon.png */; };
 		4ADAF69616ED5A0500123D2B /* SGBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAF69516ED5A0500123D2B /* SGBook.m */; };
 		4ADAF69B16ED706300123D2B /* Changelog.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4ADAF69A16ED706300123D2B /* Changelog.rtf */; };
 		4ADAF69D16ED7D7700123D2B /* collectionViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADAF69C16ED7D7600123D2B /* collectionViewBackground.png */; };
@@ -370,6 +372,11 @@
 				CLASSPREFIX = TextReader;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Satyam Ghodasara";
+				TargetAttributes = {
+					4A2F753F169CD98000DD7A03 = {
+						DevelopmentTeam = 4ABHE9T95N;
+					};
+				};
 			};
 			buildConfigurationList = 4A2F753A169CD97F00DD7A03 /* Build configuration list for PBXProject "Text Reader" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -418,6 +425,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AD2B23917F3E0D200556956 /* bookIcon.png in Resources */,
+				4A3F155917F3E01E00C21FB0 /* icon.png in Resources */,
 				4AA884E217C4559D000A4764 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -645,8 +654,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F70B8DCE68494B65B7AA5613 /* Pods-TextReader.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -656,7 +665,7 @@
 				INFOPLIST_FILE = "Text Reader/Text Reader-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AD6465DA-ABC3-4046-890A-201033F0C64B";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AD6465DA-ABC3-4046-890A-201033F0C64B";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -667,8 +676,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F70B8DCE68494B65B7AA5613 /* Pods-TextReader.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dilip Ghodasara (3JMX3NUH8N)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -678,7 +687,7 @@
 				INFOPLIST_FILE = "Text Reader/Text Reader-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AD6465DA-ABC3-4046-890A-201033F0C64B";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AD6465DA-ABC3-4046-890A-201033F0C64B";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;

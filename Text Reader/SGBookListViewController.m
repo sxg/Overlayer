@@ -116,7 +116,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     _bookVC.label.text = [[_books objectAtIndex:indexPath.row] title];
-    [_bookVC setBook:[_books objectAtIndex:indexPath.row]];
+    _bookVC.book = [_books objectAtIndex:indexPath.row];
 }
 
 #pragma mark - Segue

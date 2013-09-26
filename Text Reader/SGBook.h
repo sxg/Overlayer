@@ -14,5 +14,8 @@
 @property (nonatomic, readonly, strong) NSArray *pages;
 
 - (id)initWithTitle:(NSString *)title;
+- (NSString *)savePath;
+- (void)addPage:(UIImage *)image;
+- (void)destroy;
 
 @end
