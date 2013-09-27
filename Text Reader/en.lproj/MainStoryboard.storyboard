@@ -295,7 +295,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="next" destination="bSQ-SP-GLp" id="OJ0-MO-crs"/>
                         <outlet property="pageScrollView" destination="FpC-Kb-VUl" id="zuJ-aa-bPZ"/>
+                        <outlet property="previous" destination="kiN-Ju-Bk5" id="sCj-Tx-6rM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F4P-NQ-Toh" userLabel="First Responder" sceneMemberID="firstResponder"/>
