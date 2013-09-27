@@ -13,7 +13,12 @@
 @interface SGBookViewController ()
 
 @property (nonatomic, weak) SGBookListViewController *bookListVC;
-@property (nonatomic, readwrite, strong) IBOutlet UIScrollView *pageScrollView;
+
+@property (nonatomic, assign) int currentPageIndex;
+
+@property (nonatomic, weak) IBOutlet UIScrollView *pageScrollView;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *previous;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *next;
 
 @end
 
@@ -35,13 +40,21 @@
     
     [self.navigationItem setTitle:_book.title];
     
+    [_previous setEnabled:NO];
+    [_next setEnabled:NO];
+    
     UISplitViewController *splitVC = (UISplitViewController *)self.parentViewController.parentViewController;
     _bookListVC = (SGBookListViewController *)[[[[splitVC viewControllers] objectAtIndex:0] viewControllers] lastObject];
     
     if (_book.pages.count > 0) {
+        _currentPageIndex = 0;
         UIImageView *imageView = [[UIImageView alloc] initWithImage:_book.pages[0]];
         [_pageScrollView addSubview:imageView];
         [_pageScrollView setContentSize:imageView.frame.size];
+        
+        if (_book.pages.count > 1) {
+            [_next setEnabled:YES];
+        }
     }
 }
 
@@ -56,6 +69,7 @@
     _book = book;
     
     if (_book.pages.count > 0) {
+        _currentPageIndex = 0;
         UIImageView *imageView = [[UIImageView alloc] initWithImage:_book.pages[0]];
         [_pageScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         [_pageScrollView addSubview:imageView];
@@ -77,6 +91,36 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Camera Unavailable" message:@"There is no camera available on this device" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [alert show];
     }
+}
+
+- (IBAction)previousPage:(id)sender
+{
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:_book.pages[--_currentPageIndex]];
+    [_pageScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [_pageScrollView addSubview:imageView];
+    [_pageScrollView setContentSize:imageView.frame.size];
+    
+    if (_currentPageIndex > 0) {
+        [_previous setEnabled:YES];
+    } else {
+        [_previous setEnabled:NO];
+    }
+    [_next setEnabled:YES];
+}
+
+- (IBAction)nextPage:(id)sender
+{
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:_book.pages[++_currentPageIndex]];
+    [_pageScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [_pageScrollView addSubview:imageView];
+    [_pageScrollView setContentSize:imageView.frame.size];
+    
+    if (_currentPageIndex == _book.pages.count - 1) {
+        [_next setEnabled:NO];
+    } else {
+        [_next setEnabled:YES];
+    }
+    [_previous setEnabled:YES];
 }
 
 #pragma mark - Camera delegate
