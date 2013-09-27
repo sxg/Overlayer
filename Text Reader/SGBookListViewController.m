@@ -123,7 +123,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _bookVC.label.text = [_books[indexPath.row] title];
     _bookVC.book = _books[indexPath.row];
 }
 

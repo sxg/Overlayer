@@ -13,6 +13,4 @@
 
 @property (nonatomic, readwrite, strong) SGBook *book;
 
-@property (nonatomic, weak) IBOutlet UILabel *label;
-
 @end

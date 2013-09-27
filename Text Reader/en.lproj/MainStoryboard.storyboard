@@ -288,6 +288,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="GRO-Dx-6cA">
+                        <barButtonItem key="leftBarButtonItem" title="Draw Lines" id="fUB-Tj-BBv">
+                            <connections>
+                                <action selector="drawLines:" destination="NV7-EI-hd6" id="X17-lh-T9N"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="DEm-t1-dee">
                             <connections>
                                 <action selector="takePicture:" destination="NV7-EI-hd6" id="XfQ-7Z-p07"/>

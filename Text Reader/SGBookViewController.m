@@ -9,6 +9,9 @@
 #import "SGBookViewController.h"
 #import "SGBookListViewController.h"
 #import "UIImage+Rotate.h"
+#import <MBProgressHUD/MBProgressHUD.h>
+#import "DrawingView.h"
+#import "SGLineDrawing.h"
 
 @interface SGBookViewController ()
 
@@ -78,6 +81,39 @@
 }
 
 #pragma mark - UI Actions
+
+- (IBAction)drawLines:(id)sender
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [hud setMode:MBProgressHUDModeIndeterminate];
+    [hud setLabelFont:[UIFont fontWithName:@"Amoon1" size:16.0f]];
+    [hud setLabelText:@"Drawing Lines"];
+    
+    dispatch_queue_t backgroundQueue = dispatch_queue_create("backgroundQueue", NULL);
+    dispatch_async(backgroundQueue, ^{
+        //  All of the processing happens in this method. drawingView is a custom UIView that has the lines drawn on it.
+        UIImage *image = _book.pages[_currentPageIndex];
+        DrawingView *drawingView = [SGLineDrawing identifyCharactersOnImage:image lineThickness:3.0f bytesPerPixel:4 bitsPerComponent:8];
+        UIView *containerView = [[UIView alloc] initWithFrame:drawingView.frame];
+        [containerView addSubview:[[UIImageView alloc] initWithImage:image]];
+        [containerView addSubview:drawingView];
+        
+        UIGraphicsBeginImageContext(containerView.frame.size);
+        [containerView.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIImage *convertedImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        NSString *imagePath = [[_book savePath] stringByAppendingPathComponent:@"y.png"];
+        if (![UIImagePNGRepresentation(convertedImage) writeToFile:imagePath atomically:YES]) {
+            NSLog(@"Failed to write image to disk");
+        }
+        
+        //  Make UI changes and save the image with the strikethroughs on the main thread after processing is finished
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [hud hide:YES];
+        });
+    });
+}
 
 - (IBAction)takePicture:(id)sender
 {

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		03FE3D7C6F764DE69D536915 /* libPods-TextReader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB9DF93EE1AE488CB78DCD13 /* libPods-TextReader.a */; };
 		485EBC36F94943D5B29FCC4F /* libPods-TextReaderUnitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8D78A92A2BF4E20AD7DAEB9 /* libPods-TextReaderUnitTests.a */; };
+		4A01421C17F5312F00DB315E /* SGLineDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A01421B17F5312F00DB315E /* SGLineDrawing.m */; };
+		4A01421D17F5312F00DB315E /* SGLineDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A01421B17F5312F00DB315E /* SGLineDrawing.m */; };
 		4A04D64316EA758600FA0440 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A04D64216EA758600FA0440 /* DropboxSDK.framework */; };
 		4A04D64616EA75DC00FA0440 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A04D64416EA75BA00FA0440 /* Security.framework */; };
 		4A04D64916EA75F000FA0440 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A04D64716EA75E400FA0440 /* QuartzCore.framework */; };
@@ -71,6 +73,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A01421A17F5312F00DB315E /* SGLineDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGLineDrawing.h; sourceTree = "<group>"; };
+		4A01421B17F5312F00DB315E /* SGLineDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGLineDrawing.m; sourceTree = "<group>"; };
 		4A04D64216EA758600FA0440 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
 		4A04D64416EA75BA00FA0440 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4A04D64716EA75E400FA0440 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -177,6 +181,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A01421917F530F100DB315E /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				4A01421A17F5312F00DB315E /* SGLineDrawing.h */,
+				4A01421B17F5312F00DB315E /* SGLineDrawing.m */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		4A23395B16CAC07400772782 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +278,7 @@
 				4A23395B16CAC07400772782 /* View Controllers */,
 				4A23395C16CAC08A00772782 /* Models */,
 				4AFED92C17E15216007E6209 /* Views */,
+				4A01421917F530F100DB315E /* Utility */,
 				4AF9714917F51CA100476298 /* Categories */,
 				4A2F754B169CD98000DD7A03 /* Supporting Files */,
 			);
@@ -553,6 +567,7 @@
 				4A39943416D303CA00D65D25 /* SettingsViewController.m in Sources */,
 				4AA249C916D32CF5003EC23E /* SettingsStrikethroughWidthDetailViewController.m in Sources */,
 				4ADAF69616ED5A0500123D2B /* SGBook.m in Sources */,
+				4A01421C17F5312F00DB315E /* SGLineDrawing.m in Sources */,
 				4AEE09B716F3D7A200C9D967 /* ClipView.m in Sources */,
 				4AFED92F17E15240007E6209 /* SGBookCollectionCell.m in Sources */,
 				4AFED93317E15E58007E6209 /* SGAddBookController.m in Sources */,
@@ -565,6 +580,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A01421D17F5312F00DB315E /* SGLineDrawing.m in Sources */,
 				4AA884F817C456BE000A4764 /* SGBookTestst.m in Sources */,
 				4AA8850417C45A6B000A4764 /* TextReaderViewController.m in Sources */,
 				4AA8850517C45C40000A4764 /* SGBook.m in Sources */,
