@@ -11,7 +11,7 @@
 @interface SGBook : NSObject
 
 @property (nonatomic, readonly, copy) NSString *title;
-@property (nonatomic, readonly, strong) NSArray *pages;
+@property (nonatomic, readonly, strong) NSMutableArray *pages;
 
 - (id)initWithTitle:(NSString *)title;
 - (NSString *)savePath;

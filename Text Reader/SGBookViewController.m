@@ -13,7 +13,7 @@
 @interface SGBookViewController ()
 
 @property (nonatomic, weak) SGBookListViewController *bookListVC;
-@property (nonatomic, readwrite, strong) UIScrollView *pageScrollView;
+@property (nonatomic, readwrite, strong) IBOutlet UIScrollView *pageScrollView;
 
 @end
 
@@ -38,14 +38,29 @@
     UISplitViewController *splitVC = (UISplitViewController *)self.parentViewController.parentViewController;
     _bookListVC = (SGBookListViewController *)[[[[splitVC viewControllers] objectAtIndex:0] viewControllers] lastObject];
     
-    _pageScrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
-    [self.view addSubview:_pageScrollView];
+    if (_book.pages.count > 0) {
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:_book.pages[0]];
+        [_pageScrollView addSubview:imageView];
+        [_pageScrollView setContentSize:imageView.frame.size];
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setBook:(SGBook *)book
+{
+    _book = book;
+    
+    if (_book.pages.count > 0) {
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:_book.pages[0]];
+        [_pageScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [_pageScrollView addSubview:imageView];
+        [_pageScrollView setContentSize:imageView.frame.size];
+    }
 }
 
 #pragma mark - UI Actions

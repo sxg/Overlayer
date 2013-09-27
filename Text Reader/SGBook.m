@@ -27,8 +27,24 @@
         
         NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
         NSString *bookPath = [documentsDirectory stringByAppendingPathComponent:_title];
-        if (![[NSFileManager defaultManager] createDirectoryAtPath:bookPath withIntermediateDirectories:YES attributes:nil error:nil]) {
-            NSLog(@"Failed to create book directory");
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:bookPath]) {
+            NSMutableArray *pageFileNames = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:bookPath error:nil] mutableCopy];
+            
+            //  Sort page numbers so that 10 doesn't come before 2
+            NSSortDescriptor *numericalSort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:YES selector:@selector(localizedStandardCompare:)];
+            [pageFileNames sortUsingDescriptors:[NSArray arrayWithObject:numericalSort]];
+            
+            for (NSString *pageFileName in pageFileNames) {
+                NSString *pagePath = [bookPath stringByAppendingPathComponent:pageFileName];
+                UIImage *image = [[UIImage alloc] initWithContentsOfFile:pagePath];
+                [_pages addObject:image];
+            }
+        }
+        else {
+            if (![[NSFileManager defaultManager] createDirectoryAtPath:bookPath withIntermediateDirectories:YES attributes:nil error:nil]) {
+                NSLog(@"Failed to create book directory");
+            }
         }
     }
     return self;
@@ -49,7 +65,7 @@
 
 - (void)addPage:(UIImage *)image
 {
-    [(NSMutableArray *)_pages addObject:image];
+    [_pages addObject:image];
     
     int numSavedImages = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self savePath] error:nil].count;
     NSString *imagePath = [[self savePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%i.png", (numSavedImages+1)]];

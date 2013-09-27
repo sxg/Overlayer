@@ -49,6 +49,10 @@
         SGBook *book = [[SGBook alloc] initWithTitle:bookDirectoryName];
         [_books addObject:book];
     }
+    
+    if (_books.count > 0) {
+        _bookVC.book = _books[0];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -119,8 +123,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _bookVC.label.text = [[_books objectAtIndex:indexPath.row] title];
-    _bookVC.book = [_books objectAtIndex:indexPath.row];
+    _bookVC.label.text = [_books[indexPath.row] title];
+    _bookVC.book = _books[indexPath.row];
 }
 
 #pragma mark - Segue
