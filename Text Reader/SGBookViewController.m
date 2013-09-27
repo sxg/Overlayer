@@ -8,10 +8,12 @@
 
 #import "SGBookViewController.h"
 #import "SGBookListViewController.h"
+#import "UIImage+Rotate.h"
 
 @interface SGBookViewController ()
 
 @property (nonatomic, weak) SGBookListViewController *bookListVC;
+@property (nonatomic, readwrite, strong) UIScrollView *pageScrollView;
 
 @end
 
@@ -35,6 +37,9 @@
     
     UISplitViewController *splitVC = (UISplitViewController *)self.parentViewController.parentViewController;
     _bookListVC = (SGBookListViewController *)[[[[splitVC viewControllers] objectAtIndex:0] viewControllers] lastObject];
+    
+    _pageScrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
+    [self.view addSubview:_pageScrollView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,6 +75,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    image = [image rotateToOrientation:UIImageOrientationDown];
     [_book addPage:image];
     
     [self dismissViewControllerAnimated:YES completion:nil];

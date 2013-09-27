@@ -325,7 +325,7 @@
 }
 
 static inline double radians (double degrees) {return degrees * M_PI/180;}
-- (UIImage*)rotateToOrientation:(UIImageOrientation)orientation
+- (UIImage *)rotateToOrientation:(UIImageOrientation)orientation
 {
     UIGraphicsBeginImageContext(self.size);
     

@@ -58,6 +58,8 @@
 		4AEA2AE916ED2ACF00AB9AE5 /* closebox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA2AE716ED2ACF00AB9AE5 /* closebox@2x.png */; };
 		4AEE09B716F3D7A200C9D967 /* ClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEE09B616F3D7A200C9D967 /* ClipView.m */; };
 		4AF183E116F185EB00C8F163 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AF183DF16F185EB00C8F163 /* MainStoryboard.storyboard */; };
+		4AF9714C17F51CBF00476298 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9714B17F51CBF00476298 /* UIImage+Rotate.m */; };
+		4AF9714D17F51CBF00476298 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9714B17F51CBF00476298 /* UIImage+Rotate.m */; };
 		4AFED92F17E15240007E6209 /* SGBookCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED92E17E15240007E6209 /* SGBookCollectionCell.m */; };
 		4AFED93017E15240007E6209 /* SGBookCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED92E17E15240007E6209 /* SGBookCollectionCell.m */; };
 		4AFED93317E15E58007E6209 /* SGAddBookController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93217E15E57007E6209 /* SGAddBookController.m */; };
@@ -126,6 +128,8 @@
 		4AEE09B516F3D7A200C9D967 /* ClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClipView.h; sourceTree = "<group>"; };
 		4AEE09B616F3D7A200C9D967 /* ClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClipView.m; sourceTree = "<group>"; };
 		4AF183E016F185EB00C8F163 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "Text Reader/en.lproj/MainStoryboard.storyboard"; sourceTree = "<group>"; };
+		4AF9714A17F51CBF00476298 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
+		4AF9714B17F51CBF00476298 /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
 		4AFED92D17E15240007E6209 /* SGBookCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBookCollectionCell.h; sourceTree = "<group>"; };
 		4AFED92E17E15240007E6209 /* SGBookCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBookCollectionCell.m; sourceTree = "<group>"; };
 		4AFED93117E15E57007E6209 /* SGAddBookController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGAddBookController.h; sourceTree = "<group>"; };
@@ -261,6 +265,7 @@
 				4A23395B16CAC07400772782 /* View Controllers */,
 				4A23395C16CAC08A00772782 /* Models */,
 				4AFED92C17E15216007E6209 /* Views */,
+				4AF9714917F51CA100476298 /* Categories */,
 				4A2F754B169CD98000DD7A03 /* Supporting Files */,
 			);
 			path = "Text Reader";
@@ -309,6 +314,15 @@
 				4AA884E617C4559D000A4764 /* TextReaderUnitTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4AF9714917F51CA100476298 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				4AF9714A17F51CBF00476298 /* UIImage+Rotate.h */,
+				4AF9714B17F51CBF00476298 /* UIImage+Rotate.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		4AFED92C17E15216007E6209 /* Views */ = {
@@ -531,6 +545,7 @@
 				4A2F7555169CD98000DD7A03 /* SGTextReaderAppDelegate.m in Sources */,
 				4A7E194516B323910031A7A1 /* UIImage+LineDrawer.m in Sources */,
 				4A06B74716B62D410023767F /* DrawingView.m in Sources */,
+				4AF9714C17F51CBF00476298 /* UIImage+Rotate.m in Sources */,
 				4AB487E116B74B00005960FA /* Character.m in Sources */,
 				4ADC0B1616BB668D00815209 /* BookListViewController.m in Sources */,
 				4AAB842516C6B2FE00BE13FD /* PageListViewCell.m in Sources */,
@@ -558,6 +573,7 @@
 				4AFED93417E15E58007E6209 /* SGAddBookController.m in Sources */,
 				4AFED93C17E171B1007E6209 /* SGBookListViewController.m in Sources */,
 				4AFED94017E17545007E6209 /* SGBookViewController.m in Sources */,
+				4AF9714D17F51CBF00476298 /* UIImage+Rotate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,8 +633,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "D420BFAC-E542-4201-ACBF-D304DD7597BA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D420BFAC-E542-4201-ACBF-D304DD7597BA";
+				PROVISIONING_PROFILE = "F5051D8E-A3E2-4A44-9700-1E7AD4D7879C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F5051D8E-A3E2-4A44-9700-1E7AD4D7879C";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -642,8 +658,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "D420BFAC-E542-4201-ACBF-D304DD7597BA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D420BFAC-E542-4201-ACBF-D304DD7597BA";
+				PROVISIONING_PROFILE = "F5051D8E-A3E2-4A44-9700-1E7AD4D7879C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F5051D8E-A3E2-4A44-9700-1E7AD4D7879C";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -665,8 +681,8 @@
 				INFOPLIST_FILE = "Text Reader/Text Reader-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AD6465DA-ABC3-4046-890A-201033F0C64B";
+				PROVISIONING_PROFILE = "F5051D8E-A3E2-4A44-9700-1E7AD4D7879C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F5051D8E-A3E2-4A44-9700-1E7AD4D7879C";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -687,8 +703,8 @@
 				INFOPLIST_FILE = "Text Reader/Text Reader-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AD6465DA-ABC3-4046-890A-201033F0C64B";
+				PROVISIONING_PROFILE = "F5051D8E-A3E2-4A44-9700-1E7AD4D7879C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F5051D8E-A3E2-4A44-9700-1E7AD4D7879C";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
