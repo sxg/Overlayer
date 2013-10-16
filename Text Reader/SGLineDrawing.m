@@ -9,168 +9,17 @@
 #import "SGLineDrawing.h"
 #import "UIImage+Rotate.h"
 #import "Character.h"
+#import <GPUImage/GPUImage.h>
 
 @implementation SGLineDrawing
-
-+ (int)otsusMethod:(int*)histogram size:(int)numPixels
-{
-    //  Initialize maximum variance and threshold
-    float maxVar = 0;
-    int threshold = 0;
-    
-    for (int t = 0; t < 256; t++)
-    {
-        float wb, wf, mub, muf;
-        float sumb = 0;
-        float sumf = 0;
-        float weightedSumb = 0;
-        float weightedSumf = 0;
-        
-        //  Sums for the background
-        for (int b = 0; b < t; b++)
-        {
-            sumb += histogram[b];
-            weightedSumb += b * histogram[b];
-        }
-        wb = sumb / numPixels;
-        mub = weightedSumb / sumb;
-        
-        //  Sums for the foreground
-        for (int f = t; f < 256; f++)
-        {
-            sumf += histogram[f];
-            weightedSumf += f * histogram[f];
-        }
-        wf = sumf / numPixels;
-        muf = weightedSumf / sumf;
-        
-        //  Only keep the threshold that gives the maximum variance
-        float var = wb * wf * (mub - muf) * (mub - muf);
-        if (var > maxVar)
-        {
-            maxVar = var;
-            threshold = t;
-        }
-    }
-    
-    return threshold;
-}
-
-+ (UIImage *)convertToGrayscaleWithImage:(UIImage *)image bytesPerPixel:(int)bytesPerPixel bitsPerComponent:(int)bitsPerComponent
-{
-    CGImageRef imageRef = [image CGImage];
-    CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
-    int size = CGImageGetHeight(imageRef) * CGImageGetWidth(imageRef) * 4;
-    unsigned char *rawData = (unsigned char*) calloc(size, sizeof(unsigned char));
-    CGContextRef context = CGBitmapContextCreate(rawData, CGImageGetWidth(imageRef), CGImageGetHeight(imageRef), bitsPerComponent, bytesPerPixel * CGImageGetWidth(imageRef), colorSpaceRef, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-    
-    CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(imageRef), CGImageGetHeight(imageRef)), imageRef);
-    
-    int bytesPerRow = bytesPerPixel * image.size.width;
-    
-    const int RED = 0;
-    const int GREEN = 1;
-    const int BLUE = 2;
-    const int NORTH = -1 * bytesPerRow;
-    const int WEST = -1 * bytesPerPixel;
-    const int EAST = bytesPerPixel;
-    const int SOUTH = bytesPerRow;
-    const float BLACK_PIXEL = 0.0;
-    const float WHITE_PIXEL = 255.0;
-    
-    //thresholds for considering the relative whiteness of two adjacent pixels; if the relative ratio is within the range, then the two pixels are considered to be the same relative level of white
-    const float LOWER_THRESHOLD = 0.85;
-    const float UPPER_THRESHOLD = 1.15;
-    
-    //NSMutableArray *histogram = [[NSMutableArray alloc] initWithCapacity:256];
-    int *histogram = (int*) calloc(256, sizeof(int));
-    for (int i = 0; i < 256; i++)
-    {
-        //[histogram addObject:[[NSNumber alloc] initWithInt:0]];
-        histogram[i] = 0;
-    }
-    
-    //duplicate the data to preserve the original...
-    unsigned char *rawDataCopy = (unsigned char*) calloc(size, sizeof(unsigned char));
-    for (int i = 0; i < size; i ++)
-    {
-        rawDataCopy[i] = rawData[i];
-    }
-    
-    for (int y = 0; y < CGImageGetHeight(imageRef); y++)
-    {
-        for (int x = 0; x < CGImageGetWidth(imageRef); x++)
-        {
-            int byteIndex = (bytesPerRow * y) + (x * bytesPerPixel);
-            int grayPixel = 0.3 * rawDataCopy[byteIndex + RED] + 0.59 * rawDataCopy[byteIndex + BLUE] + 0.11 * rawDataCopy[byteIndex + GREEN];
-            
-            //[histogram insertObject:([[NSNumber alloc] initWithInt:[[histogram objectAtIndex:grayPixel] intValue] + 1]) atIndex:grayPixel];
-            histogram[grayPixel]++;
-        }
-    }
-    
-    const int THRESHOLD = 0.85 * [self otsusMethod:histogram size:(CGImageGetWidth(imageRef) * CGImageGetHeight(imageRef))];
-    
-    for (int y = 0; y < CGImageGetHeight(imageRef); y++)
-    {
-        for (int x = 0; x < CGImageGetWidth(imageRef); x++)
-        {
-            int byteIndex = (bytesPerRow * y) + (x * bytesPerPixel);
-            CGFloat grayPixel = 0.3 * rawDataCopy[byteIndex + RED] + 0.59 * rawDataCopy[byteIndex + BLUE] + 0.11 * rawDataCopy[byteIndex + GREEN];
-            
-            if (byteIndex + NORTH + WEST >= 0 && byteIndex + SOUTH + EAST + bytesPerPixel < size)
-            {
-                if (grayPixel >= THRESHOLD) {
-                    CGFloat grayNorth = 0.3 * rawDataCopy[byteIndex + NORTH + RED] + 0.59 * rawDataCopy[byteIndex + NORTH + BLUE] + 0.11 * rawDataCopy[byteIndex + NORTH + GREEN];
-                    CGFloat grayWest = 0.3 * rawDataCopy[byteIndex + WEST + RED] + 0.59 * rawDataCopy[byteIndex + WEST + BLUE] + 0.11 * rawDataCopy[byteIndex + WEST + GREEN];
-                    CGFloat grayEast = 0.3 * rawDataCopy[byteIndex + EAST + RED] + 0.59 * rawDataCopy[byteIndex + EAST + BLUE] + 0.11 * rawDataCopy[byteIndex + EAST + GREEN];
-                    CGFloat graySouth = 0.3 * rawDataCopy[byteIndex + SOUTH + RED] + 0.59 * rawDataCopy[byteIndex + SOUTH + BLUE] + 0.11 * rawDataCopy[byteIndex + SOUTH + GREEN];
-                    
-                    CGFloat relativeNorth = grayNorth / grayPixel;
-                    CGFloat relativeWest = grayWest / grayPixel;
-                    CGFloat relativeEast = grayEast / grayPixel;
-                    CGFloat relativeSouth = graySouth / grayPixel;
-                    
-                    if (relativeNorth > LOWER_THRESHOLD && relativeNorth < UPPER_THRESHOLD && relativeWest > LOWER_THRESHOLD && relativeWest < UPPER_THRESHOLD && relativeEast > LOWER_THRESHOLD && relativeEast < UPPER_THRESHOLD && relativeSouth > LOWER_THRESHOLD && relativeSouth < UPPER_THRESHOLD)
-                    {
-                        rawData[byteIndex + RED] = WHITE_PIXEL;
-                        rawData[byteIndex + GREEN] = WHITE_PIXEL;
-                        rawData[byteIndex + BLUE] = WHITE_PIXEL;
-                    }
-                    else
-                    {
-                        rawData[byteIndex + RED] = BLACK_PIXEL;
-                        rawData[byteIndex + GREEN] = BLACK_PIXEL;
-                        rawData[byteIndex + BLUE] = BLACK_PIXEL;
-                    }
-                }
-                else if (grayPixel < THRESHOLD) {
-                    rawData[byteIndex + RED] = BLACK_PIXEL;
-                    rawData[byteIndex + GREEN] = BLACK_PIXEL;
-                    rawData[byteIndex + BLUE] = BLACK_PIXEL;
-                }
-            }
-        }
-    }
-    
-    //draw the new image...
-    CGImageRef newCGImage = CGBitmapContextCreateImage(context);
-    
-    CGContextRelease(context);
-    CGColorSpaceRelease(colorSpaceRef);
-    free(rawData);
-    free(rawDataCopy);
-    free(histogram);
-    
-    UIImage *newImage = [UIImage imageWithCGImage:newCGImage];
-    
-    return newImage;
-}
 
 + (DrawingView *)identifyCharactersOnImage:(UIImage *)image lineThickness:(float)lineThickness bytesPerPixel:(int)bytesPerPixel bitsPerComponent:(int)bitsPerComponent
 {
     int bytesPerRow = bytesPerPixel * image.size.width;
-    UIImage *blackAndWhiteImage = [self convertToGrayscaleWithImage:image bytesPerPixel:bytesPerPixel bitsPerComponent:bitsPerComponent];
+    
+    GPUImageAdaptiveThresholdFilter *adaptiveFilter = [[GPUImageAdaptiveThresholdFilter alloc] init];
+    UIImage *blackAndWhiteImage = [adaptiveFilter imageByFilteringImage:image];
+    
     CGImageRef imageRef = blackAndWhiteImage.CGImage;
     
     CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
@@ -186,17 +35,12 @@
     //array of characters, which are arrays of pixel byte indexes
     NSMutableArray *characters = [[NSMutableArray alloc] init];
     
-    for (int y = 0; y < CGImageGetHeight(imageRef); y++)
-    {
-        for (int x = 0; x < CGImageGetWidth(imageRef); x++)
-        {
+    for (int y = 0; y < CGImageGetHeight(imageRef); y++) {
+        for (int x = 0; x < CGImageGetWidth(imageRef); x++) {
             int byteIndex = (bytesPerRow * y) + (x * bytesPerPixel);
-            
-            if (rawData[byteIndex] == 0.0)
-            {
+            if (rawData[byteIndex] == 0.0) {
                 Character *c = [self floodFill:rawData x:x y:y height:CGImageGetHeight(imageRef) width:CGImageGetWidth(imageRef) bytesPerPixel:bytesPerPixel bytesPerRow:bytesPerRow];
-                if ([[c points] count] > LOWER_THRESHOLD && [[c points] count] < UPPER_THRESHOLD)
-                {
+                if ([[c points] count] > LOWER_THRESHOLD && [[c points] count] < UPPER_THRESHOLD) {
                     [characters addObject:c];
                 }
             }
@@ -281,28 +125,28 @@
 + (Character*)floodFill:(unsigned char *)rawData x:(int)x y:(int)y height:(int)height width:(int)width bytesPerPixel:(int)bytesPerPixel bytesPerRow:(int)bytesPerRow
 {
     //arrays of CGPoints...
-    NSMutableArray *examList = [[NSMutableArray alloc] init];
+    NSMutableArray *examineList = [[NSMutableArray alloc] init];
     NSMutableArray *allPoints = [[NSMutableArray alloc] init];
     
     const int UPPER_THRESHOLD = 2500;
     
     CGPoint start = CGPointMake(x, y);
-    [examList addObject:[NSValue valueWithCGPoint:start]];
+    [examineList addObject:[NSValue valueWithCGPoint:start]];
     [allPoints addObject:[NSValue valueWithCGPoint:start]];
     
-    while ([examList count] != 0)
+    while ([examineList count] != 0)
     {
         
-        CGPoint point = [[examList objectAtIndex:0] CGPointValue];
+        CGPoint point = [[examineList objectAtIndex:0] CGPointValue];
         int p = (bytesPerRow * point.y) + (point.x * bytesPerPixel);
-        [examList removeObjectAtIndex:0];
+        [examineList removeObjectAtIndex:0];
         
         if ([allPoints count] < UPPER_THRESHOLD && (p >= 0 && p < (bytesPerRow * (height - 1)) + ((width - 1) * bytesPerPixel) && rawData[p] == 0.0))  //if the point is black and there are fewer than UPPER_THRESHOLD pixels
         {
             //add this point to list of all black points...
             [allPoints addObject:[NSValue valueWithCGPoint:point]];
             
-            //change the color from black to whatever this is...
+            //change the color from black to white
             rawData[p] = 255.0;
             
             //get and add adjacent pixels to the exam list...
@@ -310,10 +154,10 @@
             CGPoint north = CGPointMake(point.x, point.y - 1);
             CGPoint east = CGPointMake(point.x + 1, point.y);
             CGPoint south = CGPointMake(point.x, point.y + 1);
-            [examList addObject:[NSValue valueWithCGPoint:west]];
-            [examList addObject:[NSValue valueWithCGPoint:north]];
-            [examList addObject:[NSValue valueWithCGPoint:east]];
-            [examList addObject:[NSValue valueWithCGPoint:south]];
+            [examineList addObject:[NSValue valueWithCGPoint:west]];
+            [examineList addObject:[NSValue valueWithCGPoint:north]];
+            [examineList addObject:[NSValue valueWithCGPoint:east]];
+            [examineList addObject:[NSValue valueWithCGPoint:south]];
         }
     }
     

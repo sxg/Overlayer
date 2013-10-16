@@ -93,7 +93,7 @@
     dispatch_async(backgroundQueue, ^{
         //  All of the processing happens in this method. drawingView is a custom UIView that has the lines drawn on it.
         UIImage *image = _book.pages[_currentPageIndex];
-        DrawingView *drawingView = [SGLineDrawing identifyCharactersOnImage:image lineThickness:3.0f bytesPerPixel:4 bitsPerComponent:8];
+        DrawingView *drawingView = [SGLineDrawing identifyCharactersOnImage:image lineThickness:1.5f bytesPerPixel:4 bitsPerComponent:8];
         UIView *containerView = [[UIView alloc] initWithFrame:drawingView.frame];
         [containerView addSubview:[[UIImageView alloc] initWithImage:image]];
         [containerView addSubview:drawingView];
