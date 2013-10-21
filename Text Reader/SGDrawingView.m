@@ -1,5 +1,5 @@
 //
-//  DrawingView.m
+//  SGDrawingView.m
 //  Text Reader
 //
 //  Created by Satyam Ghodasara on 1/27/13.
@@ -14,9 +14,9 @@
     _path is the UIBezierPath that will draw all the strikethroughs
  */
 
-#import "DrawingView.h"
+#import "SGDrawingView.h"
 
-@implementation DrawingView
+@implementation SGDrawingView
 
 @synthesize path;
 
@@ -47,7 +47,7 @@
 - (void)drawRect:(CGRect)rect
 {
     //  Set the color of the path and draw it
-    [[UIColor blackColor] setStroke];
+    [[UIColor blueColor] setStroke];
     [path stroke];
 }
 

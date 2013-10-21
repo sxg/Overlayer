@@ -10,7 +10,7 @@
 #import "SGBookListViewController.h"
 #import "UIImage+Rotate.h"
 #import <MBProgressHUD/MBProgressHUD.h>
-#import "DrawingView.h"
+#import "SGDrawingView.h"
 #import "SGLineDrawing.h"
 
 @interface SGBookViewController ()
@@ -20,6 +20,7 @@
 @property (nonatomic, assign) int currentPageIndex;
 
 @property (nonatomic, weak) IBOutlet UIScrollView *pageScrollView;
+@property (nonatomic, readwrite, strong) UIImageView *pageImageView;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *previous;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *next;
 
@@ -51,9 +52,9 @@
     
     if (_book.pages.count > 0) {
         _currentPageIndex = 0;
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:_book.pages[0]];
-        [_pageScrollView addSubview:imageView];
-        [_pageScrollView setContentSize:imageView.frame.size];
+        _pageImageView = [[UIImageView alloc] initWithImage:_book.pages[0]];
+        [_pageScrollView addSubview:_pageImageView];
+        [_pageScrollView setContentSize:_pageImageView.frame.size];
         
         if (_book.pages.count > 1) {
             [_next setEnabled:YES];
@@ -91,12 +92,12 @@
     
     dispatch_queue_t backgroundQueue = dispatch_queue_create("backgroundQueue", NULL);
     dispatch_async(backgroundQueue, ^{
-        //  All of the processing happens in this method. drawingView is a custom UIView that has the lines drawn on it.
+        //  All of the processing happens in this method. SGDrawingView is a custom UIView that has the lines drawn on it.
         UIImage *image = _book.pages[_currentPageIndex];
-        DrawingView *drawingView = [SGLineDrawing identifyCharactersOnImage:image lineThickness:1.5f bytesPerPixel:4 bitsPerComponent:8];
-        UIView *containerView = [[UIView alloc] initWithFrame:drawingView.frame];
+        SGDrawingView *SGDrawingView = [SGLineDrawing identifyCharactersOnImage:image lineThickness:1.5f];
+        UIView *containerView = [[UIView alloc] initWithFrame:SGDrawingView.frame];
         [containerView addSubview:[[UIImageView alloc] initWithImage:image]];
-        [containerView addSubview:drawingView];
+        [containerView addSubview:SGDrawingView];
         
         UIGraphicsBeginImageContext(containerView.frame.size);
         [containerView.layer renderInContext:UIGraphicsGetCurrentContext()];
@@ -107,6 +108,8 @@
         if (![UIImagePNGRepresentation(convertedImage) writeToFile:imagePath atomically:YES]) {
             NSLog(@"Failed to write image to disk");
         }
+        
+        [_pageImageView setImage:convertedImage];
         
         //  Make UI changes and save the image with the strikethroughs on the main thread after processing is finished
         dispatch_async(dispatch_get_main_queue(), ^{

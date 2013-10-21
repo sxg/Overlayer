@@ -1,5 +1,5 @@
 //
-//  DrawingView.h
+//  SGDrawingView.h
 //  Text Reader
 //
 //  Created by Satyam Ghodasara on 1/27/13.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DrawingView : UIView
+@interface SGDrawingView : UIView
 
 @property UIBezierPath *path;
 
