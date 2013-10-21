@@ -12,11 +12,12 @@
 
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, strong) NSMutableArray *pages;
-@property (nonatomic, readonly, assign) BOOL isProcessed;
+@property (nonatomic, readonly, assign) BOOL hasLinesDrawn;
 
 - (id)initWithTitle:(NSString *)title;
 - (NSString *)savePath;
 - (void)addPage:(UIImage *)image;
+- (void)drawLines;
 - (void)destroy;
 
 @end

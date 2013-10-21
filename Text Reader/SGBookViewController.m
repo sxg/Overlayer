@@ -74,10 +74,10 @@
     
     if (_book.pages.count > 0) {
         _currentPageIndex = 0;
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:_book.pages[0]];
+        _pageImageView = [[UIImageView alloc] initWithImage:_book.pages[0]];
         [_pageScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        [_pageScrollView addSubview:imageView];
-        [_pageScrollView setContentSize:imageView.frame.size];
+        [_pageScrollView addSubview:_pageImageView];
+        [_pageScrollView setContentSize:_pageImageView.frame.size];
     }
 }
 
@@ -92,18 +92,13 @@
     
     dispatch_queue_t backgroundQueue = dispatch_queue_create("backgroundQueue", NULL);
     dispatch_async(backgroundQueue, ^{
-        UIImage *image = _book.pages[_currentPageIndex];
-        image = [SGLineDrawing identifyCharactersOnImage:image lineThickness:1.5f];
         
-        NSString *imagePath = [[_book savePath] stringByAppendingPathComponent:@"y.png"];
-        if (![UIImagePNGRepresentation(image) writeToFile:imagePath atomically:YES]) {
-            NSLog(@"Failed to write image to disk");
-        }
+        [_book drawLines];
         
         //  Make UI changes and save the image with the strikethroughs on the main thread after processing is finished
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hide:YES];
-            [_pageImageView setImage:image];
+            [self setBook:_book];
         });
     });
 }

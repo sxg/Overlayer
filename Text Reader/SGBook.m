@@ -9,6 +9,7 @@
 #import "SGBook.h"
 #import <QuartzCore/QuartzCore.h>
 #import <CoreGraphics/CoreGraphics.h>
+#import "SGLineDrawing.h"
 
 @interface SGBook()
 
@@ -22,7 +23,7 @@
 {
     self = [super init];
     if (self) {
-        _isProcessed = NO;
+        _hasLinesDrawn = NO;
         _title = title;
         _pages = [[NSMutableArray alloc] init];
         
@@ -73,6 +74,18 @@
     if (![UIImagePNGRepresentation(image) writeToFile:imagePath atomically:YES]) {
         NSLog(@"Failed to write image to disk");
     }
+}
+
+- (void)drawLines
+{
+    [[_pages copy] enumerateObjectsUsingBlock:^(UIImage *page, NSUInteger idx, BOOL *stop) {
+        page = [SGLineDrawing identifyCharactersOnImage:page lineThickness:1.5f];
+        _pages[idx] = page;
+        NSString *path = [[self savePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%i.png", (idx+1)]];
+        if (![UIImagePNGRepresentation(page) writeToFile:path atomically:YES]) {
+            NSLog(@"Failed to save image");
+        }
+    }];
 }
 
 @end
