@@ -47,7 +47,7 @@
 - (void)drawRect:(CGRect)rect
 {
     //  Set the color of the path and draw it
-    [[UIColor blueColor] setStroke];
+    [[UIColor blackColor] setStroke];
     [path stroke];
 }
 

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIImage (Rotate)
+@interface UIImage (Transform)
 
-- (UIImage*)rotateToOrientation:(UIImageOrientation)orientation;
+- (UIImage *)rotateToOrientation:(UIImageOrientation)orientation;
++ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 
 @end

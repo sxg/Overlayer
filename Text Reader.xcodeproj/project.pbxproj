@@ -58,8 +58,8 @@
 		4AEA2AE816ED2ACF00AB9AE5 /* closebox.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA2AE616ED2ACF00AB9AE5 /* closebox.png */; };
 		4AEA2AE916ED2ACF00AB9AE5 /* closebox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA2AE716ED2ACF00AB9AE5 /* closebox@2x.png */; };
 		4AF183E116F185EB00C8F163 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AF183DF16F185EB00C8F163 /* MainStoryboard.storyboard */; };
-		4AF9714C17F51CBF00476298 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9714B17F51CBF00476298 /* UIImage+Rotate.m */; };
-		4AF9714D17F51CBF00476298 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9714B17F51CBF00476298 /* UIImage+Rotate.m */; };
+		4AF9714C17F51CBF00476298 /* UIImage+Transform.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9714B17F51CBF00476298 /* UIImage+Transform.m */; };
+		4AF9714D17F51CBF00476298 /* UIImage+Transform.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9714B17F51CBF00476298 /* UIImage+Transform.m */; };
 		4AFED92F17E15240007E6209 /* SGBookCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED92E17E15240007E6209 /* SGBookCollectionCell.m */; };
 		4AFED93017E15240007E6209 /* SGBookCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED92E17E15240007E6209 /* SGBookCollectionCell.m */; };
 		4AFED93317E15E58007E6209 /* SGAddBookController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93217E15E57007E6209 /* SGAddBookController.m */; };
@@ -119,8 +119,8 @@
 		4AEA2AE616ED2ACF00AB9AE5 /* closebox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closebox.png; sourceTree = "<group>"; };
 		4AEA2AE716ED2ACF00AB9AE5 /* closebox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closebox@2x.png"; sourceTree = "<group>"; };
 		4AF183E016F185EB00C8F163 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "Text Reader/en.lproj/MainStoryboard.storyboard"; sourceTree = "<group>"; };
-		4AF9714A17F51CBF00476298 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
-		4AF9714B17F51CBF00476298 /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
+		4AF9714A17F51CBF00476298 /* UIImage+Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Transform.h"; sourceTree = "<group>"; };
+		4AF9714B17F51CBF00476298 /* UIImage+Transform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Transform.m"; sourceTree = "<group>"; };
 		4AFED92D17E15240007E6209 /* SGBookCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBookCollectionCell.h; sourceTree = "<group>"; };
 		4AFED92E17E15240007E6209 /* SGBookCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBookCollectionCell.m; sourceTree = "<group>"; };
 		4AFED93117E15E57007E6209 /* SGAddBookController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGAddBookController.h; sourceTree = "<group>"; };
@@ -189,10 +189,10 @@
 			children = (
 				4AFED93917E171B1007E6209 /* SGBookListViewController.h */,
 				4AFED93A17E171B1007E6209 /* SGBookListViewController.m */,
-				4AFED93117E15E57007E6209 /* SGAddBookController.h */,
-				4AFED93217E15E57007E6209 /* SGAddBookController.m */,
 				4AFED93D17E17545007E6209 /* SGBookViewController.h */,
 				4AFED93E17E17545007E6209 /* SGBookViewController.m */,
+				4AFED93117E15E57007E6209 /* SGAddBookController.h */,
+				4AFED93217E15E57007E6209 /* SGAddBookController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -314,8 +314,8 @@
 		4AF9714917F51CA100476298 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				4AF9714A17F51CBF00476298 /* UIImage+Rotate.h */,
-				4AF9714B17F51CBF00476298 /* UIImage+Rotate.m */,
+				4AF9714A17F51CBF00476298 /* UIImage+Transform.h */,
+				4AF9714B17F51CBF00476298 /* UIImage+Transform.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -539,7 +539,7 @@
 				4A2F7551169CD98000DD7A03 /* main.m in Sources */,
 				4A2F7555169CD98000DD7A03 /* SGTextReaderAppDelegate.m in Sources */,
 				4A06B74716B62D410023767F /* SGDrawingView.m in Sources */,
-				4AF9714C17F51CBF00476298 /* UIImage+Rotate.m in Sources */,
+				4AF9714C17F51CBF00476298 /* UIImage+Transform.m in Sources */,
 				4A0440F918130B8E00E43583 /* SGCluster.m in Sources */,
 				4ADAF69616ED5A0500123D2B /* SGBook.m in Sources */,
 				4A01421C17F5312F00DB315E /* SGLineDrawing.m in Sources */,
@@ -563,7 +563,7 @@
 				4AFED93C17E171B1007E6209 /* SGBookListViewController.m in Sources */,
 				4AFED94017E17545007E6209 /* SGBookViewController.m in Sources */,
 				4A0440FA18130B8E00E43583 /* SGCluster.m in Sources */,
-				4AF9714D17F51CBF00476298 /* UIImage+Rotate.m in Sources */,
+				4AF9714D17F51CBF00476298 /* UIImage+Transform.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

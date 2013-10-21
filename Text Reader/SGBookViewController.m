@@ -8,7 +8,7 @@
 
 #import "SGBookViewController.h"
 #import "SGBookListViewController.h"
-#import "UIImage+Rotate.h"
+#import "UIImage+Transform.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "SGDrawingView.h"
 #import "SGLineDrawing.h"
@@ -109,8 +109,6 @@
             NSLog(@"Failed to write image to disk");
         }
         
-        [_pageImageView setImage:convertedImage];
-        
         //  Make UI changes and save the image with the strikethroughs on the main thread after processing is finished
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hide:YES];
@@ -173,7 +171,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    image = [image rotateToOrientation:UIImageOrientationDown];
+    image = [UIImage imageWithImage:image scaledToSize:CGSizeMake(image.size.width/2, image.size.height/2)];
     [_book addPage:image];
     
     [self dismissViewControllerAnimated:YES completion:nil];

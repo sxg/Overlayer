@@ -7,7 +7,7 @@
 //
 
 #import "SGLineDrawing.h"
-#import "UIImage+Rotate.h"
+#import "UIImage+Transform.h"
 #import "SGCluster.h"
 #import <GPUImage/GPUImage.h>
 
@@ -33,9 +33,7 @@
     CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
     unsigned char *bitmap = (unsigned char*) calloc(CGImageGetHeight(imageRef) * CGImageGetWidth(imageRef) * 4, sizeof(unsigned char));
     CGContextRef context = CGBitmapContextCreate(bitmap, CGImageGetWidth(imageRef), CGImageGetHeight(imageRef), bitsPerComponent, bytesPerPixel * CGImageGetWidth(imageRef), colorSpaceRef, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-    
     CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(imageRef), CGImageGetHeight(imageRef)), imageRef);
-    
     
     const int LOWER_THRESHOLD = 20; //minimum number of adjacent black pixels that will define a character
     const int UPPER_THRESHOLD = 7000; //maximum number of adjacent black pixels that will define a character
