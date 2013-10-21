@@ -9,11 +9,13 @@
 #import "SGLineDrawing.h"
 #import "UIImage+Transform.h"
 #import "SGCluster.h"
+#import "SGDrawingView.h"
 #import <GPUImage/GPUImage.h>
+#import <QuartzCore/QuartzCore.h>
 
 @implementation SGLineDrawing
 
-+ (SGDrawingView *)identifyCharactersOnImage:(UIImage *)image lineThickness:(float)lineThickness
++ (UIImage *)identifyCharactersOnImage:(UIImage *)image lineThickness:(float)lineThickness
 {
     const int bytesPerPixel = 4;
     const int bitsPerComponent = 8;
@@ -58,17 +60,17 @@
     
     CGContextRelease(context);
     free(bitmap);
-    return [self drawLinesOnImage:image characters:characters lineThickness:lineThickness bytesPerPixel:bytesPerPixel bitsPerComponent:bitsPerComponent];
+    return [self drawLinesOnImage:image characters:characters lineThickness:lineThickness];
 }
 
-+ (SGDrawingView *)drawLinesOnImage:(UIImage *)image characters:(NSMutableArray *)characters lineThickness:(float)lineThickness bytesPerPixel:(int)bytesPerPixel bitsPerComponent:(int)bitsPerComponent
++ (UIImage *)drawLinesOnImage:(UIImage *)image characters:(NSMutableArray *)characters lineThickness:(float)lineThickness
 {
     CGRect frame = CGRectMake(0, 0, image.size.width, image.size.height);
-    SGDrawingView *view = [[SGDrawingView alloc] initWithFrame:frame];
+    SGDrawingView *drawingView = [[SGDrawingView alloc] initWithFrame:frame];
     
     //  Iterate through every "cluster" of black pixels
     for (SGCluster *cluster in characters) {
-        UIBezierPath *path = [view path];
+        UIBezierPath *path = [drawingView path];
         [path setLineWidth:lineThickness];
         int offset = sqrt((cluster.maxSouth - cluster.maxNorth));// roughStdDev * 2;
 
@@ -93,9 +95,19 @@
         
     }
     
-    [view setNeedsDisplay];
+    [drawingView setNeedsDisplay];
     
-    return view;
+    UIView *containerView = [[UIView alloc] initWithFrame:frame];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    [containerView addSubview:imageView];
+    [containerView addSubview:drawingView];
+    
+    UIGraphicsBeginImageContext(containerView.frame.size);
+    [containerView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *imageWithLines = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return imageWithLines;
 }
 
 + (SGCluster *)floodFill:(unsigned char *)bitmap startPoint:(CGPoint)startPoint imageSize:(CGSize)imageSize

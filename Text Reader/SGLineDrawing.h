@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SGDrawingView.h"
 
 @interface SGLineDrawing : NSObject
 
-+ (SGDrawingView *)identifyCharactersOnImage:(UIImage *)image lineThickness:(float)lineThickness;
++ (UIImage *)identifyCharactersOnImage:(UIImage *)image lineThickness:(float)lineThickness;
 
 @end

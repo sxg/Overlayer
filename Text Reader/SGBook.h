@@ -12,6 +12,7 @@
 
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, strong) NSMutableArray *pages;
+@property (nonatomic, readonly, assign) BOOL isProcessed;
 
 - (id)initWithTitle:(NSString *)title;
 - (NSString *)savePath;

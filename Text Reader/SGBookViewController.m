@@ -92,26 +92,18 @@
     
     dispatch_queue_t backgroundQueue = dispatch_queue_create("backgroundQueue", NULL);
     dispatch_async(backgroundQueue, ^{
-        //  All of the processing happens in this method. SGDrawingView is a custom UIView that has the lines drawn on it.
         UIImage *image = _book.pages[_currentPageIndex];
-        SGDrawingView *SGDrawingView = [SGLineDrawing identifyCharactersOnImage:image lineThickness:1.5f];
-        UIView *containerView = [[UIView alloc] initWithFrame:SGDrawingView.frame];
-        [containerView addSubview:[[UIImageView alloc] initWithImage:image]];
-        [containerView addSubview:SGDrawingView];
-        
-        UIGraphicsBeginImageContext(containerView.frame.size);
-        [containerView.layer renderInContext:UIGraphicsGetCurrentContext()];
-        UIImage *convertedImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+        image = [SGLineDrawing identifyCharactersOnImage:image lineThickness:1.5f];
         
         NSString *imagePath = [[_book savePath] stringByAppendingPathComponent:@"y.png"];
-        if (![UIImagePNGRepresentation(convertedImage) writeToFile:imagePath atomically:YES]) {
+        if (![UIImagePNGRepresentation(image) writeToFile:imagePath atomically:YES]) {
             NSLog(@"Failed to write image to disk");
         }
         
         //  Make UI changes and save the image with the strikethroughs on the main thread after processing is finished
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hide:YES];
+            [_pageImageView setImage:image];
         });
     });
 }
