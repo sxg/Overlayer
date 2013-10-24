@@ -17,10 +17,10 @@
 
 @property (nonatomic, weak) SGCollectionListViewController *collectionListVC;
 
-@property (nonatomic, assign) int currentPageIndex;
+@property (nonatomic, assign) int currentDocumentIndex;
 
 @property (nonatomic, weak) IBOutlet UIScrollView *documentscrollView;
-@property (nonatomic, readwrite, strong) UIImageView *pageImageView;
+@property (nonatomic, readwrite, strong) UIImageView *documentImageView;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *previous;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *next;
 
@@ -51,10 +51,10 @@
     _collectionListVC = (SGCollectionListViewController *)[[[[splitVC viewControllers] objectAtIndex:0] viewControllers] lastObject];
     
     if (_collection.documents.count > 0) {
-        _currentPageIndex = 0;
-        _pageImageView = [[UIImageView alloc] initWithImage:_collection.documents[0]];
-        [_documentscrollView addSubview:_pageImageView];
-        [_documentscrollView setContentSize:_pageImageView.frame.size];
+        _currentDocumentIndex = 0;
+        _documentImageView = [[UIImageView alloc] initWithImage:_collection.documents[0]];
+        [_documentscrollView addSubview:_documentImageView];
+        [_documentscrollView setContentSize:_documentImageView.frame.size];
         
         if (_collection.documents.count > 1) {
             [_next setEnabled:YES];
@@ -73,11 +73,11 @@
     _collection = collection;
     
     if (_collection.documents.count > 0) {
-        _currentPageIndex = 0;
-        _pageImageView = [[UIImageView alloc] initWithImage:_collection.documents[0]];
+        _currentDocumentIndex = 0;
+        _documentImageView = [[UIImageView alloc] initWithImage:_collection.documents[0]];
         [_documentscrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        [_documentscrollView addSubview:_pageImageView];
-        [_documentscrollView setContentSize:_pageImageView.frame.size];
+        [_documentscrollView addSubview:_documentImageView];
+        [_documentscrollView setContentSize:_documentImageView.frame.size];
     }
 }
 
@@ -117,14 +117,14 @@
     }
 }
 
-- (IBAction)previousPage:(id)sender
+- (IBAction)previousDocument:(id)sender
 {
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:_collection.documents[--_currentPageIndex]];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:_collection.documents[--_currentDocumentIndex]];
     [_documentscrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [_documentscrollView addSubview:imageView];
     [_documentscrollView setContentSize:imageView.frame.size];
     
-    if (_currentPageIndex > 0) {
+    if (_currentDocumentIndex > 0) {
         [_previous setEnabled:YES];
     } else {
         [_previous setEnabled:NO];
@@ -132,14 +132,14 @@
     [_next setEnabled:YES];
 }
 
-- (IBAction)nextPage:(id)sender
+- (IBAction)nextDocument:(id)sender
 {
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:_collection.documents[++_currentPageIndex]];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:_collection.documents[++_currentDocumentIndex]];
     [_documentscrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [_documentscrollView addSubview:imageView];
     [_documentscrollView setContentSize:imageView.frame.size];
     
-    if (_currentPageIndex == _collection.documents.count - 1) {
+    if (_currentDocumentIndex == _collection.documents.count - 1) {
         [_next setEnabled:NO];
     } else {
         [_next setEnabled:YES];

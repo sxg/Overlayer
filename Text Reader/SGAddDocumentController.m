@@ -1,20 +1,18 @@
 //
-//  SGAddCollectionController.m
+//  SGAddDocumentController.m
 //  Text Reader
 //
-//  Created by Satyam Ghodasara on 9/11/13.
+//  Created by Satyam Ghodasara on 10/23/13.
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
-#import "SGAddCollectionController.h"
+#import "SGAddDocumentController.h"
 
-@interface SGAddCollectionController ()
-
-@property (nonatomic, readwrite, strong) IBOutlet UITextField *collectionTitleTextField;
+@interface SGAddDocumentController ()
 
 @end
 
-@implementation SGAddCollectionController
+@implementation SGAddDocumentController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -34,10 +32,6 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    [self.navigationController setNavigationBarHidden:NO];
-    
-    [_collectionTitleTextField setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,7 +51,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [_delegate addCollectionController:self didAddCollectionWithTitle:textField.text];
+    [_delegate addDocumentController:self didAddDocumentWithTitle:textField.text];
     [self dismissViewControllerAnimated:YES completion:nil];
     
     return YES;

@@ -30,6 +30,7 @@
 		4A3F155917F3E01E00C21FB0 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A867816CF32B200D2B3A5 /* icon.png */; };
 		4A4F69D516D168D300093AB5 /* Amoon_ComicSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A4F69D416D168D300093AB5 /* Amoon_ComicSans.ttf */; };
 		4A55E1451818C6A400703EAF /* SGDocumentsListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A55E1441818C6A400703EAF /* SGDocumentsListController.m */; };
+		4A55E1481818C8A000703EAF /* SGAddDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A55E1471818C8A000703EAF /* SGAddDocumentController.m */; };
 		4A56312F16F2862E003A3E49 /* collectionViewBackgroundRotated.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A56312E16F2862E003A3E49 /* collectionViewBackgroundRotated.png */; };
 		4A56313116F29837003A3E49 /* scrollviewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A56313016F29837003A3E49 /* scrollviewBackground.png */; };
 		4A6A867916CF32B200D2B3A5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A867816CF32B200D2B3A5 /* icon.png */; };
@@ -96,6 +97,8 @@
 		4A4F69D416D168D300093AB5 /* Amoon_ComicSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Amoon_ComicSans.ttf; sourceTree = "<group>"; };
 		4A55E1431818C6A400703EAF /* SGDocumentsListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGDocumentsListController.h; sourceTree = "<group>"; };
 		4A55E1441818C6A400703EAF /* SGDocumentsListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGDocumentsListController.m; sourceTree = "<group>"; };
+		4A55E1461818C8A000703EAF /* SGAddDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGAddDocumentController.h; sourceTree = "<group>"; };
+		4A55E1471818C8A000703EAF /* SGAddDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGAddDocumentController.m; sourceTree = "<group>"; };
 		4A56312E16F2862E003A3E49 /* collectionViewBackgroundRotated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = collectionViewBackgroundRotated.png; path = Images/collectionViewBackgroundRotated.png; sourceTree = "<group>"; };
 		4A56313016F29837003A3E49 /* scrollviewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scrollviewBackground.png; path = Images/scrollviewBackground.png; sourceTree = "<group>"; };
 		4A6A867816CF32B200D2B3A5 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
@@ -194,6 +197,8 @@
 				4AFED93217E15E57007E6209 /* SGAddCollectionController.m */,
 				4A55E1431818C6A400703EAF /* SGDocumentsListController.h */,
 				4A55E1441818C6A400703EAF /* SGDocumentsListController.m */,
+				4A55E1461818C8A000703EAF /* SGAddDocumentController.h */,
+				4A55E1471818C8A000703EAF /* SGAddDocumentController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -545,6 +550,7 @@
 				4AFED93317E15E58007E6209 /* SGAddCollectionController.m in Sources */,
 				4A55E1451818C6A400703EAF /* SGDocumentsListController.m in Sources */,
 				4AFED93B17E171B1007E6209 /* SGCollectionListViewController.m in Sources */,
+				4A55E1481818C8A000703EAF /* SGAddDocumentController.m in Sources */,
 				4AFED93F17E17545007E6209 /* SGCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

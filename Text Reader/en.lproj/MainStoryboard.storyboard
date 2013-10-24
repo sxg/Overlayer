@@ -51,8 +51,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="documentscrollView" destination="FpC-Kb-VUl" id="r38-Lw-hKc"/>
                         <outlet property="next" destination="bSQ-SP-GLp" id="OJ0-MO-crs"/>
-                        <outlet property="pageScrollView" destination="FpC-Kb-VUl" id="zuJ-aa-bPZ"/>
                         <outlet property="previous" destination="kiN-Ju-Bk5" id="sCj-Tx-6rM"/>
                     </connections>
                 </viewController>
@@ -69,7 +69,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="bookCell" id="6IU-B2-kdc">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="collectionCell" id="6IU-B2-kdc">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6IU-B2-kdc" id="0cw-Kd-6Gt">
@@ -87,9 +87,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Collections" id="2Ro-cs-kdO">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="jbN-eD-fYF">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="3R9-Ps-pG1">
                             <connections>
-                                <segue destination="Lyt-Nu-OGD" kind="modal" identifier="addBook" modalPresentationStyle="formSheet" id="O8U-Bk-8Vz"/>
+                                <segue destination="Lyt-Nu-OGD" kind="modal" modalPresentationStyle="formSheet" id="JLZ-n9-oy8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -107,7 +107,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ozK-67-ge1">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="documentCell" id="ozK-67-ge1">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ozK-67-ge1" id="vG5-tv-Qm7">
@@ -121,7 +121,13 @@
                             <outlet property="delegate" destination="Qea-Er-ZFX" id="62X-qQ-2LB"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Documents" id="riR-6Y-XFL"/>
+                    <navigationItem key="navigationItem" title="Documents" id="riR-6Y-XFL">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="DfP-20-hb7">
+                            <connections>
+                                <segue destination="bPd-pj-Mtw" kind="modal" modalPresentationStyle="formSheet" id="w1g-LW-3oK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s2q-dL-iZI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -169,7 +175,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yOL-8J-zHr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1987" y="-1162"/>
+            <point key="canvasLocation" x="1721" y="-1164"/>
         </scene>
         <!--Add Collection Controller - Add Collection-->
         <scene sceneID="BHv-IO-Hky">
@@ -197,7 +203,7 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Collection Title" textAlignment="right" minimumFontSize="17" id="uvL-qi-3uF">
-                                                    <rect key="frame" x="106" y="7" width="352" height="30"/>
+                                                    <rect key="frame" x="168" y="7" width="352" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -215,7 +221,11 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Add Collection" id="zF8-uj-fq0">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="XtF-2y-aMp"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="XtF-2y-aMp">
+                            <connections>
+                                <action selector="cancel:" destination="gvd-rk-FjB" id="Ezw-Qp-I6g"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bookTitleTextField" destination="uvL-qi-3uF" id="5xq-ip-0uf"/>
@@ -230,7 +240,72 @@
                     </items>
                 </navigationBar>
             </objects>
-            <point key="canvasLocation" x="2631" y="-1162"/>
+            <point key="canvasLocation" x="2365" y="-1164"/>
+        </scene>
+        <!--Add Document Controller - Add Document-->
+        <scene sceneID="SAd-aM-3H8">
+            <objects>
+                <tableViewController id="dCJ-GU-l9Q" customClass="SGAddDocumentController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="L9g-dc-QJB">
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="xR4-20-evL">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="7NM-bJ-WJy">
+                                        <rect key="frame" x="0.0" y="79" width="540" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7NM-bJ-WJy" id="6bi-YB-WpM">
+                                            <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Document Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EyH-Im-Gua">
+                                                    <rect key="frame" x="10" y="11" width="120" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Document Title" textAlignment="right" minimumFontSize="17" id="Zqr-G5-NZb">
+                                                    <rect key="frame" x="168" y="7" width="352" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Document" id="E1B-hw-H6k">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="6Qb-Oq-uyj">
+                            <connections>
+                                <action selector="cancel:" destination="dCJ-GU-l9Q" id="d36-dC-fJ1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PA5-EO-wFe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3857" y="-1164"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="UN6-LV-4le">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="bPd-pj-Mtw" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5In-Qe-M5z">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="dCJ-GU-l9Q" kind="relationship" relationship="rootViewController" id="8r0-sZ-mpB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qjz-Ih-0ua" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3175" y="-1164"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PgS-Op-Ykc">

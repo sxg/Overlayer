@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SGCollection.h"
 
 @interface SGDocumentsListController : UITableViewController
+
+@property (nonatomic, readwrite, strong) SGCollection *collection;
 
 @end
