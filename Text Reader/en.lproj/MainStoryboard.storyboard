@@ -51,7 +51,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="documentscrollView" destination="FpC-Kb-VUl" id="r38-Lw-hKc"/>
+                        <outlet property="documentsScrollView" destination="FpC-Kb-VUl" id="hso-a3-IGe"/>
                         <outlet property="next" destination="bSQ-SP-GLp" id="OJ0-MO-crs"/>
                         <outlet property="previous" destination="kiN-Ju-Bk5" id="sCj-Tx-6rM"/>
                     </connections>
@@ -60,10 +60,10 @@
             </objects>
             <point key="canvasLocation" x="2990" y="688"/>
         </scene>
-        <!--Collection List View Controller - Collections-->
+        <!--Collections List Controller - Collections-->
         <scene sceneID="RSL-wM-J1W">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="kg1-qv-hyb" customClass="SGCollectionListViewController" sceneMemberID="viewController">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="kg1-qv-hyb" customClass="SGCollectionsListController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="uyP-yS-Ja0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -89,7 +89,7 @@
                     <navigationItem key="navigationItem" title="Collections" id="2Ro-cs-kdO">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="3R9-Ps-pG1">
                             <connections>
-                                <segue destination="Lyt-Nu-OGD" kind="modal" modalPresentationStyle="formSheet" id="JLZ-n9-oy8"/>
+                                <segue destination="Lyt-Nu-OGD" kind="modal" identifier="addCollection" modalPresentationStyle="formSheet" id="JLZ-n9-oy8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -124,7 +124,7 @@
                     <navigationItem key="navigationItem" title="Documents" id="riR-6Y-XFL">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="DfP-20-hb7">
                             <connections>
-                                <segue destination="bPd-pj-Mtw" kind="modal" modalPresentationStyle="formSheet" id="w1g-LW-3oK"/>
+                                <segue destination="bPd-pj-Mtw" kind="modal" identifier="addDocument" modalPresentationStyle="formSheet" id="w1g-LW-3oK"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -228,7 +228,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bookTitleTextField" destination="uvL-qi-3uF" id="5xq-ip-0uf"/>
+                        <outlet property="collectionTitleTextField" destination="uvL-qi-3uF" id="bC6-k8-Ob6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9RU-y0-ZHO" userLabel="First Responder" sceneMemberID="firstResponder"/>

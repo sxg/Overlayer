@@ -1,5 +1,5 @@
 //
-//  SGCollectionListViewController.h
+//  SGCollectionsListController.h
 //  Text Reader
 //
 //  Created by Satyam Ghodasara on 9/11/13.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SGAddCollectionController.h"
 
-@interface SGCollectionListViewController : UITableViewController <SGAddCollectionDelegate>
+@interface SGCollectionsListController : UITableViewController <SGAddCollectionDelegate>
 
 @end

@@ -1,24 +1,25 @@
 //
-//  SGCollectionListViewController.m
+//  SGcollectionsListController.m
 //  Text Reader
 //
 //  Created by Satyam Ghodasara on 9/11/13.
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
-#import "SGCollectionListViewController.h"
+#import "SGCollectionsListController.h"
+#import "SGAddCollectionController.h"
 #import "SGCollectionViewController.h"
 #import "SGCollection.h"
 
-@interface SGCollectionListViewController ()
+@interface SGCollectionsListController ()
 
-@property (nonatomic, weak) SGCollectionViewController *CollectionVC;
+@property (nonatomic, weak) SGCollectionViewController *collectionVC;
 
-@property (nonatomic, readwrite, strong) NSMutableArray *Collections;
+@property (nonatomic, readwrite, strong) NSMutableArray *collections;
 
 @end
 
-@implementation SGCollectionListViewController
+@implementation SGCollectionsListController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -40,18 +41,18 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     UISplitViewController *splitVC = (UISplitViewController *)self.parentViewController.parentViewController;
-    _CollectionVC = (SGCollectionViewController *)[[[[splitVC viewControllers] lastObject] viewControllers] lastObject];
+    _collectionVC = (SGCollectionViewController *)[[[[splitVC viewControllers] lastObject] viewControllers] lastObject];
     
-    _Collections = [[NSMutableArray alloc] init];
+    _collections = [[NSMutableArray alloc] init];
     NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSArray *CollectionDirectories = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDirectory error:nil];
-    for (NSString *CollectionDirectoryName in CollectionDirectories) {
-        SGCollection *collection = [[SGCollection alloc] initWithTitle:CollectionDirectoryName];
-        [_Collections addObject:collection];
+    NSArray *collectionDirectories = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDirectory error:nil];
+    for (NSString *collectionDirectoryName in collectionDirectories) {
+        SGCollection *collection = [[SGCollection alloc] initWithTitle:collectionDirectoryName];
+        [_collections addObject:collection];
     }
     
-    if (_Collections.count > 0) {
-        _CollectionVC.collection = _Collections[0];
+    if (_collections.count > 0) {
+        _collectionVC.collection = _collections[0];
     }
 }
 
@@ -63,14 +64,14 @@
 
 #pragma mark - SGAddCollection delegate
 
-- (void)addCollectionController:(SGAddCollectionController *)addCollectionVC didAddCollectionWithTitle:(NSString *)title
+- (void)addCollectionController:(SGAddCollectionController *)addcollectionVC didAddCollectionWithTitle:(NSString *)title
 {
     SGCollection *collection = [[SGCollection alloc] initWithTitle:title];
-    [_Collections addObject:collection];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:(_Collections.count - 1) inSection:0];
+    [_collections addObject:collection];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:(_collections.count - 1) inSection:0];
     
-    NSString *CollectionDirectory = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:title];
-    [[NSFileManager defaultManager] createDirectoryAtPath:CollectionDirectory withIntermediateDirectories:NO attributes:nil error:nil];
+    NSString *collectionDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    [[NSFileManager defaultManager] createDirectoryAtPath:collectionDirectory withIntermediateDirectories:NO attributes:nil error:nil];
     
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
@@ -86,7 +87,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return _Collections.count;
+    return _collections.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -95,7 +96,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    cell.textLabel.text = [[_Collections objectAtIndex:indexPath.row] title];
+    cell.textLabel.text = [[_collections objectAtIndex:indexPath.row] title];
     
     return cell;
 }
@@ -109,8 +110,8 @@
 {
     if (UITableViewCellEditingStyleDelete) {
         
-        SGCollection *collection = [_Collections objectAtIndex:indexPath.row];
-        [_Collections removeObjectAtIndex:indexPath.row];
+        SGCollection *collection = [_collections objectAtIndex:indexPath.row];
+        [_collections removeObjectAtIndex:indexPath.row];
         
         NSString *CollectionDirectory = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:collection.title];
         [[NSFileManager defaultManager] removeItemAtPath:CollectionDirectory error:nil];
@@ -123,7 +124,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _CollectionVC.collection = _Collections[indexPath.row];
+    _collectionVC.collection = _collections[indexPath.row];
 }
 
 #pragma mark - Segue

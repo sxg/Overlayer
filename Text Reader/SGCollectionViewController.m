@@ -7,7 +7,7 @@
 //
 
 #import "SGCollectionViewController.h"
-#import "SGCollectionListViewController.h"
+#import "SGCollectionsListController.h"
 #import "UIImage+Transform.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "SGDrawingView.h"
@@ -15,11 +15,11 @@
 
 @interface SGCollectionViewController ()
 
-@property (nonatomic, weak) SGCollectionListViewController *collectionListVC;
+@property (nonatomic, weak) SGCollectionsListController *collectionListVC;
 
 @property (nonatomic, assign) int currentDocumentIndex;
 
-@property (nonatomic, weak) IBOutlet UIScrollView *documentscrollView;
+@property (nonatomic, weak) IBOutlet UIScrollView *documentsScrollView;
 @property (nonatomic, readwrite, strong) UIImageView *documentImageView;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *previous;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *next;
@@ -48,13 +48,13 @@
     [_next setEnabled:NO];
     
     UISplitViewController *splitVC = (UISplitViewController *)self.parentViewController.parentViewController;
-    _collectionListVC = (SGCollectionListViewController *)[[[[splitVC viewControllers] objectAtIndex:0] viewControllers] lastObject];
+    _collectionListVC = (SGCollectionsListController *)[[[[splitVC viewControllers] objectAtIndex:0] viewControllers] lastObject];
     
     if (_collection.documents.count > 0) {
         _currentDocumentIndex = 0;
         _documentImageView = [[UIImageView alloc] initWithImage:_collection.documents[0]];
-        [_documentscrollView addSubview:_documentImageView];
-        [_documentscrollView setContentSize:_documentImageView.frame.size];
+        [_documentsScrollView addSubview:_documentImageView];
+        [_documentsScrollView setContentSize:_documentImageView.frame.size];
         
         if (_collection.documents.count > 1) {
             [_next setEnabled:YES];
@@ -75,9 +75,9 @@
     if (_collection.documents.count > 0) {
         _currentDocumentIndex = 0;
         _documentImageView = [[UIImageView alloc] initWithImage:_collection.documents[0]];
-        [_documentscrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        [_documentscrollView addSubview:_documentImageView];
-        [_documentscrollView setContentSize:_documentImageView.frame.size];
+        [_documentsScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [_documentsScrollView addSubview:_documentImageView];
+        [_documentsScrollView setContentSize:_documentImageView.frame.size];
     }
 }
 
@@ -120,9 +120,9 @@
 - (IBAction)previousDocument:(id)sender
 {
     UIImageView *imageView = [[UIImageView alloc] initWithImage:_collection.documents[--_currentDocumentIndex]];
-    [_documentscrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [_documentscrollView addSubview:imageView];
-    [_documentscrollView setContentSize:imageView.frame.size];
+    [_documentsScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [_documentsScrollView addSubview:imageView];
+    [_documentsScrollView setContentSize:imageView.frame.size];
     
     if (_currentDocumentIndex > 0) {
         [_previous setEnabled:YES];
@@ -135,9 +135,9 @@
 - (IBAction)nextDocument:(id)sender
 {
     UIImageView *imageView = [[UIImageView alloc] initWithImage:_collection.documents[++_currentDocumentIndex]];
-    [_documentscrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [_documentscrollView addSubview:imageView];
-    [_documentscrollView setContentSize:imageView.frame.size];
+    [_documentsScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [_documentsScrollView addSubview:imageView];
+    [_documentsScrollView setContentSize:imageView.frame.size];
     
     if (_currentDocumentIndex == _collection.documents.count - 1) {
         [_next setEnabled:NO];
