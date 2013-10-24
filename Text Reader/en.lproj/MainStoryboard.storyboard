@@ -287,6 +287,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="documentTitleTextField" destination="Zqr-G5-NZb" id="IIi-Hv-jD0"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PA5-EO-wFe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

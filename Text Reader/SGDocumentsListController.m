@@ -7,6 +7,7 @@
 //
 
 #import "SGDocumentsListController.h"
+#import "SGAddDocumentController.h"
 
 @interface SGDocumentsListController ()
 
@@ -40,6 +41,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - SGAddDocumentController delegate
+
+- (void)addDocumentController:(SGAddDocumentController *)addDocumentVC didAddDocumentWithTitle:(NSString *)title
+{
+    
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -63,6 +71,16 @@
     cell.textLabel.text = [@(indexPath.row) stringValue];
     
     return cell;
+}
+
+#pragma mark - Segue control
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"addDocument"]) {
+        SGAddDocumentController *addDocumentVC = (SGAddDocumentController *)[[segue.destinationViewController viewControllers] lastObject];
+        [addDocumentVC setDelegate:self];
+    }
 }
 
 @end

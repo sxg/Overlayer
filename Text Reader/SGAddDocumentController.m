@@ -10,6 +10,8 @@
 
 @interface SGAddDocumentController ()
 
+@property (nonatomic, readwrite, strong) IBOutlet UITextField *documentTitleTextField;
+
 @end
 
 @implementation SGAddDocumentController

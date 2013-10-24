@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SGCollection.h"
+#import "SGAddDocumentController.h"
 
-@interface SGDocumentsListController : UITableViewController
+@interface SGDocumentsListController : UITableViewController <SGAddDocumentDelegate>
 
 @property (nonatomic, readwrite, strong) SGCollection *collection;
 
