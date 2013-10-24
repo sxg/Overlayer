@@ -60,8 +60,6 @@
 		4AF183E116F185EB00C8F163 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AF183DF16F185EB00C8F163 /* MainStoryboard.storyboard */; };
 		4AF9714C17F51CBF00476298 /* UIImage+Transform.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9714B17F51CBF00476298 /* UIImage+Transform.m */; };
 		4AF9714D17F51CBF00476298 /* UIImage+Transform.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9714B17F51CBF00476298 /* UIImage+Transform.m */; };
-		4AFED92F17E15240007E6209 /* SGBookCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED92E17E15240007E6209 /* SGBookCollectionCell.m */; };
-		4AFED93017E15240007E6209 /* SGBookCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED92E17E15240007E6209 /* SGBookCollectionCell.m */; };
 		4AFED93317E15E58007E6209 /* SGAddBookController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93217E15E57007E6209 /* SGAddBookController.m */; };
 		4AFED93417E15E58007E6209 /* SGAddBookController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93217E15E57007E6209 /* SGAddBookController.m */; };
 		4AFED93B17E171B1007E6209 /* SGBookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93A17E171B1007E6209 /* SGBookListViewController.m */; };
@@ -121,8 +119,6 @@
 		4AF183E016F185EB00C8F163 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "Text Reader/en.lproj/MainStoryboard.storyboard"; sourceTree = "<group>"; };
 		4AF9714A17F51CBF00476298 /* UIImage+Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Transform.h"; sourceTree = "<group>"; };
 		4AF9714B17F51CBF00476298 /* UIImage+Transform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Transform.m"; sourceTree = "<group>"; };
-		4AFED92D17E15240007E6209 /* SGBookCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBookCollectionCell.h; sourceTree = "<group>"; };
-		4AFED92E17E15240007E6209 /* SGBookCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBookCollectionCell.m; sourceTree = "<group>"; };
 		4AFED93117E15E57007E6209 /* SGAddBookController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGAddBookController.h; sourceTree = "<group>"; };
 		4AFED93217E15E57007E6209 /* SGAddBookController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGAddBookController.m; sourceTree = "<group>"; };
 		4AFED93917E171B1007E6209 /* SGBookListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBookListViewController.h; sourceTree = "<group>"; };
@@ -202,8 +198,6 @@
 			children = (
 				4ADAF69416ED5A0500123D2B /* SGBook.h */,
 				4ADAF69516ED5A0500123D2B /* SGBook.m */,
-				4A06B74516B62D410023767F /* SGDrawingView.h */,
-				4A06B74616B62D410023767F /* SGDrawingView.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -323,8 +317,8 @@
 		4AFED92C17E15216007E6209 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4AFED92D17E15240007E6209 /* SGBookCollectionCell.h */,
-				4AFED92E17E15240007E6209 /* SGBookCollectionCell.m */,
+				4A06B74516B62D410023767F /* SGDrawingView.h */,
+				4A06B74616B62D410023767F /* SGDrawingView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -543,7 +537,6 @@
 				4A0440F918130B8E00E43583 /* SGCluster.m in Sources */,
 				4ADAF69616ED5A0500123D2B /* SGBook.m in Sources */,
 				4A01421C17F5312F00DB315E /* SGLineDrawing.m in Sources */,
-				4AFED92F17E15240007E6209 /* SGBookCollectionCell.m in Sources */,
 				4AFED93317E15E58007E6209 /* SGAddBookController.m in Sources */,
 				4AFED93B17E171B1007E6209 /* SGBookListViewController.m in Sources */,
 				4AFED93F17E17545007E6209 /* SGBookViewController.m in Sources */,
@@ -558,7 +551,6 @@
 				4AA884F817C456BE000A4764 /* SGBookTestst.m in Sources */,
 				4AA8850517C45C40000A4764 /* SGBook.m in Sources */,
 				4AA8850617C45C44000A4764 /* SGDrawingView.m in Sources */,
-				4AFED93017E15240007E6209 /* SGBookCollectionCell.m in Sources */,
 				4AFED93417E15E58007E6209 /* SGAddBookController.m in Sources */,
 				4AFED93C17E171B1007E6209 /* SGBookListViewController.m in Sources */,
 				4AFED94017E17545007E6209 /* SGBookViewController.m in Sources */,
@@ -688,7 +680,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/Satyam/Documents/Dropbox/Code/Objective-C/iOS/Text\\ Reader/lib",
+					/Users/Satyam/Documents/Code/iOS/TextReader/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -718,7 +710,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/Satyam/Documents/Dropbox/Code/Objective-C/iOS/Text\\ Reader/lib",
+					/Users/Satyam/Documents/Code/iOS/TextReader/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;

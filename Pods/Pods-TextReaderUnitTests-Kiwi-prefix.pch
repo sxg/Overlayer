@@ -5,3 +5,6 @@
 #import "Pods-TextReaderUnitTests-environment.h"
 
 
+
+#import <SenTestingKit/SenTestingKit.h>
+

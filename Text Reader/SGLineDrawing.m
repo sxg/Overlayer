@@ -34,6 +34,7 @@
     CGImageRef imageRef = blackAndWhiteImage.CGImage;
     CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
     unsigned char *bitmap = (unsigned char*) calloc(CGImageGetHeight(imageRef) * CGImageGetWidth(imageRef) * 4, sizeof(unsigned char));
+
     CGContextRef context = CGBitmapContextCreate(bitmap, CGImageGetWidth(imageRef), CGImageGetHeight(imageRef), bitsPerComponent, bytesPerPixel * CGImageGetWidth(imageRef), colorSpaceRef, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
     CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(imageRef), CGImageGetHeight(imageRef)), imageRef);
     

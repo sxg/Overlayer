@@ -1,1 +1,1 @@
-../../Kiwi/Classes/Core/SenTestSuite+KiwiAdditions.h
+../../Kiwi/SenTestingKit/SenTestSuite+KiwiAdditions.h
