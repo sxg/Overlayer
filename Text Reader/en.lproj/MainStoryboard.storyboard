@@ -13,23 +13,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="BDh-HH-J2g">
-                                <rect key="frame" x="0.0" y="980" width="768" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="Previous" id="kiN-Ju-Bk5">
-                                        <connections>
-                                            <action selector="previousPage:" destination="NV7-EI-hd6" id="hk6-FM-obc"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="hJ3-oI-ygR"/>
-                                    <barButtonItem title="Next" id="bSQ-SP-GLp">
-                                        <connections>
-                                            <action selector="nextPage:" destination="NV7-EI-hd6" id="2j8-dP-aD2"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="FpC-Kb-VUl">
                                 <rect key="frame" x="0.0" y="64" width="768" height="916"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -38,22 +21,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="GRO-Dx-6cA">
-                        <barButtonItem key="leftBarButtonItem" title="Draw Lines" id="fUB-Tj-BBv">
-                            <connections>
-                                <action selector="drawLines:" destination="NV7-EI-hd6" id="X17-lh-T9N"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="DEm-t1-dee">
-                            <connections>
-                                <action selector="takePicture:" destination="NV7-EI-hd6" id="XfQ-7Z-p07"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="GRO-Dx-6cA"/>
                     <connections>
                         <outlet property="documentsScrollView" destination="FpC-Kb-VUl" id="hso-a3-IGe"/>
-                        <outlet property="next" destination="bSQ-SP-GLp" id="OJ0-MO-crs"/>
-                        <outlet property="previous" destination="kiN-Ju-Bk5" id="sCj-Tx-6rM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F4P-NQ-Toh" userLabel="First Responder" sceneMemberID="firstResponder"/>
