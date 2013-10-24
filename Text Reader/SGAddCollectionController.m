@@ -1,20 +1,20 @@
 //
-//  SGAddBookController.m
+//  SGAddCollectionController.m
 //  Text Reader
 //
 //  Created by Satyam Ghodasara on 9/11/13.
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
-#import "SGAddBookController.h"
+#import "SGAddCollectionController.h"
 
-@interface SGAddBookController ()
+@interface SGAddCollectionController ()
 
-@property (nonatomic, readwrite, strong) IBOutlet UITextField *bookTitleTextField;
+@property (nonatomic, readwrite, strong) IBOutlet UITextField *CollectionTitleTextField;
 
 @end
 
-@implementation SGAddBookController
+@implementation SGAddCollectionController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -37,7 +37,7 @@
     
     [self.navigationController setNavigationBarHidden:NO];
     
-    [_bookTitleTextField setDelegate:self];
+    [_CollectionTitleTextField setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,7 +50,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [_delegate addBookController:self didAddBookWithTitle:textField.text];
+    [_delegate addCollectionController:self didAddCollectionWithTitle:textField.text];
     [self dismissViewControllerAnimated:YES completion:nil];
     
     return YES;

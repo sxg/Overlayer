@@ -1,5 +1,5 @@
 //
-//  SYNBookTests.m
+//  SYNCollectionTests.m
 //  Text Reader
 //
 //  Created by Satyam Ghodasara on 9/11/13.
@@ -7,50 +7,50 @@
 //
 
 #import "Kiwi.h"
-#import "SGBook.h"
+#import "SGCollection.h"
 
-SPEC_BEGIN(SYNBookTests)
+SPEC_BEGIN(SYNCollectionTests)
 
-describe(@"A book", ^{
+describe(@"A collection", ^{
     
-    __block SGBook *book;
+    __block SGCollection *collection;
     
     beforeEach(^{
-        book = [[SGBook alloc] initWithTitle:@"Book"];
+        collection = [[SGCollection alloc] initWithTitle:@"Collection"];
     });
     
     afterEach(^{
         NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-        NSString *bookPath = [documentsDirectory stringByAppendingPathComponent:book.title];
-        [[NSFileManager defaultManager] removeItemAtPath:bookPath error:nil];
+        NSString *CollectionPath = [documentsDirectory stringByAppendingPathComponent:collection.title];
+        [[NSFileManager defaultManager] removeItemAtPath:CollectionPath error:nil];
         
-        book = nil;
+        collection = nil;
     });
     
     context(@"on init", ^{
         
         it(@"should accept and set a title", ^{
-            [[[book title] should] equal:@"Book"];
+            [[[collection title] should] equal:@"Collection"];
         });
         
         it(@"should setup its pages", ^{
-            [[[book pages] should] beNonNil];
-            [[[book pages] should] beKindOfClass:[NSMutableArray class]];
+            [[[collection pages] should] beNonNil];
+            [[[collection pages] should] beKindOfClass:[NSMutableArray class]];
         });
         
-        it(@"should create a folder with the book title", ^{
+        it(@"should create a folder with the collection title", ^{
             NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-            NSString *bookPath = [documentsDirectory stringByAppendingPathComponent:book.title];
+            NSString *CollectionPath = [documentsDirectory stringByAppendingPathComponent:collection.title];
             BOOL isDir;
-            BOOL bookPathExists = [[NSFileManager defaultManager] fileExistsAtPath:bookPath isDirectory:&isDir];
-            [[theValue(bookPathExists) should] equal:theValue(true)];
+            BOOL CollectionPathExists = [[NSFileManager defaultManager] fileExistsAtPath:CollectionPath isDirectory:&isDir];
+            [[theValue(CollectionPathExists) should] equal:theValue(true)];
             [[theValue(isDir) should] equal:theValue(true)];
         });
         
         it(@"should have a save path that points to its folder", ^{
             NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-            NSString *bookPath = [documentsDirectory stringByAppendingPathComponent:book.title];
-            [[[book savePath] should] equal:bookPath];
+            NSString *CollectionPath = [documentsDirectory stringByAppendingPathComponent:collection.title];
+            [[[collection savePath] should] equal:CollectionPath];
         });
         
     });
@@ -58,11 +58,11 @@ describe(@"A book", ^{
     context(@"on destroy", ^{
         
         it(@"should remove the folder", ^{
-            [book destroy];
+            [collection destroy];
             NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-            NSString *bookPath = [documentsDirectory stringByAppendingPathComponent:book.title];
-            BOOL bookPathExists = [[NSFileManager defaultManager] fileExistsAtPath:bookPath isDirectory:nil];
-            [[theValue(bookPathExists) should] equal:theValue(false)];
+            NSString *CollectionPath = [documentsDirectory stringByAppendingPathComponent:collection.title];
+            BOOL CollectionPathExists = [[NSFileManager defaultManager] fileExistsAtPath:CollectionPath isDirectory:nil];
+            [[theValue(CollectionPathExists) should] equal:theValue(false)];
         });
         
     });
@@ -81,26 +81,26 @@ describe(@"A book", ^{
             image = nil;
         });
         
-        it(@"should be added to the book's pages array", ^{
-            int numPages = book.pages.count;
-            [book addPage:image];
-            [[theValue(book.pages.count) should] equal:theValue(numPages + 1)];
-            [[[book.pages lastObject] should] equal:image];
+        it(@"should be added to the Collection's pages array", ^{
+            int numPages = collection.pages.count;
+            [collection addPage:image];
+            [[theValue(collection.pages.count) should] equal:theValue(numPages + 1)];
+            [[[collection.pages lastObject] should] equal:image];
         });
         
-        it(@"should be saved to the book's directory", ^{
+        it(@"should be saved to the Collection's directory", ^{
             NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-            NSString *bookPath = [documentsDirectory stringByAppendingPathComponent:book.title];
-            int numSavedImagesBefore = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:bookPath error:nil].count;
-            [book addPage:image];
-            int numSavedImagesAfter = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:bookPath error:nil].count;
+            NSString *CollectionPath = [documentsDirectory stringByAppendingPathComponent:collection.title];
+            int numSavedImagesBefore = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:CollectionPath error:nil].count;
+            [collection addPage:image];
+            int numSavedImagesAfter = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:CollectionPath error:nil].count;
             
             [[theValue(numSavedImagesAfter) shouldNot] equal:theValue(0)];
             [[theValue(numSavedImagesBefore) should] equal:theValue(numSavedImagesAfter - 1)];
             
             BOOL isDir;
-            BOOL bookPathExists = [[NSFileManager defaultManager] fileExistsAtPath:bookPath isDirectory:&isDir];
-            [[theValue(bookPathExists) should] equal:theValue(true)];
+            BOOL CollectionPathExists = [[NSFileManager defaultManager] fileExistsAtPath:CollectionPath isDirectory:&isDir];
+            [[theValue(CollectionPathExists) should] equal:theValue(true)];
             [[theValue(isDir) should] equal:theValue(true)];
         });
         

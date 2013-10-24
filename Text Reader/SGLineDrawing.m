@@ -22,7 +22,7 @@
     int bytesPerRow = bytesPerPixel * image.size.width;
     
     //  Make black/white image of text
-    //GPUImageAdaptiveThresholdFilter *filter = [[GPUImageAdaptiveThresholdFilter alloc] init];
+    //GPUImageAdaptiveThresholdFilter *filter = [[GPUImageAdaptiveThresholdFilter alloc] init];x
     GPUImageLuminanceThresholdFilter *filter = [[GPUImageLuminanceThresholdFilter alloc] init];
     UIImage *blackAndWhiteImage = [filter imageByFilteringImage:image];
     

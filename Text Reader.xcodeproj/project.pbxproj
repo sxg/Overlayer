@@ -29,6 +29,7 @@
 		4A2F755B169CD98000DD7A03 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F755A169CD98000DD7A03 /* Default-568h@2x.png */; };
 		4A3F155917F3E01E00C21FB0 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A867816CF32B200D2B3A5 /* icon.png */; };
 		4A4F69D516D168D300093AB5 /* Amoon_ComicSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A4F69D416D168D300093AB5 /* Amoon_ComicSans.ttf */; };
+		4A55E1451818C6A400703EAF /* SGDocumentsListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A55E1441818C6A400703EAF /* SGDocumentsListController.m */; };
 		4A56312F16F2862E003A3E49 /* collectionViewBackgroundRotated.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A56312E16F2862E003A3E49 /* collectionViewBackgroundRotated.png */; };
 		4A56313116F29837003A3E49 /* scrollviewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A56313016F29837003A3E49 /* scrollviewBackground.png */; };
 		4A6A867916CF32B200D2B3A5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A867816CF32B200D2B3A5 /* icon.png */; };
@@ -40,7 +41,7 @@
 		4AA884DC17C4559D000A4764 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2F7546169CD98000DD7A03 /* Foundation.framework */; };
 		4AA884E217C4559D000A4764 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4AA884E017C4559D000A4764 /* InfoPlist.strings */; };
 		4AA884F817C456BE000A4764 /* SGBookTestst.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA884F717C456BE000A4764 /* SGBookTestst.m */; };
-		4AA8850517C45C40000A4764 /* SGBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAF69516ED5A0500123D2B /* SGBook.m */; };
+		4AA8850517C45C40000A4764 /* SGCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAF69516ED5A0500123D2B /* SGCollection.m */; };
 		4AA8850617C45C44000A4764 /* SGDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06B74616B62D410023767F /* SGDrawingView.m */; };
 		4AA8850717C47DC5000A4764 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A04D64716EA75E400FA0440 /* QuartzCore.framework */; };
 		4AA8850817C47DC5000A4764 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A04D64416EA75BA00FA0440 /* Security.framework */; };
@@ -51,7 +52,7 @@
 		4AC4BF88180E301F00663AD7 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC4BF87180E301F00663AD7 /* OpenGLES.framework */; };
 		4AC4BF8A180E302400663AD7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC4BF89180E302400663AD7 /* AVFoundation.framework */; };
 		4AD2B23917F3E0D200556956 /* bookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA2AE416ED232B00AB9AE5 /* bookIcon.png */; };
-		4ADAF69616ED5A0500123D2B /* SGBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAF69516ED5A0500123D2B /* SGBook.m */; };
+		4ADAF69616ED5A0500123D2B /* SGCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAF69516ED5A0500123D2B /* SGCollection.m */; };
 		4ADAF69B16ED706300123D2B /* Changelog.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4ADAF69A16ED706300123D2B /* Changelog.rtf */; };
 		4ADAF69D16ED7D7700123D2B /* collectionViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADAF69C16ED7D7600123D2B /* collectionViewBackground.png */; };
 		4AEA2AE516ED232B00AB9AE5 /* bookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA2AE416ED232B00AB9AE5 /* bookIcon.png */; };
@@ -60,12 +61,12 @@
 		4AF183E116F185EB00C8F163 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AF183DF16F185EB00C8F163 /* MainStoryboard.storyboard */; };
 		4AF9714C17F51CBF00476298 /* UIImage+Transform.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9714B17F51CBF00476298 /* UIImage+Transform.m */; };
 		4AF9714D17F51CBF00476298 /* UIImage+Transform.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9714B17F51CBF00476298 /* UIImage+Transform.m */; };
-		4AFED93317E15E58007E6209 /* SGAddBookController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93217E15E57007E6209 /* SGAddBookController.m */; };
-		4AFED93417E15E58007E6209 /* SGAddBookController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93217E15E57007E6209 /* SGAddBookController.m */; };
-		4AFED93B17E171B1007E6209 /* SGBookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93A17E171B1007E6209 /* SGBookListViewController.m */; };
-		4AFED93C17E171B1007E6209 /* SGBookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93A17E171B1007E6209 /* SGBookListViewController.m */; };
-		4AFED93F17E17545007E6209 /* SGBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93E17E17545007E6209 /* SGBookViewController.m */; };
-		4AFED94017E17545007E6209 /* SGBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93E17E17545007E6209 /* SGBookViewController.m */; };
+		4AFED93317E15E58007E6209 /* SGAddCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93217E15E57007E6209 /* SGAddCollectionController.m */; };
+		4AFED93417E15E58007E6209 /* SGAddCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93217E15E57007E6209 /* SGAddCollectionController.m */; };
+		4AFED93B17E171B1007E6209 /* SGCollectionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93A17E171B1007E6209 /* SGCollectionListViewController.m */; };
+		4AFED93C17E171B1007E6209 /* SGCollectionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93A17E171B1007E6209 /* SGCollectionListViewController.m */; };
+		4AFED93F17E17545007E6209 /* SGCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93E17E17545007E6209 /* SGCollectionViewController.m */; };
+		4AFED94017E17545007E6209 /* SGCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93E17E17545007E6209 /* SGCollectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,8 @@
 		4A2F7558169CD98000DD7A03 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		4A2F755A169CD98000DD7A03 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4A4F69D416D168D300093AB5 /* Amoon_ComicSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Amoon_ComicSans.ttf; sourceTree = "<group>"; };
+		4A55E1431818C6A400703EAF /* SGDocumentsListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGDocumentsListController.h; sourceTree = "<group>"; };
+		4A55E1441818C6A400703EAF /* SGDocumentsListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGDocumentsListController.m; sourceTree = "<group>"; };
 		4A56312E16F2862E003A3E49 /* collectionViewBackgroundRotated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = collectionViewBackgroundRotated.png; path = Images/collectionViewBackgroundRotated.png; sourceTree = "<group>"; };
 		4A56313016F29837003A3E49 /* scrollviewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scrollviewBackground.png; path = Images/scrollviewBackground.png; sourceTree = "<group>"; };
 		4A6A867816CF32B200D2B3A5 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
@@ -109,8 +112,8 @@
 		4AC4BF85180E301900663AD7 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		4AC4BF87180E301F00663AD7 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		4AC4BF89180E302400663AD7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		4ADAF69416ED5A0500123D2B /* SGBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBook.h; sourceTree = "<group>"; };
-		4ADAF69516ED5A0500123D2B /* SGBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBook.m; sourceTree = "<group>"; };
+		4ADAF69416ED5A0500123D2B /* SGCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGCollection.h; sourceTree = "<group>"; };
+		4ADAF69516ED5A0500123D2B /* SGCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGCollection.m; sourceTree = "<group>"; };
 		4ADAF69A16ED706300123D2B /* Changelog.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Changelog.rtf; sourceTree = "<group>"; };
 		4ADAF69C16ED7D7600123D2B /* collectionViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = collectionViewBackground.png; path = Images/collectionViewBackground.png; sourceTree = "<group>"; };
 		4AEA2AE416ED232B00AB9AE5 /* bookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bookIcon.png; path = Images/bookIcon.png; sourceTree = "<group>"; };
@@ -119,12 +122,12 @@
 		4AF183E016F185EB00C8F163 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "Text Reader/en.lproj/MainStoryboard.storyboard"; sourceTree = "<group>"; };
 		4AF9714A17F51CBF00476298 /* UIImage+Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Transform.h"; sourceTree = "<group>"; };
 		4AF9714B17F51CBF00476298 /* UIImage+Transform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Transform.m"; sourceTree = "<group>"; };
-		4AFED93117E15E57007E6209 /* SGAddBookController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGAddBookController.h; sourceTree = "<group>"; };
-		4AFED93217E15E57007E6209 /* SGAddBookController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGAddBookController.m; sourceTree = "<group>"; };
-		4AFED93917E171B1007E6209 /* SGBookListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBookListViewController.h; sourceTree = "<group>"; };
-		4AFED93A17E171B1007E6209 /* SGBookListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBookListViewController.m; sourceTree = "<group>"; };
-		4AFED93D17E17545007E6209 /* SGBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGBookViewController.h; sourceTree = "<group>"; };
-		4AFED93E17E17545007E6209 /* SGBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBookViewController.m; sourceTree = "<group>"; };
+		4AFED93117E15E57007E6209 /* SGAddCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGAddCollectionController.h; sourceTree = "<group>"; };
+		4AFED93217E15E57007E6209 /* SGAddCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGAddCollectionController.m; sourceTree = "<group>"; };
+		4AFED93917E171B1007E6209 /* SGCollectionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGCollectionListViewController.h; sourceTree = "<group>"; };
+		4AFED93A17E171B1007E6209 /* SGCollectionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGCollectionListViewController.m; sourceTree = "<group>"; };
+		4AFED93D17E17545007E6209 /* SGCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGCollectionViewController.h; sourceTree = "<group>"; };
+		4AFED93E17E17545007E6209 /* SGCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGCollectionViewController.m; sourceTree = "<group>"; };
 		8B12D195B1154E009C69C5F7 /* Pods-TextReaderUnitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextReaderUnitTests.xcconfig"; path = "Pods/Pods-TextReaderUnitTests.xcconfig"; sourceTree = "<group>"; };
 		C8D78A92A2BF4E20AD7DAEB9 /* libPods-TextReaderUnitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TextReaderUnitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB9DF93EE1AE488CB78DCD13 /* libPods-TextReader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TextReader.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,12 +186,14 @@
 		4A23395B16CAC07400772782 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4AFED93917E171B1007E6209 /* SGBookListViewController.h */,
-				4AFED93A17E171B1007E6209 /* SGBookListViewController.m */,
-				4AFED93D17E17545007E6209 /* SGBookViewController.h */,
-				4AFED93E17E17545007E6209 /* SGBookViewController.m */,
-				4AFED93117E15E57007E6209 /* SGAddBookController.h */,
-				4AFED93217E15E57007E6209 /* SGAddBookController.m */,
+				4AFED93917E171B1007E6209 /* SGCollectionListViewController.h */,
+				4AFED93A17E171B1007E6209 /* SGCollectionListViewController.m */,
+				4AFED93D17E17545007E6209 /* SGCollectionViewController.h */,
+				4AFED93E17E17545007E6209 /* SGCollectionViewController.m */,
+				4AFED93117E15E57007E6209 /* SGAddCollectionController.h */,
+				4AFED93217E15E57007E6209 /* SGAddCollectionController.m */,
+				4A55E1431818C6A400703EAF /* SGDocumentsListController.h */,
+				4A55E1441818C6A400703EAF /* SGDocumentsListController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -196,8 +201,8 @@
 		4A23395C16CAC08A00772782 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4ADAF69416ED5A0500123D2B /* SGBook.h */,
-				4ADAF69516ED5A0500123D2B /* SGBook.m */,
+				4ADAF69416ED5A0500123D2B /* SGCollection.h */,
+				4ADAF69516ED5A0500123D2B /* SGCollection.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -535,11 +540,12 @@
 				4A06B74716B62D410023767F /* SGDrawingView.m in Sources */,
 				4AF9714C17F51CBF00476298 /* UIImage+Transform.m in Sources */,
 				4A0440F918130B8E00E43583 /* SGCluster.m in Sources */,
-				4ADAF69616ED5A0500123D2B /* SGBook.m in Sources */,
+				4ADAF69616ED5A0500123D2B /* SGCollection.m in Sources */,
 				4A01421C17F5312F00DB315E /* SGLineDrawing.m in Sources */,
-				4AFED93317E15E58007E6209 /* SGAddBookController.m in Sources */,
-				4AFED93B17E171B1007E6209 /* SGBookListViewController.m in Sources */,
-				4AFED93F17E17545007E6209 /* SGBookViewController.m in Sources */,
+				4AFED93317E15E58007E6209 /* SGAddCollectionController.m in Sources */,
+				4A55E1451818C6A400703EAF /* SGDocumentsListController.m in Sources */,
+				4AFED93B17E171B1007E6209 /* SGCollectionListViewController.m in Sources */,
+				4AFED93F17E17545007E6209 /* SGCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,11 +555,11 @@
 			files = (
 				4A01421D17F5312F00DB315E /* SGLineDrawing.m in Sources */,
 				4AA884F817C456BE000A4764 /* SGBookTestst.m in Sources */,
-				4AA8850517C45C40000A4764 /* SGBook.m in Sources */,
+				4AA8850517C45C40000A4764 /* SGCollection.m in Sources */,
 				4AA8850617C45C44000A4764 /* SGDrawingView.m in Sources */,
-				4AFED93417E15E58007E6209 /* SGAddBookController.m in Sources */,
-				4AFED93C17E171B1007E6209 /* SGBookListViewController.m in Sources */,
-				4AFED94017E17545007E6209 /* SGBookViewController.m in Sources */,
+				4AFED93417E15E58007E6209 /* SGAddCollectionController.m in Sources */,
+				4AFED93C17E171B1007E6209 /* SGCollectionListViewController.m in Sources */,
+				4AFED94017E17545007E6209 /* SGCollectionViewController.m in Sources */,
 				4A0440FA18130B8E00E43583 /* SGCluster.m in Sources */,
 				4AF9714D17F51CBF00476298 /* UIImage+Transform.m in Sources */,
 			);

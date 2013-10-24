@@ -1,32 +1,32 @@
 //
-//  SGBookViewController.m
+//  SGCollectionViewController.m
 //  Text Reader
 //
 //  Created by Satyam Ghodasara on 9/12/13.
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
-#import "SGBookViewController.h"
-#import "SGBookListViewController.h"
+#import "SGCollectionViewController.h"
+#import "SGCollectionListViewController.h"
 #import "UIImage+Transform.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "SGDrawingView.h"
 #import "SGLineDrawing.h"
 
-@interface SGBookViewController ()
+@interface SGCollectionViewController ()
 
-@property (nonatomic, weak) SGBookListViewController *bookListVC;
+@property (nonatomic, weak) SGCollectionListViewController *collectionListVC;
 
 @property (nonatomic, assign) int currentPageIndex;
 
-@property (nonatomic, weak) IBOutlet UIScrollView *pageScrollView;
+@property (nonatomic, weak) IBOutlet UIScrollView *documentscrollView;
 @property (nonatomic, readwrite, strong) UIImageView *pageImageView;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *previous;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *next;
 
 @end
 
-@implementation SGBookViewController
+@implementation SGCollectionViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,21 +42,21 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [self.navigationItem setTitle:_book.title];
+    [self.navigationItem setTitle:_collection.title];
     
     [_previous setEnabled:NO];
     [_next setEnabled:NO];
     
     UISplitViewController *splitVC = (UISplitViewController *)self.parentViewController.parentViewController;
-    _bookListVC = (SGBookListViewController *)[[[[splitVC viewControllers] objectAtIndex:0] viewControllers] lastObject];
+    _collectionListVC = (SGCollectionListViewController *)[[[[splitVC viewControllers] objectAtIndex:0] viewControllers] lastObject];
     
-    if (_book.pages.count > 0) {
+    if (_collection.documents.count > 0) {
         _currentPageIndex = 0;
-        _pageImageView = [[UIImageView alloc] initWithImage:_book.pages[0]];
-        [_pageScrollView addSubview:_pageImageView];
-        [_pageScrollView setContentSize:_pageImageView.frame.size];
+        _pageImageView = [[UIImageView alloc] initWithImage:_collection.documents[0]];
+        [_documentscrollView addSubview:_pageImageView];
+        [_documentscrollView setContentSize:_pageImageView.frame.size];
         
-        if (_book.pages.count > 1) {
+        if (_collection.documents.count > 1) {
             [_next setEnabled:YES];
         }
     }
@@ -68,16 +68,16 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setBook:(SGBook *)book
+- (void)setCollection:(SGCollection *)collection
 {
-    _book = book;
+    _collection = collection;
     
-    if (_book.pages.count > 0) {
+    if (_collection.documents.count > 0) {
         _currentPageIndex = 0;
-        _pageImageView = [[UIImageView alloc] initWithImage:_book.pages[0]];
-        [_pageScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        [_pageScrollView addSubview:_pageImageView];
-        [_pageScrollView setContentSize:_pageImageView.frame.size];
+        _pageImageView = [[UIImageView alloc] initWithImage:_collection.documents[0]];
+        [_documentscrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [_documentscrollView addSubview:_pageImageView];
+        [_documentscrollView setContentSize:_pageImageView.frame.size];
     }
 }
 
@@ -93,12 +93,12 @@
     dispatch_queue_t backgroundQueue = dispatch_queue_create("backgroundQueue", NULL);
     dispatch_async(backgroundQueue, ^{
         
-        [_book drawLines];
+        [_collection drawLines];
         
         //  Make UI changes and save the image with the strikethroughs on the main thread after processing is finished
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hide:YES];
-            [self setBook:_book];
+            [self setCollection:_collection];
         });
     });
 }
@@ -119,10 +119,10 @@
 
 - (IBAction)previousPage:(id)sender
 {
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:_book.pages[--_currentPageIndex]];
-    [_pageScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [_pageScrollView addSubview:imageView];
-    [_pageScrollView setContentSize:imageView.frame.size];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:_collection.documents[--_currentPageIndex]];
+    [_documentscrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [_documentscrollView addSubview:imageView];
+    [_documentscrollView setContentSize:imageView.frame.size];
     
     if (_currentPageIndex > 0) {
         [_previous setEnabled:YES];
@@ -134,12 +134,12 @@
 
 - (IBAction)nextPage:(id)sender
 {
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:_book.pages[++_currentPageIndex]];
-    [_pageScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [_pageScrollView addSubview:imageView];
-    [_pageScrollView setContentSize:imageView.frame.size];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:_collection.documents[++_currentPageIndex]];
+    [_documentscrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [_documentscrollView addSubview:imageView];
+    [_documentscrollView setContentSize:imageView.frame.size];
     
-    if (_currentPageIndex == _book.pages.count - 1) {
+    if (_currentPageIndex == _collection.documents.count - 1) {
         [_next setEnabled:NO];
     } else {
         [_next setEnabled:YES];
@@ -159,7 +159,7 @@
 {
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     image = [UIImage imageWithImage:image scaledToSize:CGSizeMake(image.size.width/2, image.size.height/2)];
-    [_book addPage:image];
+    [_collection addDocumentImage:image];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }

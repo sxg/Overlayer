@@ -1,5 +1,5 @@
 //
-//  SGSGBook.h
+//  SGSGCollection.h
 //  Text Reader
 //
 //  Created by Satyam Ghodasara on 3/10/13.
@@ -8,15 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SGBook : NSObject
+@interface SGCollection : NSObject
 
 @property (nonatomic, readonly, copy) NSString *title;
-@property (nonatomic, readonly, strong) NSMutableArray *pages;
+@property (nonatomic, readonly, strong) NSMutableArray *documents;
 @property (nonatomic, readonly, assign) BOOL hasLinesDrawn;
 
 - (id)initWithTitle:(NSString *)title;
 - (NSString *)savePath;
-- (void)addPage:(UIImage *)image;
+- (void)addDocumentImage:(UIImage *)documentImage;
 - (void)drawLines;
 - (void)destroy;
 

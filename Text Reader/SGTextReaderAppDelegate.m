@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
-#import "SGBook.h"
+#import "SGCollection.h"
 #import "SGTextReaderAppDelegate.h"
 #import <DropboxSDK/DropboxSDK.h>
 
