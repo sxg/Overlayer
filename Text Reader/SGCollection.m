@@ -65,24 +65,22 @@
     return [documentsDirectory stringByAppendingPathComponent:_title];
 }
 
-- (void)addDocumentImage:(UIImage *)documentImage
+- (void)addDocument:(SGDocument *)document
 {
-    [_documents addObject:documentImage];
+    [_documents addObject:document];
     
-    int numSavedImages = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self savePath] error:nil].count;
-    NSString *imagePath = [[self savePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%i.png", (numSavedImages+1)]];
-    if (![UIImagePNGRepresentation(documentImage) writeToFile:imagePath atomically:YES]) {
+    NSString *imagePath = [[self savePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png", (document.title)]];
+    if (![UIImagePNGRepresentation(document.image) writeToFile:imagePath atomically:YES]) {
         NSLog(@"Failed to write image to disk");
     }
 }
 
 - (void)drawLines
 {
-    [[_documents copy] enumerateObjectsUsingBlock:^(UIImage *document, NSUInteger idx, BOOL *stop) {
-        document = [SGLineDrawing identifyCharactersOnImage:document lineThickness:1.5f];
-        _documents[idx] = document;
-        NSString *path = [[self savePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%i.png", (idx+1)]];
-        if (![UIImagePNGRepresentation(document) writeToFile:path atomically:YES]) {
+    [[_documents copy] enumerateObjectsUsingBlock:^(SGDocument *document, NSUInteger idx, BOOL *stop) {
+        [document drawLines];
+        NSString *path = [[self savePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png", document.title]];
+        if (![UIImagePNGRepresentation(document.image) writeToFile:path atomically:YES]) {
             NSLog(@"Failed to save image");
         }
     }];

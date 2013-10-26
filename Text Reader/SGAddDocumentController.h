@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SGCollection.h"
 
 @class SGAddDocumentController;
 
@@ -18,8 +19,9 @@
 @end
 
 
-@interface SGAddDocumentController : UITableViewController <UITextFieldDelegate>
+@interface SGAddDocumentController : UITableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
+@property (nonatomic, weak) SGCollection *collection;
 @property (nonatomic, weak) id<SGAddDocumentDelegate> delegate;
 
 @end

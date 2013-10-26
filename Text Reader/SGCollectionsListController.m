@@ -51,10 +51,6 @@
         SGCollection *collection = [[SGCollection alloc] initWithTitle:collectionDirectoryName];
         [_collections addObject:collection];
     }
-    
-    if (_collections.count > 0) {
-        _collectionVC.collection = _collections[0];
-    }
 }
 
 - (void)didReceiveMemoryWarning

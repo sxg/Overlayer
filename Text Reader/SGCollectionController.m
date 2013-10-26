@@ -17,13 +17,6 @@
 
 @property (nonatomic, weak) SGCollectionsListController *collectionListVC;
 
-@property (nonatomic, assign) int currentDocumentIndex;
-
-@property (nonatomic, weak) IBOutlet UIScrollView *documentsScrollView;
-@property (nonatomic, readwrite, strong) UIImageView *documentImageView;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *previous;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *next;
-
 @end
 
 @implementation SGCollectionController
@@ -44,22 +37,8 @@
     
     [self.navigationItem setTitle:_collection.title];
     
-    [_previous setEnabled:NO];
-    [_next setEnabled:NO];
-    
     UISplitViewController *splitVC = (UISplitViewController *)self.parentViewController.parentViewController;
     _collectionListVC = (SGCollectionsListController *)[[[[splitVC viewControllers] objectAtIndex:0] viewControllers] lastObject];
-    
-    if (_collection.documents.count > 0) {
-        _currentDocumentIndex = 0;
-        _documentImageView = [[UIImageView alloc] initWithImage:_collection.documents[0]];
-        [_documentsScrollView addSubview:_documentImageView];
-        [_documentsScrollView setContentSize:_documentImageView.frame.size];
-        
-        if (_collection.documents.count > 1) {
-            [_next setEnabled:YES];
-        }
-    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,14 +50,6 @@
 - (void)setCollection:(SGCollection *)collection
 {
     _collection = collection;
-    
-    if (_collection.documents.count > 0) {
-        _currentDocumentIndex = 0;
-        _documentImageView = [[UIImageView alloc] initWithImage:_collection.documents[0]];
-        [_documentsScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        [_documentsScrollView addSubview:_documentImageView];
-        [_documentsScrollView setContentSize:_documentImageView.frame.size];
-    }
 }
 
 #pragma mark - UI Actions
@@ -115,53 +86,6 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Camera Unavailable" message:@"There is no camera available on this device" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [alert show];
     }
-}
-
-- (IBAction)previousDocument:(id)sender
-{
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:_collection.documents[--_currentDocumentIndex]];
-    [_documentsScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [_documentsScrollView addSubview:imageView];
-    [_documentsScrollView setContentSize:imageView.frame.size];
-    
-    if (_currentDocumentIndex > 0) {
-        [_previous setEnabled:YES];
-    } else {
-        [_previous setEnabled:NO];
-    }
-    [_next setEnabled:YES];
-}
-
-- (IBAction)nextDocument:(id)sender
-{
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:_collection.documents[++_currentDocumentIndex]];
-    [_documentsScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [_documentsScrollView addSubview:imageView];
-    [_documentsScrollView setContentSize:imageView.frame.size];
-    
-    if (_currentDocumentIndex == _collection.documents.count - 1) {
-        [_next setEnabled:NO];
-    } else {
-        [_next setEnabled:YES];
-    }
-    [_previous setEnabled:YES];
-}
-
-#pragma mark - Camera delegate
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    image = [UIImage imageWithImage:image scaledToSize:CGSizeMake(image.size.width/2, image.size.height/2)];
-    [_collection addDocumentImage:image];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

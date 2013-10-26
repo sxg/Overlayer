@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SGDocument.h"
 
 @interface SGDocumentController : UIViewController
+
+@property (nonatomic, readwrite, strong) SGDocument *document;
 
 @end

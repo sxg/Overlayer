@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SGDocument.h"
 
 @interface SGCollection : NSObject
 
@@ -16,7 +17,7 @@
 
 - (id)initWithTitle:(NSString *)title;
 - (NSString *)savePath;
-- (void)addDocumentImage:(UIImage *)documentImage;
+- (void)addDocument:(SGDocument *)document;
 - (void)drawLines;
 - (void)destroy;
 

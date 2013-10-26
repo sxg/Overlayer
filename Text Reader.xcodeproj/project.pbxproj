@@ -49,6 +49,7 @@
 		4AA8850917C47DC5000A4764 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A04D64216EA758600FA0440 /* DropboxSDK.framework */; };
 		4AA8850A17C47DC5000A4764 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2F7548169CD98000DD7A03 /* CoreGraphics.framework */; };
 		4AAE4DE3181B5AEE00868332 /* SGDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE4DE2181B5AEE00868332 /* SGDocumentController.m */; };
+		4AAE4DE6181B623C00868332 /* SGDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE4DE5181B623C00868332 /* SGDocument.m */; };
 		4AC4BF84180E301200663AD7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC4BF83180E301200663AD7 /* CoreMedia.framework */; };
 		4AC4BF86180E301900663AD7 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC4BF85180E301900663AD7 /* CoreVideo.framework */; };
 		4AC4BF88180E301F00663AD7 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC4BF87180E301F00663AD7 /* OpenGLES.framework */; };
@@ -114,6 +115,8 @@
 		4AA884F717C456BE000A4764 /* SGBookTestst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBookTestst.m; sourceTree = "<group>"; };
 		4AAE4DE1181B5AEE00868332 /* SGDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGDocumentController.h; sourceTree = "<group>"; };
 		4AAE4DE2181B5AEE00868332 /* SGDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGDocumentController.m; sourceTree = "<group>"; };
+		4AAE4DE4181B623C00868332 /* SGDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGDocument.h; sourceTree = "<group>"; };
+		4AAE4DE5181B623C00868332 /* SGDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGDocument.m; sourceTree = "<group>"; };
 		4AC4BF83180E301200663AD7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		4AC4BF85180E301900663AD7 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		4AC4BF87180E301F00663AD7 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -207,6 +210,8 @@
 			children = (
 				4ADAF69416ED5A0500123D2B /* SGCollection.h */,
 				4ADAF69516ED5A0500123D2B /* SGCollection.m */,
+				4AAE4DE4181B623C00868332 /* SGDocument.h */,
+				4AAE4DE5181B623C00868332 /* SGDocument.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -569,6 +574,7 @@
 				4AAE4DE3181B5AEE00868332 /* SGDocumentController.m in Sources */,
 				4ADAF69616ED5A0500123D2B /* SGCollection.m in Sources */,
 				4A01421C17F5312F00DB315E /* SGLineDrawing.m in Sources */,
+				4AAE4DE6181B623C00868332 /* SGDocument.m in Sources */,
 				4AFED93317E15E58007E6209 /* SGAddCollectionController.m in Sources */,
 				4A55E1451818C6A400703EAF /* SGDocumentsListController.m in Sources */,
 				4AFED93B17E171B1007E6209 /* SGCollectionsListController.m in Sources */,
