@@ -66,7 +66,7 @@
         [self performSegueWithIdentifier:@"addDocument" sender:nil];
     } else if (buttonIndex == 1) {
         
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[self.view superview] animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:_documentVC.view animated:YES];
         [hud setMode:MBProgressHUDModeIndeterminate];
         [hud setLabelText:@"Drawing Lines"];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, (unsigned long)NULL), ^(void) {
@@ -74,7 +74,7 @@
             [_collection drawLines];
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:[self.view superview] animated:YES];
+                [MBProgressHUD hideHUDForView:_documentVC.view animated:YES];
                 NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
                 [_documentVC setDocument:_collection.documents[selectedIndexPath.row]];
             });
