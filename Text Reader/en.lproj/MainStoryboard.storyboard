@@ -186,7 +186,6 @@
                                 <action selector="cancel:" destination="gvd-rk-FjB" id="Ezw-Qp-I6g"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="done" id="9Fr-Lp-LFV"/>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionTitleTextField" destination="uvL-qi-3uF" id="bC6-k8-Ob6"/>

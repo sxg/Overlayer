@@ -68,8 +68,6 @@
 		4AFED93417E15E58007E6209 /* SGAddCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93217E15E57007E6209 /* SGAddCollectionController.m */; };
 		4AFED93B17E171B1007E6209 /* SGCollectionsListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93A17E171B1007E6209 /* SGCollectionsListController.m */; };
 		4AFED93C17E171B1007E6209 /* SGCollectionsListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93A17E171B1007E6209 /* SGCollectionsListController.m */; };
-		4AFED93F17E17545007E6209 /* SGCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93E17E17545007E6209 /* SGCollectionController.m */; };
-		4AFED94017E17545007E6209 /* SGCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93E17E17545007E6209 /* SGCollectionController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -135,8 +133,6 @@
 		4AFED93217E15E57007E6209 /* SGAddCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGAddCollectionController.m; sourceTree = "<group>"; };
 		4AFED93917E171B1007E6209 /* SGCollectionsListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGCollectionsListController.h; sourceTree = "<group>"; };
 		4AFED93A17E171B1007E6209 /* SGCollectionsListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGCollectionsListController.m; sourceTree = "<group>"; };
-		4AFED93D17E17545007E6209 /* SGCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGCollectionController.h; sourceTree = "<group>"; };
-		4AFED93E17E17545007E6209 /* SGCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGCollectionController.m; sourceTree = "<group>"; };
 		8B12D195B1154E009C69C5F7 /* Pods-TextReaderUnitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextReaderUnitTests.xcconfig"; path = "Pods/Pods-TextReaderUnitTests.xcconfig"; sourceTree = "<group>"; };
 		C8D78A92A2BF4E20AD7DAEB9 /* libPods-TextReaderUnitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TextReaderUnitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB9DF93EE1AE488CB78DCD13 /* libPods-TextReader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TextReader.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,8 +191,6 @@
 		4A23395B16CAC07400772782 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4AFED93D17E17545007E6209 /* SGCollectionController.h */,
-				4AFED93E17E17545007E6209 /* SGCollectionController.m */,
 				4AAE4DE1181B5AEE00868332 /* SGDocumentController.h */,
 				4AAE4DE2181B5AEE00868332 /* SGDocumentController.m */,
 				4AAE4DDF181B5A0F00868332 /* Lists */,
@@ -579,7 +573,6 @@
 				4A55E1451818C6A400703EAF /* SGDocumentsListController.m in Sources */,
 				4AFED93B17E171B1007E6209 /* SGCollectionsListController.m in Sources */,
 				4A55E1481818C8A000703EAF /* SGAddDocumentController.m in Sources */,
-				4AFED93F17E17545007E6209 /* SGCollectionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,7 +586,6 @@
 				4AA8850617C45C44000A4764 /* SGDrawingView.m in Sources */,
 				4AFED93417E15E58007E6209 /* SGAddCollectionController.m in Sources */,
 				4AFED93C17E171B1007E6209 /* SGCollectionsListController.m in Sources */,
-				4AFED94017E17545007E6209 /* SGCollectionController.m in Sources */,
 				4A0440FA18130B8E00E43583 /* SGCluster.m in Sources */,
 				4AF9714D17F51CBF00476298 /* UIImage+Transform.m in Sources */,
 			);

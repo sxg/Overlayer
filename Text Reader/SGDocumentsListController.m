@@ -8,8 +8,11 @@
 
 #import "SGDocumentsListController.h"
 #import "SGAddDocumentController.h"
+#import "SGDocumentController.h"
 
 @interface SGDocumentsListController ()
+
+@property (nonatomic, weak) SGDocumentController *documentVC;
 
 @end
 
@@ -33,6 +36,9 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    UISplitViewController *splitVC = (UISplitViewController *)self.parentViewController.parentViewController;
+    _documentVC = (SGDocumentController *)[[[[splitVC viewControllers] lastObject] viewControllers] lastObject];
 }
 
 - (void)didReceiveMemoryWarning

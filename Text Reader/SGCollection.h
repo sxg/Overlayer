@@ -18,6 +18,7 @@
 - (id)initWithTitle:(NSString *)title;
 - (NSString *)savePath;
 - (void)addDocument:(SGDocument *)document;
+- (void)reloadData;
 - (void)drawLines;
 - (void)destroy;
 

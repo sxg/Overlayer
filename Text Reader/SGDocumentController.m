@@ -11,8 +11,6 @@
 
 @interface SGDocumentController ()
 
-@property (nonatomic, weak) SGCollectionsListController *collectionListVC;
-
 @end
 
 @implementation SGDocumentController
@@ -30,9 +28,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    UISplitViewController *splitVC = (UISplitViewController *)self.parentViewController.parentViewController;
-    _collectionListVC = (SGCollectionsListController *)[[[[splitVC viewControllers] objectAtIndex:0] viewControllers] lastObject];
 }
 
 - (void)didReceiveMemoryWarning
