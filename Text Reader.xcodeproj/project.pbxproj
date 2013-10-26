@@ -48,6 +48,7 @@
 		4AA8850817C47DC5000A4764 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A04D64416EA75BA00FA0440 /* Security.framework */; };
 		4AA8850917C47DC5000A4764 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A04D64216EA758600FA0440 /* DropboxSDK.framework */; };
 		4AA8850A17C47DC5000A4764 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2F7548169CD98000DD7A03 /* CoreGraphics.framework */; };
+		4AAE4DE3181B5AEE00868332 /* SGDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE4DE2181B5AEE00868332 /* SGDocumentController.m */; };
 		4AC4BF84180E301200663AD7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC4BF83180E301200663AD7 /* CoreMedia.framework */; };
 		4AC4BF86180E301900663AD7 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC4BF85180E301900663AD7 /* CoreVideo.framework */; };
 		4AC4BF88180E301F00663AD7 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC4BF87180E301F00663AD7 /* OpenGLES.framework */; };
@@ -66,8 +67,8 @@
 		4AFED93417E15E58007E6209 /* SGAddCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93217E15E57007E6209 /* SGAddCollectionController.m */; };
 		4AFED93B17E171B1007E6209 /* SGCollectionsListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93A17E171B1007E6209 /* SGCollectionsListController.m */; };
 		4AFED93C17E171B1007E6209 /* SGCollectionsListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93A17E171B1007E6209 /* SGCollectionsListController.m */; };
-		4AFED93F17E17545007E6209 /* SGCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93E17E17545007E6209 /* SGCollectionViewController.m */; };
-		4AFED94017E17545007E6209 /* SGCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93E17E17545007E6209 /* SGCollectionViewController.m */; };
+		4AFED93F17E17545007E6209 /* SGCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93E17E17545007E6209 /* SGCollectionController.m */; };
+		4AFED94017E17545007E6209 /* SGCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFED93E17E17545007E6209 /* SGCollectionController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +112,8 @@
 		4AA884E117C4559D000A4764 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4AA884E617C4559D000A4764 /* TextReaderUnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TextReaderUnitTests-Prefix.pch"; sourceTree = "<group>"; };
 		4AA884F717C456BE000A4764 /* SGBookTestst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBookTestst.m; sourceTree = "<group>"; };
+		4AAE4DE1181B5AEE00868332 /* SGDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGDocumentController.h; sourceTree = "<group>"; };
+		4AAE4DE2181B5AEE00868332 /* SGDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGDocumentController.m; sourceTree = "<group>"; };
 		4AC4BF83180E301200663AD7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		4AC4BF85180E301900663AD7 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		4AC4BF87180E301F00663AD7 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -129,8 +132,8 @@
 		4AFED93217E15E57007E6209 /* SGAddCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGAddCollectionController.m; sourceTree = "<group>"; };
 		4AFED93917E171B1007E6209 /* SGCollectionsListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGCollectionsListController.h; sourceTree = "<group>"; };
 		4AFED93A17E171B1007E6209 /* SGCollectionsListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGCollectionsListController.m; sourceTree = "<group>"; };
-		4AFED93D17E17545007E6209 /* SGCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGCollectionViewController.h; sourceTree = "<group>"; };
-		4AFED93E17E17545007E6209 /* SGCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGCollectionViewController.m; sourceTree = "<group>"; };
+		4AFED93D17E17545007E6209 /* SGCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGCollectionController.h; sourceTree = "<group>"; };
+		4AFED93E17E17545007E6209 /* SGCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGCollectionController.m; sourceTree = "<group>"; };
 		8B12D195B1154E009C69C5F7 /* Pods-TextReaderUnitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextReaderUnitTests.xcconfig"; path = "Pods/Pods-TextReaderUnitTests.xcconfig"; sourceTree = "<group>"; };
 		C8D78A92A2BF4E20AD7DAEB9 /* libPods-TextReaderUnitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TextReaderUnitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB9DF93EE1AE488CB78DCD13 /* libPods-TextReader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TextReader.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,8 +192,10 @@
 		4A23395B16CAC07400772782 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4AFED93D17E17545007E6209 /* SGCollectionViewController.h */,
-				4AFED93E17E17545007E6209 /* SGCollectionViewController.m */,
+				4AFED93D17E17545007E6209 /* SGCollectionController.h */,
+				4AFED93E17E17545007E6209 /* SGCollectionController.m */,
+				4AAE4DE1181B5AEE00868332 /* SGDocumentController.h */,
+				4AAE4DE2181B5AEE00868332 /* SGDocumentController.m */,
 				4AAE4DDF181B5A0F00868332 /* Lists */,
 				4AAE4DE0181B5A1900868332 /* Modals */,
 			);
@@ -561,13 +566,14 @@
 				4A06B74716B62D410023767F /* SGDrawingView.m in Sources */,
 				4AF9714C17F51CBF00476298 /* UIImage+Transform.m in Sources */,
 				4A0440F918130B8E00E43583 /* SGCluster.m in Sources */,
+				4AAE4DE3181B5AEE00868332 /* SGDocumentController.m in Sources */,
 				4ADAF69616ED5A0500123D2B /* SGCollection.m in Sources */,
 				4A01421C17F5312F00DB315E /* SGLineDrawing.m in Sources */,
 				4AFED93317E15E58007E6209 /* SGAddCollectionController.m in Sources */,
 				4A55E1451818C6A400703EAF /* SGDocumentsListController.m in Sources */,
 				4AFED93B17E171B1007E6209 /* SGCollectionsListController.m in Sources */,
 				4A55E1481818C8A000703EAF /* SGAddDocumentController.m in Sources */,
-				4AFED93F17E17545007E6209 /* SGCollectionViewController.m in Sources */,
+				4AFED93F17E17545007E6209 /* SGCollectionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,7 +587,7 @@
 				4AA8850617C45C44000A4764 /* SGDrawingView.m in Sources */,
 				4AFED93417E15E58007E6209 /* SGAddCollectionController.m in Sources */,
 				4AFED93C17E171B1007E6209 /* SGCollectionsListController.m in Sources */,
-				4AFED94017E17545007E6209 /* SGCollectionViewController.m in Sources */,
+				4AFED94017E17545007E6209 /* SGCollectionController.m in Sources */,
 				4A0440FA18130B8E00E43583 /* SGCluster.m in Sources */,
 				4AF9714D17F51CBF00476298 /* UIImage+Transform.m in Sources */,
 			);

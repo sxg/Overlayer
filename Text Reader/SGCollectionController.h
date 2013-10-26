@@ -1,5 +1,5 @@
 //
-//  SGCollectionViewController.h
+//  SGCollectionController.h
 //  Text Reader
 //
 //  Created by Satyam Ghodasara on 9/12/13.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SGCollection.h"
 
-@interface SGCollectionViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface SGCollectionController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, readwrite, strong) SGCollection *collection;
 

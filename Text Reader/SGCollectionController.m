@@ -1,19 +1,19 @@
 //
-//  SGCollectionViewController.m
+//  SGCollectionController.m
 //  Text Reader
 //
 //  Created by Satyam Ghodasara on 9/12/13.
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
-#import "SGCollectionViewController.h"
+#import "SGCollectionController.h"
 #import "SGCollectionsListController.h"
 #import "UIImage+Transform.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "SGDrawingView.h"
 #import "SGLineDrawing.h"
 
-@interface SGCollectionViewController ()
+@interface SGCollectionController ()
 
 @property (nonatomic, weak) SGCollectionsListController *collectionListVC;
 
@@ -26,7 +26,7 @@
 
 @end
 
-@implementation SGCollectionViewController
+@implementation SGCollectionController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

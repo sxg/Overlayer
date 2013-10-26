@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
-        <!--Collection View Controller-->
+        <!--Collection Controller-->
         <scene sceneID="2sP-dY-E3H">
             <objects>
-                <viewController id="NV7-EI-hd6" customClass="SGCollectionViewController" sceneMemberID="viewController">
+                <viewController id="NV7-EI-hd6" customClass="SGCollectionController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jYN-uM-5h1">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -24,11 +24,27 @@
                     <navigationItem key="navigationItem" id="GRO-Dx-6cA"/>
                     <connections>
                         <outlet property="documentsScrollView" destination="FpC-Kb-VUl" id="hso-a3-IGe"/>
+                        <segue destination="NZc-kk-eWm" kind="push" identifier="selectCollection" id="v0r-Lq-gv3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F4P-NQ-Toh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2990" y="688"/>
+        </scene>
+        <!--Document Controller-->
+        <scene sceneID="bsk-l1-S01">
+            <objects>
+                <viewController id="NZc-kk-eWm" customClass="SGDocumentController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sNb-b8-PIK">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="vUN-aZ-DSh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DRE-9b-2kf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4091" y="688"/>
         </scene>
         <!--Collections List Controller - Collections-->
         <scene sceneID="RSL-wM-J1W">

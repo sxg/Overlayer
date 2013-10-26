@@ -8,13 +8,13 @@
 
 #import "SGCollectionsListController.h"
 #import "SGAddCollectionController.h"
-#import "SGCollectionViewController.h"
+#import "SGCollectionController.h"
 #import "SGDocumentsListController.h"
 #import "SGCollection.h"
 
 @interface SGCollectionsListController ()
 
-@property (nonatomic, weak) SGCollectionViewController *collectionVC;
+@property (nonatomic, weak) SGCollectionController *collectionVC;
 
 @property (nonatomic, readwrite, strong) NSMutableArray *collections;
 
@@ -42,7 +42,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     UISplitViewController *splitVC = (UISplitViewController *)self.parentViewController.parentViewController;
-    _collectionVC = (SGCollectionViewController *)[[[[splitVC viewControllers] lastObject] viewControllers] lastObject];
+    _collectionVC = (SGCollectionController *)[[[[splitVC viewControllers] lastObject] viewControllers] lastObject];
     
     _collections = [[NSMutableArray alloc] init];
     NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
@@ -135,12 +135,6 @@
     if ([segue.identifier isEqualToString:@"addCollection"]) {
         SGAddCollectionController *addCollectionVC = (SGAddCollectionController *)[[segue.destinationViewController viewControllers] lastObject];
         [addCollectionVC setDelegate:self];
-    } else if ([segue.identifier isEqualToString:@"selectCollection"]) {
-        SGDocumentsListController *documentsListVC = (SGDocumentsListController *)segue.destinationViewController;
-        UITableViewCell *cell = (UITableViewCell *)sender;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        
-        [documentsListVC setCollection:_collections[indexPath.row]];
     }
 }
 
