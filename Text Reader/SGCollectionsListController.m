@@ -67,9 +67,6 @@
     [_collections addObject:collection];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:(_collections.count - 1) inSection:0];
     
-    NSString *collectionDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    [[NSFileManager defaultManager] createDirectoryAtPath:collectionDirectory withIntermediateDirectories:NO attributes:nil error:nil];
-    
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
