@@ -58,6 +58,8 @@
     if (![UIImagePNGRepresentation(document.image) writeToFile:imagePath atomically:YES]) {
         NSLog(@"Failed to write image to disk");
     }
+    
+    [self reloadData];
 }
 
 - (void)reloadData
