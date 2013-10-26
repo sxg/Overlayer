@@ -112,13 +112,6 @@
     }
 }
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self performSegueWithIdentifier:@"selectCollection" sender:indexPath];
-}
-
 #pragma mark - Segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -127,8 +120,10 @@
         SGAddCollectionController *addCollectionVC = (SGAddCollectionController *)[[segue.destinationViewController viewControllers] lastObject];
         [addCollectionVC setDelegate:self];
     } else if ([segue.identifier isEqualToString:@"selectCollection"]) {
-        NSIndexPath *indexPath = (NSIndexPath *)sender;
+        UITableViewCell *cell = (UITableViewCell *)sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         SGDocumentsListController *documentsLstVC = (SGDocumentsListController *)segue.destinationViewController;
+        
         [documentsLstVC setCollection:_collections[indexPath.row]];
     }
 }
