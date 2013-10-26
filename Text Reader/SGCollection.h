@@ -13,7 +13,6 @@
 
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, strong) NSMutableArray *documents;
-@property (nonatomic, readonly, assign) BOOL hasLinesDrawn;
 
 - (id)initWithTitle:(NSString *)title;
 - (NSString *)savePath;

@@ -94,12 +94,15 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Documents" id="riR-6Y-XFL">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="DfP-20-hb7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="DfP-20-hb7">
                             <connections>
-                                <segue destination="bPd-pj-Mtw" kind="modal" identifier="addDocument" modalPresentationStyle="formSheet" id="w1g-LW-3oK"/>
+                                <action selector="actionButtonClicked:" destination="Qea-Er-ZFX" id="lm2-7m-UlB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="bPd-pj-Mtw" kind="modal" identifier="addDocument" modalPresentationStyle="formSheet" id="7lI-vb-agE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s2q-dL-iZI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

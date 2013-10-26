@@ -9,9 +9,12 @@
 #import "SGDocumentsListController.h"
 #import "SGAddDocumentController.h"
 #import "SGDocumentController.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 #import "UIImage+Transform.h"
 
 @interface SGDocumentsListController ()
+
+@property (nonatomic, readwrite, strong) UIActionSheet *actionSheet;
 
 @property (nonatomic, weak) SGDocumentController *documentVC;
 @property (nonatomic, readwrite, copy) NSString *documentTitle;
@@ -32,14 +35,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     _documentTitle = @"INIT";
+    
+    _actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Add Document", @"Draw Lines for Collection", nil];
     
     UISplitViewController *splitVC = (UISplitViewController *)self.parentViewController.parentViewController;
     _documentVC = (SGDocumentController *)[[[[splitVC viewControllers] lastObject] viewControllers] lastObject];
@@ -51,19 +50,45 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - UI actions
+
+- (IBAction)actionButtonClicked:(id)sender
+{
+    UIBarButtonItem *actionButton = (UIBarButtonItem *)sender;
+    [_actionSheet showFromBarButtonItem:actionButton animated:YES];
+}
+
+#pragma mark - Action sheet delegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [self performSegueWithIdentifier:@"addDocument" sender:nil];
+    } else if (buttonIndex == 1) {
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[self.view superview] animated:YES];
+        [hud setMode:MBProgressHUDModeIndeterminate];
+        [hud setLabelText:@"Drawing Lines"];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, (unsigned long)NULL), ^(void) {
+            
+            [_collection drawLines];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:[self.view superview] animated:YES];
+                NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+                [_documentVC setDocument:_collection.documents[selectedIndexPath.row]];
+            });
+        });
+    }
+}
+
 #pragma mark - SGAddDocumentController delegate
 
 - (void)addDocumentController:(SGAddDocumentController *)addDocumentVC didAddDocumentWithTitle:(NSString *)title
 {
     //  TO-DO: make sure the title isn't already taken by another document
     _documentTitle = title;
-    [self takePicture:nil];
-}
-
-#pragma mark - UI actions
-
-- (IBAction)takePicture:(id)sender
-{
+    
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         UIImagePickerController *cameraVC = [[UIImagePickerController alloc] init];
         [cameraVC setDelegate:self];

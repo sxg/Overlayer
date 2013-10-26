@@ -23,7 +23,6 @@
 {
     self = [super init];
     if (self) {
-        _hasLinesDrawn = NO;
         _title = title;
         _documents = [[NSMutableArray alloc] init];
         
