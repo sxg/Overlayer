@@ -8,20 +8,12 @@
 
 #import "SGCollection.h"
 #import "SGTextReaderAppDelegate.h"
-#import <DropboxSDK/DropboxSDK.h>
 
 @implementation TextReaderAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
-    //  Dropbox setup
-    NSString *APP_KEY = @"iwgzxnsq7u0hy55";
-    NSString *APP_SECRET = @"wzs486aplmsxd2o";
-    NSString *ACCESS_TYPE = kDBRootAppFolder;
-    DBSession *dbSession = [[DBSession alloc] initWithAppKey:APP_KEY appSecret:APP_SECRET root:ACCESS_TYPE];
-    [DBSession setSharedSession:dbSession];
     
     //  Customize the navbar
     [self customizeAppearance];
@@ -54,21 +46,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
-    if ([[DBSession sharedSession] handleOpenURL:url])
-    {
-        if ([[DBSession sharedSession] isLinked])
-        {
-            NSLog(@"App succesfully linked!");
-        }
-        
-        return YES;
-    }
-    
-    return NO;
 }
 
 //  This method changes the font on the navbar and navbar buttons to Amoon1 using the appearance proxy

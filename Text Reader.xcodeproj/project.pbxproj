@@ -13,7 +13,6 @@
 		4A01421D17F5312F00DB315E /* SGLineDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A01421B17F5312F00DB315E /* SGLineDrawing.m */; };
 		4A0440F918130B8E00E43583 /* SGCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0440F818130B8E00E43583 /* SGCluster.m */; };
 		4A0440FA18130B8E00E43583 /* SGCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0440F818130B8E00E43583 /* SGCluster.m */; };
-		4A04D64316EA758600FA0440 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A04D64216EA758600FA0440 /* DropboxSDK.framework */; };
 		4A04D64616EA75DC00FA0440 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A04D64416EA75BA00FA0440 /* Security.framework */; };
 		4A04D64916EA75F000FA0440 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A04D64716EA75E400FA0440 /* QuartzCore.framework */; };
 		4A06B74716B62D410023767F /* SGDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06B74616B62D410023767F /* SGDrawingView.m */; };
@@ -46,7 +45,6 @@
 		4AA8850617C45C44000A4764 /* SGDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06B74616B62D410023767F /* SGDrawingView.m */; };
 		4AA8850717C47DC5000A4764 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A04D64716EA75E400FA0440 /* QuartzCore.framework */; };
 		4AA8850817C47DC5000A4764 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A04D64416EA75BA00FA0440 /* Security.framework */; };
-		4AA8850917C47DC5000A4764 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A04D64216EA758600FA0440 /* DropboxSDK.framework */; };
 		4AA8850A17C47DC5000A4764 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2F7548169CD98000DD7A03 /* CoreGraphics.framework */; };
 		4AAE4DE3181B5AEE00868332 /* SGDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE4DE2181B5AEE00868332 /* SGDocumentController.m */; };
 		4AAE4DE6181B623C00868332 /* SGDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE4DE5181B623C00868332 /* SGDocument.m */; };
@@ -75,7 +73,6 @@
 		4A01421B17F5312F00DB315E /* SGLineDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGLineDrawing.m; sourceTree = "<group>"; };
 		4A0440F718130B8E00E43583 /* SGCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGCluster.h; sourceTree = "<group>"; };
 		4A0440F818130B8E00E43583 /* SGCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGCluster.m; sourceTree = "<group>"; };
-		4A04D64216EA758600FA0440 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
 		4A04D64416EA75BA00FA0440 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4A04D64716EA75E400FA0440 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4A06B74516B62D410023767F /* SGDrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGDrawingView.h; sourceTree = "<group>"; };
@@ -154,7 +151,6 @@
 				4A2F7545169CD98000DD7A03 /* UIKit.framework in Frameworks */,
 				4A2F7547169CD98000DD7A03 /* Foundation.framework in Frameworks */,
 				4A2F7549169CD98000DD7A03 /* CoreGraphics.framework in Frameworks */,
-				4A04D64316EA758600FA0440 /* DropboxSDK.framework in Frameworks */,
 				03FE3D7C6F764DE69D536915 /* libPods-TextReader.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -168,7 +164,6 @@
 				4AA884DC17C4559D000A4764 /* Foundation.framework in Frameworks */,
 				4AA8850717C47DC5000A4764 /* QuartzCore.framework in Frameworks */,
 				4AA8850817C47DC5000A4764 /* Security.framework in Frameworks */,
-				4AA8850917C47DC5000A4764 /* DropboxSDK.framework in Frameworks */,
 				4AA8850A17C47DC5000A4764 /* CoreGraphics.framework in Frameworks */,
 				485EBC36F94943D5B29FCC4F /* libPods-TextReaderUnitTests.a in Frameworks */,
 			);
@@ -241,7 +236,6 @@
 				4A06B7A9180E2E1B00053B5B /* libGPUImage.a */,
 				4A04D64716EA75E400FA0440 /* QuartzCore.framework */,
 				4A04D64416EA75BA00FA0440 /* Security.framework */,
-				4A04D64216EA758600FA0440 /* DropboxSDK.framework */,
 				4A2F7544169CD98000DD7A03 /* UIKit.framework */,
 				4A2F7546169CD98000DD7A03 /* Foundation.framework */,
 				4A2F7548169CD98000DD7A03 /* CoreGraphics.framework */,
