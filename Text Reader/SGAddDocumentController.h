@@ -19,7 +19,7 @@
 @end
 
 
-@interface SGAddDocumentController : UITableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface SGAddDocumentController : UITableViewController
 
 @property (nonatomic, weak) SGCollection *collection;
 @property (nonatomic, weak) id<SGAddDocumentDelegate> delegate;

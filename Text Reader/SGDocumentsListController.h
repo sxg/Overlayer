@@ -10,7 +10,7 @@
 #import "SGCollection.h"
 #import "SGAddDocumentController.h"
 
-@interface SGDocumentsListController : UITableViewController <SGAddDocumentDelegate>
+@interface SGDocumentsListController : UITableViewController <SGAddDocumentDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, readwrite, strong) SGCollection *collection;
 
