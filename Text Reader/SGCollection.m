@@ -62,6 +62,19 @@
     [self reloadData];
 }
 
+- (void)deleteDocumentWithTitle:(NSString *)documentTitle
+{
+    for (SGDocument *document in [_documents copy]) {
+        if ([document.title isEqualToString:documentTitle]) {
+            [_documents removeObject:document];
+            NSString *documentPath = [[[self savePath] stringByAppendingPathComponent:documentTitle] stringByAppendingPathExtension:@"png"];
+            [[NSFileManager defaultManager] removeItemAtPath:documentPath error:nil];
+        }
+    }
+    
+    [self reloadData];
+}
+
 - (void)reloadData
 {
     NSMutableArray *documentFileNames = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self savePath] error:nil] mutableCopy];

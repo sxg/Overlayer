@@ -105,7 +105,7 @@
     if (UITableViewCellEditingStyleDelete) {
         
         SGCollection *collection = [_collections objectAtIndex:indexPath.row];
-        [collection destroy];
+        [collection deleteCollection];
         [_collections removeObjectAtIndex:indexPath.row];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
