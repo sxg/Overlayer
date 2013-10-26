@@ -40,7 +40,8 @@
             for (NSString *documentFileName in documentFileNames) {
                 NSString *documentPath = [collectionPath stringByAppendingPathComponent:documentFileName];
                 UIImage *image = [[UIImage alloc] initWithContentsOfFile:documentPath];
-                [_documents addObject:image];
+                SGDocument *document = [[SGDocument alloc] initWithImage:image title:[documentFileName stringByDeletingPathExtension]];
+                [_documents addObject:document];
             }
         }
         else {

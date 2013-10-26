@@ -8,13 +8,13 @@
 
 #import "SGCollectionsListController.h"
 #import "SGAddCollectionController.h"
-#import "SGCollectionController.h"
+#import "SGDocumentController.h"
 #import "SGDocumentsListController.h"
 #import "SGCollection.h"
 
 @interface SGCollectionsListController ()
 
-@property (nonatomic, weak) SGCollectionController *collectionVC;
+@property (nonatomic, weak) SGDocumentController *documentVC;
 
 @property (nonatomic, readwrite, strong) NSMutableArray *collections;
 
@@ -42,7 +42,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     UISplitViewController *splitVC = (UISplitViewController *)self.parentViewController.parentViewController;
-    _collectionVC = (SGCollectionController *)[[[[splitVC viewControllers] lastObject] viewControllers] lastObject];
+    _documentVC = (SGDocumentController *)[[[[splitVC viewControllers] lastObject] viewControllers] lastObject];
     
     _collections = [[NSMutableArray alloc] init];
     NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
@@ -105,10 +105,8 @@
     if (UITableViewCellEditingStyleDelete) {
         
         SGCollection *collection = [_collections objectAtIndex:indexPath.row];
+        [collection destroy];
         [_collections removeObjectAtIndex:indexPath.row];
-        
-        NSString *CollectionDirectory = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:collection.title];
-        [[NSFileManager defaultManager] removeItemAtPath:CollectionDirectory error:nil];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
@@ -118,7 +116,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _collectionVC.collection = _collections[indexPath.row];
+    [self performSegueWithIdentifier:@"selectCollection" sender:indexPath];
 }
 
 #pragma mark - Segue
@@ -128,6 +126,10 @@
     if ([segue.identifier isEqualToString:@"addCollection"]) {
         SGAddCollectionController *addCollectionVC = (SGAddCollectionController *)[[segue.destinationViewController viewControllers] lastObject];
         [addCollectionVC setDelegate:self];
+    } else if ([segue.identifier isEqualToString:@"selectCollection"]) {
+        NSIndexPath *indexPath = (NSIndexPath *)sender;
+        SGDocumentsListController *documentsLstVC = (SGDocumentsListController *)segue.destinationViewController;
+        [documentsLstVC setCollection:_collections[indexPath.row]];
     }
 }
 
