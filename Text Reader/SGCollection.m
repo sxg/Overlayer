@@ -39,7 +39,7 @@
     return self;
 }
 
-- (void)destroy
+- (void)deleteCollection
 {
     [[NSFileManager defaultManager] removeItemAtPath:[self savePath] error:nil];
 }

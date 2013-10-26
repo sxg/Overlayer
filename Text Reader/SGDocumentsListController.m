@@ -137,7 +137,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [_documentVC setDocument:_collection.documents[indexPath.row]];
+    _documentVC.document = _collection.documents[indexPath.row];
+    //[_documentVC setDocument:_collection.documents[indexPath.row]];
 }
 
 #pragma mark - Segue control
