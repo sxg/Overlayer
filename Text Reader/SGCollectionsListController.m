@@ -9,6 +9,7 @@
 #import "SGCollectionsListController.h"
 #import "SGAddCollectionController.h"
 #import "SGCollectionViewController.h"
+#import "SGDocumentsListController.h"
 #import "SGCollection.h"
 
 @interface SGCollectionsListController ()
@@ -134,6 +135,12 @@
     if ([segue.identifier isEqualToString:@"addCollection"]) {
         SGAddCollectionController *addCollectionVC = (SGAddCollectionController *)[[segue.destinationViewController viewControllers] lastObject];
         [addCollectionVC setDelegate:self];
+    } else if ([segue.identifier isEqualToString:@"selectCollection"]) {
+        SGDocumentsListController *documentsListVC = (SGDocumentsListController *)segue.destinationViewController;
+        UITableViewCell *cell = (UITableViewCell *)sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        
+        [documentsListVC setCollection:_collections[indexPath.row]];
     }
 }
 

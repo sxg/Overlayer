@@ -47,7 +47,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Qea-Er-ZFX" kind="push" id="6SJ-TC-2V2"/>
+                                    <segue destination="Qea-Er-ZFX" kind="push" identifier="selectCollection" id="6SJ-TC-2V2"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

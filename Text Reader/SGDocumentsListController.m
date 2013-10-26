@@ -68,7 +68,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    cell.textLabel.text = [@(indexPath.row) stringValue];
+    cell.textLabel.text = [@(indexPath.row + 1) stringValue];
     
     return cell;
 }
