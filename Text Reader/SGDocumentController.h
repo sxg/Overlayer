@@ -13,4 +13,6 @@
 
 @property (nonatomic, readwrite, strong) SGDocument *document;
 
+- (void)setDocument:(SGDocument *)document;
+
 @end

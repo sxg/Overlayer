@@ -122,6 +122,13 @@
     return cell;
 }
 
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [_documentVC setDocument:_collection.documents[indexPath.row]];
+}
+
 #pragma mark - Segue control
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

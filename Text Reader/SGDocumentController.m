@@ -11,6 +11,8 @@
 
 @interface SGDocumentController ()
 
+@property (nonatomic, readwrite, strong) IBOutlet UIScrollView *documentScrollView;
+
 @end
 
 @implementation SGDocumentController
@@ -34,6 +36,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setDocument:(SGDocument *)document
+{
+    _document = document;
+    UIImageView *documentImageView = [[UIImageView alloc] initWithImage:_document.image];
+    [_documentScrollView addSubview:documentImageView];
+    [_documentScrollView setContentSize:documentImageView.bounds.size];
 }
 
 @end
