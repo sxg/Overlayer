@@ -76,7 +76,8 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:_documentVC.view animated:YES];
                 NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
-                [_documentVC setDocument:_collection.documents[selectedIndexPath.row]];
+                SGDocument *document = _collection.documents[selectedIndexPath.row];
+                [_documentVC setDocument:document];
             });
         });
     } else if (buttonIndex == 2) {

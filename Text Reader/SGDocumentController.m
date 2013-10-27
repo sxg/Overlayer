@@ -41,6 +41,8 @@
 - (void)setDocument:(SGDocument *)document
 {
     _document = document;
+    
+    [self.navigationItem setTitle:document.title];
     UIImageView *documentImageView = [[UIImageView alloc] initWithImage:_document.image];
     [_documentScrollView addSubview:documentImageView];
     [_documentScrollView setContentSize:documentImageView.bounds.size];

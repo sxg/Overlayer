@@ -64,6 +64,7 @@
                                                     [UIFont fontWithName:@"Amoon1" size:12],
                                                     UITextAttributeFont,
                                                     nil] forState:UIControlStateDisabled];
+    [[UILabel appearance] setFont:[UIFont fontWithName:@"Amoon1" size:12]];
 }
 
 @end
