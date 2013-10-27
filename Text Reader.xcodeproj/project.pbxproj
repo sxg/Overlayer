@@ -383,11 +383,11 @@
 			buildPhases = (
 				A30DAF9A9B634347AA495B23 /* Check Pods Manifest.lock */,
 				4A5BE3D716EAF5F000CCDFA1 /* ShellScript */,
-				4A9ABDB4181DB67D008BDB68 /* ShellScript */,
 				4A2F753C169CD98000DD7A03 /* Sources */,
 				4A2F753D169CD98000DD7A03 /* Frameworks */,
 				4A2F753E169CD98000DD7A03 /* Resources */,
 				52781BA277554E108160785C /* Copy Pods Resources */,
+				4A9ABDB4181DB67D008BDB68 /* ShellScript */,
 			);
 			buildRules = (
 			);
