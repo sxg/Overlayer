@@ -8,11 +8,10 @@
 
 @import UIKit;
 #import "SGDocument.h"
+#import "SGCollection.h"
 
 @interface SGDocumentController : UIViewController
 
-@property (nonatomic, readwrite, strong) SGDocument *document;
-
-- (void)setDocument:(SGDocument *)document;
+- (void)setDocument:(SGDocument *)document collection:(SGCollection *)collection;
 
 @end

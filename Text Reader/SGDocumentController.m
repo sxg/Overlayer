@@ -11,12 +11,12 @@
 #import "SGCollectionsListController.h"
 #import "SGSettingsController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
-#import "SGCollection.h"
 
 @interface SGDocumentController ()
 
 @property (nonatomic, readwrite, strong) IBOutlet UIScrollView *documentScrollView;
 
+@property (nonatomic, readwrite, weak) SGDocument *document;
 @property (nonatomic, readonly, weak) SGCollection *collection;
 
 @end
@@ -36,12 +36,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    UIViewController *vc = ([[self.splitViewController viewControllers][0] topViewController]);
-    if ([vc isKindOfClass:[SGDocumentsListController class]]) {
-        SGDocumentsListController *docListVC = (SGDocumentsListController *)vc;
-        _collection = docListVC.collection;
-    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,9 +44,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setDocument:(SGDocument *)document
+- (void)setDocument:(SGDocument *)document collection:(SGCollection *)collection
 {
     _document = document;
+    _collection = collection;
     
     [self.navigationItem setTitle:document.title];
     UIImageView *documentImageView = [[UIImageView alloc] initWithImage:_document.image];
@@ -76,9 +71,12 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self setDocument:_document];
             NSString *path = [[[_collection savePath] stringByAppendingPathComponent:_document.title] stringByAppendingPathExtension:@"png"];
-            [UIImagePNGRepresentation(_document.image) writeToFile:path atomically:YES];
+            if (![UIImagePNGRepresentation(_document.image) writeToFile:path atomically:YES]) {
+                NSLog(@"Failed to write image to file");
+            }
+            
+            [self setDocument:_document collection:_collection];
         });
     });
 }

@@ -87,7 +87,7 @@
                 [MBProgressHUD hideHUDForView:_documentVC.view animated:YES];
                 NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
                 SGDocument *document = _collection.documents[selectedIndexPath.row];
-                [_documentVC setDocument:document];
+                [_documentVC setDocument:document collection:_collection];
             });
         });
     } else if (buttonIndex == 2) {
@@ -195,8 +195,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _documentVC.document = _collection.documents[indexPath.row];
-    //[_documentVC setDocument:_collection.documents[indexPath.row]];
+    [_documentVC setDocument:_collection.documents[indexPath.row] collection:_collection];
 }
 
 #pragma mark - Quick look data source
