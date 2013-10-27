@@ -71,7 +71,8 @@
         [hud setLabelText:@"Drawing Lines"];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, (unsigned long)NULL), ^(void) {
             
-            [_collection drawLines];
+            //[_collection drawLines];
+            [_collection createPDF];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:_documentVC.view animated:YES];

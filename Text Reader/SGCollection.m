@@ -6,10 +6,12 @@
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
+@import QuartzCore;
+@import CoreGraphics;
+
 #import "SGCollection.h"
-#import <QuartzCore/QuartzCore.h>
-#import <CoreGraphics/CoreGraphics.h>
 #import "SGLineDrawing.h"
+#import "UIImage+Transform.h"
 
 @interface SGCollection()
 
@@ -100,6 +102,27 @@
             NSLog(@"Failed to save image");
         }
     }];
+}
+
+- (void)createPDF
+{
+    NSMutableData *pdfData = [NSMutableData data];
+    
+    CGRect pdfPageRect = CGRectMake(0, 0, 612, 792);
+    UIGraphicsBeginPDFContextToData(pdfData, pdfPageRect, nil);
+    CGContextRef pdfContext = UIGraphicsGetCurrentContext();
+    
+    for (SGDocument *document in _documents) {
+        UIGraphicsBeginPDFPage();
+        
+        UIImage *resizedDocumentImage = [UIImage imageWithImage:document.image scaledToSize:pdfPageRect.size];
+        UIImageView *documentImageView = [[UIImageView alloc] initWithImage:resizedDocumentImage];
+        [documentImageView.layer renderInContext:pdfContext];
+    }
+    UIGraphicsEndPDFContext();
+    
+    NSString *pdfPath = [[self savePath] stringByAppendingPathComponent:@"PDF.pdf"];
+    [pdfData writeToFile:pdfPath atomically:YES];
 }
 
 @end

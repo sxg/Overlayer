@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface SGDocument : NSObject
 

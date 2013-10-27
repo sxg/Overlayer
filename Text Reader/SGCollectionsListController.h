@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "SGAddCollectionController.h"
 
 @interface SGCollectionsListController : UITableViewController <SGAddCollectionDelegate>

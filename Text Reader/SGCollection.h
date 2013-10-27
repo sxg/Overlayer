@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Satyam Ghodasara. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "SGDocument.h"
 
 @interface SGCollection : NSObject
@@ -21,5 +21,6 @@
 - (void)reloadData;
 - (void)drawLines;
 - (void)deleteCollection;
+- (void)createPDF;
 
 @end

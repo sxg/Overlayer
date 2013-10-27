@@ -688,6 +688,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F70B8DCE68494B65B7AA5613 /* Pods-TextReader.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -708,6 +709,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/lib\"",
 				);
+				OTHER_CFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -718,6 +720,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F70B8DCE68494B65B7AA5613 /* Pods-TextReader.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (

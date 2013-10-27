@@ -26,10 +26,6 @@
     GPUImageLuminanceThresholdFilter *filter = [[GPUImageLuminanceThresholdFilter alloc] init];
     UIImage *blackAndWhiteImage = [filter imageByFilteringImage:image];
     
-    NSString *documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"test.png"];
-    [UIImagePNGRepresentation(blackAndWhiteImage) writeToFile:path atomically:YES];
-    
     //  Get the bitamp
     CGImageRef imageRef = blackAndWhiteImage.CGImage;
     CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
