@@ -38,6 +38,7 @@
 		4A6A867F16CF3B4800D2B3A5 /* Untitled-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A867E16CF3B4800D2B3A5 /* Untitled-1.png */; };
 		4A9ABDAF181DA61A008BDB68 /* SGSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9ABDAE181DA61A008BDB68 /* SGSplitViewController.m */; };
 		4A9ABDB2181DB134008BDB68 /* SGSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9ABDB1181DB134008BDB68 /* SGSettingsController.m */; };
+		4A9ABDB6181DB690008BDB68 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9ABDB5181DB690008BDB68 /* Crashlytics.framework */; };
 		4AA884DA17C4559D000A4764 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA884D917C4559D000A4764 /* SenTestingKit.framework */; };
 		4AA884DB17C4559D000A4764 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2F7544169CD98000DD7A03 /* UIKit.framework */; };
 		4AA884DC17C4559D000A4764 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2F7546169CD98000DD7A03 /* Foundation.framework */; };
@@ -108,6 +109,7 @@
 		4A9ABDAE181DA61A008BDB68 /* SGSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSplitViewController.m; sourceTree = "<group>"; };
 		4A9ABDB0181DB134008BDB68 /* SGSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSettingsController.h; sourceTree = "<group>"; };
 		4A9ABDB1181DB134008BDB68 /* SGSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSettingsController.m; sourceTree = "<group>"; };
+		4A9ABDB5181DB690008BDB68 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		4AA884D817C4559D000A4764 /* TextReaderUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextReaderUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AA884D917C4559D000A4764 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		4AA884DF17C4559D000A4764 /* TextReaderUnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TextReaderUnitTests-Info.plist"; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				4A2F7545169CD98000DD7A03 /* UIKit.framework in Frameworks */,
 				4A2F7547169CD98000DD7A03 /* Foundation.framework in Frameworks */,
 				4A2F7549169CD98000DD7A03 /* CoreGraphics.framework in Frameworks */,
+				4A9ABDB6181DB690008BDB68 /* Crashlytics.framework in Frameworks */,
 				03FE3D7C6F764DE69D536915 /* libPods-TextReader.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,6 +240,7 @@
 		4A2F7543169CD98000DD7A03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A9ABDB5181DB690008BDB68 /* Crashlytics.framework */,
 				4AC4BF89180E302400663AD7 /* AVFoundation.framework */,
 				4AC4BF87180E301F00663AD7 /* OpenGLES.framework */,
 				4AC4BF85180E301900663AD7 /* CoreVideo.framework */,
@@ -382,6 +386,7 @@
 			buildPhases = (
 				A30DAF9A9B634347AA495B23 /* Check Pods Manifest.lock */,
 				4A5BE3D716EAF5F000CCDFA1 /* ShellScript */,
+				4A9ABDB4181DB67D008BDB68 /* ShellScript */,
 				4A2F753C169CD98000DD7A03 /* Sources */,
 				4A2F753D169CD98000DD7A03 /* Frameworks */,
 				4A2F753E169CD98000DD7A03 /* Resources */,
@@ -499,6 +504,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/bash\nbN=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbN=$((0x$bN))\nbN=$(($bN + 1))\nbN=$(printf \"%X\" $bN)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $bN\" \"$INFOPLIST_FILE\"";
+		};
+		4A9ABDB4181DB67D008BDB68 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run c0946e755af032a6ed749d647f73248bc823fb73";
 		};
 		4AA884D617C4559D000A4764 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -721,7 +739,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					/Users/Satyam/Documents/Code/iOS/Satyam.io/TextReader,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Text Reader/Text Reader-Prefix.pch";
@@ -753,7 +772,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					/Users/Satyam/Documents/Code/iOS/Satyam.io/TextReader,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Text Reader/Text Reader-Prefix.pch";

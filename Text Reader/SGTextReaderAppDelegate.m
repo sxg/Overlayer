@@ -8,12 +8,15 @@
 
 #import "SGCollection.h"
 #import "SGTextReaderAppDelegate.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation TextReaderAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    [Crashlytics startWithAPIKey:@"c0946e755af032a6ed749d647f73248bc823fb73"];
     
     //  Customize the navbar
     [self customizeAppearance];

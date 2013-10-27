@@ -44,6 +44,8 @@
     
     [self.navigationItem setTitle:document.title];
     UIImageView *documentImageView = [[UIImageView alloc] initWithImage:_document.image];
+    
+    [[_documentScrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [_documentScrollView addSubview:documentImageView];
     [_documentScrollView setContentSize:documentImageView.bounds.size];
 }

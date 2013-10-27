@@ -142,7 +142,10 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    image = [UIImage imageWithImage:image scaledToSize:CGSizeMake(image.size.width/4, image.size.height/4)];
+    CGFloat aspectRatio = image.size.width/image.size.height;
+    CGFloat newWidth = 768.f;
+    CGFloat newHeight = newWidth/aspectRatio;
+    image = [UIImage imageWithImage:image scaledToSize:CGSizeMake(newWidth, newHeight)];
     
     SGDocument *document = [[SGDocument alloc] initWithImage:image title:_documentTitle];
     [_collection addDocument:document];
