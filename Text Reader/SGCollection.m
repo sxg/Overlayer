@@ -108,15 +108,15 @@
 {
     NSMutableData *pdfData = [NSMutableData data];
     
-    CGRect pdfPageRect = CGRectMake(0, 0, 612, 792);
+    CGSize pdfPageSize = ((SGDocument *)_documents[0]).image.size;
+    CGRect pdfPageRect = CGRectMake(0, 0, pdfPageSize.width, pdfPageSize.height);
     UIGraphicsBeginPDFContextToData(pdfData, pdfPageRect, nil);
     CGContextRef pdfContext = UIGraphicsGetCurrentContext();
     
     for (SGDocument *document in _documents) {
         UIGraphicsBeginPDFPage();
         
-        UIImage *resizedDocumentImage = [UIImage imageWithImage:document.image scaledToSize:pdfPageRect.size];
-        UIImageView *documentImageView = [[UIImageView alloc] initWithImage:resizedDocumentImage];
+        UIImageView *documentImageView = [[UIImageView alloc] initWithImage:document.image];
         [documentImageView.layer renderInContext:pdfContext];
     }
     UIGraphicsEndPDFContext();
