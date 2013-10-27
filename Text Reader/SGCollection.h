@@ -16,11 +16,13 @@
 
 - (id)initWithTitle:(NSString *)title;
 - (NSString *)savePath;
+- (NSString *)pdfPath;
 - (void)addDocument:(SGDocument *)document;
 - (void)deleteDocumentWithTitle:(NSString *)documentTitle;
 - (void)reloadData;
 - (void)drawLines;
 - (void)deleteCollection;
 - (void)createPDF;
+- (BOOL)hasPDF;
 
 @end

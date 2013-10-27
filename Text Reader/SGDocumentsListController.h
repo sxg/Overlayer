@@ -7,10 +7,12 @@
 //
 
 @import UIKit;
+@import QuickLook;
+
 #import "SGCollection.h"
 #import "SGAddDocumentController.h"
 
-@interface SGDocumentsListController : UITableViewController <SGAddDocumentDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
+@interface SGDocumentsListController : UITableViewController <SGAddDocumentDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, QLPreviewControllerDataSource>
 
 @property (nonatomic, readwrite, strong) SGCollection *collection;
 

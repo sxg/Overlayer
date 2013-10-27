@@ -51,6 +51,11 @@
     return [documentsDirectory stringByAppendingPathComponent:_title];
 }
 
+- (NSString *)pdfPath
+{
+    return [self hasPDF] ? [[self savePath] stringByAppendingPathComponent:@"PDF.pdf"] : nil;
+}
+
 - (void)addDocument:(SGDocument *)document
 {
     [_documents addObject:document];
@@ -86,10 +91,13 @@
     
     [_documents removeAllObjects];
     for (NSString *documentFileName in documentFileNames) {
-        NSString *documentPath = [[self savePath] stringByAppendingPathComponent:documentFileName];
-        UIImage *image = [[UIImage alloc] initWithContentsOfFile:documentPath];
-        SGDocument *document = [[SGDocument alloc] initWithImage:image title:[documentFileName stringByDeletingPathExtension]];
-        [_documents addObject:document];
+        //  Ignore PDF files
+        if (![[documentFileName pathExtension] isEqualToString:@"pdf"]) {
+            NSString *documentPath = [[self savePath] stringByAppendingPathComponent:documentFileName];
+            UIImage *image = [[UIImage alloc] initWithContentsOfFile:documentPath];
+            SGDocument *document = [[SGDocument alloc] initWithImage:image title:[documentFileName stringByDeletingPathExtension]];
+            [_documents addObject:document];
+        }
     }
 }
 
@@ -123,6 +131,12 @@
     
     NSString *pdfPath = [[self savePath] stringByAppendingPathComponent:@"PDF.pdf"];
     [pdfData writeToFile:pdfPath atomically:YES];
+}
+
+- (BOOL)hasPDF
+{
+    NSString *pdfPath = [[self savePath] stringByAppendingPathComponent:@"PDF.pdf"];
+    return [[NSFileManager defaultManager] fileExistsAtPath:pdfPath];
 }
 
 @end

@@ -38,7 +38,7 @@
     
     _documentTitle = @"INIT";
     
-    _actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Add Document", @"Draw Lines for Collection", nil];
+    _actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Add Document", @"Draw Lines for Collection", @"View PDF", nil];
     
     UISplitViewController *splitVC = (UISplitViewController *)self.parentViewController.parentViewController;
     _documentVC = (SGDocumentController *)[[[[splitVC viewControllers] lastObject] viewControllers] lastObject];
@@ -71,8 +71,7 @@
         [hud setLabelText:@"Drawing Lines"];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, (unsigned long)NULL), ^(void) {
             
-            //[_collection drawLines];
-            [_collection createPDF];
+            [_collection drawLines];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:_documentVC.view animated:YES];
@@ -80,6 +79,24 @@
                 [_documentVC setDocument:_collection.documents[selectedIndexPath.row]];
             });
         });
+    } else if (buttonIndex == 2) {
+        
+        if (![_collection hasPDF]) {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:_documentVC.view animated:YES];
+            [hud setMode:MBProgressHUDModeIndeterminate];
+            [hud setLabelText:@"Creating PDF"];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, (unsigned long)NULL), ^(void) {
+                
+                [_collection createPDF];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:_documentVC.view animated:YES];
+                    [self openPDFInQuickLook];
+                });
+            });
+        } else {
+            [self openPDFInQuickLook];
+        }
     }
 }
 
@@ -167,6 +184,18 @@
     //[_documentVC setDocument:_collection.documents[indexPath.row]];
 }
 
+#pragma mark - Quick look data source
+
+- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller
+{
+    return 1;
+}
+
+- (id<QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index
+{
+    return [NSURL fileURLWithPath:[_collection pdfPath]];
+}
+
 #pragma mark - Segue control
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -175,6 +204,15 @@
         SGAddDocumentController *addDocumentVC = (SGAddDocumentController *)[[segue.destinationViewController viewControllers] lastObject];
         [addDocumentVC setDelegate:self];
     }
+}
+
+#pragma mark - Helpers
+
+- (void)openPDFInQuickLook
+{
+    QLPreviewController *qlVC = [[QLPreviewController alloc] init];
+    [qlVC setDataSource:self];
+    [self presentViewController:qlVC animated:YES completion:nil];
 }
 
 @end
