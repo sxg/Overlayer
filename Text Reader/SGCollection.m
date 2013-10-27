@@ -101,10 +101,10 @@
     }
 }
 
-- (void)drawLines
+- (void)drawLinesWithLineWidth:(CGFloat)lineWidth
 {
     [[_documents copy] enumerateObjectsUsingBlock:^(SGDocument *document, NSUInteger idx, BOOL *stop) {
-        [document drawLines];
+        [document drawLinesWithLineWidth:lineWidth];
         NSString *path = [[self savePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png", document.title]];
         if (![UIImagePNGRepresentation(document.image) writeToFile:path atomically:YES]) {
             NSLog(@"Failed to save image");

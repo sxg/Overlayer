@@ -29,6 +29,73 @@
             </objects>
             <point key="canvasLocation" x="2983" y="688"/>
         </scene>
+        <!--Settings Controller - Settings-->
+        <scene sceneID="Xpo-sy-Fu4">
+            <objects>
+                <tableViewController id="yX9-WM-hQZ" customClass="SGSettingsController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="V2S-w4-9u0">
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="jmE-oC-spT">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="dML-JR-5vY">
+                                        <rect key="frame" x="0.0" y="79" width="540" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dML-JR-5vY" id="REt-ok-LND">
+                                            <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Line Width" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KJP-7h-CDR">
+                                                    <rect key="frame" x="15" y="11" width="88" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.0" textAlignment="right" minimumFontSize="17" id="zej-Yj-X7p">
+                                                    <rect key="frame" x="428" y="7" width="97" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Settings" id="tUc-Mu-FpN">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Enp-DV-P0f">
+                            <connections>
+                                <action selector="save:" destination="yX9-WM-hQZ" id="Xr2-I1-qAW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="lineWidthTextField" destination="zej-Yj-X7p" id="mam-ue-hdb"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yw4-fk-90M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2330" y="-1160"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="MDm-lE-4fZ">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="8gG-vA-fk0" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GGT-9T-zog">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="yX9-WM-hQZ" kind="relationship" relationship="rootViewController" id="6ch-Yr-sfa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rwN-7u-ubF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1684" y="-1160"/>
+        </scene>
         <!--Collections List Controller - Collections-->
         <scene sceneID="RSL-wM-J1W">
             <objects>
@@ -56,6 +123,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Collections" id="2Ro-cs-kdO">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="Fwo-3Q-8Ua">
+                            <connections>
+                                <segue destination="8gG-vA-fk0" kind="modal" identifier="settings" modalPresentationStyle="formSheet" id="usU-t7-H3M"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="3R9-Ps-pG1">
                             <connections>
                                 <segue destination="Lyt-Nu-OGD" kind="modal" identifier="addCollection" modalPresentationStyle="formSheet" id="JLZ-n9-oy8"/>
@@ -147,7 +219,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yOL-8J-zHr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1721" y="-1164"/>
+            <point key="canvasLocation" x="3093" y="-1160"/>
         </scene>
         <!--Add Collection Controller - Add Collection-->
         <scene sceneID="BHv-IO-Hky">
@@ -212,7 +284,7 @@
                     </items>
                 </navigationBar>
             </objects>
-            <point key="canvasLocation" x="2365" y="-1164"/>
+            <point key="canvasLocation" x="3737" y="-1160"/>
         </scene>
         <!--Add Document Controller - Add Document-->
         <scene sceneID="SAd-aM-3H8">
@@ -270,7 +342,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PA5-EO-wFe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3857" y="-1164"/>
+            <point key="canvasLocation" x="5229" y="-1160"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UN6-LV-4le">
@@ -285,7 +357,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qjz-Ih-0ua" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3175" y="-1164"/>
+            <point key="canvasLocation" x="4547" y="-1160"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PgS-Op-Ykc">

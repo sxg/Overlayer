@@ -11,6 +11,7 @@
 #import "SGDocumentController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "UIImage+Transform.h"
+#import "SGSettingsController.h"
 
 @interface SGDocumentsListController ()
 
@@ -80,7 +81,8 @@
         [hud setLabelText:@"Drawing Lines"];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, (unsigned long)NULL), ^(void) {
             
-            [_collection drawLines];
+            NSNumber *lineWidth = [[NSUserDefaults standardUserDefaults] objectForKey:LINE_WIDTH_KEY];
+            [_collection drawLinesWithLineWidth:[lineWidth floatValue]];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:_documentVC.view animated:YES];
@@ -140,7 +142,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    image = [UIImage imageWithImage:image scaledToSize:CGSizeMake(image.size.width/2, image.size.height/2)];
+    image = [UIImage imageWithImage:image scaledToSize:CGSizeMake(image.size.width/4, image.size.height/4)];
     
     SGDocument *document = [[SGDocument alloc] initWithImage:image title:_documentTitle];
     [_collection addDocument:document];

@@ -14,6 +14,6 @@
 @property (nonatomic, readonly, copy) NSString *title;
 
 - (id)initWithImage:(UIImage *)image title:(NSString *)title;
-- (void)drawLines;
+- (void)drawLinesWithLineWidth:(CGFloat)lineWidth;
 
 @end

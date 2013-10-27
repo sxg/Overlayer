@@ -28,9 +28,9 @@
     return self;
 }
 
-- (void)drawLines
+- (void)drawLinesWithLineWidth:(CGFloat)lineWidth
 {
-    _image = [SGLineDrawing identifyCharactersOnImage:_image lineThickness:1.5f];
+    _image = [SGLineDrawing identifyCharactersOnImage:_image lineThickness:lineWidth];
 }
 
 @end

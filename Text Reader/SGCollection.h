@@ -20,7 +20,7 @@
 - (void)addDocument:(SGDocument *)document;
 - (void)deleteDocumentWithTitle:(NSString *)documentTitle;
 - (void)reloadData;
-- (void)drawLines;
+- (void)drawLinesWithLineWidth:(CGFloat)lineWidth;
 - (void)deleteCollection;
 - (void)createPDF;
 - (BOOL)hasPDF;
