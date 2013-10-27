@@ -37,8 +37,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    SGDocumentsListController *docListVC = (SGDocumentsListController *)([self.splitViewController viewControllers][0]);
-    _collection = docListVC.collection;
+    UIViewController *vc = ([[self.splitViewController viewControllers][0] topViewController]);
+    if ([vc isKindOfClass:[SGDocumentsListController class]]) {
+        SGDocumentsListController *docListVC = (SGDocumentsListController *)vc;
+        _collection = docListVC.collection;
+    }
 }
 
 - (void)didReceiveMemoryWarning
