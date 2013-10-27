@@ -7,13 +7,17 @@
 //
 
 #import "SGDocumentController.h"
+#import "SGDocumentsListController.h"
 #import "SGCollectionsListController.h"
 #import "SGSettingsController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "SGCollection.h"
 
 @interface SGDocumentController ()
 
 @property (nonatomic, readwrite, strong) IBOutlet UIScrollView *documentScrollView;
+
+@property (nonatomic, readonly, weak) SGCollection *collection;
 
 @end
 
@@ -32,6 +36,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    SGDocumentsListController *docListVC = (SGDocumentsListController *)([self.splitViewController viewControllers][0]);
+    _collection = docListVC.collection;
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,6 +74,8 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self setDocument:_document];
+            NSString *path = [[[_collection savePath] stringByAppendingPathComponent:_document.title] stringByAppendingPathExtension:@"png"];
+            [UIImagePNGRepresentation(_document.image) writeToFile:path atomically:YES];
         });
     });
 }
