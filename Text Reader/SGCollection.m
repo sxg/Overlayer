@@ -110,6 +110,11 @@
             NSLog(@"Failed to save image");
         }
     }];
+    
+    if ([self hasPDF]) {
+        NSString *pdfPath = [[self savePath] stringByAppendingPathComponent:@"PDF.pdf"];
+        [[NSFileManager defaultManager] removeItemAtPath:pdfPath error:nil];
+    }
 }
 
 - (void)createPDF
