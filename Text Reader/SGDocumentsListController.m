@@ -171,6 +171,7 @@
     
     // Configure the cell...
     cell.textLabel.text = [_collection.documents[indexPath.row] title];
+    cell.textLabel.font = [UIFont fontWithName:@"Amoon1" size:16];
     
     return cell;
 }
