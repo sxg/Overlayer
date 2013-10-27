@@ -8,6 +8,8 @@
 
 #import "SGDocumentController.h"
 #import "SGCollectionsListController.h"
+#import "SGSettingsController.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface SGDocumentController ()
 
@@ -48,6 +50,25 @@
     [[_documentScrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [_documentScrollView addSubview:documentImageView];
     [_documentScrollView setContentSize:documentImageView.bounds.size];
+}
+
+#pragma mark - UI Actions
+
+- (IBAction)drawLines:(id)sender
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [hud setMode:MBProgressHUDModeIndeterminate];
+    [hud setLabelText:@"Drawing Lines"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, (unsigned long)NULL), ^(void) {
+        
+        NSNumber *lineWidth = [[NSUserDefaults standardUserDefaults] objectForKey:LINE_WIDTH_KEY];
+        [_document drawLinesWithLineWidth:[lineWidth floatValue]];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self setDocument:_document];
+        });
+    });
 }
 
 @end

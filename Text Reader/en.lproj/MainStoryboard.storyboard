@@ -20,7 +20,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="vUN-aZ-DSh"/>
+                    <navigationItem key="navigationItem" id="vUN-aZ-DSh">
+                        <barButtonItem key="rightBarButtonItem" title="Draw Lines" id="fl0-WK-yJ9">
+                            <connections>
+                                <action selector="drawLines:" destination="NZc-kk-eWm" id="SVC-I9-Fcq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="documentScrollView" destination="nLk-4P-spZ" id="AJE-9D-i9W"/>
                     </connections>

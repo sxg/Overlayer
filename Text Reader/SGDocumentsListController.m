@@ -75,7 +75,6 @@
     if (buttonIndex == 0) {
         [self performSegueWithIdentifier:@"addDocument" sender:nil];
     } else if (buttonIndex == 1) {
-        
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:_documentVC.view animated:YES];
         [hud setMode:MBProgressHUDModeIndeterminate];
         [hud setLabelText:@"Drawing Lines"];
