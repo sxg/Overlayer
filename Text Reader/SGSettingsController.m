@@ -52,7 +52,7 @@
     if (rawLineWidth == 0.0) {
         rawLineWidth = 1.0f;
     }
-    NSNumber *lineWidth = @([_lineWidthTextField.text floatValue]);
+    NSNumber *lineWidth = @(rawLineWidth);
     [[NSUserDefaults standardUserDefaults] setObject:lineWidth forKey:LINE_WIDTH_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
