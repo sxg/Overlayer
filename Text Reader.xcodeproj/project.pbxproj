@@ -36,6 +36,7 @@
 		4A6A867B16CF32B500D2B3A5 /* icon2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A867A16CF32B500D2B3A5 /* icon2x.png */; };
 		4A6A867D16CF3B3D00D2B3A5 /* iconx2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A867C16CF3B3D00D2B3A5 /* iconx2.png */; };
 		4A6A867F16CF3B4800D2B3A5 /* Untitled-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A867E16CF3B4800D2B3A5 /* Untitled-1.png */; };
+		4A9ABDAF181DA61A008BDB68 /* SGSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9ABDAE181DA61A008BDB68 /* SGSplitViewController.m */; };
 		4AA884DA17C4559D000A4764 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA884D917C4559D000A4764 /* SenTestingKit.framework */; };
 		4AA884DB17C4559D000A4764 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2F7544169CD98000DD7A03 /* UIKit.framework */; };
 		4AA884DC17C4559D000A4764 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2F7546169CD98000DD7A03 /* Foundation.framework */; };
@@ -102,6 +103,8 @@
 		4A6A867A16CF32B500D2B3A5 /* icon2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon2x.png; path = ../icon2x.png; sourceTree = "<group>"; };
 		4A6A867C16CF3B3D00D2B3A5 /* iconx2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconx2.png; path = ../iconx2.png; sourceTree = "<group>"; };
 		4A6A867E16CF3B4800D2B3A5 /* Untitled-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Untitled-1.png"; path = "../Untitled-1.png"; sourceTree = "<group>"; };
+		4A9ABDAD181DA61A008BDB68 /* SGSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSplitViewController.h; sourceTree = "<group>"; };
+		4A9ABDAE181DA61A008BDB68 /* SGSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSplitViewController.m; sourceTree = "<group>"; };
 		4AA884D817C4559D000A4764 /* TextReaderUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextReaderUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AA884D917C4559D000A4764 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		4AA884DF17C4559D000A4764 /* TextReaderUnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TextReaderUnitTests-Info.plist"; sourceTree = "<group>"; };
@@ -186,10 +189,11 @@
 		4A23395B16CAC07400772782 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4AAE4DE1181B5AEE00868332 /* SGDocumentController.h */,
-				4AAE4DE2181B5AEE00868332 /* SGDocumentController.m */,
-				4AAE4DDF181B5A0F00868332 /* Lists */,
+				4AAE4DDF181B5A0F00868332 /* Master Lists */,
+				4A9ABDAC181DA546008BDB68 /* Details */,
 				4AAE4DE0181B5A1900868332 /* Modals */,
+				4A9ABDAD181DA61A008BDB68 /* SGSplitViewController.h */,
+				4A9ABDAE181DA61A008BDB68 /* SGSplitViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -288,6 +292,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		4A9ABDAC181DA546008BDB68 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				4AAE4DE1181B5AEE00868332 /* SGDocumentController.h */,
+				4AAE4DE2181B5AEE00868332 /* SGDocumentController.m */,
+			);
+			name = Details;
+			sourceTree = "<group>";
+		};
 		4AA884DD17C4559D000A4764 /* TextReaderUnitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,7 +320,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4AAE4DDF181B5A0F00868332 /* Lists */ = {
+		4AAE4DDF181B5A0F00868332 /* Master Lists */ = {
 			isa = PBXGroup;
 			children = (
 				4AFED93917E171B1007E6209 /* SGCollectionsListController.h */,
@@ -315,7 +328,7 @@
 				4A55E1431818C6A400703EAF /* SGDocumentsListController.h */,
 				4A55E1441818C6A400703EAF /* SGDocumentsListController.m */,
 			);
-			name = Lists;
+			name = "Master Lists";
 			sourceTree = "<group>";
 		};
 		4AAE4DE0181B5A1900868332 /* Modals */ = {
@@ -565,6 +578,7 @@
 				4AAE4DE6181B623C00868332 /* SGDocument.m in Sources */,
 				4AFED93317E15E58007E6209 /* SGAddCollectionController.m in Sources */,
 				4A55E1451818C6A400703EAF /* SGDocumentsListController.m in Sources */,
+				4A9ABDAF181DA61A008BDB68 /* SGSplitViewController.m in Sources */,
 				4AFED93B17E171B1007E6209 /* SGCollectionsListController.m in Sources */,
 				4A55E1481818C8A000703EAF /* SGAddDocumentController.m in Sources */,
 			);
