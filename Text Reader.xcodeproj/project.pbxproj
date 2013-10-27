@@ -43,7 +43,6 @@
 		4AA884DB17C4559D000A4764 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2F7544169CD98000DD7A03 /* UIKit.framework */; };
 		4AA884DC17C4559D000A4764 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2F7546169CD98000DD7A03 /* Foundation.framework */; };
 		4AA884E217C4559D000A4764 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4AA884E017C4559D000A4764 /* InfoPlist.strings */; };
-		4AA884F817C456BE000A4764 /* SGBookTestst.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA884F717C456BE000A4764 /* SGBookTestst.m */; };
 		4AA8850517C45C40000A4764 /* SGCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAF69516ED5A0500123D2B /* SGCollection.m */; };
 		4AA8850617C45C44000A4764 /* SGDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06B74616B62D410023767F /* SGDrawingView.m */; };
 		4AA8850717C47DC5000A4764 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A04D64716EA75E400FA0440 /* QuartzCore.framework */; };
@@ -115,7 +114,6 @@
 		4AA884DF17C4559D000A4764 /* TextReaderUnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TextReaderUnitTests-Info.plist"; sourceTree = "<group>"; };
 		4AA884E117C4559D000A4764 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4AA884E617C4559D000A4764 /* TextReaderUnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TextReaderUnitTests-Prefix.pch"; sourceTree = "<group>"; };
-		4AA884F717C456BE000A4764 /* SGBookTestst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGBookTestst.m; sourceTree = "<group>"; };
 		4AAE4DE1181B5AEE00868332 /* SGDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGDocumentController.h; sourceTree = "<group>"; };
 		4AAE4DE2181B5AEE00868332 /* SGDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGDocumentController.m; sourceTree = "<group>"; };
 		4AAE4DE4181B623C00868332 /* SGDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGDocument.h; sourceTree = "<group>"; };
@@ -321,7 +319,6 @@
 		4AA884DD17C4559D000A4764 /* TextReaderUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				4AA884F717C456BE000A4764 /* SGBookTestst.m */,
 				4AA884DE17C4559D000A4764 /* Supporting Files */,
 			);
 			path = TextReaderUnitTests;
@@ -621,7 +618,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A01421D17F5312F00DB315E /* SGLineDrawing.m in Sources */,
-				4AA884F817C456BE000A4764 /* SGBookTestst.m in Sources */,
 				4AA8850517C45C40000A4764 /* SGCollection.m in Sources */,
 				4AA8850617C45C44000A4764 /* SGDrawingView.m in Sources */,
 				4AFED93417E15E58007E6209 /* SGAddCollectionController.m in Sources */,
