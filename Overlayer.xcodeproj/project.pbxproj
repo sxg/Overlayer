@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A2D637C18F87666003235EF /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2D637B18F87666003235EF /* TesseractOCR.framework */; };
+		4A2D637E18F8777F003235EF /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2D637D18F8777F003235EF /* libstdc++.6.0.9.dylib */; };
+		4A2D638318F88B36003235EF /* SGDoubleStrikethroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2D638218F88B36003235EF /* SGDoubleStrikethroughView.m */; };
+		4A6D672518F7858500BC82F7 /* SGUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6D672418F7858500BC82F7 /* SGUtility.m */; };
+		4A6D673B18F78E3900BC82F7 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 4A6D673A18F78E3900BC82F7 /* tessdata */; };
 		4AE86A3318F638FA0022E006 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE86A3218F638FA0022E006 /* Foundation.framework */; };
 		4AE86A3518F638FA0022E006 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE86A3418F638FA0022E006 /* CoreGraphics.framework */; };
 		4AE86A3718F638FA0022E006 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE86A3618F638FA0022E006 /* UIKit.framework */; };
@@ -21,6 +26,7 @@
 		4AE86A5818F638FA0022E006 /* OverlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE86A5718F638FA0022E006 /* OverlayerTests.m */; };
 		4AEAFA2218F63D8700A20350 /* SGTextRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAFA2118F63D8700A20350 /* SGTextRecognizer.m */; };
 		4AEAFA2418F63DB000A20350 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AEAFA2318F63DB000A20350 /* Storyboard.storyboard */; };
+		4AEAFA2818F63F4D00A20350 /* SGMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAFA2718F63F4D00A20350 /* SGMainViewController.m */; };
 		B6C9478A8462406B9FB5D3A2 /* libPods-Overlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFFD3DE30FB04AF6841F8A45 /* libPods-Overlayer.a */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +42,13 @@
 
 /* Begin PBXFileReference section */
 		1BA3B0EC6627415DA3DAF374 /* Pods-Overlayer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overlayer.xcconfig"; path = "Pods/Pods-Overlayer.xcconfig"; sourceTree = "<group>"; };
+		4A2D637B18F87666003235EF /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TesseractOCR.framework; path = Overlayer/Frameworks/TesseractOCR.framework; sourceTree = "<group>"; };
+		4A2D637D18F8777F003235EF /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
+		4A2D638118F88B36003235EF /* SGDoubleStrikethroughView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGDoubleStrikethroughView.h; path = Views/SGDoubleStrikethroughView.h; sourceTree = "<group>"; };
+		4A2D638218F88B36003235EF /* SGDoubleStrikethroughView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGDoubleStrikethroughView.m; path = Views/SGDoubleStrikethroughView.m; sourceTree = "<group>"; };
+		4A6D672318F7858500BC82F7 /* SGUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGUtility.h; path = Utility/SGUtility.h; sourceTree = "<group>"; };
+		4A6D672418F7858500BC82F7 /* SGUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGUtility.m; path = Utility/SGUtility.m; sourceTree = "<group>"; };
+		4A6D673A18F78E3900BC82F7 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		4AE86A2F18F638FA0022E006 /* Overlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE86A3218F638FA0022E006 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4AE86A3418F638FA0022E006 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -55,6 +68,8 @@
 		4AEAFA2018F63D8700A20350 /* SGTextRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGTextRecognizer.h; path = "Image Processing/SGTextRecognizer.h"; sourceTree = "<group>"; };
 		4AEAFA2118F63D8700A20350 /* SGTextRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGTextRecognizer.m; path = "Image Processing/SGTextRecognizer.m"; sourceTree = "<group>"; };
 		4AEAFA2318F63DB000A20350 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		4AEAFA2618F63F4D00A20350 /* SGMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGMainViewController.h; path = "View Controllers/SGMainViewController.h"; sourceTree = "<group>"; };
+		4AEAFA2718F63F4D00A20350 /* SGMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGMainViewController.m; path = "View Controllers/SGMainViewController.m"; sourceTree = "<group>"; };
 		DFFD3DE30FB04AF6841F8A45 /* libPods-Overlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Overlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -63,6 +78,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A2D637E18F8777F003235EF /* libstdc++.6.0.9.dylib in Frameworks */,
+				4A2D637C18F87666003235EF /* TesseractOCR.framework in Frameworks */,
 				4AE86A3518F638FA0022E006 /* CoreGraphics.framework in Frameworks */,
 				4AE86A3718F638FA0022E006 /* UIKit.framework in Frameworks */,
 				4AE86A3318F638FA0022E006 /* Foundation.framework in Frameworks */,
@@ -83,6 +100,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A2D638018F88B19003235EF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4A2D638118F88B36003235EF /* SGDoubleStrikethroughView.h */,
+				4A2D638218F88B36003235EF /* SGDoubleStrikethroughView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		4A6D672218F7856D00BC82F7 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				4A6D672318F7858500BC82F7 /* SGUtility.h */,
+				4A6D672418F7858500BC82F7 /* SGUtility.m */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		4AE86A2618F638FA0022E006 = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +141,8 @@
 		4AE86A3118F638FA0022E006 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A2D637D18F8777F003235EF /* libstdc++.6.0.9.dylib */,
+				4A2D637B18F87666003235EF /* TesseractOCR.framework */,
 				4AE86A3218F638FA0022E006 /* Foundation.framework */,
 				4AE86A3418F638FA0022E006 /* CoreGraphics.framework */,
 				4AE86A3618F638FA0022E006 /* UIKit.framework */,
@@ -122,7 +159,11 @@
 				4AE86A4218F638FA0022E006 /* SGAppDelegate.m */,
 				4AEAFA2318F63DB000A20350 /* Storyboard.storyboard */,
 				4AE86A4418F638FA0022E006 /* Images.xcassets */,
+				4AEAFA2518F63F3100A20350 /* View Controllers */,
+				4A2D638018F88B19003235EF /* Views */,
 				4AEAFA1F18F63D4100A20350 /* Image Processing */,
+				4A6D672218F7856D00BC82F7 /* Utility */,
+				4A6D673A18F78E3900BC82F7 /* tessdata */,
 				4AE86A3918F638FA0022E006 /* Supporting Files */,
 			);
 			path = Overlayer;
@@ -164,6 +205,15 @@
 				4AEAFA2118F63D8700A20350 /* SGTextRecognizer.m */,
 			);
 			name = "Image Processing";
+			sourceTree = "<group>";
+		};
+		4AEAFA2518F63F3100A20350 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4AEAFA2618F63F4D00A20350 /* SGMainViewController.h */,
+				4AEAFA2718F63F4D00A20350 /* SGMainViewController.m */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AE86A3D18F638FA0022E006 /* InfoPlist.strings in Resources */,
+				4A6D673B18F78E3900BC82F7 /* tessdata in Resources */,
 				4AE86A4518F638FA0022E006 /* Images.xcassets in Resources */,
 				4AEAFA2418F63DB000A20350 /* Storyboard.storyboard in Resources */,
 			);
@@ -304,6 +355,9 @@
 				4AE86A4318F638FA0022E006 /* SGAppDelegate.m in Sources */,
 				4AE86A3F18F638FA0022E006 /* main.m in Sources */,
 				4AEAFA2218F63D8700A20350 /* SGTextRecognizer.m in Sources */,
+				4A6D672518F7858500BC82F7 /* SGUtility.m in Sources */,
+				4AEAFA2818F63F4D00A20350 /* SGMainViewController.m in Sources */,
+				4A2D638318F88B36003235EF /* SGDoubleStrikethroughView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,7 +404,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -379,6 +433,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lstdc++";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -389,7 +444,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -411,6 +466,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-lstdc++";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -425,6 +481,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Overlayer/Frameworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Overlayer/Overlayer-Prefix.pch";
 				INFOPLIST_FILE = "Overlayer/Overlayer-Info.plist";
@@ -442,6 +502,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Overlayer/Frameworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Overlayer/Overlayer-Prefix.pch";
 				INFOPLIST_FILE = "Overlayer/Overlayer-Info.plist";
