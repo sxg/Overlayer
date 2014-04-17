@@ -226,6 +226,7 @@
 				9DCBF28685BD4B25A738B2E4 /* Check Pods Manifest.lock */,
 				4AE86A2B18F638FA0022E006 /* Sources */,
 				4AE86A2C18F638FA0022E006 /* Frameworks */,
+				4A74644B18FF84650049F078 /* ShellScript */,
 				4AE86A2D18F638FA0022E006 /* Resources */,
 				06C0AF28540D46D7A4358943 /* Copy Pods Resources */,
 			);
@@ -329,6 +330,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-Overlayer-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		4A74644B18FF84650049F078 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
 		};
 		9DCBF28685BD4B25A738B2E4 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -488,6 +502,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Overlayer/Overlayer-Prefix.pch";
 				INFOPLIST_FILE = "Overlayer/Overlayer-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -509,6 +524,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Overlayer/Overlayer-Prefix.pch";
 				INFOPLIST_FILE = "Overlayer/Overlayer-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
