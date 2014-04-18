@@ -56,10 +56,10 @@
 - (IBAction)didTapToggleSidePaneButton:(UIButton *)sender
 {
     if (self.isDisplayingSidePane) {
-        [UIView animateWithDuration:2.0 delay:0 usingSpringWithDamping:1.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:1.0 delay:0 usingSpringWithDamping:1.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             
             CGRect endFrame = CGRectMake(CGRectGetMinX(self.sidePaneView.frame),
-                                         CGRectGetHeight(self.view.frame),
+                                         (-1*CGRectGetHeight(self.sidePaneView.frame))+30,
                                          CGRectGetWidth(self.sidePaneView.frame),
                                          CGRectGetHeight(self.sidePaneView.frame));
             self.sidePaneView.frame = endFrame;
@@ -69,6 +69,17 @@
         }];
         self.displayingSidePane = NO;
     } else {
+        [UIView animateWithDuration:1.0 delay:0 usingSpringWithDamping:1.0f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            
+            CGRect endFrame = CGRectMake(CGRectGetMinX(self.sidePaneView.frame),
+                                         CGRectGetMinY(self.view.frame),
+                                         CGRectGetWidth(self.sidePaneView.frame),
+                                         CGRectGetHeight(self.sidePaneView.frame));
+            self.sidePaneView.frame = endFrame;
+            
+        } completion:^(BOOL finished) {
+            
+        }];
         self.displayingSidePane = YES;
     }
 }
