@@ -12,7 +12,6 @@
 		4A2D638318F88B36003235EF /* SGDoubleStrikethroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2D638218F88B36003235EF /* SGDoubleStrikethroughView.m */; };
 		4A6D672518F7858500BC82F7 /* SGUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6D672418F7858500BC82F7 /* SGUtility.m */; };
 		4A6D673B18F78E3900BC82F7 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 4A6D673A18F78E3900BC82F7 /* tessdata */; };
-		4A74644E19004A010049F078 /* SGCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A74644D19004A010049F078 /* SGCircleButton.m */; };
 		4AE86A3318F638FA0022E006 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE86A3218F638FA0022E006 /* Foundation.framework */; };
 		4AE86A3518F638FA0022E006 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE86A3418F638FA0022E006 /* CoreGraphics.framework */; };
 		4AE86A3718F638FA0022E006 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE86A3618F638FA0022E006 /* UIKit.framework */; };
@@ -50,8 +49,6 @@
 		4A6D672318F7858500BC82F7 /* SGUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGUtility.h; path = Utility/SGUtility.h; sourceTree = "<group>"; };
 		4A6D672418F7858500BC82F7 /* SGUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGUtility.m; path = Utility/SGUtility.m; sourceTree = "<group>"; };
 		4A6D673A18F78E3900BC82F7 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
-		4A74644C19004A010049F078 /* SGCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGCircleButton.h; path = Views/SGCircleButton.h; sourceTree = "<group>"; };
-		4A74644D19004A010049F078 /* SGCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGCircleButton.m; path = Views/SGCircleButton.m; sourceTree = "<group>"; };
 		4AE86A2F18F638FA0022E006 /* Overlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE86A3218F638FA0022E006 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4AE86A3418F638FA0022E006 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -108,8 +105,6 @@
 			children = (
 				4A2D638118F88B36003235EF /* SGDoubleStrikethroughView.h */,
 				4A2D638218F88B36003235EF /* SGDoubleStrikethroughView.m */,
-				4A74644C19004A010049F078 /* SGCircleButton.h */,
-				4A74644D19004A010049F078 /* SGCircleButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -371,7 +366,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A74644E19004A010049F078 /* SGCircleButton.m in Sources */,
 				4AE86A4318F638FA0022E006 /* SGAppDelegate.m in Sources */,
 				4AE86A3F18F638FA0022E006 /* main.m in Sources */,
 				4AEAFA2218F63D8700A20350 /* SGTextRecognizer.m in Sources */,

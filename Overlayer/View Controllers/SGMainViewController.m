@@ -22,6 +22,10 @@
 
 @property (readwrite, weak, nonatomic) IBOutlet UIImageView *imageView;
 
+@property (readwrite, weak, nonatomic) IBOutlet UIView *sidePaneView;
+
+@property (readwrite, assign, getter = isDisplayingSidePane) BOOL displayingSidePane;
+
 @end
 
 @implementation SGMainViewController
@@ -37,12 +41,36 @@
     //        SGDoubleStrikethroughView *view = [[SGDoubleStrikethroughView alloc] initWithFrame:scaledRect];
     //        [self.imageView addSubview:view];
     //    }
+    
+    self.displayingSidePane = YES;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UI Actions
+
+- (IBAction)didTapToggleSidePaneButton:(UIButton *)sender
+{
+    if (self.isDisplayingSidePane) {
+        [UIView animateWithDuration:2.0 delay:0 usingSpringWithDamping:1.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            
+            CGRect endFrame = CGRectMake(CGRectGetMinX(self.sidePaneView.frame),
+                                         CGRectGetHeight(self.view.frame),
+                                         CGRectGetWidth(self.sidePaneView.frame),
+                                         CGRectGetHeight(self.sidePaneView.frame));
+            self.sidePaneView.frame = endFrame;
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+        self.displayingSidePane = NO;
+    } else {
+        self.displayingSidePane = YES;
+    }
 }
 
 @end
