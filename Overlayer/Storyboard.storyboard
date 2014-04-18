@@ -46,9 +46,12 @@
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="768"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wm4-al-gmD">
-                                                <rect key="frame" x="112" y="742" width="27" height="22"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wm4-al-gmD">
+                                                <rect key="frame" x="112" y="739" width="27" height="22"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="22" id="y4A-Ih-wlY"/>
+                                                </constraints>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <state key="normal" image="Chevron">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -59,15 +62,19 @@
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="Wm4-al-gmD" firstAttribute="centerX" secondItem="xIu-9A-wy3" secondAttribute="centerX" id="Mty-Ba-jAH"/>
+                                            <constraint firstAttribute="bottom" secondItem="Wm4-al-gmD" secondAttribute="bottom" constant="7" id="Wr9-LS-CJD"/>
+                                        </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xmb-gs-4HV">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xmb-gs-4HV">
                                         <rect key="frame" x="20" y="644" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="AddCircleButton">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pie-hL-zXu">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pie-hL-zXu">
                                         <rect key="frame" x="150" y="644" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="PDFCircleButton">
@@ -93,13 +100,17 @@
                                 <constraints>
                                     <constraint firstItem="gUA-fS-ygS" firstAttribute="leading" secondItem="wob-LE-Rgd" secondAttribute="leading" id="2AO-Yt-I6s"/>
                                     <constraint firstAttribute="bottom" secondItem="xIu-9A-wy3" secondAttribute="bottom" id="57c-ja-rtL"/>
+                                    <constraint firstAttribute="bottom" secondItem="pie-hL-zXu" secondAttribute="bottom" constant="44" id="Fc6-QX-nz4"/>
+                                    <constraint firstAttribute="bottom" secondItem="Xmb-gs-4HV" secondAttribute="bottom" constant="44" id="LLU-ZD-VWj"/>
                                     <constraint firstItem="xIu-9A-wy3" firstAttribute="top" secondItem="wob-LE-Rgd" secondAttribute="top" id="QHV-Jq-p2C"/>
+                                    <constraint firstAttribute="trailing" secondItem="pie-hL-zXu" secondAttribute="trailing" constant="20" id="SQS-i4-q9Y"/>
                                     <constraint firstItem="xIu-9A-wy3" firstAttribute="leading" secondItem="wob-LE-Rgd" secondAttribute="leading" id="TQn-bO-1Uv"/>
                                     <constraint firstAttribute="bottom" secondItem="gUA-fS-ygS" secondAttribute="bottom" constant="168" id="aTz-Y2-GrM"/>
                                     <constraint firstAttribute="trailing" secondItem="gUA-fS-ygS" secondAttribute="trailing" id="ao7-ZD-AcC"/>
                                     <constraint firstAttribute="width" constant="250" id="k8q-m9-ZEi"/>
                                     <constraint firstAttribute="trailing" secondItem="xIu-9A-wy3" secondAttribute="trailing" id="kCU-xO-oaw"/>
                                     <constraint firstItem="gUA-fS-ygS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="wob-LE-Rgd" secondAttribute="top" id="tc3-Mu-0wu"/>
+                                    <constraint firstItem="Xmb-gs-4HV" firstAttribute="leading" secondItem="wob-LE-Rgd" secondAttribute="leading" constant="20" id="vzS-ze-NQf"/>
                                 </constraints>
                             </view>
                         </subviews>
