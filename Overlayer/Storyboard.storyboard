@@ -131,7 +131,7 @@
                     <connections>
                         <outlet property="imageView" destination="TcQ-kA-Jec" id="5Ti-RW-hNg"/>
                         <outlet property="sidePaneView" destination="wob-LE-Rgd" id="vcS-cP-YXi"/>
-                        <outlet property="toggleSidePaneView" destination="Wm4-al-gmD" id="GnQ-Z3-vd1"/>
+                        <outlet property="toggleSidePaneViewButton" destination="Wm4-al-gmD" id="qan-jU-J2v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J79-eL-huF" userLabel="First Responder" sceneMemberID="firstResponder"/>

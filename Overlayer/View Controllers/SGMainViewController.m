@@ -23,7 +23,7 @@
 @property (readwrite, weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @property (readwrite, weak, nonatomic) IBOutlet UIView *sidePaneView;
-@property (readwrite, weak, nonatomic) IBOutlet UIButton *toggleSidePaneView;
+@property (readwrite, weak, nonatomic) IBOutlet UIButton *toggleSidePaneViewButton;
 
 @property (readwrite, assign, getter = isDisplayingSidePane) BOOL displayingSidePane;
 
@@ -56,41 +56,36 @@
 
 - (IBAction)didTapToggleSidePaneButton:(UIButton *)sender
 {
+    //  Setup
+    CGRect endSidePaneViewFrame;
+    CGFloat endToggleSidePaneViewButtonAngle;
     if (self.isDisplayingSidePane) {
-        __block SGMainViewController *blockSelf = self;
-        [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            
-            //  Push the side pane view up so that only the bottom 42pts can be seen (this is where the toggle button is)
-            CGRect endFrame = CGRectMake(CGRectGetMinX(blockSelf.sidePaneView.frame),
-                                         (-1*CGRectGetHeight(blockSelf.sidePaneView.frame))+42,
-                                         CGRectGetWidth(blockSelf.sidePaneView.frame),
-                                         CGRectGetHeight(blockSelf.sidePaneView.frame));
-            blockSelf.sidePaneView.frame = endFrame;
-            
-            //  Rotate the toggle side pane button 180º
-            blockSelf.toggleSidePaneView.transform = CGAffineTransformMakeRotation(M_PI);
-            
-        } completion:^(BOOL finished) {
-            blockSelf.displayingSidePane = NO;
-        }];
+        endSidePaneViewFrame = CGRectMake(CGRectGetMinX(self.sidePaneView.frame),
+                              (-1*CGRectGetHeight(self.sidePaneView.frame))+42,
+                              CGRectGetWidth(self.sidePaneView.frame),
+                              CGRectGetHeight(self.sidePaneView.frame));
+        endToggleSidePaneViewButtonAngle = M_PI;
     } else {
-        __block SGMainViewController *blockSelf = self;
-        [UIView animateWithDuration:1.0 delay:0 options:1.0f animations:^{
-            
-            //  Push the side pane view back down to its original position
-            CGRect endFrame = CGRectMake(CGRectGetMinX(blockSelf.sidePaneView.frame),
-                                         CGRectGetMinY(blockSelf.view.frame),
-                                         CGRectGetWidth(blockSelf.sidePaneView.frame),
-                                         CGRectGetHeight(blockSelf.sidePaneView.frame));
-            blockSelf.sidePaneView.frame = endFrame;
-            
-            //  Rotate the toggle side pane button 180º
-            blockSelf.toggleSidePaneView.transform = CGAffineTransformMakeRotation(0);
-            
-        } completion:^(BOOL finished) {
-            blockSelf.displayingSidePane = YES;
-        }];
+        endSidePaneViewFrame = CGRectMake(CGRectGetMinX(self.sidePaneView.frame),
+                                     CGRectGetMinY(self.view.frame),
+                                     CGRectGetWidth(self.sidePaneView.frame),
+                                     CGRectGetHeight(self.sidePaneView.frame));
+        endToggleSidePaneViewButtonAngle = 0;
     }
+    
+    //  Animate
+    __block SGMainViewController *blockSelf = self;
+    [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        
+        //  Push the side pane view
+        blockSelf.sidePaneView.frame = endSidePaneViewFrame;
+        
+        //  Rotate the toggle side pane button
+        blockSelf.toggleSidePaneViewButton.transform = CGAffineTransformMakeRotation(endToggleSidePaneViewButtonAngle);
+        
+    } completion:^(BOOL finished) {
+        blockSelf.displayingSidePane = !blockSelf.isDisplayingSidePane;
+    }];
 }
 
 @end
