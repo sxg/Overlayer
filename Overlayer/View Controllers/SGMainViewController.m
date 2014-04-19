@@ -52,6 +52,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - UIImagePickerController Delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    self.imageView.image = info[UIImagePickerControllerOriginalImage];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - UI Actions
 
 - (IBAction)didTapToggleSidePaneButton:(UIButton *)sender
@@ -86,6 +94,19 @@
     } completion:^(BOOL finished) {
         blockSelf.displayingSidePane = !blockSelf.isDisplayingSidePane;
     }];
+}
+
+- (IBAction)didTapCameraButton:(id)sender
+{
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:picker animated:YES completion:nil];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Camera" message:@"This device doesn't have a camera available to use." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 @end
