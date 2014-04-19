@@ -65,8 +65,8 @@
 		4AE86A5318F638FA0022E006 /* OverlayerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OverlayerTests-Info.plist"; sourceTree = "<group>"; };
 		4AE86A5518F638FA0022E006 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4AE86A5718F638FA0022E006 /* OverlayerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OverlayerTests.m; sourceTree = "<group>"; };
-		4AEAFA2018F63D8700A20350 /* SGTextRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGTextRecognizer.h; path = "Image Processing/SGTextRecognizer.h"; sourceTree = "<group>"; };
-		4AEAFA2118F63D8700A20350 /* SGTextRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGTextRecognizer.m; path = "Image Processing/SGTextRecognizer.m"; sourceTree = "<group>"; };
+		4AEAFA2018F63D8700A20350 /* SGTextRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGTextRecognizer.h; path = Utility/SGTextRecognizer.h; sourceTree = "<group>"; };
+		4AEAFA2118F63D8700A20350 /* SGTextRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGTextRecognizer.m; path = Utility/SGTextRecognizer.m; sourceTree = "<group>"; };
 		4AEAFA2318F63DB000A20350 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		4AEAFA2618F63F4D00A20350 /* SGMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGMainViewController.h; path = "View Controllers/SGMainViewController.h"; sourceTree = "<group>"; };
 		4AEAFA2718F63F4D00A20350 /* SGMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGMainViewController.m; path = "View Controllers/SGMainViewController.m"; sourceTree = "<group>"; };
@@ -114,6 +114,8 @@
 			children = (
 				4A6D672318F7858500BC82F7 /* SGUtility.h */,
 				4A6D672418F7858500BC82F7 /* SGUtility.m */,
+				4AEAFA2018F63D8700A20350 /* SGTextRecognizer.h */,
+				4AEAFA2118F63D8700A20350 /* SGTextRecognizer.m */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -161,7 +163,6 @@
 				4AE86A4418F638FA0022E006 /* Images.xcassets */,
 				4AEAFA2518F63F3100A20350 /* View Controllers */,
 				4A2D638018F88B19003235EF /* Views */,
-				4AEAFA1F18F63D4100A20350 /* Image Processing */,
 				4A6D672218F7856D00BC82F7 /* Utility */,
 				4A6D673A18F78E3900BC82F7 /* tessdata */,
 				4AE86A3918F638FA0022E006 /* Supporting Files */,
@@ -196,15 +197,6 @@
 				4AE86A5418F638FA0022E006 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		4AEAFA1F18F63D4100A20350 /* Image Processing */ = {
-			isa = PBXGroup;
-			children = (
-				4AEAFA2018F63D8700A20350 /* SGTextRecognizer.h */,
-				4AEAFA2118F63D8700A20350 /* SGTextRecognizer.m */,
-			);
-			name = "Image Processing";
 			sourceTree = "<group>";
 		};
 		4AEAFA2518F63F3100A20350 /* View Controllers */ = {

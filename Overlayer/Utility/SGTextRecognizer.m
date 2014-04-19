@@ -52,7 +52,7 @@ static SGTextRecognizer *sharedClient;
 
 #pragma mark - Text Recognition
 
-- (void)recognizeImage:(UIImage *)image update:(void (^)(NSUInteger))update completion:(void (^)(NSString *, NSArray *))completion
+- (void)recognizeTextOnImage:(UIImage *)image update:(void (^)(NSUInteger))update completion:(void (^)(NSString *, NSArray *))completion
 {
     //  Set the progress update block
     self.update = update;
@@ -80,7 +80,7 @@ static SGTextRecognizer *sharedClient;
 {
     NSLog(@"progress: %d", tesseract.progress);
     if (self.update) {
-        self.update((NSUInteger)tesseract.progress);
+        self.update((NSUInteger)(tesseract.progress/100));
     }
     return NO;
 }
