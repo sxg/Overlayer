@@ -14,6 +14,6 @@
 
 + (SGTextRecognizer *)sharedClient;
 
-- (void)recognizeTextOnImage:(UIImage *)image update:(void (^)(NSUInteger progress))update completion:(void (^)(NSString *recognizedText, NSArray *recognizedCharacterRects))completion;
+- (void)recognizeTextOnImage:(UIImage *)image update:(void (^)(CGFloat progress))update completion:(void (^)(NSString *recognizedText, NSArray *recognizedCharacterRects))completion;
 
 @end

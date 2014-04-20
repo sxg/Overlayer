@@ -60,7 +60,7 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeAnnularDeterminate;
     hud.labelText = @"Drawing Lines";
-    [[SGTextRecognizer sharedClient] recognizeTextOnImage:self.imageView.image update:^(NSUInteger progress) {
+    [[SGTextRecognizer sharedClient] recognizeTextOnImage:self.imageView.image update:^(CGFloat progress) {
         hud.progress = progress;
     } completion:^(NSString *recognizedText, NSArray *recognizedCharacterRects) {
         //  Draw the lines

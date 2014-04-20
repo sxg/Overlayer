@@ -19,7 +19,7 @@
 @interface SGTextRecognizer ()
 
 @property (readwrite, strong, nonatomic) Tesseract *tesseract;
-@property (readwrite, strong, nonatomic) void (^update)(NSUInteger);
+@property (readwrite, strong, nonatomic) void (^update)(CGFloat);
 
 @end
 
@@ -56,38 +56,47 @@ static SGTextRecognizer *sharedClient;
 
 #pragma mark - Text Recognition
 
-- (void)recognizeTextOnImage:(UIImage *)image update:(void (^)(NSUInteger))update completion:(void (^)(NSString *, NSArray *))completion
+- (void)recognizeTextOnImage:(UIImage *)image update:(void (^)(CGFloat))update completion:(void (^)(NSString *, NSArray *))completion
 {
-    //  Get the image properly oriented
-    UIImage *upOrientedImage = [SGUtility imageOrientedUpFromImage:image];
-    
-    //  Set the progress update block
-    self.update = update;
-    
-    //  Filter the image to get just the text
-    GPUImageAdaptiveThresholdFilter *adaptiveThresholdFilter = [[GPUImageAdaptiveThresholdFilter alloc] init];
-    UIImage *blackWhiteImage = [adaptiveThresholdFilter imageByFilteringImage:upOrientedImage];
-    
-    //  Set the image and recognize it (synchronous)
-    [self.tesseract setImage:blackWhiteImage];
-    [self.tesseract recognize];
-    
-    //  Clear the progress update block
-    self.update = nil;
-    
-    //  Return the important data in the completion block
-    if (completion) {
-        completion(self.tesseract.recognizedText, self.tesseract.recognizedTextBoxes);
-    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //  Get the image properly oriented
+        UIImage *upOrientedImage = [SGUtility imageOrientedUpFromImage:image];
+        
+        //  Set the progress update block
+        self.update = update;
+        
+        //  Filter the image to get just the text
+        GPUImageAdaptiveThresholdFilter *adaptiveThresholdFilter = [[GPUImageAdaptiveThresholdFilter alloc] init];
+        UIImage *blackWhiteImage = [adaptiveThresholdFilter imageByFilteringImage:upOrientedImage];
+        
+        //  Set the image and recognize it (synchronous)
+        [self.tesseract setImage:blackWhiteImage];
+        [self.tesseract recognize];
+        
+        self.update = nil;
+        
+        //  Return the important data in the completion block
+        if (completion) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(self.tesseract.recognizedText, self.tesseract.recognizedTextBoxes);
+            });
+        }
+    });
 }
 
 #pragma mark - Tesseract Delegate
 
 - (BOOL)shouldCancelImageRecognitionForTesseract:(Tesseract*)tesseract
 {
+    //
+    //  This method is called from a background thread
+    //
+    
     NSLog(@"progress: %d", tesseract.progress);
     if (self.update) {
-        self.update((NSUInteger)(tesseract.progress/100));
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.update((CGFloat)((CGFloat)tesseract.progress/100.0f));
+        });
     }
     return NO;
 }
