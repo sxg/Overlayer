@@ -10,9 +10,12 @@
 
 //  Frameworks
 #import <GPUImage/GPUImage.h>
+#import <MBProgressHUD/MBProgressHUD.h>
+#import <StandardPaths/StandardPaths.h>
 
 //  Utility
 #import "SGUtility.h"
+#import "SGTextRecognizer.h"
 
 //  Views
 #import "SGDoubleStrikethroughView.h"
@@ -36,13 +39,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    //    for (NSValue *rectValue in [self.tesseract recognizedTextBoxes]) {
-    //        CGRect rect = [rectValue CGRectValue];
-    //        CGRect scaledRect = CGRectMake(rect.origin.x/2/1.26, rect.origin.y/2/1.26, rect.size.width/2/1.26, rect.size.height/2/1.26);
-    //        SGDoubleStrikethroughView *view = [[SGDoubleStrikethroughView alloc] initWithFrame:scaledRect];
-    //        [self.imageView addSubview:view];
-    //    }
-    
     self.displayingSidePane = YES;
 }
 
@@ -56,8 +52,27 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    self.imageView.image = info[UIImagePickerControllerOriginalImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    self.imageView.image = info[UIImagePickerControllerOriginalImage];
+    
+    //  Draw lines on the image and show a progress HUD
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeAnnularDeterminate;
+    hud.labelText = @"Drawing Lines";
+    [[SGTextRecognizer sharedClient] recognizeTextOnImage:self.imageView.image update:^(NSUInteger progress) {
+        hud.progress = progress;
+    } completion:^(NSString *recognizedText, NSArray *recognizedCharacterRects) {
+        //  Draw the lines
+        for (NSValue *rectValue in recognizedCharacterRects) {
+            CGRect rect = [rectValue CGRectValue];
+            CGRect scaledRect = CGRectMake(rect.origin.x/2, rect.origin.y/2, rect.size.width/2, rect.size.height/2);
+            SGDoubleStrikethroughView *view = [[SGDoubleStrikethroughView alloc] initWithFrame:scaledRect];
+            [self.imageView addSubview:view];
+        }
+        
+        [hud hide:YES];
+    }];
 }
 
 #pragma mark - UI Actions
