@@ -10,6 +10,10 @@
 
 //  Frameworks
 #import <GPUImage/GPUImage.h>
+#import <QuartzCore/QuartzCore.h>
+
+//  Utilities
+#import "SGUtility.h"
 
 
 @interface SGTextRecognizer ()
@@ -54,12 +58,15 @@ static SGTextRecognizer *sharedClient;
 
 - (void)recognizeTextOnImage:(UIImage *)image update:(void (^)(NSUInteger))update completion:(void (^)(NSString *, NSArray *))completion
 {
+    //  Get the image properly oriented
+    UIImage *upOrientedImage = [SGUtility imageOrientedUpFromImage:image];
+    
     //  Set the progress update block
     self.update = update;
     
     //  Filter the image to get just the text
     GPUImageAdaptiveThresholdFilter *adaptiveThresholdFilter = [[GPUImageAdaptiveThresholdFilter alloc] init];
-    UIImage *blackWhiteImage = [adaptiveThresholdFilter imageByFilteringImage:image];
+    UIImage *blackWhiteImage = [adaptiveThresholdFilter imageByFilteringImage:upOrientedImage];
     
     //  Set the image and recognize it (synchronous)
     [self.tesseract setImage:blackWhiteImage];
