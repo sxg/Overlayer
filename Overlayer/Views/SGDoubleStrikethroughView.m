@@ -8,6 +8,7 @@
 
 #import "SGDoubleStrikethroughView.h"
 
+
 @implementation SGDoubleStrikethroughView
 
 - (instancetype)initWithFrame:(CGRect)frame
