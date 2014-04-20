@@ -8,6 +8,7 @@
 
 #import "SGUtility.h"
 
+
 @implementation SGUtility
 
 + (UIImage *)imageWithImage:(UIImage *)image scaledByFactor:(CGFloat)scalingFactor
@@ -22,6 +23,13 @@
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
+}
+
++ (UIImage *)imageOrientedUpFromImage:(UIImage *)image
+{
+    UIGraphicsBeginImageContext(image.size);
+    [image drawAtPoint:CGPointZero];
+    return UIGraphicsGetImageFromCurrentImageContext();
 }
 
 @end

@@ -10,5 +10,6 @@
 @interface SGUtility : NSObject
 
 + (UIImage *)imageWithImage:(UIImage *)image scaledByFactor:(CGFloat)scalingFactor;
++ (UIImage *)imageOrientedUpFromImage:(UIImage *)image;
 
 @end
