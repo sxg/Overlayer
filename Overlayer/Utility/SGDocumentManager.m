@@ -14,6 +14,8 @@
 
 @implementation SGDocumentManager
 
+@synthesize documents = _documents;
+
 static SGDocumentManager *sharedManager;
 
 + (SGDocumentManager *)sharedManager
@@ -36,12 +38,16 @@ static SGDocumentManager *sharedManager;
 
 - (void)saveDocuments:(NSArray *)documents
 {
+    _documents = documents;
     [NSKeyedArchiver archiveRootObject:documents toFile:[[NSFileManager defaultManager] pathForPublicFile:@"documents"]];
 }
 
 - (NSArray *)documents
 {
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSFileManager defaultManager] pathForPublicFile:@"documents"]];
+    if (!_documents) {
+        _documents = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSFileManager defaultManager] pathForPublicFile:@"documents"]];
+    }
+    return _documents;
 }
 
 @end
