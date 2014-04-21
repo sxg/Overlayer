@@ -60,17 +60,10 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeAnnularDeterminate;
     hud.labelText = @"Drawing Lines";
-    [[SGTextRecognizer sharedClient] recognizeTextOnImage:self.imageView.image update:^(CGFloat progress) {
+    [[SGTextRecognizer sharedClient] recognizeTextOnImage:info[UIImagePickerControllerOriginalImage] update:^(CGFloat progress) {
         hud.progress = progress;
-    } completion:^(NSString *recognizedText, NSArray *recognizedCharacterRects) {
-        //  Draw the lines
-        for (NSValue *rectValue in recognizedCharacterRects) {
-            CGRect rect = [rectValue CGRectValue];
-            CGRect scaledRect = CGRectMake(rect.origin.x/2, rect.origin.y/2, rect.size.width/2, rect.size.height/2);
-            SGDoubleStrikethroughView *view = [[SGDoubleStrikethroughView alloc] initWithFrame:scaledRect];
-            [self.imageView addSubview:view];
-        }
-        
+    } completion:^(UIImage *imageWithLines, NSString *recognizedText, NSArray *recognizedCharacterRects) {
+        self.imageView.image = imageWithLines;
         [hud hide:YES];
     }];
 }

@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Satyam Ghodasara. All rights reserved.
 //
 
+//  Frameworks
 #import <TesseractOCR/TesseractOCR.h>
 
 

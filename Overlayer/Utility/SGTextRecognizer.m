@@ -11,6 +11,10 @@
 //  Frameworks
 #import <GPUImage/GPUImage.h>
 #import <QuartzCore/QuartzCore.h>
+#import <StandardPaths/StandardPaths.h>
+
+//  Views
+#import "SGDoubleStrikethroughView.h"
 
 //  Utilities
 #import "SGUtility.h"
@@ -56,7 +60,7 @@ static SGTextRecognizer *sharedClient;
 
 #pragma mark - Text Recognition
 
-- (void)recognizeTextOnImage:(UIImage *)image update:(void (^)(CGFloat))update completion:(void (^)(NSString *, NSArray *))completion
+- (void)recognizeTextOnImage:(UIImage *)image update:(void (^)(CGFloat))update completion:(void (^)(UIImage *, NSString *, NSArray *))completion
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         //  Get the image properly oriented
@@ -75,10 +79,34 @@ static SGTextRecognizer *sharedClient;
         
         self.update = nil;
         
+        //  Draw the lines
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:upOrientedImage];
+        for (NSValue *rectValue in self.tesseract.recognizedTextBoxes) {
+            CGRect rect = [rectValue CGRectValue];
+            CGRect scaledRect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+            SGDoubleStrikethroughView *view = [[SGDoubleStrikethroughView alloc] initWithFrame:scaledRect];
+            [imageView addSubview:view];
+        }
+        
+        //  Flatten the lines into an image
+        UIGraphicsBeginImageContext(upOrientedImage.size);
+        [imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIImage *imageWithLines = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        //  Save the image
+        NSError *error;
+        NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[[NSFileManager defaultManager] publicDataPath] error:&error];
+        if (error) {
+            NSLog(@"%@", error);
+        }
+        NSString *fileName = [NSString stringWithFormat:@"%li.png", (unsigned long)contents.count];
+        [UIImagePNGRepresentation(imageWithLines) writeToFile:[[NSFileManager defaultManager] pathForPublicFile:fileName] atomically:YES];
+        
         //  Return the important data in the completion block
         if (completion) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                completion(self.tesseract.recognizedText, self.tesseract.recognizedTextBoxes);
+                completion(imageWithLines, self.tesseract.recognizedText, self.tesseract.recognizedTextBoxes);
             });
         }
     });

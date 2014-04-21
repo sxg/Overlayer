@@ -98,6 +98,10 @@
                                                 </tableViewCellContentView>
                                             </tableViewCell>
                                         </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="PlF-TB-rr4" id="FQQ-fz-FMO"/>
+                                            <outlet property="delegate" destination="Tjs-fz-12O" id="eEJ-6L-h99"/>
+                                        </connections>
                                     </tableView>
                                 </subviews>
                                 <constraints>
@@ -138,6 +142,8 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J79-eL-huF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="PlF-TB-rr4" customClass="SGMainTableViewDataSource"/>
+                <customObject id="Tjs-fz-12O" customClass="SGMainTableViewDelegate"/>
             </objects>
             <point key="canvasLocation" x="-725" y="192"/>
         </scene>
