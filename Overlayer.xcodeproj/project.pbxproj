@@ -13,6 +13,7 @@
 		4A5690961905B2B000A1E1EE /* SGMainTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5690951905B2B000A1E1EE /* SGMainTableViewDelegate.m */; };
 		4A5690991905B31400A1E1EE /* SGMainTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5690981905B31400A1E1EE /* SGMainTableViewDataSource.m */; };
 		4A56909D1905B5EC00A1E1EE /* SGDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A56909C1905B5EC00A1E1EE /* SGDocument.m */; };
+		4A5690A01905BC7D00A1E1EE /* SGDocumentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A56909F1905BC7D00A1E1EE /* SGDocumentManager.m */; };
 		4A6D672518F7858500BC82F7 /* SGUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6D672418F7858500BC82F7 /* SGUtility.m */; };
 		4A6D673B18F78E3900BC82F7 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 4A6D673A18F78E3900BC82F7 /* tessdata */; };
 		4AC2BE69190301360062C0B2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC2BE68190301360062C0B2 /* QuartzCore.framework */; };
@@ -56,6 +57,8 @@
 		4A5690981905B31400A1E1EE /* SGMainTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGMainTableViewDataSource.m; path = "View Controllers/SGMainTableViewDataSource.m"; sourceTree = "<group>"; };
 		4A56909B1905B5EC00A1E1EE /* SGDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGDocument.h; path = Models/SGDocument.h; sourceTree = "<group>"; };
 		4A56909C1905B5EC00A1E1EE /* SGDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGDocument.m; path = Models/SGDocument.m; sourceTree = "<group>"; };
+		4A56909E1905BC7D00A1E1EE /* SGDocumentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGDocumentManager.h; path = Utility/SGDocumentManager.h; sourceTree = "<group>"; };
+		4A56909F1905BC7D00A1E1EE /* SGDocumentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGDocumentManager.m; path = Utility/SGDocumentManager.m; sourceTree = "<group>"; };
 		4A6D672318F7858500BC82F7 /* SGUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGUtility.h; path = Utility/SGUtility.h; sourceTree = "<group>"; };
 		4A6D672418F7858500BC82F7 /* SGUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGUtility.m; path = Utility/SGUtility.m; sourceTree = "<group>"; };
 		4A6D673A18F78E3900BC82F7 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
@@ -150,6 +153,8 @@
 				4A6D672418F7858500BC82F7 /* SGUtility.m */,
 				4AEAFA2018F63D8700A20350 /* SGTextRecognizer.h */,
 				4AEAFA2118F63D8700A20350 /* SGTextRecognizer.m */,
+				4A56909E1905BC7D00A1E1EE /* SGDocumentManager.h */,
+				4A56909F1905BC7D00A1E1EE /* SGDocumentManager.m */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -393,6 +398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A5690A01905BC7D00A1E1EE /* SGDocumentManager.m in Sources */,
 				4A5690961905B2B000A1E1EE /* SGMainTableViewDelegate.m in Sources */,
 				4AE86A4318F638FA0022E006 /* SGAppDelegate.m in Sources */,
 				4AE86A3F18F638FA0022E006 /* main.m in Sources */,
