@@ -36,6 +36,11 @@ static SGDocumentManager *sharedManager;
     return self;
 }
 
+- (void)saveDocument:(SGDocument *)document
+{
+    [self saveDocuments:@[_documents, document]];
+}
+
 - (void)saveDocuments:(NSArray *)documents
 {
     _documents = documents;
