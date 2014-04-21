@@ -12,6 +12,7 @@
 		4A2D638318F88B36003235EF /* SGDoubleStrikethroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2D638218F88B36003235EF /* SGDoubleStrikethroughView.m */; };
 		4A5690961905B2B000A1E1EE /* SGMainTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5690951905B2B000A1E1EE /* SGMainTableViewDelegate.m */; };
 		4A5690991905B31400A1E1EE /* SGMainTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5690981905B31400A1E1EE /* SGMainTableViewDataSource.m */; };
+		4A56909D1905B5EC00A1E1EE /* SGDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A56909C1905B5EC00A1E1EE /* SGDocument.m */; };
 		4A6D672518F7858500BC82F7 /* SGUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6D672418F7858500BC82F7 /* SGUtility.m */; };
 		4A6D673B18F78E3900BC82F7 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 4A6D673A18F78E3900BC82F7 /* tessdata */; };
 		4AC2BE69190301360062C0B2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC2BE68190301360062C0B2 /* QuartzCore.framework */; };
@@ -53,6 +54,8 @@
 		4A5690951905B2B000A1E1EE /* SGMainTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGMainTableViewDelegate.m; path = "View Controllers/SGMainTableViewDelegate.m"; sourceTree = "<group>"; };
 		4A5690971905B31400A1E1EE /* SGMainTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGMainTableViewDataSource.h; path = "View Controllers/SGMainTableViewDataSource.h"; sourceTree = "<group>"; };
 		4A5690981905B31400A1E1EE /* SGMainTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGMainTableViewDataSource.m; path = "View Controllers/SGMainTableViewDataSource.m"; sourceTree = "<group>"; };
+		4A56909B1905B5EC00A1E1EE /* SGDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGDocument.h; path = Models/SGDocument.h; sourceTree = "<group>"; };
+		4A56909C1905B5EC00A1E1EE /* SGDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGDocument.m; path = Models/SGDocument.m; sourceTree = "<group>"; };
 		4A6D672318F7858500BC82F7 /* SGUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGUtility.h; path = Utility/SGUtility.h; sourceTree = "<group>"; };
 		4A6D672418F7858500BC82F7 /* SGUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGUtility.m; path = Utility/SGUtility.m; sourceTree = "<group>"; };
 		4A6D673A18F78E3900BC82F7 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
@@ -131,6 +134,15 @@
 			name = "Main VC";
 			sourceTree = "<group>";
 		};
+		4A56909A1905B5D400A1E1EE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4A56909B1905B5EC00A1E1EE /* SGDocument.h */,
+				4A56909C1905B5EC00A1E1EE /* SGDocument.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		4A6D672218F7856D00BC82F7 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +198,7 @@
 				4AE86A4418F638FA0022E006 /* Images.xcassets */,
 				4AEAFA2518F63F3100A20350 /* View Controllers */,
 				4A2D638018F88B19003235EF /* Views */,
+				4A56909A1905B5D400A1E1EE /* Models */,
 				4A6D672218F7856D00BC82F7 /* Utility */,
 				4A6D673A18F78E3900BC82F7 /* tessdata */,
 				4AE86A3918F638FA0022E006 /* Supporting Files */,
@@ -384,6 +397,7 @@
 				4AE86A4318F638FA0022E006 /* SGAppDelegate.m in Sources */,
 				4AE86A3F18F638FA0022E006 /* main.m in Sources */,
 				4A5690991905B31400A1E1EE /* SGMainTableViewDataSource.m in Sources */,
+				4A56909D1905B5EC00A1E1EE /* SGDocument.m in Sources */,
 				4AEAFA2218F63D8700A20350 /* SGTextRecognizer.m in Sources */,
 				4A6D672518F7858500BC82F7 /* SGUtility.m in Sources */,
 				4AEAFA2818F63F4D00A20350 /* SGMainViewController.m in Sources */,
