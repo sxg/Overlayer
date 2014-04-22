@@ -41,10 +41,10 @@
 
 - (UIImage *)documentImage
 {
-    if (!self.documentImage) {
+    if (!_documentImage) {
         self.documentImage = [[UIImage alloc] initWithContentsOfFile:self.localPath];
     }
-    return self.documentImage;
+    return _documentImage;
 }
 
 #pragma mark - NSCoding
