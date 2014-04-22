@@ -14,5 +14,6 @@
 @property (readonly, strong, nonatomic) UIImage *documentImage;
 
 - (instancetype)initWithImage:(UIImage *)image title:(NSString *)title;
+- (void)drawLinesUpdate:(void (^)(CGFloat progress))update completion:(void (^)(UIImage *imageWithLines, NSString *recognizedText, NSArray *recognizedCharacterRects))completion;
 
 @end

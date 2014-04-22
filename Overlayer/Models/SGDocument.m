@@ -11,6 +11,9 @@
 //  Frameworks
 #import <StandardPaths/StandardPaths.h>
 
+//  Utilities
+#import "SGTextRecognizer.h"
+
 
 @interface SGDocument ()
 
@@ -45,6 +48,11 @@
         self.documentImage = [[UIImage alloc] initWithContentsOfFile:self.localPath];
     }
     return _documentImage;
+}
+
+- (void)drawLinesUpdate:(void (^)(CGFloat))update completion:(void (^)(UIImage *, NSString *, NSArray *))completion
+{
+    [[SGTextRecognizer sharedClient] recognizeTextOnImage:self.documentImage update:update completion:completion];
 }
 
 #pragma mark - NSCoding
