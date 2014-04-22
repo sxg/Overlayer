@@ -11,6 +11,9 @@
 //  Frameworks
 #import <StandardPaths/StandardPaths.h>
 
+//  Utilities
+#import "SGDocumentManager.h"
+
 
 @implementation SGMainTableViewDataSource
 
@@ -21,18 +24,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSError *error;
-    NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[[NSFileManager defaultManager] publicDataPath] error:&error];
-    if (error) {
-        NSLog(@"%@", error);
-    }
-    return contents.count;
+    return [[[SGDocumentManager sharedManager] documents] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SGDocumentCell"];
-    cell.textLabel.text = [NSString stringWithFormat:@"%li", (unsigned long)indexPath.row];
+    cell.textLabel.text = [[[SGDocumentManager sharedManager] documents][indexPath.row] title];
     return cell;
 }
 

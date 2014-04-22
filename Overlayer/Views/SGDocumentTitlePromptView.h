@@ -6,8 +6,9 @@
 //  Copyright (c) 2014 Satyam Ghodasara. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 
 @interface SGDocumentTitlePromptView : UIView
+
+@property (readonly, weak, nonatomic) UITextField *titleTextField;
 
 @end

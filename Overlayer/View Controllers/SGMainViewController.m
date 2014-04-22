@@ -13,22 +13,32 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <StandardPaths/StandardPaths.h>
 
+//  Models
+#import "SGDocument.h"
+
+//  Views
+#import "SGDocumentTitlePromptView.h"
+
 //  Utility
 #import "SGUtility.h"
 #import "SGTextRecognizer.h"
-
-//  Views
-#import "SGDoubleStrikethroughView.h"
+#import "SGDocumentManager.h"
 
 
 @interface SGMainViewController ()
 
 @property (readwrite, weak, nonatomic) IBOutlet UIImageView *imageView;
 
+@property (readwrite, weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (readwrite, weak, nonatomic) IBOutlet UIView *sidePaneView;
 @property (readwrite, weak, nonatomic) IBOutlet UIButton *toggleSidePaneViewButton;
 
 @property (readwrite, assign, getter = isDisplayingSidePane) BOOL displayingSidePane;
+
+@property (readwrite, strong, nonatomic) SGDocumentTitlePromptView *documentTitlePromptView;
+
+@property (readwrite, strong, nonatomic) UIImage *lastImage;
 
 @end
 
@@ -55,17 +65,25 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     
     self.imageView.image = info[UIImagePickerControllerOriginalImage];
+    self.lastImage = self.imageView.image;
     
-    //  Draw lines on the image and show a progress HUD
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeAnnularDeterminate;
-    hud.labelText = @"Drawing Lines";
-    [[SGTextRecognizer sharedClient] recognizeTextOnImage:info[UIImagePickerControllerOriginalImage] update:^(CGFloat progress) {
-        hud.progress = progress;
-    } completion:^(UIImage *imageWithLines, NSString *recognizedText, NSArray *recognizedCharacterRects) {
-        self.imageView.image = imageWithLines;
-        [hud hide:YES];
-    }];
+    //  Show the document title prompt
+    self.documentTitlePromptView = [[NSBundle mainBundle] loadNibNamed:@"SGDocumentTitlePromptView" owner:nil options:nil][0];
+    [self.documentTitlePromptView setFrame:CGRectMake(362.0f, 127.0f, 300.0f, 130.0f)];
+    self.documentTitlePromptView.titleTextField.delegate = self;
+    [self.documentTitlePromptView.titleTextField becomeFirstResponder];
+    [self.view addSubview:self.documentTitlePromptView];
+    
+//    //  Draw lines on the image and show a progress HUD
+//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    hud.mode = MBProgressHUDModeAnnularDeterminate;
+//    hud.labelText = @"Drawing Lines";
+//    [[SGTextRecognizer sharedClient] recognizeTextOnImage:info[UIImagePickerControllerOriginalImage] update:^(CGFloat progress) {
+//        hud.progress = progress;
+//    } completion:^(UIImage *imageWithLines, NSString *recognizedText, NSArray *recognizedCharacterRects) {
+//        self.imageView.image = imageWithLines;
+//        [hud hide:YES];
+//    }];
 }
 
 #pragma mark - UI Actions
@@ -115,6 +133,31 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Camera" message:@"This device doesn't have a camera available to use." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [alert show];
     }
+}
+
+#pragma mark - UITextField Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (self.documentTitlePromptView.titleTextField == textField) {
+        [textField endEditing:YES];
+        [self.documentTitlePromptView removeFromSuperview];
+        
+        //  When the document title prompt view's text field returns, create a new document
+        SGDocument *document = [[SGDocument alloc] initWithImage:self.lastImage title:textField.text];
+        [[SGDocumentManager sharedManager] saveDocument:document];
+    
+        [self.tableView reloadData];
+    }
+    
+    return YES;
+}
+
+#pragma mark - UITableView Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.imageView.image = [[[SGDocumentManager sharedManager] documents][indexPath.row] documentImage];
 }
 
 @end

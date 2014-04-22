@@ -100,7 +100,7 @@
                                         </prototypes>
                                         <connections>
                                             <outlet property="dataSource" destination="PlF-TB-rr4" id="FQQ-fz-FMO"/>
-                                            <outlet property="delegate" destination="Tjs-fz-12O" id="eEJ-6L-h99"/>
+                                            <outlet property="delegate" destination="tyv-HM-mie" id="d8Q-yx-bnY"/>
                                         </connections>
                                     </tableView>
                                 </subviews>
@@ -138,12 +138,12 @@
                     <connections>
                         <outlet property="imageView" destination="TcQ-kA-Jec" id="5Ti-RW-hNg"/>
                         <outlet property="sidePaneView" destination="wob-LE-Rgd" id="vcS-cP-YXi"/>
+                        <outlet property="tableView" destination="gUA-fS-ygS" id="GKr-U3-nIE"/>
                         <outlet property="toggleSidePaneViewButton" destination="Wm4-al-gmD" id="qan-jU-J2v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J79-eL-huF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="PlF-TB-rr4" customClass="SGMainTableViewDataSource"/>
-                <customObject id="Tjs-fz-12O" customClass="SGMainTableViewDelegate"/>
             </objects>
             <point key="canvasLocation" x="-725" y="192"/>
         </scene>

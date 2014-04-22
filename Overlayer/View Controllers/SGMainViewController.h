@@ -10,6 +10,6 @@
 #import <TesseractOCR/TesseractOCR.h>
 
 
-@interface SGMainViewController : UIViewController <TesseractDelegate, UIImagePickerControllerDelegate,  UINavigationControllerDelegate>
+@interface SGMainViewController : UIViewController <TesseractDelegate, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate>
 
 @end
