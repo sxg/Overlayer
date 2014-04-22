@@ -38,7 +38,11 @@ static SGDocumentManager *sharedManager;
 
 - (void)saveDocument:(SGDocument *)document
 {
-    [self saveDocuments:@[_documents, document]];
+    NSMutableArray *allDocuments = [@[document] mutableCopy];
+    if (self.documents) {
+        [allDocuments addObjectsFromArray:self.documents];
+    }
+    [self saveDocuments:allDocuments];
 }
 
 - (void)saveDocuments:(NSArray *)documents
