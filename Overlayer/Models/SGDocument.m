@@ -61,6 +61,7 @@
         blockSelf.drawingLinesProgress = progress;
     } completion:^(UIImage *imageWithLines, NSString *recognizedText, NSArray *recognizedCharacterRects) {
         blockSelf.drawingLines = NO;
+        blockSelf.documentImage = imageWithLines;
         if (completion) {
             completion(imageWithLines, recognizedText, recognizedCharacterRects);
         }
