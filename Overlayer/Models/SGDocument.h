@@ -15,6 +15,8 @@
 @property (readonly, assign, getter = isDrawingLines) BOOL drawingLines;
 @property (readonly, assign) CGFloat drawingLinesProgress;
 
++ (instancetype)createDocumentWithImage:(UIImage *)image title:(NSString *)title;
+
 - (instancetype)initWithImage:(UIImage *)image title:(NSString *)title;
 - (void)drawLinesCompletion:(void (^)(UIImage *imageWithLines, NSString *recognizedText, NSArray *recognizedCharacterRects))completion;
 

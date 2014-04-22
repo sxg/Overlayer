@@ -28,6 +28,13 @@
 
 @implementation SGDocument
 
++ (instancetype)createDocumentWithImage:(UIImage *)image title:(NSString *)title
+{
+    SGDocument *document = [[SGDocument alloc] initWithImage:image title:title];
+    [[SGDocumentManager sharedManager] saveDocument:document];
+    return document;
+}
+
 - (instancetype)initWithImage:(UIImage *)image title:(NSString *)title
 {
     self = [super init];
