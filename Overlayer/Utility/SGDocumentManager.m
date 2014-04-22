@@ -12,6 +12,12 @@
 #import <StandardPaths/StandardPaths.h>
 
 
+@interface SGDocumentManager ()
+
+@property (readwrite, strong, nonatomic, setter = saveDocuments:) NSArray *documents;
+
+@end
+
 @implementation SGDocumentManager
 
 @synthesize documents = _documents;
@@ -47,8 +53,11 @@ static SGDocumentManager *sharedManager;
 
 - (void)saveDocuments:(NSArray *)documents
 {
-    _documents = documents;
-    [NSKeyedArchiver archiveRootObject:documents toFile:[[NSFileManager defaultManager] pathForPublicFile:@"documents"]];
+    //  Converting to a set and back to an array creates an array of unique objects
+    _documents = [[NSOrderedSet orderedSetWithArray:documents] array];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [NSKeyedArchiver archiveRootObject:_documents toFile:[[NSFileManager defaultManager] pathForPublicFile:@"documents"]];
+    });
 }
 
 - (NSArray *)documents

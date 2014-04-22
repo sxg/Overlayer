@@ -11,7 +11,7 @@
 
 @interface SGDocumentManager : NSObject
 
-@property (readwrite, strong, nonatomic, setter = saveDocuments:) NSArray *documents;
+@property (readonly, strong, nonatomic) NSArray *documents;
 
 + (SGDocumentManager *)sharedManager;
 
