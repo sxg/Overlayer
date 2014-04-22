@@ -13,7 +13,10 @@
 @property (readonly, strong, nonatomic) NSString *localPath;
 @property (readonly, strong, nonatomic) UIImage *documentImage;
 
+@property (readonly, assign, getter = isDrawingLines) BOOL drawingLines;
+@property (readonly, assign) CGFloat drawingLinesProgress;
+
 - (instancetype)initWithImage:(UIImage *)image title:(NSString *)title;
-- (void)drawLinesUpdate:(void (^)(CGFloat progress))update completion:(void (^)(UIImage *imageWithLines, NSString *recognizedText, NSArray *recognizedCharacterRects))completion;
+- (void)drawLinesCompletion:(void (^)(UIImage *imageWithLines, NSString *recognizedText, NSArray *recognizedCharacterRects))completion;
 
 @end

@@ -21,6 +21,9 @@
 @property (readwrite, strong, nonatomic) NSString *localPath;
 @property (readwrite, strong, nonatomic) UIImage *documentImage;
 
+@property (readwrite, assign, getter = isDrawingLines) BOOL drawingLines;
+@property (readwrite, assign) CGFloat drawingLinesProgress;
+
 @end
 
 @implementation SGDocument
@@ -50,9 +53,18 @@
     return _documentImage;
 }
 
-- (void)drawLinesUpdate:(void (^)(CGFloat))update completion:(void (^)(UIImage *, NSString *, NSArray *))completion
+- (void)drawLinesCompletion:(void (^)(UIImage *, NSString *, NSArray *))completion
 {
-    [[SGTextRecognizer sharedClient] recognizeTextOnImage:self.documentImage update:update completion:completion];
+    self.drawingLines = YES;
+    __block SGDocument *blockSelf = self;
+    [[SGTextRecognizer sharedClient] recognizeTextOnImage:self.documentImage update:^(CGFloat progress) {
+        blockSelf.drawingLinesProgress = progress;
+    } completion:^(UIImage *imageWithLines, NSString *recognizedText, NSArray *recognizedCharacterRects) {
+        blockSelf.drawingLines = NO;
+        if (completion) {
+            completion(imageWithLines, recognizedText, recognizedCharacterRects);
+        }
+    }];
 }
 
 #pragma mark - NSCoding
