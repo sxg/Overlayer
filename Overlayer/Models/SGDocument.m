@@ -13,12 +13,12 @@
 
 //  Utilities
 #import "SGTextRecognizer.h"
+#import "SGDocumentManager.h"
 
 
 @interface SGDocument ()
 
 @property (readwrite, strong, nonatomic) NSString *title;
-@property (readwrite, strong, nonatomic) NSString *localPath;
 @property (readwrite, strong, nonatomic) UIImage *documentImage;
 
 @property (readwrite, assign, getter = isDrawingLines) BOOL drawingLines;
@@ -60,11 +60,12 @@
     [[SGTextRecognizer sharedClient] recognizeTextOnImage:self.documentImage update:^(CGFloat progress) {
         blockSelf.drawingLinesProgress = progress;
     } completion:^(UIImage *imageWithLines, NSString *recognizedText, NSArray *recognizedCharacterRects) {
-        blockSelf.drawingLines = NO;
         blockSelf.documentImage = imageWithLines;
+        blockSelf.drawingLines = NO;
         if (completion) {
             completion(imageWithLines, recognizedText, recognizedCharacterRects);
         }
+        [[SGDocumentManager sharedManager] saveDocument:blockSelf];
     }];
 }
 
@@ -75,7 +76,6 @@
     self = [super init];
     if (self) {
         self.title = [aDecoder decodeObjectForKey:@"title"];
-        self.localPath = [aDecoder decodeObjectForKey:@"localPath"];
         self.documentImage = [aDecoder decodeObjectForKey:@"documentImage"];
     }
     return self;
@@ -84,7 +84,6 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.title forKey:@"title"];
-    [aCoder encodeObject:self.localPath forKey:@"localPath"];
     [aCoder encodeObject:self.documentImage forKey:@"documentImage"];
 }
 

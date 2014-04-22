@@ -10,7 +10,6 @@
 @interface SGDocument : NSObject <NSCoding>
 
 @property (readonly, strong, nonatomic) NSString *title;
-@property (readonly, strong, nonatomic) NSString *localPath;
 @property (readonly, strong, nonatomic) UIImage *documentImage;
 
 @property (readonly, assign, getter = isDrawingLines) BOOL drawingLines;
