@@ -38,7 +38,11 @@
 
 @property (readwrite, strong, nonatomic) SGDocumentTitlePromptView *documentTitlePromptView;
 
+@property (readwrite, strong, nonatomic) MBProgressHUD *hud;
+
 @property (readwrite, strong, nonatomic) UIImage *lastImage;
+
+@property (readwrite, strong, nonatomic) SGDocument *currentDocument;
 
 @end
 
@@ -73,17 +77,6 @@
     self.documentTitlePromptView.titleTextField.delegate = self;
     [self.documentTitlePromptView.titleTextField becomeFirstResponder];
     [self.view addSubview:self.documentTitlePromptView];
-    
-//    //  Draw lines on the image and show a progress HUD
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    hud.mode = MBProgressHUDModeAnnularDeterminate;
-//    hud.labelText = @"Drawing Lines";
-//    [[SGTextRecognizer sharedClient] recognizeTextOnImage:info[UIImagePickerControllerOriginalImage] update:^(CGFloat progress) {
-//        hud.progress = progress;
-//    } completion:^(UIImage *imageWithLines, NSString *recognizedText, NSArray *recognizedCharacterRects) {
-//        self.imageView.image = imageWithLines;
-//        [hud hide:YES];
-//    }];
 }
 
 #pragma mark - UI Actions
@@ -144,10 +137,13 @@
         [self.documentTitlePromptView removeFromSuperview];
         
         //  When the document title prompt view's text field returns, create a new document
-        SGDocument *document = [[SGDocument alloc] initWithImage:self.lastImage title:textField.text];
-        [[SGDocumentManager sharedManager] saveDocument:document];
+        SGDocument *document = [SGDocument createDocumentWithImage:self.lastImage title:textField.text];
+        [document drawLinesCompletion:nil];
     
-        [self.tableView reloadData];
+        //  Insert the new document into the table and select it with the delegate method (selectRowAtIndexPath:animated:scrollPosition: doesn't inform the delegate for some reason)
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([[SGDocumentManager sharedManager] documents].count-1) inSection:0];
+        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
     }
     
     return YES;
@@ -157,7 +153,54 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.imageView.image = [[[SGDocumentManager sharedManager] documents][indexPath.row] documentImage];
+    self.currentDocument = [[SGDocumentManager sharedManager] documents][indexPath.row];
+    self.imageView.image = self.currentDocument.documentImage;
+    
+    //  If the currently selected document is in the process of drawing lines
+    if (self.currentDocument.isDrawingLines) {
+        //  Show a progress HUD
+        [self.hud hide:YES];
+        [self.hud removeFromSuperview];
+        self.hud = nil;
+        self.hud = [MBProgressHUD showHUDAddedTo:self.imageView animated:YES];
+        self.hud.mode = MBProgressHUDModeAnnularDeterminate;
+        self.hud.labelText = @"Drawing Lines";
+        
+        //  Register KVO for the progress
+        [self.currentDocument addObserver:self forKeyPath:@"drawingLinesProgress" options:NSKeyValueObservingOptionNew context:nil];
+        [self.currentDocument addObserver:self forKeyPath:@"drawingLines" options:NSKeyValueObservingOptionNew context:nil];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.hud hide:YES];
+    //  Need to use a try/catch block since removeObserver throws an exception if self isn't an observer
+    @try {
+        [self.currentDocument removeObserver:self forKeyPath:@"drawingLinesProgress"];
+        [self.currentDocument removeObserver:self forKeyPath:@"drawingLines"];
+    } @catch (NSException *exception) {}
+    self.currentDocument = nil;
+}
+
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"drawingLinesProgress"]) {
+        if (self.currentDocument.isDrawingLines) {
+            self.hud.progress = self.currentDocument.drawingLinesProgress;
+        }
+    } else if ([keyPath isEqualToString:@"drawingLines"]) {
+        //  If the currently selected document is no longer drawing lines
+        if (!self.currentDocument.isDrawingLines) {
+            //  Unregister KVO, hide the HUD, and show the document image with lines on it
+            [self.currentDocument removeObserver:self forKeyPath:@"drawingLinesProgress"];
+            [self.currentDocument removeObserver:self forKeyPath:@"drawingLines"];
+            [self.hud hide:YES];
+            self.imageView.image = self.currentDocument.documentImage;
+        }
+    }
 }
 
 @end
