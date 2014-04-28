@@ -52,12 +52,7 @@ static SGTextRecognizer *sharedClient;
 {
     self = [super init];
     if (self) {
-        //  Setup Tesseract with the training data
-        self.tesseract = [[Tesseract alloc] initWithLanguage:@"eng+ita"];
-        self.tesseract.delegate = self;
         
-        //  Set the character whitelist (Tesseract will look for these characters in images)
-        [self.tesseract setVariableValue:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\"\',.!$%()*?;:/\\-&@" forKey:@"tessedit_char_whitelist"];
     }
     return self;
 }
@@ -66,9 +61,9 @@ static SGTextRecognizer *sharedClient;
 
 - (void)recognizeTextOnImage:(UIImage *)image update:(void (^)(CGFloat))update completion:(void (^)(UIImage *, NSString *, NSArray *))completion
 {
+    //  Get the image properly oriented
+    UIImage *upOrientedImage = [SGUtility imageOrientedUpFromImage:image];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        //  Get the image properly oriented
-        UIImage *upOrientedImage = [SGUtility imageOrientedUpFromImage:image];
         
         //  Set the progress update block
         self.update = update;
@@ -76,6 +71,13 @@ static SGTextRecognizer *sharedClient;
         //  Filter the image to get just the text
         GPUImageAdaptiveThresholdFilter *adaptiveThresholdFilter = [[GPUImageAdaptiveThresholdFilter alloc] init];
         UIImage *blackWhiteImage = [adaptiveThresholdFilter imageByFilteringImage:upOrientedImage];
+        
+        //  Setup Tesseract with the training data
+        self.tesseract = [[Tesseract alloc] initWithLanguage:@"eng+ita"];
+        self.tesseract.delegate = self;
+        
+        //  Set the character whitelist (Tesseract will look for these characters in images)
+        [self.tesseract setVariableValue:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\"\',.!$%()*?;:/\\-&@" forKey:@"tessedit_char_whitelist"];
         
         //  Set the image and recognize it (synchronous)
         [self.tesseract setImage:blackWhiteImage];
@@ -111,6 +113,7 @@ static SGTextRecognizer *sharedClient;
         if (completion) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 completion(imageWithLines, self.tesseract.recognizedText, self.tesseract.recognizedTextBoxes);
+                self.tesseract = nil;
             });
         }
     });
