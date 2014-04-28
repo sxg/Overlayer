@@ -14,12 +14,14 @@
 //  Utilities
 #import "SGTextRecognizer.h"
 #import "SGDocumentManager.h"
+#import "SGUtility.h"
 
 
 @interface SGDocument ()
 
 @property (readwrite, strong, nonatomic) NSString *title;
 @property (readwrite, strong, nonatomic) UIImage *documentImage;
+@property (readwrite, strong, nonatomic) NSString *documentImageFileName;
 
 @property (readwrite, assign, getter = isDrawingLines) BOOL drawingLines;
 @property (readwrite, assign) CGFloat drawingLinesProgress;
@@ -41,23 +43,25 @@
     if (self) {
         NSAssert(title, @"The title is nil");
         
+        self.documentImageFileName = [NSString stringWithFormat:@"%@.png", [[NSUUID UUID] UUIDString]];
         self.documentImage = image;
         self.title = title;
     }
     return self;
 }
 
-- (NSString *)localPath
-{
-    return [[NSFileManager defaultManager] pathForPublicFile:[NSString stringWithFormat:@"%@.png", self.title]];
-}
-
 - (UIImage *)documentImage
 {
-    if (!_documentImage) {
-        self.documentImage = [[UIImage alloc] initWithContentsOfFile:self.localPath];
+    return [UIImage imageWithContentsOfFile:[[NSFileManager defaultManager] pathForPublicFile:self.documentImageFileName]];
+}
+
+- (void)setDocumentImage:(UIImage *)documentImage
+{
+    UIImage *upOrientedImage = [SGUtility imageOrientedUpFromImage:documentImage];
+    if (![UIImagePNGRepresentation(upOrientedImage) writeToFile:[[NSFileManager defaultManager] pathForPublicFile:self.documentImageFileName] atomically:YES]) {
+        NSLog(@"Error saving the document image file");
     }
-    return _documentImage;
+    upOrientedImage = nil;
 }
 
 - (void)drawLinesCompletion:(void (^)(UIImage *, NSString *, NSArray *))completion
@@ -83,7 +87,7 @@
     self = [super init];
     if (self) {
         self.title = [aDecoder decodeObjectForKey:@"title"];
-        self.documentImage = [aDecoder decodeObjectForKey:@"documentImage"];
+        self.documentImageFileName = [aDecoder decodeObjectForKey:@"documentImageFileName"];
     }
     return self;
 }
@@ -91,7 +95,7 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.title forKey:@"title"];
-    [aCoder encodeObject:self.documentImage forKey:@"documentImage"];
+    [aCoder encodeObject:self.documentImageFileName forKey:@"documentImageFileName"];
 }
 
 @end
