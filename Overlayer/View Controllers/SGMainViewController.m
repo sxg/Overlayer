@@ -62,23 +62,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - UIImagePickerController Delegate
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    
-    self.imageView.image = info[UIImagePickerControllerOriginalImage];
-    self.lastImage = self.imageView.image;
-    
-    //  Show the document title prompt
-    self.documentTitlePromptView = [[NSBundle mainBundle] loadNibNamed:@"SGDocumentTitlePromptView" owner:nil options:nil][0];
-    [self.documentTitlePromptView setFrame:CGRectMake(362.0f, 127.0f, 300.0f, 130.0f)];
-    self.documentTitlePromptView.titleTextField.delegate = self;
-    [self.documentTitlePromptView.titleTextField becomeFirstResponder];
-    [self.view addSubview:self.documentTitlePromptView];
-}
-
 #pragma mark - UI Actions
 
 - (IBAction)didTapToggleSidePaneButton:(UIButton *)sender
@@ -128,6 +111,23 @@
     }
 }
 
+#pragma mark - UIImagePickerController Delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    self.imageView.image = info[UIImagePickerControllerOriginalImage];
+    self.lastImage = self.imageView.image;
+    
+    //  Show the document title prompt
+    self.documentTitlePromptView = [[NSBundle mainBundle] loadNibNamed:@"SGDocumentTitlePromptView" owner:nil options:nil][0];
+    [self.documentTitlePromptView setFrame:CGRectMake(362.0f, 127.0f, 300.0f, 130.0f)];
+    self.documentTitlePromptView.titleTextField.delegate = self;
+    [self.documentTitlePromptView.titleTextField becomeFirstResponder];
+    [self.view addSubview:self.documentTitlePromptView];
+}
+
 #pragma mark - UITextField Delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -143,6 +143,7 @@
         //  Insert the new document into the table and select it with the delegate method (selectRowAtIndexPath:animated:scrollPosition: doesn't inform the delegate for some reason)
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([[SGDocumentManager sharedManager] documents].count-1) inSection:0];
         [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
         [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
     }
     
