@@ -8,8 +8,9 @@
 
 //  Frameworks
 #import <TesseractOCR/TesseractOCR.h>
+#import <QuickLook/QuickLook.h>
 
 
-@interface SGMainViewController : UIViewController <TesseractDelegate, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate>
+@interface SGMainViewController : UIViewController <TesseractDelegate, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate, QLPreviewControllerDataSource>
 
 @end

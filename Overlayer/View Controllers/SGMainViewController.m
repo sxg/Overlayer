@@ -112,6 +112,25 @@
     }
 }
 
+- (IBAction)didTapPDFButton:(id)sender
+{
+    QLPreviewController *quickLookVC = [[QLPreviewController alloc] init];
+    quickLookVC.dataSource = self;
+    [self presentViewController:quickLookVC animated:YES completion:nil];
+}
+
+#pragma mark - QLPreviewController Data Source
+
+- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller
+{
+    return 1;
+}
+
+- (id<QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index
+{
+    return [NSURL fileURLWithPath:self.currentDocument.documentPDFPath];
+}
+
 #pragma mark - UIImagePickerController Delegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info

@@ -77,6 +77,9 @@
                                         <state key="normal" image="PDFCircleButton">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="didTapPDFButton:" destination="tyv-HM-mie" eventType="touchUpInside" id="AjK-OA-c7G"/>
+                                        </connections>
                                     </button>
                                     <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gUA-fS-ygS">
                                         <rect key="frame" x="0.0" y="20" width="194" height="580"/>
