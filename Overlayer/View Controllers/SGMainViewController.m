@@ -69,17 +69,18 @@
     //  Setup
     CGRect endSidePaneViewFrame;
     CGFloat endToggleSidePaneViewButtonAngle;
+    CGRect sidePaneViewFrame = self.sidePaneView.frame;
     if (self.isDisplayingSidePane) {
-        endSidePaneViewFrame = CGRectMake(CGRectGetMinX(self.sidePaneView.frame),
-                              (-1*CGRectGetHeight(self.sidePaneView.frame))+42,
-                              CGRectGetWidth(self.sidePaneView.frame),
-                              CGRectGetHeight(self.sidePaneView.frame));
+        endSidePaneViewFrame = CGRectMake(CGRectGetMinX(sidePaneViewFrame)-CGRectGetWidth(sidePaneViewFrame)+56,
+                              CGRectGetMinY(sidePaneViewFrame),
+                              CGRectGetWidth(sidePaneViewFrame),
+                              CGRectGetHeight(sidePaneViewFrame));
         endToggleSidePaneViewButtonAngle = M_PI;
     } else {
-        endSidePaneViewFrame = CGRectMake(CGRectGetMinX(self.sidePaneView.frame),
+        endSidePaneViewFrame = CGRectMake(CGRectGetMinX(self.view.frame),
                                      CGRectGetMinY(self.view.frame),
-                                     CGRectGetWidth(self.sidePaneView.frame),
-                                     CGRectGetHeight(self.sidePaneView.frame));
+                                     CGRectGetWidth(sidePaneViewFrame),
+                                     CGRectGetHeight(sidePaneViewFrame));
         endToggleSidePaneViewButtonAngle = 0;
     }
     
