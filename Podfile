@@ -1,5 +1,7 @@
 # Podfile
 
+inhibit_all_warnings!
+
 target :Overlayer, :exclusive => true do
 	pod 'MBProgressHUD'
 	pod 'StandardPaths'
