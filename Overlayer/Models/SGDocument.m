@@ -69,8 +69,10 @@
 {
     if (!_documentPDFPath) {
         [self generatePDF];
+        NSString *pdfFileName = [self.documentFileName stringByAppendingPathExtension:@"pdf"];
+        _documentPDFPath = [[NSFileManager defaultManager] pathForPublicFile:pdfFileName];
     }
-    return [self.documentFileName stringByAppendingPathExtension:@"pdf"];
+    return _documentPDFPath;
 }
 
 - (void)drawLinesCompletion:(void (^)(UIImage *, NSString *, NSArray *))completion
