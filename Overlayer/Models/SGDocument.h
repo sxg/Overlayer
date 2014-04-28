@@ -11,6 +11,7 @@
 
 @property (readonly, strong, nonatomic) NSString *title;
 @property (readonly, strong, nonatomic) UIImage *documentImage;
+@property (readonly, strong, nonatomic) NSString *documentPDFPath;
 
 @property (readonly, assign, getter = isDrawingLines) BOOL drawingLines;
 @property (readonly, assign) CGFloat drawingLinesProgress;

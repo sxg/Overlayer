@@ -21,7 +21,8 @@
 
 @property (readwrite, strong, nonatomic) NSString *title;
 @property (readwrite, strong, nonatomic) UIImage *documentImage;
-@property (readwrite, strong, nonatomic) NSString *documentImageFileName;
+@property (readwrite, strong, nonatomic) NSString *documentFileName;
+@property (readwrite, strong, nonatomic) NSString *documentPDFPath;
 
 @property (readwrite, assign, getter = isDrawingLines) BOOL drawingLines;
 @property (readwrite, assign) CGFloat drawingLinesProgress;
@@ -43,7 +44,7 @@
     if (self) {
         NSAssert(title, @"The title is nil");
         
-        self.documentImageFileName = [NSString stringWithFormat:@"%@.png", [[NSUUID UUID] UUIDString]];
+        self.documentFileName = [NSString stringWithFormat:@"%@.png", [[NSUUID UUID] UUIDString]];
         self.documentImage = image;
         self.title = title;
     }
@@ -52,16 +53,24 @@
 
 - (UIImage *)documentImage
 {
-    return [UIImage imageWithContentsOfFile:[[NSFileManager defaultManager] pathForPublicFile:self.documentImageFileName]];
+    return [UIImage imageWithContentsOfFile:[[NSFileManager defaultManager] pathForPublicFile:self.documentFileName]];
 }
 
 - (void)setDocumentImage:(UIImage *)documentImage
 {
     UIImage *upOrientedImage = [SGUtility imageOrientedUpFromImage:documentImage];
-    if (![UIImagePNGRepresentation(upOrientedImage) writeToFile:[[NSFileManager defaultManager] pathForPublicFile:self.documentImageFileName] atomically:YES]) {
+    if (![UIImagePNGRepresentation(upOrientedImage) writeToFile:[[NSFileManager defaultManager] pathForPublicFile:self.documentFileName] atomically:YES]) {
         NSLog(@"Error saving the document image file");
     }
     upOrientedImage = nil;
+}
+
+- (NSString *)documentPDFPath
+{
+    if (!_documentPDFPath) {
+        [self generatePDF];
+    }
+    return [self.documentFileName stringByAppendingPathExtension:@"pdf"];
 }
 
 - (void)drawLinesCompletion:(void (^)(UIImage *, NSString *, NSArray *))completion
@@ -87,7 +96,7 @@
     self = [super init];
     if (self) {
         self.title = [aDecoder decodeObjectForKey:@"title"];
-        self.documentImageFileName = [aDecoder decodeObjectForKey:@"documentImageFileName"];
+        self.documentFileName = [aDecoder decodeObjectForKey:@"documentImageFileName"];
     }
     return self;
 }
@@ -95,7 +104,32 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.title forKey:@"title"];
-    [aCoder encodeObject:self.documentImageFileName forKey:@"documentImageFileName"];
+    [aCoder encodeObject:self.documentFileName forKey:@"documentImageFileName"];
+}
+
+#pragma mark - Helpers
+
+- (void)generatePDF
+{
+    NSMutableData *pdfData = [NSMutableData data];
+    
+    CGSize pdfPageSize = self.documentImage.size;
+    CGRect pdfPageRect = CGRectMake(0, 0, pdfPageSize.width, pdfPageSize.height);
+    UIGraphicsBeginPDFContextToData(pdfData, pdfPageRect, nil);
+    CGContextRef pdfContext = UIGraphicsGetCurrentContext();
+    
+    UIGraphicsBeginPDFPage();
+        
+    UIImageView *documentImageView = [[UIImageView alloc] initWithImage:self.documentImage];
+    [documentImageView.layer renderInContext:pdfContext];
+    
+    UIGraphicsEndPDFContext();
+    
+    NSString *pdfFileName = [self.documentFileName stringByAppendingPathExtension:@"pdf"];
+    NSString *pdfPath = [[NSFileManager defaultManager] pathForPublicFile:pdfFileName];
+    if (![pdfData writeToFile:pdfPath atomically:YES]) {
+        NSLog(@"Failed to write PDF file to disk");
+    }
 }
 
 @end
