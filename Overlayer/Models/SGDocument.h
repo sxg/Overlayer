@@ -20,5 +20,6 @@
 
 - (instancetype)initWithImage:(UIImage *)image title:(NSString *)title;
 - (void)drawLinesCompletion:(void (^)(UIImage *imageWithLines, NSString *recognizedText, NSArray *recognizedCharacterRects))completion;
+- (void)destroy;
 
 @end

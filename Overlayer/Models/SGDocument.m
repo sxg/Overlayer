@@ -44,22 +44,39 @@
     if (self) {
         NSAssert(title, @"The title is nil");
         
-        self.documentFileName = [NSString stringWithFormat:@"%@.png", [[NSUUID UUID] UUIDString]];
+        self.documentFileName = [NSString stringWithFormat:@"%@", [[NSUUID UUID] UUIDString]];
         self.documentImage = image;
         self.title = title;
     }
     return self;
 }
 
+- (void)destroy
+{
+    NSString *pngFilePath = [[NSFileManager defaultManager] pathForPublicFile:[self.documentFileName stringByAppendingPathExtension:@"png"]];
+    NSString *pdfFilePath = [[NSFileManager defaultManager] pathForPublicFile:[self.documentFileName stringByAppendingPathExtension:@"pdf"]];
+    
+    //  Delete the PNG and PDF files if they exist
+    NSError *error;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:pngFilePath] && ![[NSFileManager defaultManager] removeItemAtPath:pngFilePath error:&error]) {
+        NSLog(@"%@", error);
+    }
+    if ([[NSFileManager defaultManager] fileExistsAtPath:pdfFilePath] && ![[NSFileManager defaultManager] removeItemAtPath:pdfFilePath error:&error]) {
+        NSLog(@"%@", error);
+    }
+}
+
 - (UIImage *)documentImage
 {
-    return [UIImage imageWithContentsOfFile:[[NSFileManager defaultManager] pathForPublicFile:self.documentFileName]];
+    NSString *pngFileName = [self.documentFileName stringByAppendingPathExtension:@"png"];
+    return [UIImage imageWithContentsOfFile:[[NSFileManager defaultManager] pathForPublicFile:pngFileName]];
 }
 
 - (void)setDocumentImage:(UIImage *)documentImage
 {
     UIImage *upOrientedImage = [SGUtility imageOrientedUpFromImage:documentImage];
-    if (![UIImagePNGRepresentation(upOrientedImage) writeToFile:[[NSFileManager defaultManager] pathForPublicFile:self.documentFileName] atomically:YES]) {
+    NSString *pngFileName = [self.documentFileName stringByAppendingPathExtension:@"png"];
+    if (![UIImagePNGRepresentation(upOrientedImage) writeToFile:[[NSFileManager defaultManager] pathForPublicFile:pngFileName] atomically:YES]) {
         NSLog(@"Error saving the document image file");
     }
     upOrientedImage = nil;
@@ -132,6 +149,18 @@
     if (![pdfData writeToFile:pdfPath atomically:YES]) {
         NSLog(@"Failed to write PDF file to disk");
     }
+}
+
+#pragma mark - Equality
+
+- (BOOL)isEqual:(SGDocument *)otherDocument
+{
+    return [self.documentFileName isEqualToString:otherDocument.documentFileName];
+}
+
+- (NSUInteger)hash
+{
+    return [self.documentFileName hash];
 }
 
 @end
