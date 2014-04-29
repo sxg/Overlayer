@@ -13,4 +13,6 @@
 
 @interface SGMainViewController : UIViewController <TesseractDelegate, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate, QLPreviewControllerDataSource>
 
+- (void)createDocumentWithImage:(UIImage *)image;
+
 @end

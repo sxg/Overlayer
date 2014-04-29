@@ -62,6 +62,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)createDocumentWithImage:(UIImage *)image
+{
+    self.imageView.image = image;
+    self.lastImage = self.imageView.image;
+    
+    //  Show the document title prompt
+    self.documentTitlePromptView = [[NSBundle mainBundle] loadNibNamed:@"SGDocumentTitlePromptView" owner:nil options:nil][0];
+    [self.documentTitlePromptView setFrame:CGRectMake(362.0f, 127.0f, 300.0f, 130.0f)];
+    self.documentTitlePromptView.titleTextField.delegate = self;
+    [self.documentTitlePromptView.titleTextField becomeFirstResponder];
+    [self.view addSubview:self.documentTitlePromptView];
+}
+
 #pragma mark - UI Actions
 
 - (IBAction)didTapToggleSidePaneButton:(UIButton *)sender
@@ -136,16 +149,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
-    
-    self.imageView.image = info[UIImagePickerControllerOriginalImage];
-    self.lastImage = self.imageView.image;
-    
-    //  Show the document title prompt
-    self.documentTitlePromptView = [[NSBundle mainBundle] loadNibNamed:@"SGDocumentTitlePromptView" owner:nil options:nil][0];
-    [self.documentTitlePromptView setFrame:CGRectMake(362.0f, 127.0f, 300.0f, 130.0f)];
-    self.documentTitlePromptView.titleTextField.delegate = self;
-    [self.documentTitlePromptView.titleTextField becomeFirstResponder];
-    [self.view addSubview:self.documentTitlePromptView];
+    [self createDocumentWithImage:info[UIImagePickerControllerOriginalImage]];
 }
 
 #pragma mark - UITextField Delegate
