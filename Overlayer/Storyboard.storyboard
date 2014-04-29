@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="4" translatesAutoresizingMaskIntoConstraints="NO" id="TcQ-kA-Jec">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TcQ-kA-Jec">
                                         <rect key="frame" x="56" y="0.0" width="968" height="1296"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <constraints>
@@ -32,9 +32,11 @@
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="1024" id="627-FD-RQ2"/>
                                     <constraint firstItem="TcQ-kA-Jec" firstAttribute="top" secondItem="iWS-7v-uiR" secondAttribute="top" id="DyB-cj-7As"/>
                                     <constraint firstItem="TcQ-kA-Jec" firstAttribute="leading" secondItem="iWS-7v-uiR" secondAttribute="leading" constant="56" id="H2R-te-PxH"/>
-                                    <constraint firstAttribute="bottom" secondItem="TcQ-kA-Jec" secondAttribute="bottom" constant="-528" id="MOz-ZC-PNz"/>
+                                    <constraint firstAttribute="bottom" secondItem="TcQ-kA-Jec" secondAttribute="bottom" id="MOz-ZC-PNz"/>
+                                    <constraint firstAttribute="height" constant="768" id="dkR-ua-S1J"/>
                                     <constraint firstAttribute="trailing" secondItem="TcQ-kA-Jec" secondAttribute="trailing" id="gcQ-dN-fip"/>
                                 </constraints>
                             </scrollView>
@@ -128,7 +130,6 @@
                             <constraint firstItem="gUA-fS-ygS" firstAttribute="top" secondItem="q0T-V1-jGy" secondAttribute="bottom" id="Cso-zT-7qa"/>
                             <constraint firstItem="iWS-7v-uiR" firstAttribute="leading" secondItem="TkF-su-UVg" secondAttribute="leading" id="RFv-ZK-LxM"/>
                             <constraint firstAttribute="trailing" secondItem="iWS-7v-uiR" secondAttribute="trailing" id="dkj-GK-e5n"/>
-                            <constraint firstItem="fmW-nT-jhI" firstAttribute="top" secondItem="iWS-7v-uiR" secondAttribute="bottom" constant="-44" id="mGJ-o4-CkR"/>
                             <constraint firstItem="wob-LE-Rgd" firstAttribute="leading" secondItem="TkF-su-UVg" secondAttribute="leading" id="rO9-PI-RXT"/>
                             <constraint firstItem="wob-LE-Rgd" firstAttribute="top" secondItem="TkF-su-UVg" secondAttribute="top" id="wRX-aQ-izs"/>
                         </constraints>
@@ -151,7 +152,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="4" width="1936" height="2592"/>
         <image name="Chevron" width="27" height="8"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

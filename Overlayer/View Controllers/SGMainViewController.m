@@ -54,6 +54,11 @@
     // Do any additional setup after loading the view.
     
     self.displayingSidePane = YES;
+    if ([[SGDocumentManager sharedManager] documents].count != 0) {
+        SGDocument *firstDocument = [[SGDocumentManager sharedManager] documents][0];
+        self.currentDocument = firstDocument;
+        self.imageView.image = firstDocument.documentImage;
+    }
 }
 
 - (void)didReceiveMemoryWarning
