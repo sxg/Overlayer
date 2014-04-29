@@ -47,7 +47,28 @@
                                     <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xIu-9A-wy3" userLabel="Side Pane Background">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="812"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wm4-al-gmD" userLabel="Disclosure Button">
+                                                <rect key="frame" x="194" y="364" width="56" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="56" id="Ki9-1g-A0m"/>
+                                                    <constraint firstAttribute="height" constant="44" id="Tpt-Za-piN"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" image="Chevron">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapToggleSidePaneButton:" destination="tyv-HM-mie" eventType="touchUpInside" id="AVH-1r-AZN"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Wm4-al-gmD" secondAttribute="trailing" id="v95-ym-r1w"/>
+                                            <constraint firstItem="Wm4-al-gmD" firstAttribute="top" secondItem="xIu-9A-wy3" secondAttribute="top" constant="364" id="vmf-eo-hpP"/>
+                                        </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwP-bI-ch6">
                                         <rect key="frame" x="194" y="702" width="56" height="42"/>
@@ -71,21 +92,6 @@
                                         </state>
                                         <connections>
                                             <action selector="didTapPDFButton:" destination="tyv-HM-mie" eventType="touchUpInside" id="zcP-oE-Den"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wm4-al-gmD" userLabel="Disclosure Button">
-                                        <rect key="frame" x="194" y="384" width="56" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="56" id="Ki9-1g-A0m"/>
-                                            <constraint firstAttribute="height" constant="44" id="Tpt-Za-piN"/>
-                                        </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" image="Chevron">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didTapToggleSidePaneButton:" destination="tyv-HM-mie" eventType="touchUpInside" id="AVH-1r-AZN"/>
                                         </connections>
                                     </button>
                                     <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gUA-fS-ygS">
@@ -117,10 +123,8 @@
                                     <constraint firstItem="xIu-9A-wy3" firstAttribute="top" secondItem="wob-LE-Rgd" secondAttribute="top" id="QHV-Jq-p2C"/>
                                     <constraint firstItem="xIu-9A-wy3" firstAttribute="leading" secondItem="wob-LE-Rgd" secondAttribute="leading" id="TQn-bO-1Uv"/>
                                     <constraint firstAttribute="bottom" secondItem="gUA-fS-ygS" secondAttribute="bottom" id="aTz-Y2-GrM"/>
-                                    <constraint firstAttribute="centerY" secondItem="Wm4-al-gmD" secondAttribute="centerY" id="dhb-HC-rWQ"/>
                                     <constraint firstAttribute="width" constant="250" id="k8q-m9-ZEi"/>
                                     <constraint firstAttribute="trailing" secondItem="xIu-9A-wy3" secondAttribute="trailing" id="kCU-xO-oaw"/>
-                                    <constraint firstAttribute="trailing" secondItem="Wm4-al-gmD" secondAttribute="trailing" id="tLi-L7-Nx7"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -153,7 +157,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Chevron" width="27" height="8"/>
+        <image name="Chevron" width="21" height="66"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

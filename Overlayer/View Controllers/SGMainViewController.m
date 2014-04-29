@@ -115,23 +115,24 @@ static CGRect sidePaneClosedFrame;
 - (IBAction)didTapToggleSidePaneButton:(UIButton *)sender
 {
     //  Setup
-    CGRect endSidePaneViewFrame;
-    CGFloat endToggleSidePaneViewButtonAngle;
+    CGFloat animationDuration = 0.4;
+    CGRect endSidePaneFrame;
+    CGFloat endToggleSidePaneButtonScaleX;
     if (self.isDisplayingSidePane) {
-        endSidePaneViewFrame = sidePaneClosedFrame;
-        endToggleSidePaneViewButtonAngle = M_PI;
+        endSidePaneFrame = sidePaneClosedFrame;
+        endToggleSidePaneButtonScaleX = -1.0f;
     } else {
-        endSidePaneViewFrame = sidePaneOpenFrame;
-        endToggleSidePaneViewButtonAngle = 0;
+        endSidePaneFrame = sidePaneOpenFrame;
+        endToggleSidePaneButtonScaleX = 1.0f;
     }
     
     //  Animate
     __block SGMainViewController *blockSelf = self;
-    [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         //  Push the side pane view
-        blockSelf.sidePaneView.frame = endSidePaneViewFrame;
-        //  Rotate the toggle side pane button
-        blockSelf.toggleSidePaneViewButton.transform = CGAffineTransformMakeRotation(endToggleSidePaneViewButtonAngle);
+        blockSelf.sidePaneView.frame = endSidePaneFrame;
+        //  Mirror the toggle side pane button
+        blockSelf.toggleSidePaneViewButton.transform = CGAffineTransformMakeScale(endToggleSidePaneButtonScaleX, 1.0f);
     } completion:^(BOOL finished) {
         blockSelf.displayingSidePane = !blockSelf.isDisplayingSidePane;
     }];
