@@ -11,15 +11,16 @@
 
 @implementation SGUtility
 
-+ (UIImage *)imageWithImage:(UIImage *)image scaledByFactor:(CGFloat)scalingFactor
++ (UIImage *)imageWithImage:(UIImage *)sourceImage scaledToWidth:(CGFloat)width
 {
-    CGSize newSize = CGSizeMake(image.size.width*scalingFactor, image.size.height*scalingFactor);
+    CGFloat oldWidth = sourceImage.size.width;
+    CGFloat scaleFactor = width / oldWidth;
     
-    //  UIGraphicsBeginImageContext(newSize);
-    //  In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
-    //  Pass 1.0 to force exact pixel size.
-    UIGraphicsBeginImageContextWithOptions(newSize, YES, 1.0);
-    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    CGFloat newHeight = sourceImage.size.height * scaleFactor;
+    CGFloat newWidth = oldWidth * scaleFactor;
+    
+    UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
+    [sourceImage drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
@@ -27,13 +28,6 @@
 
 + (UIImage *)imageOrientedUpFromImage:(UIImage *)image
 {
-//    @autoreleasepool {
-//        UIGraphicsBeginImageContext(image.size);
-//        [image drawAtPoint:CGPointZero];
-//        UIImage *upOrientedImage = UIGraphicsGetImageFromCurrentImageContext();
-//        UIGraphicsEndImageContext();
-//        return upOrientedImage;
-//    }
     // No-op if the orientation is already correct
     if (image.imageOrientation == UIImageOrientationUp) return image;
     
