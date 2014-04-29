@@ -34,4 +34,23 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (editingStyle) {
+        case UITableViewCellEditingStyleDelete: {
+            SGDocument *document = [[SGDocumentManager sharedManager] documents][indexPath.row];
+            [[SGDocumentManager sharedManager] destroyDocument:document completion:^(BOOL success) {
+                if (success) {
+                    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                }
+            }];
+            break;
+        }
+        case UITableViewCellEditingStyleInsert:
+        case UITableViewCellEditingStyleNone:
+        default:
+            break;
+    }
+}
+
 @end
