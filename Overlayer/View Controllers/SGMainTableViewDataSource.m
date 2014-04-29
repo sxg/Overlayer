@@ -33,7 +33,10 @@
     cell.textLabel.text = [[[SGDocumentManager sharedManager] documents][indexPath.row] title];
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.backgroundColor = [UIColor clearColor];
-    cell.contentView.backgroundColor = [UIColor clearColor];
+    cell.textLabel.highlightedTextColor = [UIColor blackColor];
+    if (cell.highlighted) {
+        cell.backgroundColor = [UIColor whiteColor];
+    }
     return cell;
 }
 
