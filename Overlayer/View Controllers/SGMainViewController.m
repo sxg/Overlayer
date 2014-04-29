@@ -48,16 +48,46 @@
 
 @implementation SGMainViewController
 
+static CGRect sidePaneOpenFrame;
+static CGRect sidePaneClosedFrame;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    //  Use constraints for the sidePaneView since it's going to be animated
+    self.sidePaneView.translatesAutoresizingMaskIntoConstraints = YES;
+    
+    //  Set the two side pane states as constant CGRects
+    CGRect sidePaneFrame = self.sidePaneView.frame;
+    sidePaneOpenFrame = CGRectMake(CGRectGetMinX(self.view.frame),
+                                   CGRectGetMinY(self.view.frame),
+                                   sidePaneFrame.size.width,
+                                   sidePaneFrame.size.height);
+    sidePaneClosedFrame = CGRectMake(CGRectGetMinX(self.view.frame)-CGRectGetWidth(sidePaneFrame)+56,
+                                     CGRectGetMinY(self.view.frame),
+                                     CGRectGetWidth(sidePaneFrame),
+                                     CGRectGetHeight(sidePaneFrame));
+    
     self.displayingSidePane = YES;
+    
+    //  Set the default SGDocument if possible
     if ([[SGDocumentManager sharedManager] documents].count != 0) {
         SGDocument *firstDocument = [[SGDocumentManager sharedManager] documents][0];
         self.currentDocument = firstDocument;
         self.imageView.image = firstDocument.documentImage;
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (self.isDisplayingSidePane) {
+        self.sidePaneView.frame = sidePaneOpenFrame;
+    } else {
+        self.sidePaneView.frame = sidePaneClosedFrame;
     }
 }
 
@@ -87,31 +117,21 @@
     //  Setup
     CGRect endSidePaneViewFrame;
     CGFloat endToggleSidePaneViewButtonAngle;
-    CGRect sidePaneViewFrame = self.sidePaneView.frame;
     if (self.isDisplayingSidePane) {
-        endSidePaneViewFrame = CGRectMake(CGRectGetMinX(sidePaneViewFrame)-CGRectGetWidth(sidePaneViewFrame)+56,
-                              CGRectGetMinY(sidePaneViewFrame),
-                              CGRectGetWidth(sidePaneViewFrame),
-                              CGRectGetHeight(sidePaneViewFrame));
+        endSidePaneViewFrame = sidePaneClosedFrame;
         endToggleSidePaneViewButtonAngle = M_PI;
     } else {
-        endSidePaneViewFrame = CGRectMake(CGRectGetMinX(self.view.frame),
-                                     CGRectGetMinY(self.view.frame),
-                                     CGRectGetWidth(sidePaneViewFrame),
-                                     CGRectGetHeight(sidePaneViewFrame));
+        endSidePaneViewFrame = sidePaneOpenFrame;
         endToggleSidePaneViewButtonAngle = 0;
     }
     
     //  Animate
     __block SGMainViewController *blockSelf = self;
     [UIView animateWithDuration:0.6 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        
         //  Push the side pane view
         blockSelf.sidePaneView.frame = endSidePaneViewFrame;
-        
         //  Rotate the toggle side pane button
         blockSelf.toggleSidePaneViewButton.transform = CGAffineTransformMakeRotation(endToggleSidePaneViewButtonAngle);
-        
     } completion:^(BOOL finished) {
         blockSelf.displayingSidePane = !blockSelf.isDisplayingSidePane;
     }];

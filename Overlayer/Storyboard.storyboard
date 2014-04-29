@@ -40,12 +40,12 @@
                                     <constraint firstAttribute="trailing" secondItem="TcQ-kA-Jec" secondAttribute="trailing" id="gcQ-dN-fip"/>
                                 </constraints>
                             </scrollView>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wob-LE-Rgd">
-                                <rect key="frame" x="0.0" y="0.0" width="250" height="768"/>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wob-LE-Rgd" userLabel="Side Pane">
+                                <rect key="frame" x="0.0" y="0.0" width="250" height="812"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xIu-9A-wy3">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="768"/>
+                                    <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xIu-9A-wy3" userLabel="Side Pane Background">
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="812"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -74,9 +74,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wm4-al-gmD" userLabel="Disclosure Button">
-                                        <rect key="frame" x="194" y="362" width="56" height="44"/>
+                                        <rect key="frame" x="194" y="384" width="56" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
+                                            <constraint firstAttribute="width" constant="56" id="Ki9-1g-A0m"/>
                                             <constraint firstAttribute="height" constant="44" id="Tpt-Za-piN"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -88,9 +89,12 @@
                                         </connections>
                                     </button>
                                     <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gUA-fS-ygS">
-                                        <rect key="frame" x="0.0" y="20" width="194" height="748"/>
+                                        <rect key="frame" x="0.0" y="20" width="194" height="792"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="194" id="LGc-Zu-IQp"/>
+                                        </constraints>
                                         <prototypes>
                                             <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SGDocumentCell" id="k1j-rN-o5a">
                                                 <rect key="frame" x="0.0" y="22" width="194" height="44"/>
@@ -110,33 +114,30 @@
                                 <constraints>
                                     <constraint firstItem="gUA-fS-ygS" firstAttribute="leading" secondItem="wob-LE-Rgd" secondAttribute="leading" id="2AO-Yt-I6s"/>
                                     <constraint firstAttribute="bottom" secondItem="xIu-9A-wy3" secondAttribute="bottom" id="57c-ja-rtL"/>
-                                    <constraint firstItem="Wm4-al-gmD" firstAttribute="leading" secondItem="gUA-fS-ygS" secondAttribute="trailing" id="HhF-ii-KfM"/>
                                     <constraint firstItem="xIu-9A-wy3" firstAttribute="top" secondItem="wob-LE-Rgd" secondAttribute="top" id="QHV-Jq-p2C"/>
                                     <constraint firstItem="xIu-9A-wy3" firstAttribute="leading" secondItem="wob-LE-Rgd" secondAttribute="leading" id="TQn-bO-1Uv"/>
                                     <constraint firstAttribute="bottom" secondItem="gUA-fS-ygS" secondAttribute="bottom" id="aTz-Y2-GrM"/>
-                                    <constraint firstAttribute="trailing" secondItem="gUA-fS-ygS" secondAttribute="trailing" constant="56" id="ao7-ZD-AcC"/>
                                     <constraint firstAttribute="centerY" secondItem="Wm4-al-gmD" secondAttribute="centerY" id="dhb-HC-rWQ"/>
                                     <constraint firstAttribute="width" constant="250" id="k8q-m9-ZEi"/>
                                     <constraint firstAttribute="trailing" secondItem="xIu-9A-wy3" secondAttribute="trailing" id="kCU-xO-oaw"/>
                                     <constraint firstAttribute="trailing" secondItem="Wm4-al-gmD" secondAttribute="trailing" id="tLi-L7-Nx7"/>
-                                    <constraint firstItem="gUA-fS-ygS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="wob-LE-Rgd" secondAttribute="top" id="tc3-Mu-0wu"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fmW-nT-jhI" firstAttribute="top" secondItem="wob-LE-Rgd" secondAttribute="bottom" constant="-44" id="6Q1-61-guA"/>
+                            <constraint firstItem="wob-LE-Rgd" firstAttribute="top" secondItem="TkF-su-UVg" secondAttribute="top" id="BzE-30-XXb"/>
                             <constraint firstItem="iWS-7v-uiR" firstAttribute="top" secondItem="TkF-su-UVg" secondAttribute="top" id="CbH-LB-WoA"/>
-                            <constraint firstItem="gUA-fS-ygS" firstAttribute="top" secondItem="q0T-V1-jGy" secondAttribute="bottom" id="Cso-zT-7qa"/>
                             <constraint firstItem="iWS-7v-uiR" firstAttribute="leading" secondItem="TkF-su-UVg" secondAttribute="leading" id="RFv-ZK-LxM"/>
                             <constraint firstAttribute="trailing" secondItem="iWS-7v-uiR" secondAttribute="trailing" id="dkj-GK-e5n"/>
-                            <constraint firstItem="wob-LE-Rgd" firstAttribute="leading" secondItem="TkF-su-UVg" secondAttribute="leading" id="rO9-PI-RXT"/>
-                            <constraint firstItem="wob-LE-Rgd" firstAttribute="top" secondItem="TkF-su-UVg" secondAttribute="top" id="wRX-aQ-izs"/>
+                            <constraint firstItem="gUA-fS-ygS" firstAttribute="top" secondItem="q0T-V1-jGy" secondAttribute="bottom" id="iON-eP-diP"/>
+                            <constraint firstItem="wob-LE-Rgd" firstAttribute="leading" secondItem="TkF-su-UVg" secondAttribute="leading" placeholder="YES" id="rO9-PI-RXT"/>
+                            <constraint firstItem="fmW-nT-jhI" firstAttribute="top" secondItem="wob-LE-Rgd" secondAttribute="bottom" constant="-44" id="tru-rA-qEQ"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="imageView" destination="TcQ-kA-Jec" id="5Ti-RW-hNg"/>
