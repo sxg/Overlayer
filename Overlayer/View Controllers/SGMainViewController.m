@@ -77,6 +77,9 @@ static CGRect sidePaneClosedFrame;
         SGDocument *firstDocument = [[SGDocumentManager sharedManager] documents][0];
         self.currentDocument = firstDocument;
         self.imageView.image = firstDocument.documentImage;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
     }
 }
 
