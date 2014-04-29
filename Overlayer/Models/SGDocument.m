@@ -56,7 +56,6 @@
     NSString *pngFilePath = [[NSFileManager defaultManager] pathForPublicFile:[self.documentFileName stringByAppendingPathExtension:@"png"]];
     NSString *pdfFilePath = [[NSFileManager defaultManager] pathForPublicFile:[self.documentFileName stringByAppendingPathExtension:@"pdf"]];
     
-    //  Delete the PNG and PDF files if they exist
     NSError *error;
     if ([[NSFileManager defaultManager] fileExistsAtPath:pngFilePath] && ![[NSFileManager defaultManager] removeItemAtPath:pngFilePath error:&error]) {
         NSLog(@"%@", error);

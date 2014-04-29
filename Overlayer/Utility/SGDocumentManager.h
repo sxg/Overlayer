@@ -16,5 +16,6 @@
 + (SGDocumentManager *)sharedManager;
 
 - (void)saveDocument:(SGDocument *)document;
+- (void)destroyDocument:(SGDocument *)document completion:(void (^)(BOOL success))completion;
 
 @end
