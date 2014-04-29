@@ -8,6 +8,16 @@
 
 #import "SGAppDelegate.h"
 
+//  Frameworks
+#import <UIImage+PDF/UIImage+PDF.h>
+
+//  Controllers
+#import "SGMainViewController.h"
+
+//  Utilities
+#import "SGUtility.h"
+
+
 @implementation SGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -15,6 +25,34 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    if ([url isFileURL]) {
+        //  Convert PDF files to PNG and set the image
+        NSString *pathExtension = [[url absoluteString] pathExtension];
+        UIImage *image;
+        if ([pathExtension isEqualToString:@"pdf"]) {
+            image = [UIImage imageWithPDFURL:url atWidth:968.0f];
+        } else if ([pathExtension isEqualToString:@"png"] || [pathExtension isEqualToString:@"jpg"] || [pathExtension isEqualToString:@"jpeg"]) {
+            image = [[UIImage alloc] initWithContentsOfFile:[url path]];
+            CGFloat width;
+            if (image.size.width > 968.0f) {
+                width = 968.0f;
+            } else {
+                width = image.size.width;
+            }
+            image = [SGUtility imageWithImage:image scaledToWidth:968.0f];
+        }
+        
+        if (image) {
+            SGMainViewController *mainVC = (SGMainViewController *)self.window.rootViewController;
+            [mainVC createDocumentWithImage:image];
+            return YES;
+        }
+    }
+    return NO;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

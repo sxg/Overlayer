@@ -6,6 +6,22 @@
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>${PRODUCT_NAME}</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>TextImage</string>
+			<key>LSHandlerRank</key>
+			<string>Default</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.composite-content </string>
+				<string>com.adobe.pdf</string>
+				<string>public.png</string>
+				<string>public.jpeg</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
@@ -21,10 +37,8 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>260</string>
+	<string>267</string>
 	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>Storyboard</string>
