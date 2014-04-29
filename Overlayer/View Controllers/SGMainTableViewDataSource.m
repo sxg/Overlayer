@@ -31,6 +31,9 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SGDocumentCell"];
     cell.textLabel.text = [[[SGDocumentManager sharedManager] documents][indexPath.row] title];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor clearColor];
+    cell.contentView.backgroundColor = [UIColor clearColor];
     return cell;
 }
 
