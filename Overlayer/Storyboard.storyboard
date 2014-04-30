@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch.iPad" variant="6xAndEarlier" propertyAccessControl="none" useAutolayout="YES" initialViewController="tyv-HM-mie">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="tyv-HM-mie">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -14,7 +14,7 @@
                         <viewControllerLayoutGuide type="bottom" id="fmW-nT-jhI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TkF-su-UVg">
-                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWS-7v-uiR">
@@ -41,35 +41,29 @@
                                 </constraints>
                             </scrollView>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wob-LE-Rgd" userLabel="Side Pane">
-                                <rect key="frame" x="0.0" y="0.0" width="250" height="748"/>
+                                <rect key="frame" x="0.0" y="0.0" width="250" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xIu-9A-wy3" userLabel="Side Pane Background">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="748"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="768"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wm4-al-gmD" userLabel="Disclosure Button">
-                                                <rect key="frame" x="194" y="364" width="56" height="44"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="56" id="Ki9-1g-A0m"/>
-                                                    <constraint firstAttribute="height" constant="44" id="Tpt-Za-piN"/>
-                                                </constraints>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <state key="normal" image="Chevron">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="didTapToggleSidePaneButton:" destination="tyv-HM-mie" eventType="touchUpInside" id="AVH-1r-AZN"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="Wm4-al-gmD" secondAttribute="trailing" id="v95-ym-r1w"/>
-                                            <constraint firstItem="Wm4-al-gmD" firstAttribute="top" secondItem="xIu-9A-wy3" secondAttribute="top" constant="364" id="vmf-eo-hpP"/>
-                                        </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wm4-al-gmD" userLabel="Disclosure Button">
+                                        <rect key="frame" x="212" y="348" width="21" height="72"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="21" id="Ki9-1g-A0m"/>
+                                            <constraint firstAttribute="height" constant="72" id="Tpt-Za-piN"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="Chevron">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapToggleSidePaneButton:" destination="tyv-HM-mie" eventType="touchUpInside" id="AVH-1r-AZN"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwP-bI-ch6">
                                         <rect key="frame" x="194" y="702" width="56" height="42"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -95,7 +89,7 @@
                                         </connections>
                                     </button>
                                     <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gUA-fS-ygS">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="748"/>
+                                        <rect key="frame" x="0.0" y="20" width="194" height="748"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -120,11 +114,13 @@
                                 <constraints>
                                     <constraint firstItem="gUA-fS-ygS" firstAttribute="leading" secondItem="wob-LE-Rgd" secondAttribute="leading" id="2AO-Yt-I6s"/>
                                     <constraint firstAttribute="bottom" secondItem="xIu-9A-wy3" secondAttribute="bottom" id="57c-ja-rtL"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wm4-al-gmD" secondAttribute="trailing" constant="17" id="Ckp-Jh-1WS"/>
                                     <constraint firstItem="xIu-9A-wy3" firstAttribute="top" secondItem="wob-LE-Rgd" secondAttribute="top" id="QHV-Jq-p2C"/>
                                     <constraint firstItem="xIu-9A-wy3" firstAttribute="leading" secondItem="wob-LE-Rgd" secondAttribute="leading" id="TQn-bO-1Uv"/>
                                     <constraint firstAttribute="bottom" secondItem="gUA-fS-ygS" secondAttribute="bottom" id="aTz-Y2-GrM"/>
                                     <constraint firstAttribute="width" constant="250" placeholder="YES" id="k8q-m9-ZEi"/>
                                     <constraint firstAttribute="trailing" secondItem="xIu-9A-wy3" secondAttribute="trailing" id="kCU-xO-oaw"/>
+                                    <constraint firstAttribute="centerY" secondItem="Wm4-al-gmD" secondAttribute="centerY" id="qst-Cs-pP7"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -157,10 +153,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Chevron" width="21" height="66"/>
+        <image name="Chevron" width="42" height="134"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
+        <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
