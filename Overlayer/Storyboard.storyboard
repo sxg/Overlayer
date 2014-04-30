@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch.iPad" variant="6xAndEarlier" propertyAccessControl="none" useAutolayout="YES" initialViewController="tyv-HM-mie">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="tyv-HM-mie">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -14,7 +14,7 @@
                         <viewControllerLayoutGuide type="bottom" id="fmW-nT-jhI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TkF-su-UVg">
-                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWS-7v-uiR">
@@ -32,25 +32,23 @@
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="1024" id="627-FD-RQ2"/>
                                     <constraint firstItem="TcQ-kA-Jec" firstAttribute="top" secondItem="iWS-7v-uiR" secondAttribute="top" id="DyB-cj-7As"/>
                                     <constraint firstItem="TcQ-kA-Jec" firstAttribute="leading" secondItem="iWS-7v-uiR" secondAttribute="leading" constant="56" id="H2R-te-PxH"/>
                                     <constraint firstAttribute="bottom" secondItem="TcQ-kA-Jec" secondAttribute="bottom" id="MOz-ZC-PNz"/>
-                                    <constraint firstAttribute="height" constant="768" id="dkR-ua-S1J"/>
                                     <constraint firstAttribute="trailing" secondItem="TcQ-kA-Jec" secondAttribute="trailing" id="gcQ-dN-fip"/>
                                 </constraints>
                             </scrollView>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wob-LE-Rgd" userLabel="Side Pane">
-                                <rect key="frame" x="0.0" y="0.0" width="250" height="748"/>
+                                <rect key="frame" x="0.0" y="0.0" width="250" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xIu-9A-wy3" userLabel="Side Pane Background">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="748"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="768"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wm4-al-gmD" userLabel="Disclosure Button">
-                                        <rect key="frame" x="212" y="338" width="21" height="72"/>
+                                        <rect key="frame" x="212" y="348" width="21" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="21" id="Ki9-1g-A0m"/>
@@ -65,7 +63,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4x-Ug-Wd3" userLabel="PDF Button">
-                                        <rect key="frame" x="194" y="648" width="56" height="30"/>
+                                        <rect key="frame" x="194" y="668" width="56" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="PDFButton">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -76,7 +74,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwP-bI-ch6" userLabel="Add Button">
-                                        <rect key="frame" x="194" y="698" width="56" height="30"/>
+                                        <rect key="frame" x="194" y="718" width="56" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="AddButton">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -87,7 +85,7 @@
                                         </connections>
                                     </button>
                                     <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gUA-fS-ygS">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="748"/>
+                                        <rect key="frame" x="0.0" y="20" width="194" height="748"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -138,6 +136,7 @@
                             <constraint firstItem="iWS-7v-uiR" firstAttribute="leading" secondItem="TkF-su-UVg" secondAttribute="leading" id="RFv-ZK-LxM"/>
                             <constraint firstAttribute="trailing" secondItem="iWS-7v-uiR" secondAttribute="trailing" id="dkj-GK-e5n"/>
                             <constraint firstItem="gUA-fS-ygS" firstAttribute="top" secondItem="q0T-V1-jGy" secondAttribute="bottom" id="iON-eP-diP"/>
+                            <constraint firstItem="fmW-nT-jhI" firstAttribute="top" secondItem="iWS-7v-uiR" secondAttribute="bottom" id="kiR-UE-cr9"/>
                             <constraint firstItem="wob-LE-Rgd" firstAttribute="leading" secondItem="TkF-su-UVg" secondAttribute="leading" id="rO9-PI-RXT"/>
                             <constraint firstItem="fmW-nT-jhI" firstAttribute="top" secondItem="wob-LE-Rgd" secondAttribute="bottom" id="tru-rA-qEQ"/>
                         </constraints>
@@ -171,7 +170,7 @@
         <image name="PDFButton" width="56" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
+        <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
