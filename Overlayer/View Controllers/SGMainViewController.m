@@ -153,6 +153,13 @@
     }
 }
 
+#pragma mark - UIScrollViewDelegate
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return self.imageView;
+}
+
 #pragma mark - QLPreviewController Data Source
 
 - (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller

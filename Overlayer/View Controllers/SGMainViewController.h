@@ -11,7 +11,7 @@
 #import <QuickLook/QuickLook.h>
 
 
-@interface SGMainViewController : UIViewController <TesseractDelegate, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate, QLPreviewControllerDataSource>
+@interface SGMainViewController : UIViewController <TesseractDelegate, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate, QLPreviewControllerDataSource, UIScrollViewDelegate>
 
 - (void)createDocumentWithImage:(UIImage *)image;
 

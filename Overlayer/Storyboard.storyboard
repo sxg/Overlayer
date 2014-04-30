@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWS-7v-uiR">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="6" translatesAutoresizingMaskIntoConstraints="NO" id="iWS-7v-uiR">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
@@ -37,6 +37,9 @@
                                     <constraint firstAttribute="bottom" secondItem="TcQ-kA-Jec" secondAttribute="bottom" id="MOz-ZC-PNz"/>
                                     <constraint firstAttribute="trailing" secondItem="TcQ-kA-Jec" secondAttribute="trailing" id="gcQ-dN-fip"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="tyv-HM-mie" id="sW6-bX-b3G"/>
+                                </connections>
                             </scrollView>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wob-LE-Rgd" userLabel="Side Pane">
                                 <rect key="frame" x="0.0" y="0.0" width="250" height="768"/>
