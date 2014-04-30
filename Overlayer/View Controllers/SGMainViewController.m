@@ -139,9 +139,11 @@ static CGRect sidePaneClosedFrame;
 
 - (IBAction)didTapPDFButton:(id)sender
 {
-    QLPreviewController *quickLookVC = [[QLPreviewController alloc] init];
-    quickLookVC.dataSource = self;
-    [self presentViewController:quickLookVC animated:YES completion:nil];
+    if (self.currentDocument) {
+        QLPreviewController *quickLookVC = [[QLPreviewController alloc] init];
+        quickLookVC.dataSource = self;
+        [self presentViewController:quickLookVC animated:YES completion:nil];
+    }
 }
 
 #pragma mark - QLPreviewController Data Source
