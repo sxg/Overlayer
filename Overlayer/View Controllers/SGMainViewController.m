@@ -61,14 +61,8 @@ static CGRect sidePaneClosedFrame;
     
     //  Set the two side pane states as constant CGRects
     CGRect sidePaneFrame = self.sidePaneView.frame;
-    sidePaneOpenFrame = CGRectMake(CGRectGetMinX(self.view.frame),
-                                   CGRectGetMinY(self.view.frame),
-                                   sidePaneFrame.size.width,
-                                   sidePaneFrame.size.height);
-    sidePaneClosedFrame = CGRectMake(CGRectGetMinX(self.view.frame)-CGRectGetWidth(sidePaneFrame)+56,
-                                     CGRectGetMinY(self.view.frame),
-                                     CGRectGetWidth(sidePaneFrame),
-                                     CGRectGetHeight(sidePaneFrame));
+    sidePaneOpenFrame = CGRectMake(0.0f, 0.0f, sidePaneFrame.size.width, sidePaneFrame.size.height);
+    sidePaneClosedFrame = CGRectMake(0.0f-CGRectGetWidth(sidePaneFrame)+56, 0.0f, CGRectGetWidth(sidePaneFrame), CGRectGetHeight(sidePaneFrame));
     
     self.displayingSidePane = YES;
     
@@ -80,17 +74,6 @@ static CGRect sidePaneClosedFrame;
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
         [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
-    }
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    if (self.isDisplayingSidePane) {
-        self.sidePaneView.frame = sidePaneOpenFrame;
-    } else {
-        self.sidePaneView.frame = sidePaneClosedFrame;
     }
 }
 
