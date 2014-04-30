@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "PDFCircleButton.png"
+      "filename" : "Add Button.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "PDFCircleButton@2x.png"
+      "filename" : "Add Button@2x.png"
     }
   ],
   "info" : {
