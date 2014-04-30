@@ -34,7 +34,7 @@
 @property (readwrite, weak, nonatomic) IBOutlet UIView *sidePaneView;
 @property (readwrite, weak, nonatomic) IBOutlet UIButton *toggleSidePaneViewButton;
 @property (readwrite, weak, nonatomic) IBOutlet NSLayoutConstraint *sidePaneLeftEdgeConstraint;
-
+@property (readwrite, assign) CGFloat sidePaneLeftEdge;
 @property (readwrite, assign, getter = isDisplayingSidePane) BOOL displayingSidePane;
 
 @property (readwrite, strong, nonatomic) SGDocumentTitlePromptView *documentTitlePromptView;
@@ -55,7 +55,7 @@
     // Do any additional setup after loading the view.
     
     self.displayingSidePane = YES;
-    
+
     //  Set the default SGDocument if possible
     if ([[SGDocumentManager sharedManager] documents].count != 0) {
         SGDocument *firstDocument = [[SGDocumentManager sharedManager] documents][0];
@@ -87,6 +87,20 @@
 }
 
 #pragma mark - UI Actions
+
+- (IBAction)didDragSidePane:(UIPanGestureRecognizer *)pan
+{
+    if (pan.state == UIGestureRecognizerStateBegan) {
+        self.sidePaneLeftEdge = self.isDisplayingSidePane ? 0.0f : -1.0f*self.sidePaneView.frame.size.width+56.0f;
+    } else if (pan.state == UIGestureRecognizerStateChanged) {
+        CGPoint translation = [pan translationInView:self.view];
+        CGFloat updatedConstant = self.sidePaneLeftEdge + translation.x;
+        updatedConstant = MAX(-1.0f*self.sidePaneView.frame.size.width+56.0f, MIN(0.0f, updatedConstant));
+        self.sidePaneLeftEdgeConstraint.constant = updatedConstant;
+        //[self.view setNeedsUpdateConstraints];
+        //[self.view layoutIfNeeded];
+    }
+}
 
 - (IBAction)didTapToggleSidePaneButton:(UIButton *)sender
 {

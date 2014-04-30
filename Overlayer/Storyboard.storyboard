@@ -109,6 +109,7 @@
                                         </connections>
                                     </tableView>
                                 </subviews>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="vwP-bI-ch6" secondAttribute="bottom" constant="20" id="1AW-xG-xxb"/>
                                     <constraint firstItem="h4x-Ug-Wd3" firstAttribute="leading" secondItem="gUA-fS-ygS" secondAttribute="trailing" id="1dd-dd-spF"/>
@@ -125,6 +126,9 @@
                                     <constraint firstItem="vwP-bI-ch6" firstAttribute="top" secondItem="h4x-Ug-Wd3" secondAttribute="bottom" constant="20" id="mmo-ws-Wfj"/>
                                     <constraint firstAttribute="centerY" secondItem="Wm4-al-gmD" secondAttribute="centerY" id="qst-Cs-pP7"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="IUl-bl-Ceb" appends="YES" id="FnF-Zw-xKE"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -152,6 +156,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J79-eL-huF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="PlF-TB-rr4" customClass="SGMainTableViewDataSource"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="IUl-bl-Ceb">
+                    <connections>
+                        <action selector="didDragSidePane:" destination="tyv-HM-mie" id="nvT-Ei-wsx"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-725" y="192"/>
         </scene>
