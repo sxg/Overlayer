@@ -120,7 +120,7 @@
                                     <constraint firstItem="vwP-bI-ch6" firstAttribute="top" secondItem="h4x-Ug-Wd3" secondAttribute="bottom" constant="20" id="U70-9x-MeM"/>
                                     <constraint firstAttribute="bottom" secondItem="gUA-fS-ygS" secondAttribute="bottom" id="aTz-Y2-GrM"/>
                                     <constraint firstItem="vwP-bI-ch6" firstAttribute="leading" secondItem="gUA-fS-ygS" secondAttribute="trailing" id="g2o-ED-otB"/>
-                                    <constraint firstAttribute="width" constant="250" placeholder="YES" id="k8q-m9-ZEi"/>
+                                    <constraint firstAttribute="width" constant="250" id="k8q-m9-ZEi"/>
                                     <constraint firstAttribute="trailing" secondItem="xIu-9A-wy3" secondAttribute="trailing" id="kCU-xO-oaw"/>
                                     <constraint firstItem="vwP-bI-ch6" firstAttribute="top" secondItem="h4x-Ug-Wd3" secondAttribute="bottom" constant="20" id="mmo-ws-Wfj"/>
                                     <constraint firstAttribute="centerY" secondItem="Wm4-al-gmD" secondAttribute="centerY" id="qst-Cs-pP7"/>
@@ -134,8 +134,8 @@
                             <constraint firstItem="iWS-7v-uiR" firstAttribute="leading" secondItem="TkF-su-UVg" secondAttribute="leading" id="RFv-ZK-LxM"/>
                             <constraint firstAttribute="trailing" secondItem="iWS-7v-uiR" secondAttribute="trailing" id="dkj-GK-e5n"/>
                             <constraint firstItem="gUA-fS-ygS" firstAttribute="top" secondItem="q0T-V1-jGy" secondAttribute="bottom" id="iON-eP-diP"/>
-                            <constraint firstItem="wob-LE-Rgd" firstAttribute="leading" secondItem="TkF-su-UVg" secondAttribute="leading" placeholder="YES" id="rO9-PI-RXT"/>
-                            <constraint firstItem="fmW-nT-jhI" firstAttribute="top" secondItem="wob-LE-Rgd" secondAttribute="bottom" placeholder="YES" id="tru-rA-qEQ"/>
+                            <constraint firstItem="wob-LE-Rgd" firstAttribute="leading" secondItem="TkF-su-UVg" secondAttribute="leading" id="rO9-PI-RXT"/>
+                            <constraint firstItem="fmW-nT-jhI" firstAttribute="top" secondItem="wob-LE-Rgd" secondAttribute="bottom" id="tru-rA-qEQ"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -144,6 +144,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="imageView" destination="TcQ-kA-Jec" id="5Ti-RW-hNg"/>
+                        <outlet property="sidePaneLeftEdgeConstraint" destination="rO9-PI-RXT" id="fxP-cO-Fe3"/>
                         <outlet property="sidePaneView" destination="wob-LE-Rgd" id="vcS-cP-YXi"/>
                         <outlet property="tableView" destination="gUA-fS-ygS" id="GKr-U3-nIE"/>
                         <outlet property="toggleSidePaneViewButton" destination="Wm4-al-gmD" id="qan-jU-J2v"/>

@@ -33,6 +33,7 @@
 
 @property (readwrite, weak, nonatomic) IBOutlet UIView *sidePaneView;
 @property (readwrite, weak, nonatomic) IBOutlet UIButton *toggleSidePaneViewButton;
+@property (readwrite, weak, nonatomic) IBOutlet NSLayoutConstraint *sidePaneLeftEdgeConstraint;
 
 @property (readwrite, assign, getter = isDisplayingSidePane) BOOL displayingSidePane;
 
@@ -48,21 +49,10 @@
 
 @implementation SGMainViewController
 
-static CGRect sidePaneOpenFrame;
-static CGRect sidePaneClosedFrame;
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    //  Use constraints for the sidePaneView since it's going to be animated
-    self.sidePaneView.translatesAutoresizingMaskIntoConstraints = YES;
-    
-    //  Set the two side pane states as constant CGRects
-    CGRect sidePaneFrame = self.sidePaneView.frame;
-    sidePaneOpenFrame = CGRectMake(0.0f, 0.0f, sidePaneFrame.size.width, sidePaneFrame.size.height);
-    sidePaneClosedFrame = CGRectMake(0.0f-CGRectGetWidth(sidePaneFrame)+56, 0.0f, CGRectGetWidth(sidePaneFrame), CGRectGetHeight(sidePaneFrame));
     
     self.displayingSidePane = YES;
     
@@ -102,21 +92,21 @@ static CGRect sidePaneClosedFrame;
 {
     //  Setup
     CGFloat animationDuration = 0.4;
-    CGRect endSidePaneFrame;
     CGFloat endToggleSidePaneButtonScaleX;
     if (self.isDisplayingSidePane) {
-        endSidePaneFrame = sidePaneClosedFrame;
+        self.sidePaneLeftEdgeConstraint.constant = -1.0f*self.sidePaneView.frame.size.width+56.0f;
         endToggleSidePaneButtonScaleX = -1.0f;
     } else {
-        endSidePaneFrame = sidePaneOpenFrame;
+        self.sidePaneLeftEdgeConstraint.constant = 0.0f;
         endToggleSidePaneButtonScaleX = 1.0f;
     }
+    
+    [self.view setNeedsUpdateConstraints];
     
     //  Animate
     __block SGMainViewController *blockSelf = self;
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        //  Push the side pane view
-        blockSelf.sidePaneView.frame = endSidePaneFrame;
+        [blockSelf.view layoutIfNeeded];
         //  Mirror the toggle side pane button
         blockSelf.toggleSidePaneViewButton.transform = CGAffineTransformMakeScale(endToggleSidePaneButtonScaleX, 1.0f);
     } completion:^(BOOL finished) {
