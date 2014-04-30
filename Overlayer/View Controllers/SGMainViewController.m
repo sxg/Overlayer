@@ -177,7 +177,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
-    [self createDocumentWithImage:info[UIImagePickerControllerOriginalImage]];
+    UIImage *image = [SGUtility imageWithImage:info[UIImagePickerControllerOriginalImage] scaledToWidth:968.0f];
+    [self createDocumentWithImage:image];
 }
 
 #pragma mark - UITextField Delegate
