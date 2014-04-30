@@ -143,6 +143,9 @@ static CGRect sidePaneClosedFrame;
         QLPreviewController *quickLookVC = [[QLPreviewController alloc] init];
         quickLookVC.dataSource = self;
         [self presentViewController:quickLookVC animated:YES completion:nil];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Document Selected" message:@"Select a document by tapping on a row in the table to the left." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [alert show];
     }
 }
 
