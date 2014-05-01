@@ -28,7 +28,7 @@
     
     CGContextSetLineCap(context, kCGLineCapRound);
     CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
-    CGContextSetLineWidth(context, 1.3f);
+    CGContextSetLineWidth(context, CGRectGetHeight(rect)/20.0f);
     
     CGFloat oneThirdY = CGRectGetHeight(rect) * 0.333;
     
