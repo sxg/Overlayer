@@ -87,7 +87,8 @@ static SGTextRecognizer *sharedClient;
         
         //  Draw the lines
         UIImageView *imageView = [[UIImageView alloc] initWithImage:upOrientedImage];
-        for (NSValue *rectValue in self.tesseract.recognizedTextBoxes) {
+        NSArray *recognizedRects = self.tesseract.recognizedTextWordBoxes;
+        for (NSValue *rectValue in recognizedRects) {
             CGRect rect = [rectValue CGRectValue];
             CGRect scaledRect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
             SGDoubleStrikethroughView *view = [[SGDoubleStrikethroughView alloc] initWithFrame:scaledRect];
@@ -112,7 +113,7 @@ static SGTextRecognizer *sharedClient;
         //  Return the important data in the completion block
         if (completion) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                completion(imageWithLines, self.tesseract.recognizedText, self.tesseract.recognizedTextBoxes);
+                completion(imageWithLines, self.tesseract.recognizedText, recognizedRects);
                 self.tesseract = nil;
             });
         }

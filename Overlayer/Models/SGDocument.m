@@ -97,11 +97,11 @@
     __block SGDocument *blockSelf = self;
     [[SGTextRecognizer sharedClient] recognizeTextOnImage:self.documentImage update:^(CGFloat progress) {
         blockSelf.drawingLinesProgress = progress;
-    } completion:^(UIImage *imageWithLines, NSString *recognizedText, NSArray *recognizedCharacterRects) {
+    } completion:^(UIImage *imageWithLines, NSString *recognizedText, NSArray *recognizedRects) {
         blockSelf.documentImage = imageWithLines;
         blockSelf.drawingLines = NO;
         if (completion) {
-            completion(imageWithLines, recognizedText, recognizedCharacterRects);
+            completion(imageWithLines, recognizedText, recognizedRects);
         }
         [[SGDocumentManager sharedManager] saveDocument:blockSelf];
     }];

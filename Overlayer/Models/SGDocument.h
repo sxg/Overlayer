@@ -19,7 +19,7 @@
 + (instancetype)createDocumentWithImage:(UIImage *)image title:(NSString *)title;
 
 - (instancetype)initWithImage:(UIImage *)image title:(NSString *)title;
-- (void)drawLinesCompletion:(void (^)(UIImage *imageWithLines, NSString *recognizedText, NSArray *recognizedCharacterRects))completion;
+- (void)drawLinesCompletion:(void (^)(UIImage *imageWithLines, NSString *recognizedText, NSArray *recognizedRects))completion;
 - (void)destroy;
 
 @end

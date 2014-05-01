@@ -16,7 +16,7 @@
 - (BOOL)shouldCancelImageRecognitionForTesseract:(Tesseract*)tesseract;
 @end
 
-@interface Tesseract : NSObject
+@interface Tesseract : NSObject <NSXMLParserDelegate>
 + (NSString *)version;
 
 @property (nonatomic, strong) NSString* language;
@@ -26,7 +26,8 @@
 
 @property (nonatomic, readonly) short progress; // from 0 to 100
 @property (nonatomic, readonly) NSString *recognizedText;
-@property (nonatomic, readonly) NSArray *recognizedTextBoxes;
+@property (nonatomic, readonly) NSArray *recognizedTextCharacterBoxes;
+@property (nonatomic, readonly) NSArray *recognizedTextWordBoxes;
 
 @property (nonatomic, weak) id<TesseractDelegate> delegate;
 
