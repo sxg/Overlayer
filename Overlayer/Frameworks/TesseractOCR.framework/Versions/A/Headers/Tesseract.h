@@ -7,8 +7,6 @@
 //  Under MIT License. See 'LICENCE' for more informations.
 //
 
-#import <UIKit/UIKit.h>
-
 @class Tesseract;
 
 @protocol TesseractDelegate <NSObject>
@@ -26,7 +24,7 @@
 
 @property (nonatomic, readonly) short progress; // from 0 to 100
 @property (nonatomic, readonly) NSString *recognizedText;
-@property (nonatomic, readonly) NSArray *recognizedTextCharacterBoxes;
+@property (nonatomic, readonly) NSArray *recognizedTextBoxes;
 @property (nonatomic, readonly) NSArray *recognizedTextWordBoxes;
 
 @property (nonatomic, weak) id<TesseractDelegate> delegate;

@@ -87,7 +87,7 @@ static SGTextRecognizer *sharedClient;
         
         //  Draw the lines
         UIImageView *imageView = [[UIImageView alloc] initWithImage:upOrientedImage];
-        NSArray *recognizedRects = self.tesseract.recognizedTextWordBoxes;
+        NSArray *recognizedRects = self.tesseract.recognizedTextCharacterBoxes;
         for (NSValue *rectValue in recognizedRects) {
             CGRect rect = [rectValue CGRectValue];
             CGRect scaledRect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);

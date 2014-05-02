@@ -44,13 +44,6 @@
 			remoteGlobalIDString = 64A0292C17307C1D002B12E7;
 			remoteInfo = TesseractOCR;
 		};
-		4AB45C121912D8FF000DA9D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4AB45C0D1912D8FE000DA9D7 /* Tesseract OCR iOS.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 64A0292C17307C1D002B12E7;
-			remoteInfo = TesseractOCR;
-		};
 		4AE86A4F18F638FA0022E006 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4AE86A2718F638FA0022E006 /* Project object */;
@@ -80,7 +73,6 @@
 		4A6D673A18F78E3900BC82F7 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		4AB45BFD1912D66F000DA9D7 /* Tesseract OCR iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Tesseract OCR iOS.xcodeproj"; path = "../[Overlayer] Tesseract-OCR-iOS/Tesseract OCR iOS.xcodeproj"; sourceTree = "<group>"; };
 		4AB45C041912D67A000DA9D7 /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TesseractOCR.framework; path = "../[Overlayer] Tesseract-OCR-iOS/Products/TesseractOCR.framework"; sourceTree = "<group>"; };
-		4AB45C0D1912D8FE000DA9D7 /* Tesseract OCR iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Tesseract OCR iOS.xcodeproj"; path = "../[Overlayer] Tesseract-OCR-iOS/Tesseract OCR iOS.xcodeproj"; sourceTree = "<group>"; };
 		4AC2BE68190301360062C0B2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4AE86A2F18F638FA0022E006 /* Overlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE86A3218F638FA0022E006 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -203,18 +195,9 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4AB45C0E1912D8FE000DA9D7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4AB45C131912D8FF000DA9D7 /* TesseractOCR.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		4AE86A2618F638FA0022E006 = {
 			isa = PBXGroup;
 			children = (
-				4AB45C0D1912D8FE000DA9D7 /* Tesseract OCR iOS.xcodeproj */,
 				4AE86A3818F638FA0022E006 /* Overlayer */,
 				4AE86A5118F638FA0022E006 /* OverlayerTests */,
 				4AE86A3118F638FA0022E006 /* Frameworks */,
@@ -374,10 +357,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 4AB45C0E1912D8FE000DA9D7 /* Products */;
-					ProjectRef = 4AB45C0D1912D8FE000DA9D7 /* Tesseract OCR iOS.xcodeproj */;
-				},
-				{
 					ProductGroup = 4AB45BFE1912D66F000DA9D7 /* Products */;
 					ProjectRef = 4AB45BFD1912D66F000DA9D7 /* Tesseract OCR iOS.xcodeproj */;
 				},
@@ -396,13 +375,6 @@
 			fileType = wrapper.cfbundle;
 			path = TesseractOCR.framework;
 			remoteRef = 4AB45C021912D66F000DA9D7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4AB45C131912D8FF000DA9D7 /* TesseractOCR.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = TesseractOCR.framework;
-			remoteRef = 4AB45C121912D8FF000DA9D7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -618,8 +590,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Overlayer/Frameworks",
 					"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries",
-					"/Users/Satyam/Documents/Code/Satyam.io/iOS/[Overlayer]",
-					"Tesseract-OCR-iOS/Products",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Overlayer/Overlayer-Prefix.pch";
@@ -643,8 +613,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Overlayer/Frameworks",
 					"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries",
-					"/Users/Satyam/Documents/Code/Satyam.io/iOS/[Overlayer]",
-					"Tesseract-OCR-iOS/Products",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Overlayer/Overlayer-Prefix.pch";
