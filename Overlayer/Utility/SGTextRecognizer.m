@@ -59,7 +59,7 @@ static SGTextRecognizer *sharedClient;
 
 #pragma mark - Text Recognition
 
-- (void)recognizeTextOnImage:(UIImage *)image update:(void (^)(CGFloat))update completion:(void (^)(UIImage *, NSString *, NSArray *))completion
+- (void)recognizeTextOnImage:(UIImage *)image update:(void (^)(CGFloat))update completion:(void (^)(UIImage *, NSString *, NSDictionary *))completion
 {
     //  Get the image properly oriented
     UIImage *upOrientedImage = [SGUtility imageOrientedUpFromImage:image];
@@ -87,11 +87,10 @@ static SGTextRecognizer *sharedClient;
         
         //  Draw the lines
         UIImageView *imageView = [[UIImageView alloc] initWithImage:upOrientedImage];
-        NSArray *recognizedRects = self.tesseract.recognizedTextCharacterBoxes;
-        for (NSValue *rectValue in recognizedRects) {
-            CGRect rect = [rectValue CGRectValue];
-            CGRect scaledRect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
-            SGDoubleStrikethroughView *view = [[SGDoubleStrikethroughView alloc] initWithFrame:scaledRect];
+        NSDictionary *recognizedRects = self.tesseract.characterBoxes;
+        for (NSString *rectString in recognizedRects) {
+            CGRect rect = CGRectFromString(rectString);
+            SGDoubleStrikethroughView *view = [[SGDoubleStrikethroughView alloc] initWithFrame:rect];
             [imageView addSubview:view];
         }
         
@@ -100,15 +99,6 @@ static SGTextRecognizer *sharedClient;
         [imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
         UIImage *imageWithLines = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-        
-        //  Save the image
-        NSError *error;
-        NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[[NSFileManager defaultManager] publicDataPath] error:&error];
-        if (error) {
-            NSLog(@"%@", error);
-        }
-        NSString *fileName = [NSString stringWithFormat:@"%li.png", (unsigned long)contents.count];
-        [UIImagePNGRepresentation(imageWithLines) writeToFile:[[NSFileManager defaultManager] pathForPublicFile:fileName] atomically:YES];
         
         //  Return the important data in the completion block
         if (completion) {

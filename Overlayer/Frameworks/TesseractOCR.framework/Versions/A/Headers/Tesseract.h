@@ -7,14 +7,17 @@
 //  Under MIT License. See 'LICENCE' for more informations.
 //
 
+#import <UIKit/UIKit.h>
+
 @class Tesseract;
 
 @protocol TesseractDelegate <NSObject>
 @optional
+- (void)progressImageRecognitionForTesseract:(Tesseract*)tesseract;
 - (BOOL)shouldCancelImageRecognitionForTesseract:(Tesseract*)tesseract;
 @end
 
-@interface Tesseract : NSObject <NSXMLParserDelegate>
+@interface Tesseract : NSObject
 + (NSString *)version;
 
 @property (nonatomic, strong) NSString* language;
@@ -24,8 +27,11 @@
 
 @property (nonatomic, readonly) short progress; // from 0 to 100
 @property (nonatomic, readonly) NSString *recognizedText;
-@property (nonatomic, readonly) NSArray *recognizedTextBoxes;
-@property (nonatomic, readonly) NSArray *recognizedTextWordBoxes;
+
+//  This NSDictionary uses NSString encoded CGRects as keys and the recognized character (NSString) as the value
+//  Use CGRectFromNSString to retrieve a CGRect from the key
+//  CGRects are in UIKit's coordinate space (origin is in the top left)
+@property (nonatomic, readonly) NSDictionary *characterBoxes;
 
 @property (nonatomic, weak) id<TesseractDelegate> delegate;
 

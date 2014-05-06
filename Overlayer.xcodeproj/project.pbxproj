@@ -16,7 +16,7 @@
 		4A5690A71905D92300A1E1EE /* SGDocumentTitlePromptView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5690A61905D92300A1E1EE /* SGDocumentTitlePromptView.xib */; };
 		4A6D672518F7858500BC82F7 /* SGUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6D672418F7858500BC82F7 /* SGUtility.m */; };
 		4A6D673B18F78E3900BC82F7 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 4A6D673A18F78E3900BC82F7 /* tessdata */; };
-		4AB45C051912D67A000DA9D7 /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AB45C041912D67A000DA9D7 /* TesseractOCR.framework */; };
+		4A7CBE4B1918505D007F7815 /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A7CBE4A1918505D007F7815 /* TesseractOCR.framework */; };
 		4AC2BE69190301360062C0B2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC2BE68190301360062C0B2 /* QuartzCore.framework */; };
 		4AE86A3318F638FA0022E006 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE86A3218F638FA0022E006 /* Foundation.framework */; };
 		4AE86A3518F638FA0022E006 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE86A3418F638FA0022E006 /* CoreGraphics.framework */; };
@@ -37,13 +37,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4AB45C021912D66F000DA9D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4AB45BFD1912D66F000DA9D7 /* Tesseract OCR iOS.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 64A0292C17307C1D002B12E7;
-			remoteInfo = TesseractOCR;
-		};
 		4AE86A4F18F638FA0022E006 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4AE86A2718F638FA0022E006 /* Project object */;
@@ -55,7 +48,6 @@
 
 /* Begin PBXFileReference section */
 		1BA3B0EC6627415DA3DAF374 /* Pods-Overlayer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overlayer.xcconfig"; path = "Pods/Pods-Overlayer.xcconfig"; sourceTree = "<group>"; };
-		4A2D637B18F87666003235EF /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TesseractOCR.framework; path = Overlayer/Frameworks/TesseractOCR.framework; sourceTree = "<group>"; };
 		4A2D637D18F8777F003235EF /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		4A2D638118F88B36003235EF /* SGDoubleStrikethroughView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGDoubleStrikethroughView.h; path = Views/SGDoubleStrikethroughView.h; sourceTree = "<group>"; };
 		4A2D638218F88B36003235EF /* SGDoubleStrikethroughView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGDoubleStrikethroughView.m; path = Views/SGDoubleStrikethroughView.m; sourceTree = "<group>"; };
@@ -71,8 +63,7 @@
 		4A6D672318F7858500BC82F7 /* SGUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGUtility.h; path = Utility/SGUtility.h; sourceTree = "<group>"; };
 		4A6D672418F7858500BC82F7 /* SGUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGUtility.m; path = Utility/SGUtility.m; sourceTree = "<group>"; };
 		4A6D673A18F78E3900BC82F7 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
-		4AB45BFD1912D66F000DA9D7 /* Tesseract OCR iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Tesseract OCR iOS.xcodeproj"; path = "../[Overlayer] Tesseract-OCR-iOS/Tesseract OCR iOS.xcodeproj"; sourceTree = "<group>"; };
-		4AB45C041912D67A000DA9D7 /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TesseractOCR.framework; path = "../[Overlayer] Tesseract-OCR-iOS/Products/TesseractOCR.framework"; sourceTree = "<group>"; };
+		4A7CBE4A1918505D007F7815 /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TesseractOCR.framework; path = Overlayer/Frameworks/TesseractOCR.framework; sourceTree = "<group>"; };
 		4AC2BE68190301360062C0B2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4AE86A2F18F638FA0022E006 /* Overlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE86A3218F638FA0022E006 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -103,9 +94,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AB45C051912D67A000DA9D7 /* TesseractOCR.framework in Frameworks */,
 				4AC2BE69190301360062C0B2 /* QuartzCore.framework in Frameworks */,
 				4A2D637E18F8777F003235EF /* libstdc++.6.0.9.dylib in Frameworks */,
+				4A7CBE4B1918505D007F7815 /* TesseractOCR.framework in Frameworks */,
 				4AE86A3518F638FA0022E006 /* CoreGraphics.framework in Frameworks */,
 				4AE86A3718F638FA0022E006 /* UIKit.framework in Frameworks */,
 				4AE86A3318F638FA0022E006 /* Foundation.framework in Frameworks */,
@@ -187,14 +178,6 @@
 			name = Utility;
 			sourceTree = "<group>";
 		};
-		4AB45BFE1912D66F000DA9D7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4AB45C031912D66F000DA9D7 /* TesseractOCR.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		4AE86A2618F638FA0022E006 = {
 			isa = PBXGroup;
 			children = (
@@ -218,11 +201,9 @@
 		4AE86A3118F638FA0022E006 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4AB45C041912D67A000DA9D7 /* TesseractOCR.framework */,
-				4AB45BFD1912D66F000DA9D7 /* Tesseract OCR iOS.xcodeproj */,
+				4A7CBE4A1918505D007F7815 /* TesseractOCR.framework */,
 				4AC2BE68190301360062C0B2 /* QuartzCore.framework */,
 				4A2D637D18F8777F003235EF /* libstdc++.6.0.9.dylib */,
-				4A2D637B18F87666003235EF /* TesseractOCR.framework */,
 				4AE86A3218F638FA0022E006 /* Foundation.framework */,
 				4AE86A3418F638FA0022E006 /* CoreGraphics.framework */,
 				4AE86A3618F638FA0022E006 /* UIKit.framework */,
@@ -355,12 +336,6 @@
 			mainGroup = 4AE86A2618F638FA0022E006;
 			productRefGroup = 4AE86A3018F638FA0022E006 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 4AB45BFE1912D66F000DA9D7 /* Products */;
-					ProjectRef = 4AB45BFD1912D66F000DA9D7 /* Tesseract OCR iOS.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				4AE86A2E18F638FA0022E006 /* Overlayer */,
@@ -368,16 +343,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		4AB45C031912D66F000DA9D7 /* TesseractOCR.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = TesseractOCR.framework;
-			remoteRef = 4AB45C021912D66F000DA9D7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4AE86A2D18F638FA0022E006 /* Resources */ = {
@@ -587,8 +552,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Satyam Ghodasara (7UJA8ANZRF)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Satyam Ghodasara (7UJA8ANZRF)";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/Overlayer/Frameworks",
+					"$(inherited)",
 					"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -610,8 +575,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Satyam Ghodasara (76333YNXLE)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Satyam Ghodasara (76333YNXLE)";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/Overlayer/Frameworks",
+					"$(inherited)",
 					"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

@@ -91,13 +91,13 @@
     return _documentPDFPath;
 }
 
-- (void)drawLinesCompletion:(void (^)(UIImage *, NSString *, NSArray *))completion
+- (void)drawLinesCompletion:(void (^)(UIImage *, NSString *, NSDictionary *))completion
 {
     self.drawingLines = YES;
     __block SGDocument *blockSelf = self;
     [[SGTextRecognizer sharedClient] recognizeTextOnImage:self.documentImage update:^(CGFloat progress) {
         blockSelf.drawingLinesProgress = progress;
-    } completion:^(UIImage *imageWithLines, NSString *recognizedText, NSArray *recognizedRects) {
+    } completion:^(UIImage *imageWithLines, NSString *recognizedText, NSDictionary *recognizedRects) {
         blockSelf.documentImage = imageWithLines;
         blockSelf.drawingLines = NO;
         if (completion) {
