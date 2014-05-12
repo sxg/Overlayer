@@ -278,6 +278,7 @@
 				4AE86A2B18F638FA0022E006 /* Sources */,
 				4AE86A2C18F638FA0022E006 /* Frameworks */,
 				4A74644B18FF84650049F078 /* ShellScript */,
+				4ACABBB1191F087200255121 /* ShellScript */,
 				4AE86A2D18F638FA0022E006 /* Resources */,
 				06C0AF28540D46D7A4358943 /* Copy Pods Resources */,
 			);
@@ -395,6 +396,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
+		};
+		4ACABBB1191F087200255121 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#/usr/local/bin/sketchtool export artboards \"$PROJECT_DIR\"/\"Graphics Resources/AppIcon.sketch\" --output=\"$PROJECT_DIR\"/\"$PROJECT_NAME\"/Images.xcassets/AppIcon.appiconset --formats=\"png\"";
 		};
 		9DCBF28685BD4B25A738B2E4 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

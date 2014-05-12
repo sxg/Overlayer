@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="4" translatesAutoresizingMaskIntoConstraints="NO" id="TcQ-kA-Jec">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TcQ-kA-Jec">
                                         <rect key="frame" x="56" y="0.0" width="968" height="1296"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <constraints>
@@ -127,9 +127,6 @@
                                     <constraint firstItem="vwP-bI-ch6" firstAttribute="top" secondItem="h4x-Ug-Wd3" secondAttribute="bottom" constant="20" id="mmo-ws-Wfj"/>
                                     <constraint firstAttribute="centerY" secondItem="Wm4-al-gmD" secondAttribute="centerY" id="qst-Cs-pP7"/>
                                 </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="IUl-bl-Ceb" appends="YES" id="FnF-Zw-xKE"/>
-                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -158,17 +155,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J79-eL-huF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="PlF-TB-rr4" customClass="SGMainTableViewDataSource"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="IUl-bl-Ceb">
-                    <connections>
-                        <action selector="didDragSidePane:" destination="tyv-HM-mie" id="nvT-Ei-wsx"/>
-                    </connections>
-                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-725" y="192"/>
         </scene>
     </scenes>
     <resources>
-        <image name="4" width="1936" height="2592"/>
         <image name="AddButton" width="56" height="30"/>
         <image name="Chevron" width="42" height="134"/>
         <image name="PDFButton" width="56" height="30"/>
