@@ -14,49 +14,52 @@
 //  Utilities
 #import "SGDocumentManager.h"
 
+static NSString * const kSGFontAmoon = @"Amoon1";
+
 
 @implementation SGMainTableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+	return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[[SGDocumentManager sharedManager] documents] count];
+	return [[[SGDocumentManager sharedManager] documents] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SGDocumentCell"];
-    cell.textLabel.text = [[[SGDocumentManager sharedManager] documents][indexPath.row] title];
-    cell.textLabel.textColor = [UIColor whiteColor];
-    cell.backgroundColor = [UIColor clearColor];
-    cell.textLabel.highlightedTextColor = [UIColor blackColor];
-    if (cell.highlighted) {
-        cell.backgroundColor = [UIColor whiteColor];
-    }
-    return cell;
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SGDocumentCell"];
+	cell.textLabel.text = [[[SGDocumentManager sharedManager] documents][indexPath.row] title];
+	cell.textLabel.textColor = [UIColor whiteColor];
+	cell.textLabel.font = [UIFont fontWithName:kSGFontAmoon size:[UIFont labelFontSize]];
+	cell.backgroundColor = [UIColor clearColor];
+	cell.textLabel.highlightedTextColor = [UIColor blackColor];
+	if (cell.highlighted) {
+		cell.backgroundColor = [UIColor whiteColor];
+	}
+	return cell;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (editingStyle) {
-        case UITableViewCellEditingStyleDelete: {
-            SGDocument *document = [[SGDocumentManager sharedManager] documents][indexPath.row];
-            [[SGDocumentManager sharedManager] destroyDocument:document completion:^(BOOL success) {
-                if (success) {
-                    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                }
-            }];
-            break;
-        }
-        case UITableViewCellEditingStyleInsert:
-        case UITableViewCellEditingStyleNone:
-        default:
-            break;
-    }
+	switch (editingStyle) {
+	case UITableViewCellEditingStyleDelete: {
+		SGDocument *document = [[SGDocumentManager sharedManager] documents][indexPath.row];
+		[[SGDocumentManager sharedManager] destroyDocument:document completion:^(BOOL success) {
+		         if (success) {
+		                 [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+			 }
+		 }];
+		break;
+	}
+	case UITableViewCellEditingStyleInsert:
+	case UITableViewCellEditingStyleNone:
+	default:
+		break;
+	}
 }
 
 @end

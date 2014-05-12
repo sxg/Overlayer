@@ -37,9 +37,13 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>468</string>
+	<string>475</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Amoon_ComicSans.ttf</string>
+	</array>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>Storyboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
