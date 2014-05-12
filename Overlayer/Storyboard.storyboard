@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TcQ-kA-Jec">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HelpBackground" translatesAutoresizingMaskIntoConstraints="NO" id="TcQ-kA-Jec">
                                         <rect key="frame" x="56" y="0.0" width="968" height="1296"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <constraints>
@@ -162,6 +162,7 @@
     <resources>
         <image name="AddButton" width="56" height="30"/>
         <image name="Chevron" width="42" height="134"/>
+        <image name="HelpBackground" width="968" height="1296"/>
         <image name="PDFButton" width="56" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
