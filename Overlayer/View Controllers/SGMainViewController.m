@@ -9,7 +9,6 @@
 #import "SGMainViewController.h"
 
 //  Frameworks
-#import <GPUImage/GPUImage.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <StandardPaths/StandardPaths.h>
 

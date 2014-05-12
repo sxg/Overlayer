@@ -9,7 +9,7 @@
 #import "SGTextRecognizer.h"
 
 //  Frameworks
-#import <GPUImage/GPUImage.h>
+//#import <GPUImage/GPUImage.h>
 #import <QuartzCore/QuartzCore.h>
 #import <StandardPaths/StandardPaths.h>
 
@@ -69,8 +69,9 @@ static SGTextRecognizer *sharedClient;
 	                       self.update = update;
 
 	                       //  Filter the image to get just the text
-	                       GPUImageAdaptiveThresholdFilter *adaptiveThresholdFilter = [[GPUImageAdaptiveThresholdFilter alloc] init];
-	                       UIImage *blackWhiteImage = [adaptiveThresholdFilter imageByFilteringImage:upOrientedImage];
+	                       //GPUImageAdaptiveThresholdFilter *adaptiveThresholdFilter = [[GPUImageAdaptiveThresholdFilter alloc] init];
+	                       UIImage *blackWhiteImage = upOrientedImage;
+	                       //UIImage *blackWhiteImage = [adaptiveThresholdFilter imageByFilteringImage:upOrientedImage];
 
 	                       //  Setup Tesseract with the training data
 	                       self.tesseract = [[Tesseract alloc] initWithLanguage:@"eng+ita"];
