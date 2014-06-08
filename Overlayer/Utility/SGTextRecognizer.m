@@ -88,8 +88,8 @@ static SGTextRecognizer *sharedClient;
 	                       //  Draw the lines
 	                       UIImageView *imageView = [[UIImageView alloc] initWithImage:upOrientedImage];
 	                       NSDictionary *recognizedRects = self.tesseract.characterBoxes;
-	                       for (NSString *rectString in recognizedRects) {
-	                               CGRect rect = CGRectFromString(rectString);
+	                       for (NSValue *rectValue in recognizedRects) {
+	                               CGRect rect = [rectValue CGRectValue];
 	                               SGDoubleStrikethroughView *view = [[SGDoubleStrikethroughView alloc] initWithFrame:rect];
 	                               [imageView addSubview:view];
 			       }

@@ -593,7 +593,7 @@
 				INFOPLIST_FILE = "Overlayer/Overlayer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4C823E6D-FC46-4D93-84E1-22BEF7564531";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -604,8 +604,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Satyam Ghodasara (76333YNXLE)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Satyam Ghodasara (76333YNXLE)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: SHALEWATER SOLUTIONS, INC";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: SHALEWATER SOLUTIONS, INC";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Overlayer/Frameworks",
 					"$(inherited)",
@@ -616,7 +616,7 @@
 				INFOPLIST_FILE = "Overlayer/Overlayer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4C823E6D-FC46-4D93-84E1-22BEF7564531";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
