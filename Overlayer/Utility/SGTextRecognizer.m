@@ -26,7 +26,7 @@
 
 @interface SGTextRecognizer ()
 
-@property (readwrite, strong, nonatomic) Tesseract *tesseract;
+@property (readwrite, assign) NSInteger imageHeight;
 @property (readwrite, strong, nonatomic) void (^update)(CGFloat);
 
 @end
@@ -63,68 +63,70 @@ static SGTextRecognizer *sharedClient;
 {
 	//  Get the image properly oriented
 	UIImage *upOrientedImage = [SGUtility imageOrientedUpFromImage:image];
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-
-        //  Set the progress update block
-        self.update = update;
-
-        //  Filter the image to get just the text
-        GPUImageAdaptiveThresholdFilter *adaptiveThresholdFilter = [[GPUImageAdaptiveThresholdFilter alloc] init];
-        UIImage *blackWhiteImage = [adaptiveThresholdFilter imageByFilteringImage:upOrientedImage];
-
-        //  Setup Tesseract with the training data
-        self.tesseract = [[Tesseract alloc] initWithLanguage:@"eng+ita"];
-        self.tesseract.delegate = self;
-
-        //  Set the character whitelist (Tesseract will look for these characters in images)
-        //[self.tesseract setVariableValue:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\"\',.!$%()*?;:/\\-&@" forKey:@"tessedit_char_whitelist"];
-
-        //  Set the image and recognize it (synchronous)
-        [self.tesseract setImage:blackWhiteImage];
-        [self.tesseract recognize];
-
-        self.update = nil;
-
+    
+    //  Filter the image to get just the text
+    GPUImageAdaptiveThresholdFilter *adaptiveThresholdFilter = [[GPUImageAdaptiveThresholdFilter alloc] init];
+    UIImage *blackWhiteImage = [adaptiveThresholdFilter imageByFilteringImage:upOrientedImage];
+    
+    //  Create JSON
+    NSString *base64StringEncodedImage = [UIImagePNGRepresentation(blackWhiteImage) base64EncodedStringWithOptions:0];
+    NSDictionary *jsonDictionary = @{@"imageData": base64StringEncodedImage};
+    
+    //  Make request
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://overlayer-ocr.herokuapp.com/api/v1/recognize"] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    request.HTTPMethod = @"POST";
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary options:0 error:&error];
+    if (error) {
+        NSLog(@"%@", error);
+    }
+    [[session uploadTaskWithRequest:request fromData:jsonData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            NSLog(@"%@", error);
+        }
+        NSError *error2;
+        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error2];
+        if (error2) {
+            NSLog(@"%@", error2);
+        }
+        
         //  Draw the lines
         UIImageView *imageView = [[UIImageView alloc] initWithImage:upOrientedImage];
-        NSDictionary *recognizedRects = self.tesseract.characterBoxes;
-        for (NSValue *rectValue in recognizedRects) {
-            CGRect rect = [rectValue CGRectValue];
+        self.imageHeight = imageView.frame.size.height;
+        NSMutableDictionary *recognizedRects = [NSMutableDictionary dictionary];
+        for (NSDictionary *recognizedWord in jsonDictionary) {
+            CGRect rect = [self rectForString:recognizedWord[@"box"]];
             SGDoubleStrikethroughView *view = [[SGDoubleStrikethroughView alloc] initWithFrame:rect];
             [imageView addSubview:view];
         }
-
+        
         //  Flatten the lines into an image
         UIGraphicsBeginImageContext(upOrientedImage.size);
         [imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
         UIImage *imageWithLines = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-
+        
         //  Return the important data in the completion block
         if (completion) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                   completion(imageWithLines, self.tesseract.recognizedText, recognizedRects);
-                   self.tesseract = nil;
+                completion(imageWithLines, nil, recognizedRects);
             });
         }
-    });
+    }] resume];
 }
 
-#pragma mark - Tesseract Delegate
+#pragma mark - Helpers
 
-- (BOOL)shouldCancelImageRecognitionForTesseract:(Tesseract*)tesseract
+- (CGRect)rectForString:(NSString *)string
 {
-	//
-	//  This method is called from a background thread
-	//
-
-	NSLog(@"progress: %d", tesseract.progress);
-	if (self.update) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-		                       self.update((CGFloat)((CGFloat)tesseract.progress / 100.0f));
-			       });
-	}
-	return NO;
+    NSArray *boxComponents = [string componentsSeparatedByString:@" "];
+    CGFloat x = [boxComponents[1] floatValue];
+    CGFloat y = [boxComponents[4] floatValue];
+    CGFloat width = [boxComponents[3] floatValue] - [boxComponents[1] floatValue];
+    CGFloat height = [boxComponents[2] floatValue] - [boxComponents[4] floatValue];
+    return CGRectMake(x, y, width, height);
 }
 
 @end
