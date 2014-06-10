@@ -65,49 +65,49 @@ static SGTextRecognizer *sharedClient;
 	UIImage *upOrientedImage = [SGUtility imageOrientedUpFromImage:image];
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
-	                       //  Set the progress update block
-	                       self.update = update;
+        //  Set the progress update block
+        self.update = update;
 
-	                       //  Filter the image to get just the text
-	                       GPUImageAdaptiveThresholdFilter *adaptiveThresholdFilter = [[GPUImageAdaptiveThresholdFilter alloc] init];
-	                       UIImage *blackWhiteImage = [adaptiveThresholdFilter imageByFilteringImage:upOrientedImage];
+        //  Filter the image to get just the text
+        GPUImageAdaptiveThresholdFilter *adaptiveThresholdFilter = [[GPUImageAdaptiveThresholdFilter alloc] init];
+        UIImage *blackWhiteImage = [adaptiveThresholdFilter imageByFilteringImage:upOrientedImage];
 
-	                       //  Setup Tesseract with the training data
-	                       self.tesseract = [[Tesseract alloc] initWithLanguage:@"eng+ita"];
-	                       self.tesseract.delegate = self;
+        //  Setup Tesseract with the training data
+        self.tesseract = [[Tesseract alloc] initWithLanguage:@"eng+ita"];
+        self.tesseract.delegate = self;
 
-	                       //  Set the character whitelist (Tesseract will look for these characters in images)
-	                       //[self.tesseract setVariableValue:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\"\',.!$%()*?;:/\\-&@" forKey:@"tessedit_char_whitelist"];
+        //  Set the character whitelist (Tesseract will look for these characters in images)
+        //[self.tesseract setVariableValue:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\"\',.!$%()*?;:/\\-&@" forKey:@"tessedit_char_whitelist"];
 
-	                       //  Set the image and recognize it (synchronous)
-	                       [self.tesseract setImage:blackWhiteImage];
-	                       [self.tesseract recognize];
+        //  Set the image and recognize it (synchronous)
+        [self.tesseract setImage:blackWhiteImage];
+        [self.tesseract recognize];
 
-	                       self.update = nil;
+        self.update = nil;
 
-	                       //  Draw the lines
-	                       UIImageView *imageView = [[UIImageView alloc] initWithImage:upOrientedImage];
-	                       NSDictionary *recognizedRects = self.tesseract.characterBoxes;
-	                       for (NSValue *rectValue in recognizedRects) {
-	                               CGRect rect = [rectValue CGRectValue];
-	                               SGDoubleStrikethroughView *view = [[SGDoubleStrikethroughView alloc] initWithFrame:rect];
-	                               [imageView addSubview:view];
-			       }
+        //  Draw the lines
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:upOrientedImage];
+        NSDictionary *recognizedRects = self.tesseract.characterBoxes;
+        for (NSValue *rectValue in recognizedRects) {
+            CGRect rect = [rectValue CGRectValue];
+            SGDoubleStrikethroughView *view = [[SGDoubleStrikethroughView alloc] initWithFrame:rect];
+            [imageView addSubview:view];
+        }
 
-	                       //  Flatten the lines into an image
-	                       UIGraphicsBeginImageContext(upOrientedImage.size);
-	                       [imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
-	                       UIImage *imageWithLines = UIGraphicsGetImageFromCurrentImageContext();
-	                       UIGraphicsEndImageContext();
+        //  Flatten the lines into an image
+        UIGraphicsBeginImageContext(upOrientedImage.size);
+        [imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIImage *imageWithLines = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
 
-	                       //  Return the important data in the completion block
-	                       if (completion) {
-	                               dispatch_async(dispatch_get_main_queue(), ^{
-	                                                      completion(imageWithLines, self.tesseract.recognizedText, recognizedRects);
-	                                                      self.tesseract = nil;
-						      });
-			       }
-		       });
+        //  Return the important data in the completion block
+        if (completion) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                   completion(imageWithLines, self.tesseract.recognizedText, recognizedRects);
+                   self.tesseract = nil;
+            });
+        }
+    });
 }
 
 #pragma mark - Tesseract Delegate
