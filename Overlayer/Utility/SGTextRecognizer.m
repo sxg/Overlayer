@@ -27,7 +27,6 @@
 @interface SGTextRecognizer ()
 
 @property (readwrite, assign) NSInteger imageHeight;
-@property (readwrite, strong, nonatomic) void (^update)(CGFloat);
 
 @end
 
@@ -41,8 +40,8 @@ static SGTextRecognizer *sharedClient;
 {
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-	                      sharedClient = [[SGTextRecognizer alloc] init];
-		      });
+        sharedClient = [[SGTextRecognizer alloc] init];
+    });
 	return sharedClient;
 }
 
@@ -59,7 +58,7 @@ static SGTextRecognizer *sharedClient;
 
 #pragma mark - Text Recognition
 
-- (void)recognizeTextOnImage:(UIImage *)image update:(void (^)(CGFloat))update completion:(void (^)(UIImage *, NSString *, NSDictionary *))completion
+- (void)recognizeTextOnImage:(UIImage *)image completion:(void (^)(UIImage *, NSString *, NSDictionary *))completion
 {
 	//  Get the image properly oriented
 	UIImage *upOrientedImage = [SGUtility imageOrientedUpFromImage:image];
@@ -74,6 +73,8 @@ static SGTextRecognizer *sharedClient;
     
     //  Make request
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    [session.configuration setTimeoutIntervalForRequest:60];
+    [session.configuration setTimeoutIntervalForResource:60];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://overlayer-ocr.herokuapp.com/api/v1/recognize"] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     request.HTTPMethod = @"POST";
@@ -85,6 +86,7 @@ static SGTextRecognizer *sharedClient;
     [[session uploadTaskWithRequest:request fromData:jsonData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
             NSLog(@"%@", error);
+            [[[UIAlertView alloc] initWithTitle:@"Internet Error" message:@"Make sure you are connected to the internet." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] show];
         }
         NSError *error2;
         NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error2];

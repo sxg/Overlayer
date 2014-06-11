@@ -216,11 +216,10 @@
 		[self.hud removeFromSuperview];
 		self.hud = nil;
 		self.hud = [MBProgressHUD showHUDAddedTo:self.imageView animated:YES];
-		self.hud.mode = MBProgressHUDModeAnnularDeterminate;
+		self.hud.mode = MBProgressHUDModeIndeterminate;
 		self.hud.labelText = @"Drawing Lines";
 
 		//  Register KVO for the progress
-		[self.currentDocument addObserver:self forKeyPath:@"drawingLinesProgress" options:NSKeyValueObservingOptionNew context:nil];
 		[self.currentDocument addObserver:self forKeyPath:@"drawingLines" options:NSKeyValueObservingOptionNew context:nil];
 	}
 }
@@ -230,7 +229,6 @@
 	[self.hud hide:YES];
 	//  Need to use a try/catch block since removeObserver throws an exception if self isn't an observer
 	@try {
-		[self.currentDocument removeObserver:self forKeyPath:@"drawingLinesProgress"];
 		[self.currentDocument removeObserver:self forKeyPath:@"drawingLines"];
 	} @catch (NSException *exception) {}
 	self.currentDocument = nil;
@@ -240,15 +238,10 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	if ([keyPath isEqualToString:@"drawingLinesProgress"]) {
-		if (self.currentDocument.isDrawingLines) {
-			self.hud.progress = self.currentDocument.drawingLinesProgress;
-		}
-	} else if ([keyPath isEqualToString:@"drawingLines"]) {
+    if ([keyPath isEqualToString:@"drawingLines"]) {
 		//  If the currently selected document is no longer drawing lines
 		if (!self.currentDocument.isDrawingLines) {
 			//  Unregister KVO, hide the HUD, and show the document image with lines on it
-			[self.currentDocument removeObserver:self forKeyPath:@"drawingLinesProgress"];
 			[self.currentDocument removeObserver:self forKeyPath:@"drawingLines"];
 			[self.hud hide:YES];
 			self.imageView.image = self.currentDocument.documentImage;

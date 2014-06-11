@@ -6,14 +6,11 @@
 //  Copyright (c) 2014 Satyam Ghodasara. All rights reserved.
 //
 
-//  Frameworks
-#import <TesseractOCR/TesseractOCR.h>
 
-
-@interface SGTextRecognizer : NSObject <TesseractDelegate>
+@interface SGTextRecognizer : NSObject <NSURLSessionTaskDelegate>
 
 + (SGTextRecognizer *)sharedClient;
 
-- (void)recognizeTextOnImage:(UIImage *)image update:(void (^)(CGFloat progress))update completion:(void (^)(UIImage *imageWithLines, NSString *recognizedText, NSDictionary *recognizedRects))completion;
+- (void)recognizeTextOnImage:(UIImage *)image completion:(void (^)(UIImage *imageWithLines, NSString *recognizedText, NSDictionary *recognizedRects))completion;
 
 @end
