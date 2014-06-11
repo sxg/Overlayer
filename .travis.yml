@@ -1,7 +1,0 @@
-language: objective-c
-xcode_workspace: Overlayer.xcworkspace
-xcode_scheme: Overlayer
-before_install:
-    - gem install cocoapods -v '0.32.1'
-before_script:
-    - export LANG=en_US.UTF-8
