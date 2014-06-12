@@ -7,11 +7,10 @@
 //
 
 //  Frameworks
-#import <TesseractOCR/TesseractOCR.h>
 #import <QuickLook/QuickLook.h>
 
 
-@interface SGMainViewController : UIViewController <TesseractDelegate, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate, QLPreviewControllerDataSource, UIScrollViewDelegate>
+@interface SGMainViewController : UIViewController <UIImagePickerControllerDelegate,  UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate, QLPreviewControllerDataSource, UIScrollViewDelegate>
 
 - (void)createDocumentWithImage:(UIImage *)image;
 

@@ -18,8 +18,6 @@
 		4A5690A51905D88B00A1E1EE /* SGDocumentTitlePromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5690A41905D88B00A1E1EE /* SGDocumentTitlePromptView.m */; };
 		4A5690A71905D92300A1E1EE /* SGDocumentTitlePromptView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5690A61905D92300A1E1EE /* SGDocumentTitlePromptView.xib */; };
 		4A6D672518F7858500BC82F7 /* SGUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6D672418F7858500BC82F7 /* SGUtility.m */; };
-		4A6D673B18F78E3900BC82F7 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 4A6D673A18F78E3900BC82F7 /* tessdata */; };
-		4A7CBE4B1918505D007F7815 /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A7CBE4A1918505D007F7815 /* TesseractOCR.framework */; };
 		4AC2BE69190301360062C0B2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC2BE68190301360062C0B2 /* QuartzCore.framework */; };
 		4AE86A3318F638FA0022E006 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE86A3218F638FA0022E006 /* Foundation.framework */; };
 		4AE86A3518F638FA0022E006 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE86A3418F638FA0022E006 /* CoreGraphics.framework */; };
@@ -69,8 +67,6 @@
 		4A5690A61905D92300A1E1EE /* SGDocumentTitlePromptView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SGDocumentTitlePromptView.xib; path = Views/SGDocumentTitlePromptView.xib; sourceTree = "<group>"; };
 		4A6D672318F7858500BC82F7 /* SGUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGUtility.h; path = Utility/SGUtility.h; sourceTree = "<group>"; };
 		4A6D672418F7858500BC82F7 /* SGUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGUtility.m; path = Utility/SGUtility.m; sourceTree = "<group>"; };
-		4A6D673A18F78E3900BC82F7 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
-		4A7CBE4A1918505D007F7815 /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TesseractOCR.framework; path = Overlayer/Frameworks/TesseractOCR.framework; sourceTree = "<group>"; };
 		4AC2BE68190301360062C0B2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4AE86A2F18F638FA0022E006 /* Overlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE86A3218F638FA0022E006 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -104,7 +100,6 @@
 				4AC2BE69190301360062C0B2 /* QuartzCore.framework in Frameworks */,
 				4A2D637E18F8777F003235EF /* libstdc++.6.0.9.dylib in Frameworks */,
 				4A4FF8A2194946FA005690BD /* Crashlytics.framework in Frameworks */,
-				4A7CBE4B1918505D007F7815 /* TesseractOCR.framework in Frameworks */,
 				4AE86A3518F638FA0022E006 /* CoreGraphics.framework in Frameworks */,
 				4AE86A3718F638FA0022E006 /* UIKit.framework in Frameworks */,
 				4AE86A3318F638FA0022E006 /* Foundation.framework in Frameworks */,
@@ -212,7 +207,6 @@
 			isa = PBXGroup;
 			children = (
 				4A4FF8A1194946FA005690BD /* Crashlytics.framework */,
-				4A7CBE4A1918505D007F7815 /* TesseractOCR.framework */,
 				4AC2BE68190301360062C0B2 /* QuartzCore.framework */,
 				4A2D637D18F8777F003235EF /* libstdc++.6.0.9.dylib */,
 				4AE86A3218F638FA0022E006 /* Foundation.framework */,
@@ -235,7 +229,6 @@
 				4A2D638018F88B19003235EF /* Views */,
 				4A56909A1905B5D400A1E1EE /* Models */,
 				4A6D672218F7856D00BC82F7 /* Utility */,
-				4A6D673A18F78E3900BC82F7 /* tessdata */,
 				4AE86A3918F638FA0022E006 /* Supporting Files */,
 			);
 			path = Overlayer;
@@ -365,7 +358,6 @@
 			files = (
 				4AE86A3D18F638FA0022E006 /* InfoPlist.strings in Resources */,
 				4A5690A71905D92300A1E1EE /* SGDocumentTitlePromptView.xib in Resources */,
-				4A6D673B18F78E3900BC82F7 /* tessdata in Resources */,
 				4AE86A4518F638FA0022E006 /* Images.xcassets in Resources */,
 				4A487FDD192089CB00442742 /* Amoon_ComicSans.ttf in Resources */,
 				4AEAFA2418F63DB000A20350 /* Storyboard.storyboard in Resources */,
