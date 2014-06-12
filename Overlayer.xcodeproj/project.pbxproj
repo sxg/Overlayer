@@ -10,6 +10,7 @@
 		4A2D637E18F8777F003235EF /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2D637D18F8777F003235EF /* libstdc++.6.0.9.dylib */; };
 		4A2D638318F88B36003235EF /* SGDoubleStrikethroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2D638218F88B36003235EF /* SGDoubleStrikethroughView.m */; };
 		4A487FDD192089CB00442742 /* Amoon_ComicSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A487FDC192089CB00442742 /* Amoon_ComicSans.ttf */; };
+		4A4FF8A2194946FA005690BD /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A4FF8A1194946FA005690BD /* Crashlytics.framework */; };
 		4A5690991905B31400A1E1EE /* SGMainTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5690981905B31400A1E1EE /* SGMainTableViewDataSource.m */; };
 		4A56909D1905B5EC00A1E1EE /* SGDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A56909C1905B5EC00A1E1EE /* SGDocument.m */; };
 		4A5690A01905BC7D00A1E1EE /* SGDocumentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A56909F1905BC7D00A1E1EE /* SGDocumentManager.m */; };
@@ -53,6 +54,7 @@
 		4A2D638118F88B36003235EF /* SGDoubleStrikethroughView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGDoubleStrikethroughView.h; path = Views/SGDoubleStrikethroughView.h; sourceTree = "<group>"; };
 		4A2D638218F88B36003235EF /* SGDoubleStrikethroughView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGDoubleStrikethroughView.m; path = Views/SGDoubleStrikethroughView.m; sourceTree = "<group>"; };
 		4A487FDC192089CB00442742 /* Amoon_ComicSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Amoon_ComicSans.ttf; sourceTree = "<group>"; };
+		4A4FF8A1194946FA005690BD /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		4A5690971905B31400A1E1EE /* SGMainTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGMainTableViewDataSource.h; path = "View Controllers/SGMainTableViewDataSource.h"; sourceTree = "<group>"; };
 		4A5690981905B31400A1E1EE /* SGMainTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGMainTableViewDataSource.m; path = "View Controllers/SGMainTableViewDataSource.m"; sourceTree = "<group>"; };
 		4A56909B1905B5EC00A1E1EE /* SGDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGDocument.h; path = Models/SGDocument.h; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			files = (
 				4AC2BE69190301360062C0B2 /* QuartzCore.framework in Frameworks */,
 				4A2D637E18F8777F003235EF /* libstdc++.6.0.9.dylib in Frameworks */,
+				4A4FF8A2194946FA005690BD /* Crashlytics.framework in Frameworks */,
 				4A7CBE4B1918505D007F7815 /* TesseractOCR.framework in Frameworks */,
 				4AE86A3518F638FA0022E006 /* CoreGraphics.framework in Frameworks */,
 				4AE86A3718F638FA0022E006 /* UIKit.framework in Frameworks */,
@@ -203,6 +206,7 @@
 		4AE86A3118F638FA0022E006 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A4FF8A1194946FA005690BD /* Crashlytics.framework */,
 				4A7CBE4A1918505D007F7815 /* TesseractOCR.framework */,
 				4AC2BE68190301360062C0B2 /* QuartzCore.framework */,
 				4A2D637D18F8777F003235EF /* libstdc++.6.0.9.dylib */,
@@ -281,10 +285,10 @@
 				4AE86A2B18F638FA0022E006 /* Sources */,
 				4AE86A2C18F638FA0022E006 /* Frameworks */,
 				4A74644B18FF84650049F078 /* ShellScript */,
-				4ACABBB1191F087200255121 /* ShellScript */,
 				4A30D8C119208DFF0054D6BE /* ShellScript */,
 				4AE86A2D18F638FA0022E006 /* Resources */,
 				06C0AF28540D46D7A4358943 /* Copy Pods Resources */,
+				4A4FF8A0194946C6005690BD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -402,6 +406,19 @@
 			shellPath = "/bin/sh -e";
 			shellScript = "mdfind -onlyin \"${SRCROOT}\" \"kMDItemContentTypeTree == public.font\" -0 | sort -z | xargs -0 /usr/local/bin/moarfonts install";
 		};
+		4A4FF8A0194946C6005690BD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run c0946e755af032a6ed749d647f73248bc823fb73 7b703fcd45f2ddb3461fa62ed1d9b0687fe331dbf94dda507c8db790932343c9";
+		};
 		4A74644B18FF84650049F078 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -414,19 +431,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
-		};
-		4ACABBB1191F087200255121 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#/usr/local/bin/sketchtool export artboards \"$PROJECT_DIR\"/\"Graphics Resources/AppIcon.sketch\" --output=\"$PROJECT_DIR\"/\"$PROJECT_NAME\"/Images.xcassets/AppIcon.appiconset --formats=\"png\"";
 		};
 		9DCBF28685BD4B25A738B2E4 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -587,6 +591,7 @@
 					"$(PROJECT_DIR)/Overlayer/Frameworks",
 					"$(inherited)",
 					"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Overlayer/Overlayer-Prefix.pch";
@@ -610,6 +615,7 @@
 					"$(PROJECT_DIR)/Overlayer/Frameworks",
 					"$(inherited)",
 					"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Overlayer/Overlayer-Prefix.pch";

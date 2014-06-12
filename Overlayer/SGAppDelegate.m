@@ -10,6 +10,7 @@
 
 //  Frameworks
 #import <UIImage+PDF/UIImage+PDF.h>
+#import <Crashlytics/Crashlytics.h>
 
 //  Controllers
 #import "SGMainViewController.h"
@@ -23,6 +24,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    [Crashlytics startWithAPIKey:@"c0946e755af032a6ed749d647f73248bc823fb73"];
 
 	return YES;
 }
