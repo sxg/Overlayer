@@ -7,15 +7,23 @@
 //
 
 #import "SGDoubleStrikethroughView.h"
+#import "NSString+LineHeight.h"
 
+
+@interface SGDoubleStrikethroughView ()
+
+@property (readwrite, strong, nonatomic) NSString *word;
+
+@end
 
 @implementation SGDoubleStrikethroughView
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame word:(NSString *)word
 {
     self = [super initWithFrame:frame];
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
+        self.word = word;
     }
     return self;
 }
@@ -30,15 +38,22 @@
     CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
     CGContextSetLineWidth(context, CGRectGetHeight(rect)/20.0f);
     
-    CGFloat oneThirdY = CGRectGetHeight(rect) * 0.333;
+    CGFloat topOffset = CGRectGetHeight(rect) * 0.333;
+    if ([self.word containsAscender]) {
+        topOffset *= 1.3;
+    }
+    CGFloat bottomOffset = CGRectGetHeight(rect) * 0.333;
+    if ([self.word containsDescender]) {
+        bottomOffset *= 1.3;
+    }
     
     //  Draw the bottom line
-    CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMinY(rect) + oneThirdY);
-    CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect) + oneThirdY);
+    CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMinY(rect) + topOffset);
+    CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect) + topOffset);
     
     //  Draw the top line
-    CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect) - oneThirdY);
-    CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect) - oneThirdY);
+    CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect) - bottomOffset);
+    CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect) - bottomOffset);
     
     CGContextStrokePath(context);
 }

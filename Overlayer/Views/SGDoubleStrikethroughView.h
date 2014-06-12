@@ -9,4 +9,6 @@
 
 @interface SGDoubleStrikethroughView : UIView
 
+- (instancetype)initWithFrame:(CGRect)frame word:(NSString *)word;
+
 @end
