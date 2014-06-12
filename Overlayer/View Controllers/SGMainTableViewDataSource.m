@@ -50,9 +50,9 @@
 	case UITableViewCellEditingStyleDelete: {
 		SGDocument *document = [[SGDocumentManager sharedManager] documents][indexPath.row];
 		[[SGDocumentManager sharedManager] destroyDocument:document completion:^(BOOL success) {
-		         if (success) {
-		                 [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-			 }
+            if (success) {
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
 		 }];
 		break;
 	}
