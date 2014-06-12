@@ -12,6 +12,9 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <StandardPaths/StandardPaths.h>
 
+//  App Delegate
+#import "SGAppDelegate.h"
+
 //  Models
 #import "SGDocument.h"
 
@@ -218,6 +221,7 @@
 		self.hud = [MBProgressHUD showHUDAddedTo:self.imageView animated:YES];
 		self.hud.mode = MBProgressHUDModeIndeterminate;
 		self.hud.labelText = @"Drawing Lines";
+        self.hud.labelFont = [UIFont fontWithName:kSGFontAmoon size:18.0f];
 
 		//  Register KVO for the progress
 		[self.currentDocument addObserver:self forKeyPath:@"drawingLines" options:NSKeyValueObservingOptionNew context:nil];

@@ -7,6 +7,9 @@
 //
 
 
+extern NSString * const kSGFontAmoon;
+
+
 @interface SGAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

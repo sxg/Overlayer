@@ -11,10 +11,11 @@
 //  Frameworks
 #import <StandardPaths/StandardPaths.h>
 
+//  App Delegate
+#import "SGAppDelegate.h"
+
 //  Utilities
 #import "SGDocumentManager.h"
-
-static NSString * const kSGFontAmoon = @"Amoon1";
 
 
 @implementation SGMainTableViewDataSource

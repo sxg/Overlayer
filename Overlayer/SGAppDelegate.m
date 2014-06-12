@@ -19,6 +19,9 @@
 #import "SGUtility.h"
 
 
+NSString * const kSGFontAmoon = @"Amoon1";
+
+
 @implementation SGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
