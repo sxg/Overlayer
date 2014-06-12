@@ -95,7 +95,7 @@
 {
     self.drawingLines = YES;
     __block SGDocument *blockSelf = self;
-    [[SGTextRecognizer sharedClient] recognizeTextOnImage:self.documentImage completion:^(UIImage *imageWithLines, NSString *recognizedText, NSDictionary *recognizedRects) {
+    [SGTextRecognizer recognizeTextOnImage:self.documentImage completion:^(UIImage *imageWithLines, NSString *recognizedText, NSDictionary *recognizedRects) {
         blockSelf.documentImage = imageWithLines;
         blockSelf.drawingLines = NO;
         if (completion) {

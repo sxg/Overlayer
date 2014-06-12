@@ -26,39 +26,13 @@
 
 @interface SGTextRecognizer ()
 
-@property (readwrite, assign) NSInteger imageHeight;
-
 @end
 
 @implementation SGTextRecognizer
 
-static SGTextRecognizer *sharedClient;
-
-#pragma mark - Getting the Shared SGTextRecognizer Instance
-
-+ (SGTextRecognizer *)sharedClient
-{
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-        sharedClient = [[SGTextRecognizer alloc] init];
-    });
-	return sharedClient;
-}
-
-#pragma mark - Initializing an SGTextRecognizer Object
-
-- (instancetype)init
-{
-	self = [super init];
-	if (self) {
-
-	}
-	return self;
-}
-
 #pragma mark - Text Recognition
 
-- (void)recognizeTextOnImage:(UIImage *)image completion:(void (^)(UIImage *, NSString *, NSDictionary *))completion
++ (void)recognizeTextOnImage:(UIImage *)image completion:(void (^)(UIImage *, NSString *, NSDictionary *))completion
 {
 	//  Get the image properly oriented
 	UIImage *upOrientedImage = [SGUtility imageOrientedUpFromImage:image];
@@ -96,11 +70,13 @@ static SGTextRecognizer *sharedClient;
         
         //  Draw the lines
         UIImageView *imageView = [[UIImageView alloc] initWithImage:upOrientedImage];
-        self.imageHeight = imageView.frame.size.height;
         NSMutableDictionary *recognizedRects = [NSMutableDictionary dictionary];
         for (NSDictionary *recognizedWord in jsonDictionary) {
             CGRect rect = [self rectForString:recognizedWord[@"box"]];
-            SGDoubleStrikethroughView *view = [[SGDoubleStrikethroughView alloc] initWithFrame:rect];
+            NSValue *rectValue = [NSValue valueWithCGRect:rect];
+            recognizedRects[rectValue] = recognizedWord[@"word"];
+            
+            SGDoubleStrikethroughView *view = [[SGDoubleStrikethroughView alloc] initWithFrame:rect word:recognizedWord[@"word"]];
             [imageView addSubview:view];
         }
         
@@ -121,7 +97,7 @@ static SGTextRecognizer *sharedClient;
 
 #pragma mark - Helpers
 
-- (CGRect)rectForString:(NSString *)string
++ (CGRect)rectForString:(NSString *)string
 {
     NSArray *boxComponents = [string componentsSeparatedByString:@" "];
     CGFloat x = [boxComponents[1] floatValue];
