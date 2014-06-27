@@ -42,7 +42,7 @@
     UIImage *blackWhiteImage = [adaptiveThresholdFilter imageByFilteringImage:upOrientedImage];
     
     //  Create JSON
-    NSString *base64StringEncodedImage = [UIImagePNGRepresentation(blackWhiteImage) base64EncodedStringWithOptions:0];
+    NSString *base64StringEncodedImage = [UIImagePNGRepresentation(blackWhiteImage) base64Encoding];
     NSDictionary *jsonDictionary = @{@"imageData": base64StringEncodedImage};
     
     //  Make request
