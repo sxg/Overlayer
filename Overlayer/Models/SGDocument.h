@@ -12,13 +12,14 @@
 @property (readonly, strong, nonatomic) NSString *title;
 @property (readonly, strong, nonatomic) UIImage *documentImage;
 @property (readonly, strong, nonatomic) NSString *documentPDFPath;
+@property (readonly, strong, nonatomic) NSString *parentFolderName;
 
 @property (readonly, assign, getter = isDrawingLines) BOOL drawingLines;
 @property (readonly, assign) CGFloat drawingLinesProgress;
 
-+ (instancetype)createDocumentWithImage:(UIImage *)image title:(NSString *)title;
++ (instancetype)createDocumentWithImage:(UIImage *)image title:(NSString *)title parentFolderName:(NSString *)parentFolderName;
 
-- (instancetype)initWithImage:(UIImage *)image title:(NSString *)title;
+- (instancetype)initWithImage:(UIImage *)image title:(NSString *)title parentFolderName:(NSString *)parentFolderName;
 - (void)drawLinesCompletion:(void (^)(UIImage *imageWithLines, NSString *recognizedText, NSDictionary *recognizedRects))completion;
 - (void)destroy;
 

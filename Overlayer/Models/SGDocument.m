@@ -23,6 +23,7 @@
 @property (readwrite, strong, nonatomic) UIImage *documentImage;
 @property (readwrite, strong, nonatomic) NSString *documentFileName;
 @property (readwrite, strong, nonatomic) NSString *documentPDFPath;
+@property (readwrite, strong, nonatomic) NSString *parentFolderName;
 
 @property (readwrite, assign, getter = isDrawingLines) BOOL drawingLines;
 @property (readwrite, assign) CGFloat drawingLinesProgress;
@@ -31,14 +32,14 @@
 
 @implementation SGDocument
 
-+ (instancetype)createDocumentWithImage:(UIImage *)image title:(NSString *)title
++ (instancetype)createDocumentWithImage:(UIImage *)image title:(NSString *)title parentFolderName:(NSString *)parentFolderName
 {
-    SGDocument *document = [[SGDocument alloc] initWithImage:image title:title];
+    SGDocument *document = [[SGDocument alloc] initWithImage:image title:title parentFolderName:parentFolderName];
     [[SGDocumentManager sharedManager] saveDocument:document];
     return document;
 }
 
-- (instancetype)initWithImage:(UIImage *)image title:(NSString *)title
+- (instancetype)initWithImage:(UIImage *)image title:(NSString *)title parentFolderName:(NSString *)parentFolderName
 {
     self = [super init];
     if (self) {
@@ -47,6 +48,7 @@
         self.documentFileName = [NSString stringWithFormat:@"%@", [[NSUUID UUID] UUIDString]];
         self.documentImage = image;
         self.title = title;
+        self.parentFolderName = parentFolderName;
     }
     return self;
 }
@@ -113,6 +115,7 @@
     if (self) {
         self.title = [aDecoder decodeObjectForKey:@"title"];
         self.documentFileName = [aDecoder decodeObjectForKey:@"documentImageFileName"];
+        self.parentFolderName = [aDecoder decodeObjectForKey:@"parentFolderName"];
     }
     return self;
 }
@@ -121,6 +124,7 @@
 {
     [aCoder encodeObject:self.title forKey:@"title"];
     [aCoder encodeObject:self.documentFileName forKey:@"documentImageFileName"];
+    [aCoder encodeObject:self.parentFolderName forKey:@"parentFolderName"];
 }
 
 #pragma mark - Helpers

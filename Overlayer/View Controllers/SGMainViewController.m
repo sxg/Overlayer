@@ -192,7 +192,7 @@
 		[self.documentTitlePromptView removeFromSuperview];
 
 		//  When the document title prompt view's text field returns, create a new document
-		SGDocument *document = [SGDocument createDocumentWithImage:self.lastImage title:textField.text];
+		SGDocument *document = [SGDocument createDocumentWithImage:self.lastImage title:textField.text parentFolderName:nil];
 		[document drawLinesCompletion:nil];
 
 		//  Insert the new document into the table and select it with the delegate method (selectRowAtIndexPath:animated:scrollPosition: doesn't inform the delegate for some reason)
