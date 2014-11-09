@@ -17,24 +17,11 @@
 
 @interface SGDocumentManager ()
 
-@property (readwrite, strong, nonatomic, setter = saveDocuments:) NSArray *documents;
+@property (readwrite, strong, nonatomic) NSURL *currentURL;
 
 @end
 
 @implementation SGDocumentManager
-
-@synthesize documents = _documents;
-
-static SGDocumentManager *sharedManager;
-
-+ (SGDocumentManager *)sharedManager
-{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedManager = [[SGDocumentManager alloc] init];
-    });
-    return sharedManager;
-}
 
 - (instancetype)init
 {
@@ -98,6 +85,16 @@ static SGDocumentManager *sharedManager;
         _documents = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSFileManager defaultManager] pathForPublicFile:@"documents"]];
     }
     return _documents;
+}
+
+- (void)moveToSubFolder:(NSString *)subFolder
+{
+    self.currentURL = [self.currentURL URLByAppendingPathComponent:subFolder isDirectory:YES];
+}
+
+- (void)moveToParentFolder
+{
+    self.currentURL = [self.currentURL URLByDeletingLastPathComponent];
 }
 
 @end
