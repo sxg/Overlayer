@@ -16,12 +16,8 @@
 //  Views
 #import "SGDoubleStrikethroughView.h"
 
-//  Models
-#import "SGDocument.h"
-
 //  Utilities
 #import "SGUtility.h"
-#import "SGDocumentManager.h"
 
 
 @interface SGTextRecognizer ()

@@ -11,11 +11,9 @@
 
 @interface SGDocumentManager : NSObject
 
-@property (readonly, strong, nonatomic) NSArray *documents;
-
-+ (SGDocumentManager *)sharedManager;
-
-- (void)saveDocument:(SGDocument *)document;
+- (void)saveDocument:(SGDocument *)document atPath:(NSURL *)path;
 - (void)destroyDocument:(SGDocument *)document completion:(void (^)(BOOL success))completion;
+- (void)moveToSubFolder:(NSString *)subFolder;
+- (void)moveToParentFolder;
 
 @end
