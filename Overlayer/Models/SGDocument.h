@@ -11,6 +11,7 @@
 
 @property (readonly, strong, nonatomic) NSString *title;
 @property (readonly, strong, nonatomic) NSUUID *uuid;
+@property (readonly, strong, nonatomic) NSData *documentPDFData;
 
 @property (readonly, assign, getter = isDrawingLines) BOOL drawingLines;
 @property (readonly, assign) CGFloat drawingLinesProgress;

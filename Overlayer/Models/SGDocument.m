@@ -21,6 +21,7 @@
 
 @property (readwrite, strong, nonatomic) NSString *title;
 @property (readwrite, strong, nonatomic) NSUUID *uuid;
+@property (readwrite, strong, nonatomic) NSData *documentPDFData;
 
 @property (readwrite, assign, getter = isDrawingLines) BOOL drawingLines;
 @property (readwrite, assign) CGFloat drawingLinesProgress;
@@ -35,6 +36,7 @@
     if (self) {
         self.uuid = [[NSUUID alloc] init];
         self.title = title;
+        self.documentPDFData = [self pdfDataFromImages:images];
     }
     return self;
 }
@@ -59,27 +61,24 @@
 
 #pragma mark - Helpers
 
-/*- (void)generatePDF
+- (NSData *)pdfDataFromImages:(NSArray *)images
 {
     NSMutableData *pdfData = [NSMutableData data];
     
-    CGSize pdfPageSize = self.image.size;
+    CGSize pdfPageSize = ((UIImage *)images[0]).size;
     CGRect pdfPageRect = CGRectMake(0, 0, pdfPageSize.width, pdfPageSize.height);
     UIGraphicsBeginPDFContextToData(pdfData, pdfPageRect, nil);
     CGContextRef pdfContext = UIGraphicsGetCurrentContext();
     
-    UIGraphicsBeginPDFPage();
+    for (UIImage *image in images) {
+        UIGraphicsBeginPDFPage();
         
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:self.image];
-    [imageView.layer renderInContext:pdfContext];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        [imageView.layer renderInContext:pdfContext];
+    }
     
     UIGraphicsEndPDFContext();
-    
-    NSString *pdfFileName = [self.title stringByAppendingPathExtension:@"pdf"];
-    NSString *pdfPath = [[NSFileManager defaultManager] pathForPublicFile:pdfFileName];
-    if (![pdfData writeToFile:pdfPath atomically:YES]) {
-        NSLog(@"Failed to write PDF file to disk");
-    }
-}*/
+    return pdfData;
+}
 
 @end
