@@ -17,84 +17,55 @@
 
 @interface SGDocumentManager ()
 
-@property (readwrite, strong, nonatomic) NSURL *currentURL;
-
 @end
 
 @implementation SGDocumentManager
 
-- (instancetype)init
++ (void)saveDocument:(SGDocument *)document atURL:(NSURL *)url
 {
-    self = [super init];
-    if (self) {
+    //  Create the document directory
+    NSError *err;
+    [[NSFileManager defaultManager] createDirectoryAtURL:url withIntermediateDirectories:YES attributes:nil error:&err];
+    if (err) {
+        NSLog(@"Failed to create directory at URL: %@ error: %@", url, err);
         
-    }
-    return self;
-}
-
-- (void)saveDocument:(SGDocument *)document
-{
-    NSMutableArray *allDocuments = [@[document] mutableCopy];
-    if (self.documents) {
-        allDocuments = [self.documents mutableCopy];
-        [allDocuments addObject:document];
-    }
-    [self saveDocuments:allDocuments];
-}
-
-- (void)saveDocuments:(NSArray *)documents
-{
-    //  Converting to a set and back to an array creates an array of unique objects
-    _documents = [[NSOrderedSet orderedSetWithArray:documents] array];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [NSKeyedArchiver archiveRootObject:_documents toFile:[[NSFileManager defaultManager] pathForPublicFile:@"documents"]];
-    });
-}
-
-- (void)destroyDocument:(SGDocument *)document completion:(void (^)(BOOL))completion
-{
-    //  The document must exist to be destroyed
-    if ([self.documents containsObject:document]) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            //  Delete the document
-            [document destroy];
+        //  Write the document PDF data
+        NSURL *documentPDFDataURL = [url URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf", document.title]];
+        if (![document.documentPDFData writeToFile:[documentPDFDataURL absoluteString] atomically:YES]) {
+            NSLog(@"Failed to save document: %@ to URL: %@", document, documentPDFDataURL);
             
-            NSError *error;
-            NSString *archivePath = [[NSFileManager defaultManager] pathForPublicFile:@"documents"];
-            if (![[NSFileManager defaultManager] removeItemAtPath:archivePath error:&error]) {
-                NSLog(@"%@", error);
-            }
+            //  Write the archive
+            NSURL *archiveURL = [url URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.archive", document.title]];
+            [NSKeyedArchiver archiveRootObject:document toFile:[archiveURL absoluteString]];
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                //  Save all documents except the one to be removed
-                NSMutableArray *mutableDocumentsArray = [self.documents mutableCopy];
-                [mutableDocumentsArray removeObject:document];
-                [self saveDocuments:mutableDocumentsArray];
-                
-                if (completion) {
-                    error ? completion(NO) : completion(YES);
-                }
-            });
-        });
+            //  Set the document's URL
+            document.url = url;
+        }
     }
 }
 
-- (NSArray *)documents
++ (void)destroyDocumentAtURL:(NSURL *)url completion:(void (^)(BOOL))completion
 {
-    if (!_documents) {
-        _documents = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSFileManager defaultManager] pathForPublicFile:@"documents"]];
+    NSError *err;
+    [[NSFileManager defaultManager] removeItemAtURL:url error:&err];
+    if (err) {
+        NSLog(@"Failed to destroy document at URL: %@ error: %@", url, err);
     }
-    return _documents;
 }
 
-- (void)moveToSubFolder:(NSString *)subFolder
++ (void)moveDocumentFromURL:(NSURL *)fromURL toURL:(NSURL *)toURL
 {
-    self.currentURL = [self.currentURL URLByAppendingPathComponent:subFolder isDirectory:YES];
+    
 }
 
-- (void)moveToParentFolder
++ (NSArray *)documentsAtURL:(NSURL *)url
 {
-    self.currentURL = [self.currentURL URLByDeletingLastPathComponent];
+    NSError *err;
+    NSArray *documentNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[url absoluteString] error:&err];
+    if (err) {
+        NSLog(@"%@", err);
+    }
+    return documentNames;
 }
 
 @end

@@ -12,7 +12,6 @@
 		4A487FDD192089CB00442742 /* Amoon_ComicSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A487FDC192089CB00442742 /* Amoon_ComicSans.ttf */; };
 		4A4FF8A2194946FA005690BD /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A4FF8A1194946FA005690BD /* Crashlytics.framework */; };
 		4A4FF8A5194955A7005690BD /* NSString+LineHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4FF8A4194955A7005690BD /* NSString+LineHeight.m */; };
-		4A5690991905B31400A1E1EE /* SGMainTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5690981905B31400A1E1EE /* SGMainTableViewDataSource.m */; };
 		4A56909D1905B5EC00A1E1EE /* SGDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A56909C1905B5EC00A1E1EE /* SGDocument.m */; };
 		4A5690A01905BC7D00A1E1EE /* SGDocumentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A56909F1905BC7D00A1E1EE /* SGDocumentManager.m */; };
 		4A5690A51905D88B00A1E1EE /* SGDocumentTitlePromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5690A41905D88B00A1E1EE /* SGDocumentTitlePromptView.m */; };
@@ -35,6 +34,7 @@
 		4AEAFA2418F63DB000A20350 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AEAFA2318F63DB000A20350 /* Storyboard.storyboard */; };
 		4AEAFA2818F63F4D00A20350 /* SGMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAFA2718F63F4D00A20350 /* SGMainViewController.m */; };
 		B6C9478A8462406B9FB5D3A2 /* libPods-Overlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFFD3DE30FB04AF6841F8A45 /* libPods-Overlayer.a */; };
+		D460D0901A1AFF73009FBEE4 /* SGTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D460D08F1A1AFF73009FBEE4 /* SGTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,8 +56,6 @@
 		4A4FF8A1194946FA005690BD /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		4A4FF8A3194955A7005690BD /* NSString+LineHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+LineHeight.h"; path = "Utility/NSString+LineHeight.h"; sourceTree = "<group>"; };
 		4A4FF8A4194955A7005690BD /* NSString+LineHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+LineHeight.m"; path = "Utility/NSString+LineHeight.m"; sourceTree = "<group>"; };
-		4A5690971905B31400A1E1EE /* SGMainTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGMainTableViewDataSource.h; path = "View Controllers/SGMainTableViewDataSource.h"; sourceTree = "<group>"; };
-		4A5690981905B31400A1E1EE /* SGMainTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGMainTableViewDataSource.m; path = "View Controllers/SGMainTableViewDataSource.m"; sourceTree = "<group>"; };
 		4A56909B1905B5EC00A1E1EE /* SGDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGDocument.h; path = Models/SGDocument.h; sourceTree = "<group>"; };
 		4A56909C1905B5EC00A1E1EE /* SGDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGDocument.m; path = Models/SGDocument.m; sourceTree = "<group>"; };
 		4A56909E1905BC7D00A1E1EE /* SGDocumentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGDocumentManager.h; path = Utility/SGDocumentManager.h; sourceTree = "<group>"; };
@@ -89,6 +87,8 @@
 		4AEAFA2318F63DB000A20350 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		4AEAFA2618F63F4D00A20350 /* SGMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGMainViewController.h; path = "View Controllers/SGMainViewController.h"; sourceTree = "<group>"; };
 		4AEAFA2718F63F4D00A20350 /* SGMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGMainViewController.m; path = "View Controllers/SGMainViewController.m"; sourceTree = "<group>"; };
+		D460D08E1A1AFF73009FBEE4 /* SGTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGTableViewController.h; path = "View Controllers/SGTableViewController.h"; sourceTree = "<group>"; };
+		D460D08F1A1AFF73009FBEE4 /* SGTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGTableViewController.m; path = "View Controllers/SGTableViewController.m"; sourceTree = "<group>"; };
 		DFFD3DE30FB04AF6841F8A45 /* libPods-Overlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Overlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -127,17 +127,6 @@
 				4A5690A11905D85500A1E1EE /* Double Strikethrough View */,
 			);
 			name = Views;
-			sourceTree = "<group>";
-		};
-		4A5690921905B27600A1E1EE /* Main VC */ = {
-			isa = PBXGroup;
-			children = (
-				4AEAFA2618F63F4D00A20350 /* SGMainViewController.h */,
-				4AEAFA2718F63F4D00A20350 /* SGMainViewController.m */,
-				4A5690971905B31400A1E1EE /* SGMainTableViewDataSource.h */,
-				4A5690981905B31400A1E1EE /* SGMainTableViewDataSource.m */,
-			);
-			name = "Main VC";
 			sourceTree = "<group>";
 		};
 		4A56909A1905B5D400A1E1EE /* Models */ = {
@@ -267,7 +256,10 @@
 		4AEAFA2518F63F3100A20350 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4A5690921905B27600A1E1EE /* Main VC */,
+				4AEAFA2618F63F4D00A20350 /* SGMainViewController.h */,
+				4AEAFA2718F63F4D00A20350 /* SGMainViewController.m */,
+				D460D08E1A1AFF73009FBEE4 /* SGTableViewController.h */,
+				D460D08F1A1AFF73009FBEE4 /* SGTableViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -456,12 +448,12 @@
 				4A4FF8A5194955A7005690BD /* NSString+LineHeight.m in Sources */,
 				4AE86A4318F638FA0022E006 /* SGAppDelegate.m in Sources */,
 				4AE86A3F18F638FA0022E006 /* main.m in Sources */,
-				4A5690991905B31400A1E1EE /* SGMainTableViewDataSource.m in Sources */,
 				4A56909D1905B5EC00A1E1EE /* SGDocument.m in Sources */,
 				4AEAFA2218F63D8700A20350 /* SGTextRecognizer.m in Sources */,
 				4A6D672518F7858500BC82F7 /* SGUtility.m in Sources */,
 				4AEAFA2818F63F4D00A20350 /* SGMainViewController.m in Sources */,
 				4A2D638318F88B36003235EF /* SGDoubleStrikethroughView.m in Sources */,
+				D460D0901A1AFF73009FBEE4 /* SGTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,7 +585,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Overlayer/Overlayer-Prefix.pch";
 				INFOPLIST_FILE = "Overlayer/Overlayer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -616,7 +608,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Overlayer/Overlayer-Prefix.pch";
 				INFOPLIST_FILE = "Overlayer/Overlayer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
