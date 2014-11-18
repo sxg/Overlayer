@@ -29,14 +29,10 @@
 
 @interface SGMainViewController ()
 
-@property (readwrite, weak, nonatomic) IBOutlet UIImageView *imageView;
-
-@property (readwrite, weak, nonatomic) IBOutlet UITableView *tableView;
+@property (readwrite, weak, nonatomic) IBOutlet UIWebView *webView;
 
 @property (readwrite, weak, nonatomic) IBOutlet UIView *sidePaneView;
 @property (readwrite, weak, nonatomic) IBOutlet UIButton *toggleSidePaneViewButton;
-@property (readwrite, weak, nonatomic) IBOutlet NSLayoutConstraint *sidePaneLeftEdgeConstraint;
-@property (readwrite, assign) CGFloat sidePaneLeftEdge;
 @property (readwrite, assign, getter = isDisplayingSidePane) BOOL displayingSidePane;
 
 @property (readwrite, strong, nonatomic) SGDocumentTitlePromptView *documentTitlePromptView;
@@ -59,14 +55,14 @@
 	self.displayingSidePane = YES;
 
 	//  Set the default SGDocument if possible
-	if ([[SGDocumentManager sharedManager] documents].count != 0) {
-		SGDocument *firstDocument = [[SGDocumentManager sharedManager] documents][0];
-		self.currentDocument = firstDocument;
-		self.imageView.image = firstDocument.documentImage;
-		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-		[self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-		[self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
-	}
+//	if ([SGDocumentManager documentsAtURL:<#(NSURL *)#>].count != 0) {
+//		SGDocument *firstDocument = [[SGDocumentManager sharedManager] documents][0];
+//		self.currentDocument = firstDocument;
+//		self.imageView.image = firstDocument.documentImage;
+//		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//		[self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+//		[self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+//	}
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,56 +73,40 @@
 
 - (void)createDocumentWithImage:(UIImage *)image
 {
-	self.imageView.image = image;
-	self.lastImage = self.imageView.image;
-
-	//  Show the document title prompt
-	self.documentTitlePromptView = [[NSBundle mainBundle] loadNibNamed:@"SGDocumentTitlePromptView" owner:nil options:nil][0];
-	[self.documentTitlePromptView setFrame:CGRectMake(362.0f, 127.0f, 300.0f, 130.0f)];
-	self.documentTitlePromptView.titleTextField.delegate = self;
-	[self.documentTitlePromptView.titleTextField becomeFirstResponder];
-	[self.view addSubview:self.documentTitlePromptView];
+//	self.imageView.image = image;
+//	self.lastImage = self.imageView.image;
+//
+//	//  Show the document title prompt
+//	self.documentTitlePromptView = [[NSBundle mainBundle] loadNibNamed:@"SGDocumentTitlePromptView" owner:nil options:nil][0];
+//	[self.documentTitlePromptView setFrame:CGRectMake(362.0f, 127.0f, 300.0f, 130.0f)];
+//	self.documentTitlePromptView.titleTextField.delegate = self;
+//	[self.documentTitlePromptView.titleTextField becomeFirstResponder];
+//	[self.view addSubview:self.documentTitlePromptView];
 }
 
 #pragma mark - UI Actions
-
-- (IBAction)didDragSidePane:(UIPanGestureRecognizer *)pan
-{
-	if (pan.state == UIGestureRecognizerStateBegan) {
-		self.sidePaneLeftEdge = self.isDisplayingSidePane ? 0.0f : -1.0f * self.sidePaneView.frame.size.width + 56.0f;
-	} else if (pan.state == UIGestureRecognizerStateChanged) {
-		CGPoint translation = [pan translationInView:self.view];
-		CGFloat updatedConstant = self.sidePaneLeftEdge + translation.x;
-		updatedConstant = MAX(-1.0f * self.sidePaneView.frame.size.width + 56.0f, MIN(0.0f, updatedConstant));
-		self.sidePaneLeftEdgeConstraint.constant = updatedConstant;
-		//[self.view setNeedsUpdateConstraints];
-		//[self.view layoutIfNeeded];
-	}
-}
 
 - (IBAction)didTapToggleSidePaneButton:(UIButton *)sender
 {
 	//  Setup
 	CGFloat animationDuration = 0.4;
-	CGFloat endToggleSidePaneButtonScaleX;
+    CGRect newFrame;
 	if (self.isDisplayingSidePane) {
-		self.sidePaneLeftEdgeConstraint.constant = -1.0f * self.sidePaneView.frame.size.width + 56.0f;
-		endToggleSidePaneButtonScaleX = -1.0f;
+        newFrame = CGRectMake(-1.0f * self.sidePaneView.frame.size.width + 56.0f, self.sidePaneView.frame.origin.y, self.sidePaneView.frame.size.width, self.sidePaneView.frame.size.height);
 	} else {
-		self.sidePaneLeftEdgeConstraint.constant = 0.0f;
-		endToggleSidePaneButtonScaleX = 1.0f;
+        newFrame = CGRectMake(0.0f, self.sidePaneView.frame.origin.y, self.sidePaneView.frame.size.width, self.sidePaneView.frame.size.height);
 	}
-
-	[self.view setNeedsUpdateConstraints];
 
 	//  Animate
 	__block SGMainViewController *blockSelf = self;
 	[UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-	         [blockSelf.view layoutIfNeeded];
-	         //  Mirror the toggle side pane button
-	         blockSelf.toggleSidePaneViewButton.transform = CGAffineTransformMakeScale(endToggleSidePaneButtonScaleX, 1.0f);
+        [blockSelf.view layoutIfNeeded];
+        //  Mirror the toggle side pane button
+        CGFloat scale = blockSelf.displayingSidePane ? -1.0f : 1.0f;
+        blockSelf.toggleSidePaneViewButton.transform = CGAffineTransformMakeScale(scale, 1.0f);
+        [blockSelf.sidePaneView setFrame:newFrame];
 	 } completion:^(BOOL finished) {
-	         blockSelf.displayingSidePane = !blockSelf.isDisplayingSidePane;
+         blockSelf.displayingSidePane = !blockSelf.isDisplayingSidePane;
 	 }];
 }
 
@@ -159,7 +139,7 @@
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
-	return self.imageView;
+	return self.webView;
 }
 
 #pragma mark - QLPreviewController Data Source
@@ -171,7 +151,7 @@
 
 - (id<QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index
 {
-	return [NSURL fileURLWithPath:self.currentDocument.documentPDFPath];
+    return self.currentDocument;
 }
 
 #pragma mark - UIImagePickerController Delegate
@@ -192,50 +172,21 @@
 		[self.documentTitlePromptView removeFromSuperview];
 
 		//  When the document title prompt view's text field returns, create a new document
-		SGDocument *document = [SGDocument createDocumentWithImage:self.lastImage title:textField.text];
-		[document drawLinesCompletion:nil];
-
-		//  Insert the new document into the table and select it with the delegate method (selectRowAtIndexPath:animated:scrollPosition: doesn't inform the delegate for some reason)
-		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([[SGDocumentManager sharedManager] documents].count - 1) inSection:0];
-		[self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-		[self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-		[self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+//        __block SGMainViewController *blockSelf = self;
+//        [SGTextRecognizer recognizeTextOnImage:self.lastImage completion:^(UIImage *imageWithLines, NSString *recognizedText, NSDictionary *recognizedRects) {
+//            
+//            SGDocument *document = [[SGDocument alloc] initWithImages:@[blockSelf.lastImage] title:textField.text];
+//            [SGDocumentManager saveDocument:document atURL:<#(NSURL *)#>]
+//            
+//            //  Insert the new document into the table and select it with the delegate method (selectRowAtIndexPath:animated:scrollPosition: doesn't inform the delegate for some reason)
+//            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([[SGDocumentManager sharedManager] documents].count - 1) inSection:0];
+//            [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//            [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+//            [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+//        }];
 	}
 
 	return YES;
-}
-
-#pragma mark - UITableView Delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	self.currentDocument = [[SGDocumentManager sharedManager] documents][indexPath.row];
-	self.imageView.image = self.currentDocument.documentImage;
-
-	//  If the currently selected document is in the process of drawing lines
-	if (self.currentDocument.isDrawingLines) {
-		//  Show a progress HUD
-		[self.hud hide:YES];
-		[self.hud removeFromSuperview];
-		self.hud = nil;
-		self.hud = [MBProgressHUD showHUDAddedTo:self.imageView animated:YES];
-		self.hud.mode = MBProgressHUDModeIndeterminate;
-		self.hud.labelText = @"Drawing Lines";
-        self.hud.labelFont = [UIFont fontWithName:kSGFontAmoon size:18.0f];
-
-		//  Register KVO for the progress
-		[self.currentDocument addObserver:self forKeyPath:@"drawingLines" options:NSKeyValueObservingOptionNew context:nil];
-	}
-}
-
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	[self.hud hide:YES];
-	//  Need to use a try/catch block since removeObserver throws an exception if self isn't an observer
-	@try {
-		[self.currentDocument removeObserver:self forKeyPath:@"drawingLines"];
-	} @catch (NSException *exception) {}
-	self.currentDocument = nil;
 }
 
 #pragma mark - KVO
@@ -248,7 +199,8 @@
 			//  Unregister KVO, hide the HUD, and show the document image with lines on it
 			[self.currentDocument removeObserver:self forKeyPath:@"drawingLines"];
 			[self.hud hide:YES];
-			self.imageView.image = self.currentDocument.documentImage;
+            
+            [self.webView loadRequest:[NSURLRequest requestWithURL:self.currentDocument.url]];
 		}
 	}
 }

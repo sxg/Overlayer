@@ -11,9 +11,9 @@
 
 @interface SGDocumentManager : NSObject
 
-- (void)saveDocument:(SGDocument *)document atPath:(NSURL *)path;
-- (void)destroyDocument:(SGDocument *)document completion:(void (^)(BOOL success))completion;
-- (void)moveToSubFolder:(NSString *)subFolder;
-- (void)moveToParentFolder;
++ (void)saveDocument:(SGDocument *)document atURL:(NSURL *)url;
++ (void)destroyDocumentAtURL:(NSURL *)url completion:(void (^)(BOOL success))completion;
++ (void)moveDocumentFromURL:(NSURL *)fromURL toURL:(NSURL *)toURL;
++ (NSArray *)documentsAtURL:(NSURL *)url;
 
 @end

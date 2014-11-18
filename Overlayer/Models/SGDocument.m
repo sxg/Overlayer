@@ -23,12 +23,18 @@
 @property (readwrite, strong, nonatomic) NSUUID *uuid;
 @property (readwrite, strong, nonatomic) NSData *documentPDFData;
 
+//  QLPreviewItem Protocol
+@property (readwrite, strong, nonatomic) NSString *previewItemTitle;
+@property (readwrite, strong, nonatomic) NSURL *previewItemURL;
+
 @property (readwrite, assign, getter = isDrawingLines) BOOL drawingLines;
 @property (readwrite, assign) CGFloat drawingLinesProgress;
 
 @end
 
 @implementation SGDocument
+
+#pragma mark - Initialization
 
 - (instancetype)initWithImages:(NSArray *)images title:(NSString *)title
 {
@@ -37,8 +43,26 @@
         self.uuid = [[NSUUID alloc] init];
         self.title = title;
         self.documentPDFData = [self pdfDataFromImages:images];
+        self.previewItemTitle = self.title;
     }
     return self;
+}
+
+- (instancetype)initWithURL:(NSURL *)url
+{
+    self = [super init];
+    if (self) {
+        //  TODO
+    }
+    return self;
+}
+
+#pragma mark - Getters / Setters
+
+- (void)setUrl:(NSURL *)url
+{
+    _url = url;
+    self.previewItemURL = self.url;
 }
 
 #pragma mark - NSCoding
