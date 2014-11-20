@@ -16,22 +16,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="6" translatesAutoresizingMaskIntoConstraints="NO" id="iWS-7v-uiR">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                                <subviews>
-                                    <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pDA-1m-LfV">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </webView>
-                                </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                <connections>
-                                    <outlet property="delegate" destination="tyv-HM-mie" id="sW6-bX-b3G"/>
-                                </connections>
-                            </scrollView>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wob-LE-Rgd" userLabel="Side Pane">
                                 <rect key="frame" x="0.0" y="0.0" width="250" height="768"/>
                                 <subviews>
+                                    <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I4x-ph-CDw">
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </webView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jf0-UI-8fd">
                                         <rect key="frame" x="0.0" y="20" width="194" height="748"/>
                                         <connections>
@@ -88,10 +79,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wob-LE-Rgd" firstAttribute="top" secondItem="TkF-su-UVg" secondAttribute="top" id="BzE-30-XXb"/>
-                            <constraint firstItem="iWS-7v-uiR" firstAttribute="top" secondItem="TkF-su-UVg" secondAttribute="top" id="CbH-LB-WoA"/>
-                            <constraint firstItem="iWS-7v-uiR" firstAttribute="leading" secondItem="TkF-su-UVg" secondAttribute="leading" id="RFv-ZK-LxM"/>
-                            <constraint firstAttribute="trailing" secondItem="iWS-7v-uiR" secondAttribute="trailing" id="dkj-GK-e5n"/>
-                            <constraint firstItem="fmW-nT-jhI" firstAttribute="top" secondItem="iWS-7v-uiR" secondAttribute="bottom" id="kiR-UE-cr9"/>
                             <constraint firstItem="wob-LE-Rgd" firstAttribute="leading" secondItem="TkF-su-UVg" secondAttribute="leading" id="rO9-PI-RXT"/>
                             <constraint firstItem="fmW-nT-jhI" firstAttribute="top" secondItem="wob-LE-Rgd" secondAttribute="bottom" id="tru-rA-qEQ"/>
                         </constraints>
@@ -103,7 +90,7 @@
                     <connections>
                         <outlet property="sidePaneView" destination="wob-LE-Rgd" id="e3d-Hl-V8A"/>
                         <outlet property="toggleSidePaneViewButton" destination="Wm4-al-gmD" id="qan-jU-J2v"/>
-                        <outlet property="webView" destination="pDA-1m-LfV" id="yPF-to-ztt"/>
+                        <outlet property="webView" destination="I4x-ph-CDw" id="zgS-ZM-N0a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J79-eL-huF" userLabel="First Responder" sceneMemberID="firstResponder"/>
