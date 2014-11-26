@@ -16,6 +16,7 @@
 #import "SGMainViewController.h"
 
 //  Utilities
+#import "SGTextRecognizer.h"
 #import "SGUtility.h"
 
 
@@ -29,6 +30,12 @@ NSString * const kSGFontAmoon = @"Amoon1";
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     [Crashlytics startWithAPIKey:@"c0946e755af032a6ed749d647f73248bc823fb73"];
+    
+    UIImage *image1 = [UIImage imageNamed:@"TestImage1"];
+    UIImage *image2 = [UIImage imageNamed:@"TestImage2"];
+    [SGTextRecognizer recognizeTextOnImages:@[image1, image2] completion:^(NSData *pdfWithRecognizedText, NSString *recognizedText, NSDictionary *recognizedRects) {
+        NSLog(@"all done");
+    }];
 
 	return YES;
 }

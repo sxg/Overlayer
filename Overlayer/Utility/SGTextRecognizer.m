@@ -28,17 +28,44 @@
 
 #pragma mark - Text Recognition
 
-+ (void)recognizeTextOnImage:(UIImage *)image completion:(void (^)(UIImage *, NSString *, NSDictionary *))completion
++ (void)recognizeTextOnImages:(NSArray *)images completion:(void (^)(NSData *pdfWithRecognizedText, NSString *recognizedText, NSDictionary *recognizedRects))completion
 {
-	//  Get the image properly oriented
-	UIImage *upOrientedImage = [SGUtility imageOrientedUpFromImage:image];
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    NSOperationQueue *q = [[NSOperationQueue alloc] init];
+    q.maxConcurrentOperationCount = 1;
+    
+    for (NSInteger i = 0; i < images.count; i++) {
+        [q addOperationWithBlock:^{
+            [self recognizeTextOnImage:images[i] completion:^(UIImage *imageWithRecognizedText) {
+                NSLog(@"done %ld", (long)i);
+                dispatch_semaphore_signal(sem);
+            }];
+        }];
+    }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        for (NSInteger i = 0; i < images.count; i++) {
+            dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(nil, nil, nil);
+        });
+    });
+}
+
+#pragma mark - Helpers
+
++ (void)recognizeTextOnImage:(UIImage *)image completion:(void (^)(UIImage *imageWithRecognizedText))completion
+{
+    //  Get the image properly oriented
+    UIImage *upOrientedImage = [SGUtility imageOrientedUpFromImage:image];
     
     //  Filter the image to get just the text
     GPUImageAdaptiveThresholdFilter *adaptiveThresholdFilter = [[GPUImageAdaptiveThresholdFilter alloc] init];
     UIImage *blackWhiteImage = [adaptiveThresholdFilter imageByFilteringImage:upOrientedImage];
     
     //  Create JSON
-    NSString *base64StringEncodedImage = [UIImagePNGRepresentation(blackWhiteImage) base64Encoding];
+    NSString *base64StringEncodedImage = [UIImagePNGRepresentation(blackWhiteImage) base64EncodedStringWithOptions:0];
     NSDictionary *jsonDictionary = @{@"imageData": base64StringEncodedImage};
     
     //  Make request
@@ -69,6 +96,7 @@
         NSMutableDictionary *recognizedRects = [NSMutableDictionary dictionary];
         for (NSDictionary *recognizedWord in jsonDictionary) {
             CGRect rect = [self rectForString:recognizedWord[@"box"]];
+            NSLog(@"%@", recognizedWord[@"box"]);
             NSValue *rectValue = [NSValue valueWithCGRect:rect];
             recognizedRects[rectValue] = recognizedWord[@"word"];
             
@@ -79,19 +107,17 @@
         //  Flatten the lines into an image
         UIGraphicsBeginImageContext(upOrientedImage.size);
         [imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
-        UIImage *imageWithLines = UIGraphicsGetImageFromCurrentImageContext();
+        UIImage *imageWithRecognizedText = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
         //  Return the important data in the completion block
         if (completion) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                completion(imageWithLines, nil, recognizedRects);
+                completion(imageWithRecognizedText);
             });
         }
     }] resume];
 }
-
-#pragma mark - Helpers
 
 + (CGRect)rectForString:(NSString *)string
 {
