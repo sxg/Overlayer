@@ -36,8 +36,15 @@
     
     NSMutableArray *allText = [NSMutableArray arrayWithCapacity:images.count];
     NSMutableArray *allRects = [NSMutableArray arrayWithCapacity:images.count];
-    NSMutableArray *imagesWithRecognizedText = [NSMutableArray array];
+    NSMutableArray *imagesWithRecognizedText = [NSMutableArray arrayWithCapacity:images.count];
     NSMutableData *pdfData = [NSMutableData data];
+    
+    //  Fill containers
+    for (NSInteger i = 0; i < images.count; i++) {
+        [allText addObject:[NSArray array]];
+        [allRects addObject:[NSArray array]];
+        [imagesWithRecognizedText addObject:[NSArray array]];
+    }
     
     //  Serially recognize text
     for (NSInteger i = 0; i < images.count; i++) {
@@ -61,7 +68,6 @@
         //  Create the PDF
         NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
         path = [path stringByAppendingPathComponent:@"pdf.pdf"];
-        NSLog(@"%@", path);
         //UIGraphicsBeginPDFContextToData(pdfData, CGRectZero, nil);
         UIGraphicsBeginPDFContextToFile(path, CGRectZero, nil);
         for (UIImage *image in imagesWithRecognizedText) {
@@ -81,14 +87,17 @@
 + (void)recognizeTextOnImage:(UIImage *)image completion:(void (^)(UIImage *imageWithRecognizedText, NSArray *text, NSArray *rects))completion
 {
     //  Get the image properly oriented
-    UIImage *upOrientedImage = [SGUtility imageOrientedUpFromImage:image];
+    image = [SGUtility imageOrientedUpFromImage:image];
+    
+    //  Resize the image to fit a standard PDF
+    image = [SGUtility imageWithImage:image scaledToWidth:612.0f];
     
     //  Filter the image to get just the text
     GPUImageAdaptiveThresholdFilter *adaptiveThresholdFilter = [[GPUImageAdaptiveThresholdFilter alloc] init];
-    UIImage *blackWhiteImage = [adaptiveThresholdFilter imageByFilteringImage:upOrientedImage];
+    UIImage *filteredImage = [adaptiveThresholdFilter imageByFilteringImage:image];
     
     //  Create JSON
-    NSString *base64StringEncodedImage = [UIImagePNGRepresentation(blackWhiteImage) base64EncodedStringWithOptions:0];
+    NSString *base64StringEncodedImage = [UIImagePNGRepresentation(filteredImage) base64EncodedStringWithOptions:0];
     NSDictionary *jsonDictionary = @{@"imageData": base64StringEncodedImage};
     
     //  Make request
@@ -119,7 +128,7 @@
         NSMutableArray *rects = [NSMutableArray array];
         
         //  Draw the lines
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:upOrientedImage];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         NSMutableDictionary *recognizedRects = [NSMutableDictionary dictionary];
         for (NSDictionary *recognizedWord in jsonDictionary) {
             CGRect rect = [self rectForString:recognizedWord[@"box"]];
@@ -134,7 +143,7 @@
         }
         
         //  Flatten the lines into an image
-        UIGraphicsBeginImageContext(upOrientedImage.size);
+        UIGraphicsBeginImageContext(image.size);
         [imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
         UIImage *imageWithRecognizedText = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
