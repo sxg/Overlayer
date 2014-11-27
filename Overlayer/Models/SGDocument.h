@@ -13,18 +13,15 @@
 
 @property (readonly, strong, nonatomic) NSString *title;
 @property (readonly, strong, nonatomic) NSUUID *uuid;
-@property (readonly, strong, nonatomic) NSData *documentPDFData;
+@property (readonly, strong, nonatomic) NSData *pdfData;
 @property (readwrite, strong, nonatomic) NSURL *url;
 
 //  QLPreviewItem Protocol
 @property (readonly, strong) NSString *previewItemTitle;
 @property (readonly, strong) NSURL *previewItemURL;
 
-@property (readonly, assign, getter = isDrawingLines) BOOL drawingLines;
-@property (readonly, assign) CGFloat drawingLinesProgress;
++ (instancetype)loadFromURL:(NSURL *)url;
 
-- (instancetype)initWithImages:(NSArray *)images title:(NSString *)title;
-- (instancetype)initWithURL:(NSURL *)url;
-//- (void)drawLinesCompletion:(void (^)(UIImage *imageWithLines, NSString *recognizedText, NSDictionary *recognizedRects))completion;
+- (instancetype)initWithURL:(NSURL *)url pdfData:(NSData *)pdfData title:(NSString *)title;
 
 @end
