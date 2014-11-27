@@ -9,6 +9,6 @@
 
 @interface SGTextRecognizer : NSObject <NSURLSessionTaskDelegate>
 
-+ (void)recognizeTextOnImages:(NSArray *)images completion:(void (^)(NSData *pdfWithRecognizedText, NSString *recognizedText, NSDictionary *recognizedRects))completion;
++ (void)recognizeTextOnImages:(NSArray *)images completion:(void (^)(NSData *pdfWithRecognizedText, NSArray *recognizedText, NSArray *recognizedRects))completion;
 
 @end

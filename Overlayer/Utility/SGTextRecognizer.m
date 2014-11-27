@@ -28,34 +28,57 @@
 
 #pragma mark - Text Recognition
 
-+ (void)recognizeTextOnImages:(NSArray *)images completion:(void (^)(NSData *pdfWithRecognizedText, NSString *recognizedText, NSDictionary *recognizedRects))completion
++ (void)recognizeTextOnImages:(NSArray *)images completion:(void (^)(NSData *pdfWithRecognizedText, NSArray *recognizedText, NSArray *recognizedRects))completion
 {
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
     NSOperationQueue *q = [[NSOperationQueue alloc] init];
     q.maxConcurrentOperationCount = 1;
     
+    NSMutableArray *allText = [NSMutableArray arrayWithCapacity:images.count];
+    NSMutableArray *allRects = [NSMutableArray arrayWithCapacity:images.count];
+    NSMutableArray *imagesWithRecognizedText = [NSMutableArray array];
+    NSMutableData *pdfData = [NSMutableData data];
+    
+    //  Serially recognize text
     for (NSInteger i = 0; i < images.count; i++) {
         [q addOperationWithBlock:^{
-            [self recognizeTextOnImage:images[i] completion:^(UIImage *imageWithRecognizedText) {
-                NSLog(@"done %ld", (long)i);
+            [self recognizeTextOnImage:images[i] completion:^(UIImage *imageWithRecognizedText, NSArray *text, NSArray *rects) {
+                [imagesWithRecognizedText setObject:imageWithRecognizedText atIndexedSubscript:i];
+                [allText setObject:text atIndexedSubscript:i];
+                [allRects setObject:rects atIndexedSubscript:i];
+                
                 dispatch_semaphore_signal(sem);
             }];
         }];
     }
     
+    //  When done recognizing text call the completion block
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         for (NSInteger i = 0; i < images.count; i++) {
             dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
         }
+        
+        //  Create the PDF
+        NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+        path = [path stringByAppendingPathComponent:@"pdf.pdf"];
+        NSLog(@"%@", path);
+        //UIGraphicsBeginPDFContextToData(pdfData, CGRectZero, nil);
+        UIGraphicsBeginPDFContextToFile(path, CGRectZero, nil);
+        for (UIImage *image in imagesWithRecognizedText) {
+            UIGraphicsBeginPDFPage();
+            [image drawAtPoint:CGPointZero];
+        }
+        UIGraphicsEndPDFContext();
+        
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(nil, nil, nil);
+            completion(pdfData, allText, allRects);
         });
     });
 }
 
 #pragma mark - Helpers
 
-+ (void)recognizeTextOnImage:(UIImage *)image completion:(void (^)(UIImage *imageWithRecognizedText))completion
++ (void)recognizeTextOnImage:(UIImage *)image completion:(void (^)(UIImage *imageWithRecognizedText, NSArray *text, NSArray *rects))completion
 {
     //  Get the image properly oriented
     UIImage *upOrientedImage = [SGUtility imageOrientedUpFromImage:image];
@@ -91,17 +114,23 @@
             NSLog(@"%@", error2);
         }
         
+        //  Save the text and rects
+        NSMutableArray *text = [NSMutableArray array];
+        NSMutableArray *rects = [NSMutableArray array];
+        
         //  Draw the lines
         UIImageView *imageView = [[UIImageView alloc] initWithImage:upOrientedImage];
         NSMutableDictionary *recognizedRects = [NSMutableDictionary dictionary];
         for (NSDictionary *recognizedWord in jsonDictionary) {
             CGRect rect = [self rectForString:recognizedWord[@"box"]];
-            NSLog(@"%@", recognizedWord[@"box"]);
             NSValue *rectValue = [NSValue valueWithCGRect:rect];
             recognizedRects[rectValue] = recognizedWord[@"word"];
             
             SGDoubleStrikethroughView *view = [[SGDoubleStrikethroughView alloc] initWithFrame:rect word:recognizedWord[@"word"]];
             [imageView addSubview:view];
+            
+            [text addObject:recognizedWord[@"word"]];
+            [rects addObject:rectValue];
         }
         
         //  Flatten the lines into an image
@@ -113,7 +142,7 @@
         //  Return the important data in the completion block
         if (completion) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                completion(imageWithRecognizedText);
+                completion(imageWithRecognizedText, text, rects);
             });
         }
     }] resume];
