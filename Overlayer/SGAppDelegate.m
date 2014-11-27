@@ -33,7 +33,9 @@ NSString * const kSGFontAmoon = @"Amoon1";
     
     UIImage *image1 = [UIImage imageNamed:@"TestImage1"];
     UIImage *image2 = [UIImage imageNamed:@"TestImage2"];
-    [SGTextRecognizer recognizeTextOnImages:@[image1, image2] completion:^(NSData *pdfWithRecognizedText, NSString *recognizedText, NSDictionary *recognizedRects) {
+    image1 = [SGUtility imageWithImage:image1 scaledToWidth:968.0f];
+    image2 = [SGUtility imageWithImage:image2 scaledToWidth:968.0f];
+    [SGTextRecognizer recognizeTextOnImages:@[image1, image2] completion:^(NSData *pdfWithRecognizedText, NSArray *recognizedText, NSArray *recognizedRects) {
         NSLog(@"all done");
     }];
 
