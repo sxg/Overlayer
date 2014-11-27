@@ -8,27 +8,16 @@
 
 #import "SGDocument.h"
 
-//  Frameworks
-#import <StandardPaths/StandardPaths.h>
-
-//  Utilities
-#import "SGTextRecognizer.h"
-#import "SGDocumentManager.h"
-#import "SGUtility.h"
-
 
 @interface SGDocument ()
 
 @property (readwrite, strong, nonatomic) NSString *title;
 @property (readwrite, strong, nonatomic) NSUUID *uuid;
-@property (readwrite, strong, nonatomic) NSData *documentPDFData;
+@property (readwrite, strong, nonatomic) NSData *pdfData;
 
 //  QLPreviewItem Protocol
 @property (readwrite, strong, nonatomic) NSString *previewItemTitle;
 @property (readwrite, strong, nonatomic) NSURL *previewItemURL;
-
-@property (readwrite, assign, getter = isDrawingLines) BOOL drawingLines;
-@property (readwrite, assign) CGFloat drawingLinesProgress;
 
 @end
 
@@ -36,23 +25,20 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithImages:(NSArray *)images title:(NSString *)title
++ (instancetype)loadFromURL:(NSURL *)url
+{
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:[url absoluteString]];
+}
+
+- (instancetype)initWithURL:(NSURL *)url pdfData:(NSData *)pdfData title:(NSString *)title
 {
     self = [super init];
     if (self) {
         self.uuid = [[NSUUID alloc] init];
         self.title = title;
-        self.documentPDFData = [self pdfDataFromImages:images];
+        self.pdfData = pdfData;
+        self.url = url;
         self.previewItemTitle = self.title;
-    }
-    return self;
-}
-
-- (instancetype)initWithURL:(NSURL *)url
-{
-    self = [super init];
-    if (self) {
-        //  TODO
     }
     return self;
 }
@@ -73,6 +59,7 @@
     if (self) {
         self.title = [aDecoder decodeObjectForKey:@"title"];
         self.uuid = [aDecoder decodeObjectForKey:@"uuid"];
+        self.url = [aDecoder decodeObjectForKey:@"url"];
     }
     return self;
 }
@@ -81,28 +68,7 @@
 {
     [aCoder encodeObject:self.title forKey:@"title"];
     [aCoder encodeObject:self.uuid forKey:@"uuid"];
-}
-
-#pragma mark - Helpers
-
-- (NSData *)pdfDataFromImages:(NSArray *)images
-{
-    NSMutableData *pdfData = [NSMutableData data];
-    
-    CGSize pdfPageSize = ((UIImage *)images[0]).size;
-    CGRect pdfPageRect = CGRectMake(0, 0, pdfPageSize.width, pdfPageSize.height);
-    UIGraphicsBeginPDFContextToData(pdfData, pdfPageRect, nil);
-    CGContextRef pdfContext = UIGraphicsGetCurrentContext();
-    
-    for (UIImage *image in images) {
-        UIGraphicsBeginPDFPage();
-        
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-        [imageView.layer renderInContext:pdfContext];
-    }
-    
-    UIGraphicsEndPDFContext();
-    return pdfData;
+    [aCoder encodeObject:self.url forKey:@"url"];
 }
 
 @end

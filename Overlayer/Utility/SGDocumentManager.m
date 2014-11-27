@@ -31,7 +31,7 @@
         
         //  Write the document PDF data
         NSURL *documentPDFDataURL = [url URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf", document.title]];
-        if (![document.documentPDFData writeToFile:[documentPDFDataURL absoluteString] atomically:YES]) {
+        if (![document.pdfData writeToFile:[documentPDFDataURL absoluteString] atomically:YES]) {
             NSLog(@"Failed to save document: %@ to URL: %@", document, documentPDFDataURL);
             
             //  Write the archive

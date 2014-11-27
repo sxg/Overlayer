@@ -34,6 +34,7 @@
     NSOperationQueue *q = [[NSOperationQueue alloc] init];
     q.maxConcurrentOperationCount = 1;
     
+    //  Data containers
     NSMutableArray *allText = [NSMutableArray arrayWithCapacity:images.count];
     NSMutableArray *allRects = [NSMutableArray arrayWithCapacity:images.count];
     NSMutableArray *imagesWithRecognizedText = [NSMutableArray arrayWithCapacity:images.count];
