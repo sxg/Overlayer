@@ -33,8 +33,6 @@ NSString * const kSGFontAmoon = @"Amoon1";
     
     UIImage *image1 = [UIImage imageNamed:@"TestImage1"];
     UIImage *image2 = [UIImage imageNamed:@"TestImage2"];
-    image1 = [SGUtility imageWithImage:image1 scaledToWidth:968.0f];
-    image2 = [SGUtility imageWithImage:image2 scaledToWidth:968.0f];
     [SGTextRecognizer recognizeTextOnImages:@[image1, image2] completion:^(NSData *pdfWithRecognizedText, NSArray *recognizedText, NSArray *recognizedRects) {
         NSLog(@"all done");
     }];
@@ -52,13 +50,6 @@ NSString * const kSGFontAmoon = @"Amoon1";
 			image = [UIImage imageWithPDFURL:url atWidth:968.0f];
 		} else if ([pathExtension isEqualToString:@"png"] || [pathExtension isEqualToString:@"jpg"] || [pathExtension isEqualToString:@"jpeg"]) {
 			image = [[UIImage alloc] initWithContentsOfFile:[url path]];
-			CGFloat width;
-			if (image.size.width > 968.0f) {
-				width = 968.0f;
-			} else {
-				width = image.size.width;
-			}
-			image = [SGUtility imageWithImage:image scaledToWidth:968.0f];
 		}
 
 		if (image) {
