@@ -11,9 +11,17 @@
 
 @interface SGDocumentManager : NSObject
 
-+ (void)saveDocument:(SGDocument *)document atURL:(NSURL *)url;
-+ (void)destroyDocumentAtURL:(NSURL *)url completion:(void (^)(BOOL success))completion;
-+ (void)moveDocumentFromURL:(NSURL *)fromURL toURL:(NSURL *)toURL;
-+ (NSArray *)documentsAtURL:(NSURL *)url;
+@property (readonly, strong, nonatomic) NSURL *currentURL;
+
+- (void)moveToSubfolder:(NSString *)subfolderName;
+- (void)moveToParentFolder;
+- (void)createFolder:(NSString *)folderName;
+- (void)destroyFolder:(NSString *)folderName;
+
+- (void)saveDocument:(SGDocument *)document;
+- (void)destroyDocumentAtURL:(NSURL *)url;
+- (void)moveDocument:(SGDocument *)document;
+- (NSArray *)documents;
+- (NSArray *)folders;
 
 @end

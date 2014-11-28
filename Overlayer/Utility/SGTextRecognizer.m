@@ -67,10 +67,10 @@
         }
         
         //  Create the PDF
-        NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-        path = [path stringByAppendingPathComponent:@"pdf.pdf"];
-        //UIGraphicsBeginPDFContextToData(pdfData, CGRectZero, nil);
-        UIGraphicsBeginPDFContextToFile(path, CGRectZero, nil);
+//        NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+//        path = [path stringByAppendingPathComponent:@"pdf.pdf"];
+        UIGraphicsBeginPDFContextToData(pdfData, CGRectZero, nil);
+//        UIGraphicsBeginPDFContextToFile(path, CGRectZero, nil);
         for (UIImage *image in imagesWithRecognizedText) {
             UIGraphicsBeginPDFPage();
             [image drawAtPoint:CGPointZero];
