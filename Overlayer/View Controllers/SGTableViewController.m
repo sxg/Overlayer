@@ -63,12 +63,9 @@ static SGDocumentManager *_manager;
 {
     switch (editingStyle) {
         case UITableViewCellEditingStyleDelete: {
-//            NSURL *documentURL = [_currentURL URLByAppendingPathComponent:[SGDocumentManager documentsAtURL:_currentURL][indexPath.row]];
-//            [SGDocumentManager destroyDocumentAtURL:documentURL completion:^(BOOL success) {
-//                if (success) {
-//                    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-//                }
-//            }];
+            NSString *documentFolderName = [_manager documents][[[_manager folders] count] + indexPath.row];
+            [_manager destroyDocumentAtURL:[_manager.currentURL URLByAppendingPathComponent:documentFolderName isDirectory:YES]];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
         }
         case UITableViewCellEditingStyleInsert:
