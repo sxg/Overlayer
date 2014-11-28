@@ -36,14 +36,14 @@ static NSURL *_currentURL;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SGDocumentCell"];
-    cell.textLabel.text = [SGDocumentManager documentsAtURL:_currentURL][indexPath.row];
-    cell.textLabel.textColor = [UIColor whiteColor];
-    cell.textLabel.font = [UIFont fontWithName:kSGFontAmoon size:[UIFont labelFontSize]];
-    cell.backgroundColor = [UIColor clearColor];
-    cell.textLabel.highlightedTextColor = [UIColor blackColor];
-    if (cell.highlighted) {
-        cell.backgroundColor = [UIColor whiteColor];
-    }
+//    cell.textLabel.text = [SGDocumentManager documentsAtURL:_currentURL][indexPath.row];
+//    cell.textLabel.textColor = [UIColor whiteColor];
+//    cell.textLabel.font = [UIFont fontWithName:kSGFontAmoon size:[UIFont labelFontSize]];
+//    cell.backgroundColor = [UIColor clearColor];
+//    cell.textLabel.highlightedTextColor = [UIColor blackColor];
+//    if (cell.highlighted) {
+//        cell.backgroundColor = [UIColor whiteColor];
+//    }
     return cell;
 }
 
@@ -51,12 +51,12 @@ static NSURL *_currentURL;
 {
     switch (editingStyle) {
         case UITableViewCellEditingStyleDelete: {
-            NSURL *documentURL = [_currentURL URLByAppendingPathComponent:[SGDocumentManager documentsAtURL:_currentURL][indexPath.row]];
-            [SGDocumentManager destroyDocumentAtURL:documentURL completion:^(BOOL success) {
-                if (success) {
-                    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                }
-            }];
+//            NSURL *documentURL = [_currentURL URLByAppendingPathComponent:[SGDocumentManager documentsAtURL:_currentURL][indexPath.row]];
+//            [SGDocumentManager destroyDocumentAtURL:documentURL completion:^(BOOL success) {
+//                if (success) {
+//                    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//                }
+//            }];
             break;
         }
         case UITableViewCellEditingStyleInsert:

@@ -14,13 +14,13 @@
 @property (readonly, strong, nonatomic) NSString *title;
 @property (readonly, strong, nonatomic) NSUUID *uuid;
 @property (readonly, strong, nonatomic) NSData *pdfData;
-@property (readwrite, strong, nonatomic) NSURL *url;
+@property (readwrite, strong, nonatomic, setter=setURL:) NSURL *url;
 
 //  QLPreviewItem Protocol
 @property (readonly, strong) NSString *previewItemTitle;
 @property (readonly, strong) NSURL *previewItemURL;
 
-+ (instancetype)loadFromURL:(NSURL *)url;
++ (instancetype)documentWithContentsOfURL:(NSURL *)url;
 
 - (instancetype)initWithURL:(NSURL *)url pdfData:(NSData *)pdfData title:(NSString *)title;
 

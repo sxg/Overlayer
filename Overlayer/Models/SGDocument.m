@@ -12,7 +12,7 @@
 @interface SGDocument ()
 
 @property (readwrite, strong, nonatomic) NSString *title;
-@property (readwrite, strong, nonatomic) NSUUID *uuid;
+@property (readwrite, strong, nonatomic, setter=setUUID:) NSUUID *uuid;
 @property (readwrite, strong, nonatomic) NSData *pdfData;
 
 //  QLPreviewItem Protocol
@@ -25,9 +25,12 @@
 
 #pragma mark - Initialization
 
-+ (instancetype)loadFromURL:(NSURL *)url
++ (instancetype)documentWithContentsOfURL:(NSURL *)url
 {
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:[url absoluteString]];
+    NSURL *archiveURL = [url URLByAppendingPathComponent:@"archive"];
+    SGDocument *document = [NSKeyedUnarchiver unarchiveObjectWithFile:[archiveURL path]];
+    document.url = url;
+    return document;
 }
 
 - (instancetype)initWithURL:(NSURL *)url pdfData:(NSData *)pdfData title:(NSString *)title
@@ -45,10 +48,19 @@
 
 #pragma mark - Getters / Setters
 
-- (void)setUrl:(NSURL *)url
+- (void)setURL:(NSURL *)url
 {
     _url = url;
     self.previewItemURL = self.url;
+}
+
+- (NSData *)pdfData
+{
+    if (!_pdfData) {
+        NSURL *pdfDataURL = [[self.url URLByAppendingPathComponent:@"pdf"] URLByAppendingPathExtension:@"pdf"];
+        _pdfData = [NSData dataWithContentsOfFile:[pdfDataURL path]];
+    }
+    return _pdfData;
 }
 
 #pragma mark - NSCoding
@@ -59,7 +71,6 @@
     if (self) {
         self.title = [aDecoder decodeObjectForKey:@"title"];
         self.uuid = [aDecoder decodeObjectForKey:@"uuid"];
-        self.url = [aDecoder decodeObjectForKey:@"url"];
     }
     return self;
 }
@@ -68,7 +79,6 @@
 {
     [aCoder encodeObject:self.title forKey:@"title"];
     [aCoder encodeObject:self.uuid forKey:@"uuid"];
-    [aCoder encodeObject:self.url forKey:@"url"];
 }
 
 @end

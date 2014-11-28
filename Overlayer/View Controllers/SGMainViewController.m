@@ -189,20 +189,4 @@
 	return YES;
 }
 
-#pragma mark - KVO
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:@"drawingLines"]) {
-		//  If the currently selected document is no longer drawing lines
-		if (!self.currentDocument.isDrawingLines) {
-			//  Unregister KVO, hide the HUD, and show the document image with lines on it
-			[self.currentDocument removeObserver:self forKeyPath:@"drawingLines"];
-			[self.hud hide:YES];
-            
-            [self.webView loadRequest:[NSURLRequest requestWithURL:self.currentDocument.url]];
-		}
-	}
-}
-
 @end
