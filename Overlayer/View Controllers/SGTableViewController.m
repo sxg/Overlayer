@@ -8,7 +8,12 @@
 
 #import "SGTableViewController.h"
 #import "SGDocumentManager.h"
+#import "SGDocument.h"
 #import "SGAppDelegate.h"
+
+
+NSString *SGTableViewControllerDidSelectDocumentNotification = @"SGTableViewControllerDidSelectDocumentNotification";
+NSString *SGDocumentKey = @"SGDocumentKey";
 
 
 @implementation SGTableViewController
@@ -38,7 +43,9 @@ static SGDocumentManager *_manager;
     if (indexPath.row < [[_manager folders] count]) {
         cell.textLabel.text = [_manager folders][indexPath.row];
     } else {
-        cell.textLabel.text = [[_manager documents][[[_manager folders] count] + indexPath.row] title];
+        NSString *documentFolderName = [_manager documents][[[_manager folders] count] + indexPath.row];
+        SGDocument *document = [SGDocument documentWithContentsOfURL:[_manager.currentURL URLByAppendingPathComponent:documentFolderName isDirectory:YES]];
+        cell.textLabel.text = document.title;
     }
     
     cell.textLabel.textColor = [UIColor whiteColor];
@@ -69,6 +76,16 @@ static SGDocumentManager *_manager;
         default:
             break;
     }
+}
+
+#pragma mark - Table View Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *documentFolderName = [_manager documents][[[_manager folders] count] + indexPath.row];
+    SGDocument *document = [SGDocument documentWithContentsOfURL:[_manager.currentURL URLByAppendingPathComponent:documentFolderName isDirectory:YES]];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:SGTableViewControllerDidSelectDocumentNotification object:self userInfo:@{SGDocumentKey: document}];
 }
 
 @end

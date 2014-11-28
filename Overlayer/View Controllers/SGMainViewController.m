@@ -26,6 +26,9 @@
 #import "SGTextRecognizer.h"
 #import "SGDocumentManager.h"
 
+//  Controllers
+#import "SGTableViewController.h"
+
 
 @interface SGMainViewController ()
 
@@ -53,6 +56,13 @@
 	// Do any additional setup after loading the view.
 
 	self.displayingSidePane = YES;
+    
+    __block SGMainViewController *blockSelf = self;
+    [[NSNotificationCenter defaultCenter] addObserverForName:SGTableViewControllerDidSelectDocumentNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        blockSelf.currentDocument = note.userInfo[SGDocumentKey];
+        NSURLRequest *pdfURLRequest = [NSURLRequest requestWithURL:blockSelf.currentDocument.previewItemURL];
+        [blockSelf.webView loadRequest:pdfURLRequest];
+    }];
 
 	//  Set the default SGDocument if possible
 //	if ([SGDocumentManager documentsAtURL:<#(NSURL *)#>].count != 0) {

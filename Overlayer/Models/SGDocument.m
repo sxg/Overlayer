@@ -51,14 +51,13 @@
 - (void)setURL:(NSURL *)url
 {
     _url = url;
-    self.previewItemURL = self.url;
+    self.previewItemURL = [[self.url URLByAppendingPathComponent:@"pdf"] URLByAppendingPathExtension:@"pdf"];
 }
 
 - (NSData *)pdfData
 {
     if (!_pdfData) {
-        NSURL *pdfDataURL = [[self.url URLByAppendingPathComponent:@"pdf"] URLByAppendingPathExtension:@"pdf"];
-        _pdfData = [NSData dataWithContentsOfFile:[pdfDataURL path]];
+        _pdfData = [NSData dataWithContentsOfFile:[self.previewItemURL path]];
     }
     return _pdfData;
 }

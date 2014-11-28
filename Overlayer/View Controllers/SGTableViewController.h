@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Satyam Ghodasara. All rights reserved.
 //
 
+extern NSString *SGTableViewControllerDidSelectDocumentNotification;
+extern NSString *SGDocumentKey;
+
 
 @interface SGTableViewController : UITableViewController
 

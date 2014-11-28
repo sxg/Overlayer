@@ -16,13 +16,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I4x-ph-CDw">
+                                <rect key="frame" x="56" y="0.0" width="968" height="768"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wob-LE-Rgd" userLabel="Side Pane">
                                 <rect key="frame" x="0.0" y="0.0" width="250" height="768"/>
                                 <subviews>
-                                    <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I4x-ph-CDw">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </webView>
                                     <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xIu-9A-wy3" userLabel="Side Pane Background">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="768"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -78,9 +78,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="I4x-ph-CDw" firstAttribute="leading" secondItem="TkF-su-UVg" secondAttribute="leading" constant="56" id="2WT-VU-VYy"/>
                             <constraint firstItem="wob-LE-Rgd" firstAttribute="top" secondItem="TkF-su-UVg" secondAttribute="top" id="BzE-30-XXb"/>
+                            <constraint firstItem="I4x-ph-CDw" firstAttribute="top" secondItem="TkF-su-UVg" secondAttribute="top" id="CYt-sM-w6w"/>
                             <constraint firstItem="wob-LE-Rgd" firstAttribute="leading" secondItem="TkF-su-UVg" secondAttribute="leading" id="rO9-PI-RXT"/>
+                            <constraint firstItem="fmW-nT-jhI" firstAttribute="top" secondItem="I4x-ph-CDw" secondAttribute="bottom" id="rov-qh-bdB"/>
                             <constraint firstItem="fmW-nT-jhI" firstAttribute="top" secondItem="wob-LE-Rgd" secondAttribute="bottom" id="tru-rA-qEQ"/>
+                            <constraint firstAttribute="trailing" secondItem="I4x-ph-CDw" secondAttribute="trailing" id="vJO-4D-WuV"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
