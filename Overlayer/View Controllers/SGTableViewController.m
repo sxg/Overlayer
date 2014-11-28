@@ -13,11 +13,11 @@
 
 @implementation SGTableViewController
 
-static NSURL *_currentURL;
+static SGDocumentManager *_manager;
 
 + (void)initialize
 {
-    _currentURL = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    _manager = [[SGDocumentManager alloc] init];
 }
 
 #pragma mark - Table View Data Source
@@ -29,21 +29,26 @@ static NSURL *_currentURL;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
-//    return [[SGDocumentManager documentsAtURL:_currentURL] count];
+    return [[_manager folders] count] + [[_manager documents] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SGDocumentCell"];
-//    cell.textLabel.text = [SGDocumentManager documentsAtURL:_currentURL][indexPath.row];
-//    cell.textLabel.textColor = [UIColor whiteColor];
-//    cell.textLabel.font = [UIFont fontWithName:kSGFontAmoon size:[UIFont labelFontSize]];
-//    cell.backgroundColor = [UIColor clearColor];
-//    cell.textLabel.highlightedTextColor = [UIColor blackColor];
-//    if (cell.highlighted) {
-//        cell.backgroundColor = [UIColor whiteColor];
-//    }
+    if (indexPath.row < [[_manager folders] count]) {
+        cell.textLabel.text = [_manager folders][indexPath.row];
+    } else {
+        cell.textLabel.text = [[_manager documents][[[_manager folders] count] + indexPath.row] title];
+    }
+    
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.textLabel.font = [UIFont fontWithName:kSGFontAmoon size:[UIFont labelFontSize]];
+    cell.backgroundColor = [UIColor clearColor];
+    cell.textLabel.highlightedTextColor = [UIColor blackColor];
+    if (cell.highlighted) {
+        cell.backgroundColor = [UIColor whiteColor];
+    }
+    
     return cell;
 }
 
