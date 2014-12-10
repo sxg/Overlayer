@@ -54,17 +54,22 @@ NSString * const kSGFontAmoon = @"Amoon1";
 {
 	if ([url isFileURL]) {
 		//  Convert PDF files to PNG and set the image
-		NSString *pathExtension = [[url absoluteString] pathExtension];
-		UIImage *image;
+		NSString *pathExtension = [[url path] pathExtension];
+        NSMutableArray *images = [NSMutableArray array];
+        CGPDFDocumentRef pdfDocument = CGPDFDocumentCreateWithURL((CFURLRef)url);
 		if ([pathExtension isEqualToString:@"pdf"]) {
-			image = [UIImage imageWithPDFURL:url atWidth:968.0f];
+            for (NSInteger i = 1; i <= CGPDFDocumentGetNumberOfPages(pdfDocument); i++) {
+                //  Page starts at 1 not 0
+                UIImage *image = [UIImage imageWithPDFURL:url atWidth:968.0f atPage:(int)i];
+                [images addObject:image];
+            }
 		} else if ([pathExtension isEqualToString:@"png"] || [pathExtension isEqualToString:@"jpg"] || [pathExtension isEqualToString:@"jpeg"]) {
-			image = [[UIImage alloc] initWithContentsOfFile:[url path]];
+            [images addObject:[UIImage imageWithContentsOfFile:[url path]]];
 		}
 
-		if (image) {
+		if (images.count > 0) {
 			SGMainViewController *mainVC = (SGMainViewController *)self.window.rootViewController;
-			[mainVC createDocumentWithImage:image];
+			[mainVC createDocumentWithImages:images];
 			return YES;
 		}
 	}
