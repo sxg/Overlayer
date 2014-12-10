@@ -12,6 +12,6 @@
 
 @interface SGMainViewController : UIViewController <UIImagePickerControllerDelegate,  UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate, QLPreviewControllerDataSource, UIScrollViewDelegate>
 
-- (void)createDocumentWithImage:(UIImage *)image;
+- (void)createDocumentWithImages:(NSArray *)images;
 
 @end

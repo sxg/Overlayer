@@ -45,6 +45,7 @@
 @property (readwrite, strong, nonatomic) UIImage *lastImage;
 
 @property (readwrite, strong, nonatomic) SGDocument *currentDocument;
+@property (readwrite, strong, nonatomic) SGDocumentManager *manager;
 
 @end
 
@@ -56,6 +57,8 @@
 	// Do any additional setup after loading the view.
 
 	self.displayingSidePane = YES;
+    
+    self.manager = [[SGDocumentManager alloc] init];
     
     __block SGMainViewController *blockSelf = self;
     [[NSNotificationCenter defaultCenter] addObserverForName:SGTableViewControllerDidSelectDocumentNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
@@ -81,8 +84,13 @@
 	// Dispose of any resources that can be recreated.
 }
 
-- (void)createDocumentWithImage:(UIImage *)image
+- (void)createDocumentWithImages:(NSArray *)images
 {
+    __block SGMainViewController *blockSelf = self;
+    [SGTextRecognizer recognizeTextOnImages:images completion:^(NSData *pdfWithRecognizedText, NSArray *recognizedText, NSArray *recognizedRects) {
+        SGDocument *document = [[SGDocument alloc] initWithURL:blockSelf.manager.currentURL pdfData:pdfWithRecognizedText title:@"Import Test"];
+        [blockSelf.manager saveDocument:document];
+    }];
 //	self.imageView.image = image;
 //	self.lastImage = self.imageView.image;
 //
@@ -170,7 +178,11 @@
 {
 	[picker dismissViewControllerAnimated:YES completion:nil];
 	UIImage *image = [SGUtility imageWithImage:info[UIImagePickerControllerOriginalImage] scaledToWidth:968.0f];
-	[self createDocumentWithImage:image];
+    __block SGMainViewController *blockSelf = self;
+    [SGTextRecognizer recognizeTextOnImages:@[image] completion:^(NSData *pdfWithRecognizedText, NSArray *recognizedText, NSArray *recognizedRects) {
+        SGDocument *document = [[SGDocument alloc] initWithURL:blockSelf.manager.currentURL pdfData:pdfWithRecognizedText title:@"Test"];
+        [blockSelf.manager saveDocument:document];
+    }];
 }
 
 #pragma mark - UITextField Delegate

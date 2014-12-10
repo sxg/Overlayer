@@ -43,7 +43,7 @@
 
 - (void)moveToParentFolder
 {
-    //  If the currentr folder isn't the Documents directory, then move up to the parent folder
+    //  If the current folder isn't the Documents directory, then move up to the parent folder
     NSString *documentsDirectoryPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     if (![documentsDirectoryPath isEqualToString:[self.currentURL path]]) {
         self.currentURL = [self.currentURL URLByDeletingLastPathComponent];
@@ -128,6 +128,7 @@
     }
     [contents removeObjectsInArray:[self documents]];
     [contents removeObject:@".DS_Store"];
+    [contents removeObject:@"Inbox"];
     return contents;
 }
 
