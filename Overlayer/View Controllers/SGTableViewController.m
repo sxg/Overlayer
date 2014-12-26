@@ -57,6 +57,7 @@ NSString *SGDocumentNameKey = @"SGDocumentNameKey";
         blockSelf.theNewDocumentName = nil;
         blockSelf.isProcessing = NO;
         [blockSelf.processingDocumentCell.activityIndicatorView stopAnimating];
+        blockSelf.processingDocumentCell.userInteractionEnabled = YES;
         [blockSelf.tableView reloadData];
     }];
 }
@@ -80,6 +81,7 @@ NSString *SGDocumentNameKey = @"SGDocumentNameKey";
     if (self.isCreatingNewDocument && !self.didNameNewDocument && indexPath.row == [[self.manager contentsOfCurrentFolder] count]) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"SGNewDocumentCell"];
         [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+        cell.userInteractionEnabled = NO;
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"SGDocumentCell"];
         if (indexPath.row < [[self.manager contentsOfCurrentFolder] count]) {
@@ -87,6 +89,7 @@ NSString *SGDocumentNameKey = @"SGDocumentNameKey";
         } else {
             cell.textLabel.text = self.theNewDocumentName;
             self.processingDocumentCell = (SGDocumentCell *)cell;
+            self.processingDocumentCell.userInteractionEnabled = NO;
         }
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];
