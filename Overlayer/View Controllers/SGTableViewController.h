@@ -7,9 +7,12 @@
 //
 
 extern NSString *SGTableViewControllerDidSelectDocumentNotification;
+extern NSString *SGTableViewControllerDidNameNewDocumentNotification;
+
 extern NSString *SGDocumentKey;
+extern NSString *SGDocumentNameKey;
 
 
-@interface SGTableViewController : UITableViewController
+@interface SGTableViewController : UITableViewController <UITextFieldDelegate>
 
 @end

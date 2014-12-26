@@ -71,7 +71,8 @@
 - (void)saveDocument:(SGDocument *)document
 {
     //  Create the document directory
-    NSString *documentDirectoryName = [[document.uuid UUIDString] stringByAppendingPathExtension:@"overlayer"];
+//    NSString *documentDirectoryName = [[document.uuid UUIDString] stringByAppendingPathExtension:@"overlayer"];
+    NSString *documentDirectoryName = [document.title stringByAppendingPathExtension:@"overlayer"];
     NSURL *documentDirectoryURL = [self.currentURL URLByAppendingPathComponent:documentDirectoryName isDirectory:YES];
     NSError *err;
     [[NSFileManager defaultManager] createDirectoryAtURL:documentDirectoryURL withIntermediateDirectories:NO attributes:nil error:&err];
@@ -107,7 +108,46 @@
     [self saveDocument:document];
 }
 
-- (NSArray *)documents
+- (NSArray *)documentNames
+{
+    NSError *err;
+    NSMutableArray *contents = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self.currentURL path] error:&err] mutableCopy];
+     [contents filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSString *pathItem, NSDictionary *bindings) {
+        return [pathItem containsString:@".overlayer"];
+    }]];
+    if (err) {
+        NSLog(@"%@", err);
+    }
+    NSMutableArray *documents = [NSMutableArray array];
+    for (NSString *documentFolderName in contents) {
+        NSURL *documentURL = [self.currentURL URLByAppendingPathComponent:documentFolderName isDirectory:YES];
+        SGDocument *document = [SGDocument documentWithContentsOfURL:documentURL];
+        [documents addObject:document.title];
+    }
+    return documents;
+}
+
+- (NSArray *)folderNames
+{
+    NSError *err;
+    NSMutableArray *contents = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self.currentURL path] error:&err] mutableCopy];
+    if (err) {
+        NSLog(@"%@", err);
+    }
+    [contents filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSString *pathItem, NSDictionary *bindings) {
+        return ![pathItem containsString:@".overlayer"];
+    }]];
+    [contents removeObject:@".DS_Store"];
+    [contents removeObject:@"Inbox"];
+    return contents;
+}
+
+- (NSArray *)contentsOfCurrentFolder
+{
+    return [[self folderNames] arrayByAddingObjectsFromArray:[self documentNames]];
+}
+
+- (NSArray *)documentFolderNames
 {
     NSError *err;
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self.currentURL path] error:&err];
@@ -115,21 +155,8 @@
         NSLog(@"%@", err);
     }
     return [contents filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSString *pathItem, NSDictionary *bindings) {
-        return [pathItem containsString:@".overlayer"] ? YES : NO;
+        return [pathItem containsString:@".overlayer"];
     }]];
-}
-
-- (NSArray *)folders
-{
-    NSError *err;
-    NSMutableArray *contents = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self.currentURL path] error:&err] mutableCopy];
-    if (err) {
-        NSLog(@"%@", err);
-    }
-    [contents removeObjectsInArray:[self documents]];
-    [contents removeObject:@".DS_Store"];
-    [contents removeObject:@"Inbox"];
-    return contents;
 }
 
 @end
