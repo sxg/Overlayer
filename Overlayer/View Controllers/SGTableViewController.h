@@ -13,6 +13,7 @@ extern NSString *SGTableViewControllerDidNameNewFolderNotification;
 extern NSString *SGDocumentKey;
 extern NSString *SGDocumentNameKey;
 extern NSString *SGFolderNameKey;
+extern NSString *SGURLKey;
 
 
 @interface SGTableViewController : UITableViewController <UITextFieldDelegate>

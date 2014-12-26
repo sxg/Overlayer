@@ -54,6 +54,7 @@ NSString *SGMainViewControllerDidFinishCreatingFolderNotification = @"SGMainView
 @property (readwrite, strong, nonatomic) SGDocumentManager *manager;
 
 @property (readwrite, strong, nonatomic) NSString *theNewDocumentName;
+@property (readwrite, strong, nonatomic) NSURL *saveURL;
 
 @end
 
@@ -76,6 +77,7 @@ NSString *SGMainViewControllerDidFinishCreatingFolderNotification = @"SGMainView
     }];
     [[NSNotificationCenter defaultCenter] addObserverForName:SGTableViewControllerDidNameNewDocumentNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         blockSelf.theNewDocumentName = note.userInfo[SGDocumentNameKey];
+        blockSelf.saveURL = note.userInfo[SGURLKey];
 		UIImagePickerController *picker = [[UIImagePickerController alloc] init];
 		picker.delegate = blockSelf;
 		picker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -187,7 +189,8 @@ NSString *SGMainViewControllerDidFinishCreatingFolderNotification = @"SGMainView
     __block SGMainViewController *blockSelf = self;
     [SGTextRecognizer recognizeTextOnImages:@[image] completion:^(NSData *pdfWithRecognizedText, NSArray *recognizedText, NSArray *recognizedRects) {
         SGDocument *document = [[SGDocument alloc] initWithURL:blockSelf.manager.currentURL pdfData:pdfWithRecognizedText title:blockSelf.theNewDocumentName];
-        [blockSelf.manager saveDocument:document];
+        [blockSelf.manager saveDocument:document atURL:blockSelf.saveURL];
+        blockSelf.saveURL = nil;
         [[NSNotificationCenter defaultCenter] postNotificationName:SGMainViewControllerDidFinishCreatingDocumentNotification object:nil];
     }];
 }

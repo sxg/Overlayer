@@ -19,6 +19,7 @@
 - (void)destroyFolder:(NSString *)folderName;
 
 - (void)saveDocument:(SGDocument *)document;
+- (void)saveDocument:(SGDocument *)document atURL:(NSURL *)url;
 - (void)destroyDocumentAtURL:(NSURL *)url;
 - (void)moveDocument:(SGDocument *)document;
 
