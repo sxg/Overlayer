@@ -31,7 +31,7 @@
                                                 <rect key="frame" x="194" y="663" width="56" height="30"/>
                                                 <state key="normal" image="PDFButton"/>
                                                 <connections>
-                                                    <action selector="didTapCameraButton:" destination="tyv-HM-mie" eventType="touchUpInside" id="EZF-Pc-dyo"/>
+                                                    <action selector="didTapNewFolderButton:" destination="tyv-HM-mie" eventType="touchUpInside" id="Gnh-at-Tkd"/>
                                                 </connections>
                                             </button>
                                         </subviews>

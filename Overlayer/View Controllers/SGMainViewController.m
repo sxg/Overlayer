@@ -33,6 +33,8 @@
 NSString *SGMainViewControllerDidTapNewDocumentButtonNotification = @"SGMainViewControllerDidTapNewDocumentButtonNotification";
 NSString *SGMainViewControllerDidStartCreatingDocumentNotification = @"SGMainViewControllerDidStartCreatingDocumentNotification";
 NSString *SGMainViewControllerDidFinishCreatingDocumentNotification = @"SGMainViewControllerDidFinishCreatingDocumentNotification";
+NSString *SGMainViewControllerDidTapNewFolderButtonNotification = @"SGMainViewControllerDidTapNewFolderButtonNotification";
+NSString *SGMainViewControllerDidFinishCreatingFolderNotification = @"SGMainViewControllerDidFinishCreatingFolderNotification";
 
 @interface SGMainViewController ()
 
@@ -79,6 +81,10 @@ NSString *SGMainViewControllerDidFinishCreatingDocumentNotification = @"SGMainVi
 		picker.sourceType = UIImagePickerControllerSourceTypeCamera;
 		[blockSelf presentViewController:picker animated:YES completion:nil];
     }];
+    [[NSNotificationCenter defaultCenter] addObserverForName:SGTableViewControllerDidNameNewFolderNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        [blockSelf.manager createFolder:note.userInfo[SGFolderNameKey]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SGMainViewControllerDidFinishCreatingFolderNotification object:nil];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -95,15 +101,6 @@ NSString *SGMainViewControllerDidFinishCreatingDocumentNotification = @"SGMainVi
         [blockSelf.manager saveDocument:document];
         [[NSNotificationCenter defaultCenter] postNotificationName:SGMainViewControllerDidFinishCreatingDocumentNotification object:nil];
     }];
-//	self.imageView.image = image;
-//	self.lastImage = self.imageView.image;
-//
-//	//  Show the document title prompt
-//	self.documentTitlePromptView = [[NSBundle mainBundle] loadNibNamed:@"SGDocumentTitlePromptView" owner:nil options:nil][0];
-//	[self.documentTitlePromptView setFrame:CGRectMake(362.0f, 127.0f, 300.0f, 130.0f)];
-//	self.documentTitlePromptView.titleTextField.delegate = self;
-//	[self.documentTitlePromptView.titleTextField becomeFirstResponder];
-//	[self.view addSubview:self.documentTitlePromptView];
 }
 
 #pragma mark - UI Actions
@@ -140,6 +137,11 @@ NSString *SGMainViewControllerDidFinishCreatingDocumentNotification = @"SGMainVi
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Camera" message:@"This device doesn't have a camera available to use." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
 		[alert show];
 	}
+}
+
+- (IBAction)didTapNewFolderButton:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:SGMainViewControllerDidTapNewFolderButtonNotification object:nil];
 }
 
 - (IBAction)didTapPDFButton:(id)sender
