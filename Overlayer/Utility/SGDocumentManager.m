@@ -92,6 +92,14 @@
     }
 }
 
+- (void)saveDocument:(SGDocument *)document atURL:(NSURL *)url
+{
+    NSURL *currentURL = self.currentURL;
+    self.currentURL = url;
+    [self saveDocument:document];
+    self.currentURL = currentURL;
+}
+
 - (void)destroyDocumentAtURL:(NSURL *)url
 {
     NSError *err;

@@ -22,6 +22,7 @@ NSString *SGTableViewControllerDidNameNewFolderNotification = @"SGTableViewContr
 NSString *SGDocumentKey = @"SGDocumentKey";
 NSString *SGDocumentNameKey = @"SGDocumentNameKey";
 NSString *SGFolderNameKey = @"SGFolderNameKey";
+NSString *SGURLKey = @"SGURLKey";
 
 @interface SGTableViewController ()
 
@@ -140,16 +141,22 @@ NSString *SGFolderNameKey = @"SGFolderNameKey";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *documentFolderName;
-    if (indexPath.row >= [self tableView:tableView numberOfRowsInSection:indexPath.section]) {
-        documentFolderName = self.theNewDocumentName;
+    if (indexPath.row < [[self.manager folderNames] count]) {
+        NSString *subfolderName = [self.manager folderNames][indexPath.row];
+        [self.manager moveToSubfolder:subfolderName];
+        [self.tableView reloadData];
     } else {
-        documentFolderName = [self.manager contentsOfCurrentFolder][indexPath.row];
+        NSString *documentFolderName;
+        if (indexPath.row >= [self tableView:tableView numberOfRowsInSection:indexPath.section]) {
+            documentFolderName = self.theNewDocumentName;
+        } else {
+            documentFolderName = [self.manager contentsOfCurrentFolder][indexPath.row];
+        }
+        documentFolderName = [documentFolderName stringByAppendingString:@".overlayer"];
+        SGDocument *document = [SGDocument documentWithContentsOfURL:[self.manager.currentURL URLByAppendingPathComponent:documentFolderName isDirectory:YES]];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:SGTableViewControllerDidSelectDocumentNotification object:self userInfo:@{SGDocumentKey: document}];
     }
-    documentFolderName = [documentFolderName stringByAppendingString:@".overlayer"];
-    SGDocument *document = [SGDocument documentWithContentsOfURL:[self.manager.currentURL URLByAppendingPathComponent:documentFolderName isDirectory:YES]];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:SGTableViewControllerDidSelectDocumentNotification object:self userInfo:@{SGDocumentKey: document}];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -171,10 +178,10 @@ NSString *SGFolderNameKey = @"SGFolderNameKey";
         self.isCreatingNewDocument = YES;
         self.theNewDocumentName = textField.text;
         [self.tableView reloadData];
-        [[NSNotificationCenter defaultCenter] postNotificationName:SGTableViewControllerDidNameNewDocumentNotification object:nil userInfo:@{SGDocumentNameKey: textField.text}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SGTableViewControllerDidNameNewDocumentNotification object:nil userInfo:@{SGDocumentNameKey: textField.text, SGURLKey: self.manager.currentURL}];
     } else if (self.isCreatingNewFolder) {
         self.isCreatingNewFolder = NO;
-        [[NSNotificationCenter defaultCenter] postNotificationName:SGTableViewControllerDidNameNewFolderNotification object:nil userInfo:@{SGFolderNameKey: textField.text}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SGTableViewControllerDidNameNewFolderNotification object:nil userInfo:@{SGFolderNameKey: textField.text, SGURLKey: self.manager.currentURL}];
     }
     return YES;
 }
