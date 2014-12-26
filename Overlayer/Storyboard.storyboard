@@ -26,6 +26,15 @@
                                 <subviews>
                                     <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xIu-9A-wy3" userLabel="Side Pane Background">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="768"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRP-uX-eTk" userLabel="Add Button">
+                                                <rect key="frame" x="194" y="663" width="56" height="30"/>
+                                                <state key="normal" image="PDFButton"/>
+                                                <connections>
+                                                    <action selector="didTapCameraButton:" destination="tyv-HM-mie" eventType="touchUpInside" id="EZF-Pc-dyo"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jf0-UI-8fd">
@@ -173,6 +182,7 @@
     <resources>
         <image name="AddButton" width="56" height="30"/>
         <image name="Chevron" width="42" height="134"/>
+        <image name="PDFButton" width="56" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

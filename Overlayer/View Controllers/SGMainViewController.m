@@ -79,16 +79,6 @@ NSString *SGMainViewControllerDidFinishCreatingDocumentNotification = @"SGMainVi
 		picker.sourceType = UIImagePickerControllerSourceTypeCamera;
 		[blockSelf presentViewController:picker animated:YES completion:nil];
     }];
-
-	//  Set the default SGDocument if possible
-//	if ([SGDocumentManager documentsAtURL:<#(NSURL *)#>].count != 0) {
-//		SGDocument *firstDocument = [[SGDocumentManager sharedManager] documents][0];
-//		self.currentDocument = firstDocument;
-//		self.imageView.image = firstDocument.documentImage;
-//		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//		[self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-//		[self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
-//	}
 }
 
 - (void)didReceiveMemoryWarning
@@ -207,22 +197,7 @@ NSString *SGMainViewControllerDidFinishCreatingDocumentNotification = @"SGMainVi
 	if (self.documentTitlePromptView.titleTextField == textField) {
 		[textField endEditing:YES];
 		[self.documentTitlePromptView removeFromSuperview];
-
-		//  When the document title prompt view's text field returns, create a new document
-//        __block SGMainViewController *blockSelf = self;
-//        [SGTextRecognizer recognizeTextOnImage:self.lastImage completion:^(UIImage *imageWithLines, NSString *recognizedText, NSDictionary *recognizedRects) {
-//            
-//            SGDocument *document = [[SGDocument alloc] initWithImages:@[blockSelf.lastImage] title:textField.text];
-//            [SGDocumentManager saveDocument:document atURL:<#(NSURL *)#>]
-//            
-//            //  Insert the new document into the table and select it with the delegate method (selectRowAtIndexPath:animated:scrollPosition: doesn't inform the delegate for some reason)
-//            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([[SGDocumentManager sharedManager] documents].count - 1) inSection:0];
-//            [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-//            [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-//            [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
-//        }];
 	}
-
 	return YES;
 }
 
