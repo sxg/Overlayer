@@ -17,17 +17,20 @@
 
 NSString *SGTableViewControllerDidSelectDocumentNotification = @"SGTableViewControllerDidSelectDocumentNotification";
 NSString *SGTableViewControllerDidNameNewDocumentNotification = @"SGTableViewControllerDidNameNewDocumentNotification";
+NSString *SGTableViewControllerDidNameNewFolderNotification = @"SGTableViewControllerDidNameNewFolderNotification";
 
 NSString *SGDocumentKey = @"SGDocumentKey";
 NSString *SGDocumentNameKey = @"SGDocumentNameKey";
+NSString *SGFolderNameKey = @"SGFolderNameKey";
 
 @interface SGTableViewController ()
 
 @property (readwrite, strong, nonatomic) SGDocumentManager *manager;
 @property (readwrite, assign) BOOL isCreatingNewDocument;
+@property (readwrite, assign) BOOL isCreatingNewFolder;
 @property (readwrite, assign) BOOL didNameNewDocument;
 @property (readwrite, strong, nonatomic) NSString *theNewDocumentName;
-@property (readwrite, assign) BOOL isProcessing;
+@property (readwrite, assign) BOOL didTextFieldReturn;
 @property (readwrite, weak, nonatomic) SGDocumentCell *processingDocumentCell;
 
 @end
@@ -40,7 +43,7 @@ NSString *SGDocumentNameKey = @"SGDocumentNameKey";
     self.isCreatingNewDocument = NO;
     self.didNameNewDocument = NO;
     self.theNewDocumentName = nil;
-    self.isProcessing = NO;
+    self.didTextFieldReturn = NO;
     
     __block SGTableViewController *blockSelf = self;
     [[NSNotificationCenter defaultCenter] addObserverForName:SGMainViewControllerDidTapNewDocumentButtonNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
@@ -55,9 +58,18 @@ NSString *SGDocumentNameKey = @"SGDocumentNameKey";
         blockSelf.isCreatingNewDocument = NO;
         blockSelf.didNameNewDocument = NO;
         blockSelf.theNewDocumentName = nil;
-        blockSelf.isProcessing = NO;
+        blockSelf.didTextFieldReturn = NO;
         [blockSelf.processingDocumentCell.activityIndicatorView stopAnimating];
         blockSelf.processingDocumentCell.userInteractionEnabled = YES;
+        [blockSelf.tableView reloadData];
+    }];
+    [[NSNotificationCenter defaultCenter] addObserverForName:SGMainViewControllerDidTapNewFolderButtonNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        blockSelf.isCreatingNewFolder = YES;
+        [blockSelf.tableView reloadData];
+    }];
+    [[NSNotificationCenter defaultCenter] addObserverForName:SGMainViewControllerDidFinishCreatingFolderNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        blockSelf.isCreatingNewFolder = NO;
+        blockSelf.didTextFieldReturn = NO;
         [blockSelf.tableView reloadData];
     }];
 }
@@ -71,14 +83,14 @@ NSString *SGDocumentNameKey = @"SGDocumentNameKey";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger newCellCount = self.isCreatingNewDocument ? 1 : 0;
+    NSInteger newCellCount = (self.isCreatingNewDocument || self.isCreatingNewFolder) ? 1 : 0;
     return [[self.manager contentsOfCurrentFolder] count] + newCellCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
-    if (self.isCreatingNewDocument && !self.didNameNewDocument && indexPath.row == [[self.manager contentsOfCurrentFolder] count]) {
+    if (((self.isCreatingNewDocument && !self.didNameNewDocument) || self.isCreatingNewFolder) && indexPath.row == [[self.manager contentsOfCurrentFolder] count]) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"SGNewDocumentCell"];
         [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
         cell.userInteractionEnabled = NO;
@@ -134,7 +146,7 @@ NSString *SGDocumentNameKey = @"SGDocumentNameKey";
     } else {
         documentFolderName = [self.manager contentsOfCurrentFolder][indexPath.row];
     }
-    documentFolderName = [self.manager documentFolderNames][indexPath.row];
+    documentFolderName = [documentFolderName stringByAppendingString:@".overlayer"];
     SGDocument *document = [SGDocument documentWithContentsOfURL:[self.manager.currentURL URLByAppendingPathComponent:documentFolderName isDirectory:YES]];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:SGTableViewControllerDidSelectDocumentNotification object:self userInfo:@{SGDocumentKey: document}];
@@ -142,7 +154,7 @@ NSString *SGDocumentNameKey = @"SGDocumentNameKey";
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.isCreatingNewDocument && !self.didNameNewDocument && indexPath.row == [[self.manager contentsOfCurrentFolder] count]) {
+    if (((self.isCreatingNewDocument && !self.didNameNewDocument) || self.isCreatingNewFolder) && indexPath.row == [[self.manager contentsOfCurrentFolder] count]) {
         ((SGNewDocumentCell *)cell).textField.text = nil;
         ((SGNewDocumentCell *)cell).textField.delegate = self;
         [((SGNewDocumentCell *)cell).textField becomeFirstResponder];
@@ -153,20 +165,26 @@ NSString *SGDocumentNameKey = @"SGDocumentNameKey";
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    self.isProcessing = YES;
-    self.didNameNewDocument = YES;
-    self.isCreatingNewDocument = YES;
-    self.theNewDocumentName = textField.text;
-    [self.tableView reloadData];
-    [[NSNotificationCenter defaultCenter] postNotificationName:SGTableViewControllerDidNameNewDocumentNotification object:nil userInfo:@{SGDocumentNameKey: textField.text}];
+    self.didTextFieldReturn = YES;
+    if (self.isCreatingNewDocument) {
+        self.didNameNewDocument = YES;
+        self.isCreatingNewDocument = YES;
+        self.theNewDocumentName = textField.text;
+        [self.tableView reloadData];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SGTableViewControllerDidNameNewDocumentNotification object:nil userInfo:@{SGDocumentNameKey: textField.text}];
+    } else if (self.isCreatingNewFolder) {
+        self.isCreatingNewFolder = NO;
+        [[NSNotificationCenter defaultCenter] postNotificationName:SGTableViewControllerDidNameNewFolderNotification object:nil userInfo:@{SGFolderNameKey: textField.text}];
+    }
     return YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if (!self.isProcessing) {
+    if (!self.didTextFieldReturn) {
         self.didNameNewDocument = NO;
         self.isCreatingNewDocument = NO;
+        self.isCreatingNewFolder = NO;
         self.theNewDocumentName = nil;
         [self.tableView reloadData];
     }

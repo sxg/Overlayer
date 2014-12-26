@@ -12,6 +12,8 @@
 extern NSString *SGMainViewControllerDidTapNewDocumentButtonNotification;
 extern NSString *SGMainViewControllerDidStartCreatingDocumentNotification;
 extern NSString *SGMainViewControllerDidFinishCreatingDocumentNotification;
+extern NSString *SGMainViewControllerDidTapNewFolderButtonNotification;
+extern NSString *SGMainViewControllerDidFinishCreatingFolderNotification;
 
 
 @interface SGMainViewController : UIViewController <UIImagePickerControllerDelegate,  UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate, QLPreviewControllerDataSource, UIScrollViewDelegate>
