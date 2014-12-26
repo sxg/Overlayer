@@ -10,6 +10,7 @@
 #import <QuickLook/QuickLook.h>
 
 extern NSString *SGMainViewControllerDidTapNewDocumentButtonNotification;
+extern NSString *SGMainViewControllerDidStartCreatingDocumentNotification;
 extern NSString *SGMainViewControllerDidFinishCreatingDocumentNotification;
 
 

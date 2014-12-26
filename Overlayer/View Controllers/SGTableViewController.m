@@ -8,6 +8,7 @@
 
 #import "SGTableViewController.h"
 #import "SGMainViewController.h"
+#import "SGDocumentCell.h"
 #import "SGNewDocumentCell.h"
 #import "SGDocumentManager.h"
 #import "SGDocument.h"
@@ -27,6 +28,7 @@ NSString *SGDocumentNameKey = @"SGDocumentNameKey";
 @property (readwrite, assign) BOOL didNameNewDocument;
 @property (readwrite, strong, nonatomic) NSString *theNewDocumentName;
 @property (readwrite, assign) BOOL isProcessing;
+@property (readwrite, weak, nonatomic) SGDocumentCell *processingDocumentCell;
 
 @end
 
@@ -45,11 +47,16 @@ NSString *SGDocumentNameKey = @"SGDocumentNameKey";
         blockSelf.isCreatingNewDocument = YES;
         [blockSelf.tableView reloadData];
     }];
+    [[NSNotificationCenter defaultCenter] addObserverForName:SGMainViewControllerDidStartCreatingDocumentNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        blockSelf.processingDocumentCell.activityIndicatorView.hidden = NO;
+        [blockSelf.processingDocumentCell.activityIndicatorView startAnimating];
+    }];
     [[NSNotificationCenter defaultCenter] addObserverForName:SGMainViewControllerDidFinishCreatingDocumentNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         blockSelf.isCreatingNewDocument = NO;
         blockSelf.didNameNewDocument = NO;
         blockSelf.theNewDocumentName = nil;
         blockSelf.isProcessing = NO;
+        [blockSelf.processingDocumentCell.activityIndicatorView stopAnimating];
         [blockSelf.tableView reloadData];
     }];
 }
@@ -79,6 +86,7 @@ NSString *SGDocumentNameKey = @"SGDocumentNameKey";
             cell.textLabel.text = [self.manager contentsOfCurrentFolder][indexPath.row];
         } else {
             cell.textLabel.text = self.theNewDocumentName;
+            self.processingDocumentCell = (SGDocumentCell *)cell;
         }
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];
@@ -106,6 +114,11 @@ NSString *SGDocumentNameKey = @"SGDocumentNameKey";
         default:
             break;
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
 }
 
 #pragma mark - Table View Delegate

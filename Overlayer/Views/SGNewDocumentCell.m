@@ -11,14 +11,4 @@
 
 @implementation SGNewDocumentCell
 
-- (BOOL)canBecomeFirstResponder
-{
-    return YES;
-}
-
-- (BOOL)becomeFirstResponder
-{
-    return [self.textField becomeFirstResponder];
-}
-
 @end
