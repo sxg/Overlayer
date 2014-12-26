@@ -31,6 +31,7 @@
 
 
 NSString *SGMainViewControllerDidTapNewDocumentButtonNotification = @"SGMainViewControllerDidTapNewDocumentButtonNotification";
+NSString *SGMainViewControllerDidStartCreatingDocumentNotification = @"SGMainViewControllerDidStartCreatingDocumentNotification";
 NSString *SGMainViewControllerDidFinishCreatingDocumentNotification = @"SGMainViewControllerDidFinishCreatingDocumentNotification";
 
 @interface SGMainViewController ()
@@ -187,6 +188,9 @@ NSString *SGMainViewControllerDidFinishCreatingDocumentNotification = @"SGMainVi
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
 	[picker dismissViewControllerAnimated:YES completion:nil];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:SGMainViewControllerDidStartCreatingDocumentNotification object:nil];
+    
 	UIImage *image = [SGUtility imageWithImage:info[UIImagePickerControllerOriginalImage] scaledToWidth:968.0f];
     __block SGMainViewController *blockSelf = self;
     [SGTextRecognizer recognizeTextOnImages:@[image] completion:^(NSData *pdfWithRecognizedText, NSArray *recognizedText, NSArray *recognizedRects) {

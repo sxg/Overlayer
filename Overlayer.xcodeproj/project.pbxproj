@@ -34,6 +34,7 @@
 		4AEAFA2418F63DB000A20350 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AEAFA2318F63DB000A20350 /* Storyboard.storyboard */; };
 		4AEAFA2818F63F4D00A20350 /* SGMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAFA2718F63F4D00A20350 /* SGMainViewController.m */; };
 		B6C9478A8462406B9FB5D3A2 /* libPods-Overlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFFD3DE30FB04AF6841F8A45 /* libPods-Overlayer.a */; };
+		D4277A6A1A4D15D60002A7DE /* SGDocumentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4277A691A4D15D60002A7DE /* SGDocumentCell.m */; };
 		D460D0901A1AFF73009FBEE4 /* SGTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D460D08F1A1AFF73009FBEE4 /* SGTableViewController.m */; };
 		D48125D01A37EF19009383E8 /* SGNewDocumentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D48125CF1A37EF19009383E8 /* SGNewDocumentCell.m */; };
 /* End PBXBuildFile section */
@@ -88,6 +89,8 @@
 		4AEAFA2618F63F4D00A20350 /* SGMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGMainViewController.h; path = "View Controllers/SGMainViewController.h"; sourceTree = "<group>"; };
 		4AEAFA2718F63F4D00A20350 /* SGMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGMainViewController.m; path = "View Controllers/SGMainViewController.m"; sourceTree = "<group>"; };
 		90CE2D251E7C944BFF84C7CB /* Pods-Overlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Overlayer/Pods-Overlayer.debug.xcconfig"; sourceTree = "<group>"; };
+		D4277A681A4D15D60002A7DE /* SGDocumentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGDocumentCell.h; path = Views/SGDocumentCell.h; sourceTree = "<group>"; };
+		D4277A691A4D15D60002A7DE /* SGDocumentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGDocumentCell.m; path = Views/SGDocumentCell.m; sourceTree = "<group>"; };
 		D460D08E1A1AFF73009FBEE4 /* SGTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGTableViewController.h; path = "View Controllers/SGTableViewController.h"; sourceTree = "<group>"; };
 		D460D08F1A1AFF73009FBEE4 /* SGTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGTableViewController.m; path = "View Controllers/SGTableViewController.m"; sourceTree = "<group>"; };
 		D48125CE1A37EF19009383E8 /* SGNewDocumentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGNewDocumentCell.h; path = Views/SGNewDocumentCell.h; sourceTree = "<group>"; };
@@ -129,6 +132,8 @@
 			children = (
 				4A5690A21905D85F00A1E1EE /* Document Title Prompt Modal */,
 				4A5690A11905D85500A1E1EE /* Double Strikethrough View */,
+				D4277A681A4D15D60002A7DE /* SGDocumentCell.h */,
+				D4277A691A4D15D60002A7DE /* SGDocumentCell.m */,
 				D48125CE1A37EF19009383E8 /* SGNewDocumentCell.h */,
 				D48125CF1A37EF19009383E8 /* SGNewDocumentCell.m */,
 			);
@@ -464,6 +469,7 @@
 				4AE86A4318F638FA0022E006 /* SGAppDelegate.m in Sources */,
 				4AE86A3F18F638FA0022E006 /* main.m in Sources */,
 				D48125D01A37EF19009383E8 /* SGNewDocumentCell.m in Sources */,
+				D4277A6A1A4D15D60002A7DE /* SGDocumentCell.m in Sources */,
 				4A56909D1905B5EC00A1E1EE /* SGDocument.m in Sources */,
 				4AEAFA2218F63D8700A20350 /* SGTextRecognizer.m in Sources */,
 				4A6D672518F7858500BC82F7 /* SGUtility.m in Sources */,
