@@ -21,7 +21,10 @@
 - (void)saveDocument:(SGDocument *)document;
 - (void)destroyDocumentAtURL:(NSURL *)url;
 - (void)moveDocument:(SGDocument *)document;
-- (NSArray *)documents;
-- (NSArray *)folders;
+
+- (NSArray *)documentNames;
+- (NSArray *)folderNames;
+- (NSArray *)contentsOfCurrentFolder;
+- (NSArray *)documentFolderNames;
 
 @end

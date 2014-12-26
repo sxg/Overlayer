@@ -30,6 +30,9 @@
 #import "SGTableViewController.h"
 
 
+NSString *SGMainViewControllerDidTapNewDocumentButtonNotification = @"SGMainViewControllerDidTapNewDocumentButtonNotification";
+NSString *SGMainViewControllerDidFinishCreatingDocumentNotification = @"SGMainViewControllerDidFinishCreatingDocumentNotification";
+
 @interface SGMainViewController ()
 
 @property (readwrite, weak, nonatomic) IBOutlet UIWebView *webView;
@@ -46,6 +49,8 @@
 
 @property (readwrite, strong, nonatomic) SGDocument *currentDocument;
 @property (readwrite, strong, nonatomic) SGDocumentManager *manager;
+
+@property (readwrite, strong, nonatomic) NSString *theNewDocumentName;
 
 @end
 
@@ -65,6 +70,13 @@
         blockSelf.currentDocument = note.userInfo[SGDocumentKey];
         NSURLRequest *pdfURLRequest = [NSURLRequest requestWithURL:blockSelf.currentDocument.previewItemURL];
         [blockSelf.webView loadRequest:pdfURLRequest];
+    }];
+    [[NSNotificationCenter defaultCenter] addObserverForName:SGTableViewControllerDidNameNewDocumentNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        blockSelf.theNewDocumentName = note.userInfo[SGDocumentNameKey];
+		UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+		picker.delegate = blockSelf;
+		picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+		[blockSelf presentViewController:picker animated:YES completion:nil];
     }];
 
 	//  Set the default SGDocument if possible
@@ -90,6 +102,7 @@
     [SGTextRecognizer recognizeTextOnImages:images completion:^(NSData *pdfWithRecognizedText, NSArray *recognizedText, NSArray *recognizedRects) {
         SGDocument *document = [[SGDocument alloc] initWithURL:blockSelf.manager.currentURL pdfData:pdfWithRecognizedText title:@"Import Test"];
         [blockSelf.manager saveDocument:document];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SGMainViewControllerDidFinishCreatingDocumentNotification object:nil];
     }];
 //	self.imageView.image = image;
 //	self.lastImage = self.imageView.image;
@@ -131,10 +144,7 @@
 - (IBAction)didTapCameraButton:(id)sender
 {
 	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-		UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-		picker.delegate = self;
-		picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-		[self presentViewController:picker animated:YES completion:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SGMainViewControllerDidTapNewDocumentButtonNotification object:nil];
 	} else {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Camera" message:@"This device doesn't have a camera available to use." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
 		[alert show];
@@ -180,8 +190,9 @@
 	UIImage *image = [SGUtility imageWithImage:info[UIImagePickerControllerOriginalImage] scaledToWidth:968.0f];
     __block SGMainViewController *blockSelf = self;
     [SGTextRecognizer recognizeTextOnImages:@[image] completion:^(NSData *pdfWithRecognizedText, NSArray *recognizedText, NSArray *recognizedRects) {
-        SGDocument *document = [[SGDocument alloc] initWithURL:blockSelf.manager.currentURL pdfData:pdfWithRecognizedText title:@"Test"];
+        SGDocument *document = [[SGDocument alloc] initWithURL:blockSelf.manager.currentURL pdfData:pdfWithRecognizedText title:blockSelf.theNewDocumentName];
         [blockSelf.manager saveDocument:document];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SGMainViewControllerDidFinishCreatingDocumentNotification object:nil];
     }];
 }
 

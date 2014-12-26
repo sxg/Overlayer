@@ -9,6 +9,9 @@
 //  Frameworks
 #import <QuickLook/QuickLook.h>
 
+extern NSString *SGMainViewControllerDidTapNewDocumentButtonNotification;
+extern NSString *SGMainViewControllerDidFinishCreatingDocumentNotification;
+
 
 @interface SGMainViewController : UIViewController <UIImagePickerControllerDelegate,  UINavigationControllerDelegate, UITextFieldDelegate, UITableViewDelegate, QLPreviewControllerDataSource, UIScrollViewDelegate>
 
