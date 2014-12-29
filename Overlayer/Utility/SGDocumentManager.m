@@ -15,12 +15,6 @@
 #import "SGDocument.h"
 
 
-@interface SGDocumentManager ()
-
-@property (readwrite, strong, nonatomic) NSURL *currentURL;
-
-@end
-
 @implementation SGDocumentManager
 
 - (instancetype)init

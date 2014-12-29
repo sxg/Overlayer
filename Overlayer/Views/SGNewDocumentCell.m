@@ -11,4 +11,9 @@
 
 @implementation SGNewDocumentCell
 
+- (NSString *)reuseIdentifier
+{
+    return @"SGNewDocumentCell";
+}
+
 @end

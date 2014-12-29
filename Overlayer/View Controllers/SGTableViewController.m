@@ -38,13 +38,29 @@ NSString *SGURLKey = @"SGURLKey";
 
 @implementation SGTableViewController
 
+- (instancetype)initWithStyle:(UITableViewStyle)style URL:(NSURL *)url;
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        self.manager = [[SGDocumentManager alloc] init];
+        [self.manager moveToURL:url];
+        self.navigationItem.title = [[self.manager.currentURL pathComponents] lastObject];
+        self.navigationController.navigationBar.tintColor  = [UIColor whiteColor];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
-    self.manager = [[SGDocumentManager alloc] init];
+    if (!self.manager) {
+        self.manager = [[SGDocumentManager alloc] init];
+    }
     self.isCreatingNewDocument = NO;
     self.didNameNewDocument = NO;
     self.theNewDocumentName = nil;
     self.didTextFieldReturn = NO;
+    
+    [self.tableView setBackgroundColor:[UIColor clearColor]];
     
     __block SGTableViewController *blockSelf = self;
     [[NSNotificationCenter defaultCenter] addObserverForName:SGMainViewControllerDidTapNewDocumentButtonNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
@@ -93,10 +109,18 @@ NSString *SGURLKey = @"SGURLKey";
     UITableViewCell *cell;
     if (((self.isCreatingNewDocument && !self.didNameNewDocument) || self.isCreatingNewFolder) && indexPath.row == [[self.manager contentsOfCurrentFolder] count]) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"SGNewDocumentCell"];
+        if (!cell) {
+            [tableView registerNib:[UINib nibWithNibName:@"SGNewDocumentCell" bundle:nil] forCellReuseIdentifier:@"SGNewDocumentCell"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SGNewDocumentCell"];
+        }
         [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
         cell.userInteractionEnabled = NO;
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"SGDocumentCell"];
+        if (!cell) {
+            [tableView registerNib:[UINib nibWithNibName:@"SGDocumentCell" bundle:nil] forCellReuseIdentifier:@"SGDocumentCell"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SGDocumentCell"];
+        }
         if (indexPath.row < [[self.manager contentsOfCurrentFolder] count]) {
             cell.textLabel.text = [self.manager contentsOfCurrentFolder][indexPath.row];
         } else {
@@ -141,11 +165,17 @@ NSString *SGURLKey = @"SGURLKey";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //  If selected a folder
     if (indexPath.row < [[self.manager folderNames] count]) {
         NSString *subfolderName = [self.manager folderNames][indexPath.row];
-        [self.manager moveToSubfolder:subfolderName];
-        [self.tableView reloadData];
-    } else {
+        NSURL *url = [self.manager.currentURL URLByAppendingPathComponent:subfolderName];
+//        [self.manager moveToSubfolder:subfolderName];
+//        [self.tableView reloadData];
+        SGTableViewController *tableVC = [[SGTableViewController alloc] initWithStyle:UITableViewStylePlain URL:url];
+        [self.navigationController pushViewController:tableVC animated:YES];
+    }
+    //  If selected a document
+    else {
         NSString *documentFolderName;
         if (indexPath.row >= [self tableView:tableView numberOfRowsInSection:indexPath.section]) {
             documentFolderName = self.theNewDocumentName;

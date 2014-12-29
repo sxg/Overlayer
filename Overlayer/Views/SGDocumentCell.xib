@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SGDocumentCell" textLabel="yot-7Z-WMv" style="IBUITableViewCellStyleDefault" id="a0M-PN-JKC" customClass="SGDocumentCell">
+            <rect key="frame" x="0.0" y="0.0" width="194" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a0M-PN-JKC" id="1hv-i5-g0Q">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tbk-w1-Lzh" customClass="UIActivityIndicatorView">
+                        <rect key="frame" x="150" y="0.0" width="44" height="35.5"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="hidesWhenStopped" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yot-7Z-WMv">
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Tbk-w1-Lzh" firstAttribute="top" secondItem="yot-7Z-WMv" secondAttribute="top" id="GO0-Rz-6db"/>
+                    <constraint firstItem="Tbk-w1-Lzh" firstAttribute="leading" secondItem="1hv-i5-g0Q" secondAttribute="leading" constant="150" id="Tjk-Ew-td5"/>
+                    <constraint firstAttribute="trailing" secondItem="Tbk-w1-Lzh" secondAttribute="trailing" id="YqM-nu-2aV"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Tbk-w1-Lzh" secondAttribute="bottom" id="l4A-jx-bry"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="activityIndicatorView" destination="Tbk-w1-Lzh" id="o5K-dt-ch3"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

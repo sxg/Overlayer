@@ -10,4 +10,9 @@
 
 @implementation SGDocumentCell
 
+- (NSString *)reuseIdentifier
+{
+    return @"SGDocumentCell";
+}
+
 @end

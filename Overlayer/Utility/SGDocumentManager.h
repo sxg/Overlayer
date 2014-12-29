@@ -11,7 +11,7 @@
 
 @interface SGDocumentManager : NSObject
 
-@property (readonly, strong, nonatomic) NSURL *currentURL;
+@property (readwrite, strong, nonatomic, setter=moveToURL:) NSURL *currentURL;
 
 - (void)moveToSubfolder:(NSString *)subfolderName;
 - (void)moveToParentFolder;
