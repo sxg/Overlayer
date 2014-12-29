@@ -195,15 +195,4 @@ NSString *SGMainViewControllerDidFinishCreatingFolderNotification = @"SGMainView
     }];
 }
 
-#pragma mark - UITextField Delegate
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-	if (self.documentTitlePromptView.titleTextField == textField) {
-		[textField endEditing:YES];
-		[self.documentTitlePromptView removeFromSuperview];
-	}
-	return YES;
-}
-
 @end

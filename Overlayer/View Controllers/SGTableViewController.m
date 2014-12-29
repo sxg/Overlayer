@@ -169,8 +169,6 @@ NSString *SGURLKey = @"SGURLKey";
     if (indexPath.row < [[self.manager folderNames] count]) {
         NSString *subfolderName = [self.manager folderNames][indexPath.row];
         NSURL *url = [self.manager.currentURL URLByAppendingPathComponent:subfolderName];
-//        [self.manager moveToSubfolder:subfolderName];
-//        [self.tableView reloadData];
         SGTableViewController *tableVC = [[SGTableViewController alloc] initWithStyle:UITableViewStylePlain URL:url];
         [self.navigationController pushViewController:tableVC animated:YES];
     }
