@@ -52,8 +52,13 @@
 
 - (void)createFolder:(NSString *)folderName
 {
+    [self createFolder:folderName atURL:self.currentURL];
+}
+
+- (void)createFolder:(NSString *)folderName atURL:(NSURL *)url
+{
     NSError *err;
-    NSURL *newFolderURL = [self.currentURL URLByAppendingPathComponent:folderName isDirectory:YES];
+    NSURL *newFolderURL = [url URLByAppendingPathComponent:folderName isDirectory:YES];
     if (![[NSFileManager defaultManager] createDirectoryAtURL:newFolderURL withIntermediateDirectories:YES attributes:nil error:&err] || err) {
         NSLog(@"Failed to create folder %@ %@", newFolderURL, err);
     }

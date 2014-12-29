@@ -600,7 +600,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/Overlayer/Frameworks",
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
@@ -623,7 +622,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/Overlayer/Frameworks",
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);

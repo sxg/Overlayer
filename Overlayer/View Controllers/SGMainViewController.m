@@ -84,7 +84,7 @@ NSString *SGMainViewControllerDidFinishCreatingFolderNotification = @"SGMainView
 		[blockSelf presentViewController:picker animated:YES completion:nil];
     }];
     [[NSNotificationCenter defaultCenter] addObserverForName:SGTableViewControllerDidNameNewFolderNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
-        [blockSelf.manager createFolder:note.userInfo[SGFolderNameKey]];
+        [blockSelf.manager createFolder:note.userInfo[SGFolderNameKey] atURL:note.userInfo[SGURLKey]];
         [[NSNotificationCenter defaultCenter] postNotificationName:SGMainViewControllerDidFinishCreatingFolderNotification object:nil];
     }];
 }

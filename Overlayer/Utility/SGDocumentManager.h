@@ -16,6 +16,7 @@
 - (void)moveToSubfolder:(NSString *)subfolderName;
 - (void)moveToParentFolder;
 - (void)createFolder:(NSString *)folderName;
+- (void)createFolder:(NSString *)folderName atURL:(NSURL *)url;
 - (void)destroyFolder:(NSString *)folderName;
 
 - (void)saveDocument:(SGDocument *)document;
