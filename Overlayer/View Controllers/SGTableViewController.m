@@ -116,14 +116,27 @@ NSString *SGURLKey = @"SGURLKey";
         [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
         cell.userInteractionEnabled = NO;
     } else {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"SGDocumentCell"];
-        if (!cell) {
-            [tableView registerNib:[UINib nibWithNibName:@"SGDocumentCell" bundle:nil] forCellReuseIdentifier:@"SGDocumentCell"];
-            cell = [tableView dequeueReusableCellWithIdentifier:@"SGDocumentCell"];
-        }
         if (indexPath.row < [[self.manager contentsOfCurrentFolder] count]) {
+            if (indexPath.row < [[self.manager folderNames] count]) {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"SGFolderCell"];
+                if (!cell) {
+                    [tableView registerNib:[UINib nibWithNibName:@"SGFolderCell" bundle:nil] forCellReuseIdentifier:@"SGFolderCell"];
+                    cell = [tableView dequeueReusableCellWithIdentifier:@"SGFolderCell"];
+                }
+            } else {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"SGDocumentCell"];
+                if (!cell) {
+                    [tableView registerNib:[UINib nibWithNibName:@"SGDocumentCell" bundle:nil] forCellReuseIdentifier:@"SGDocumentCell"];
+                    cell = [tableView dequeueReusableCellWithIdentifier:@"SGDocumentCell"];
+                }
+            }
             cell.textLabel.text = [self.manager contentsOfCurrentFolder][indexPath.row];
         } else {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SGDocumentCell"];
+            if (!cell) {
+                [tableView registerNib:[UINib nibWithNibName:@"SGDocumentCell" bundle:nil] forCellReuseIdentifier:@"SGDocumentCell"];
+                cell = [tableView dequeueReusableCellWithIdentifier:@"SGDocumentCell"];
+            }
             cell.textLabel.text = self.theNewDocumentName;
             self.processingDocumentCell = (SGDocumentCell *)cell;
             self.processingDocumentCell.userInteractionEnabled = NO;
