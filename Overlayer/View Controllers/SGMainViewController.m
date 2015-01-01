@@ -55,6 +55,7 @@ NSString *SGMainViewControllerDidFinishCreatingFolderNotification = @"SGMainView
 
 @property (readwrite, strong, nonatomic) NSString *theNewDocumentName;
 @property (readwrite, strong, nonatomic) NSURL *saveURL;
+@property (readwrite, strong, nonatomic) NSArray *importedImages;
 
 @end
 
@@ -77,14 +78,26 @@ NSString *SGMainViewControllerDidFinishCreatingFolderNotification = @"SGMainView
     [[NSNotificationCenter defaultCenter] addObserverForName:SGTableViewControllerDidNameNewDocumentNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         blockSelf.theNewDocumentName = note.userInfo[SGDocumentNameKey];
         blockSelf.saveURL = note.userInfo[SGURLKey];
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = blockSelf;
-        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [blockSelf presentViewController:picker animated:YES completion:nil];
+        if (blockSelf.importedImages) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                sleep(3);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [blockSelf createDocumentWithImages:blockSelf.importedImages];
+                });
+            });
+        } else {
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+            picker.delegate = blockSelf;
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [blockSelf presentViewController:picker animated:YES completion:nil];
+        }
     }];
     [[NSNotificationCenter defaultCenter] addObserverForName:SGTableViewControllerDidNameNewFolderNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         [blockSelf.manager createFolder:note.userInfo[SGFolderNameKey] atURL:note.userInfo[SGURLKey]];
         [[NSNotificationCenter defaultCenter] postNotificationName:SGMainViewControllerDidFinishCreatingFolderNotification object:nil];
+    }];
+    [[NSNotificationCenter defaultCenter] addObserverForName:SGAppDelegateDidImportImagesNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        blockSelf.importedImages = note.userInfo[SGImportedImagesKey];
     }];
 }
 
@@ -92,16 +105,6 @@ NSString *SGMainViewControllerDidFinishCreatingFolderNotification = @"SGMainView
 {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
-}
-
-- (void)createDocumentWithImages:(NSArray *)images
-{
-    __block SGMainViewController *blockSelf = self;
-    [SGTextRecognizer recognizeTextOnImages:images completion:^(NSData *pdfWithRecognizedText, NSArray *recognizedText, NSArray *recognizedRects) {
-        SGDocument *document = [[SGDocument alloc] initWithURL:blockSelf.manager.currentURL pdfData:pdfWithRecognizedText title:@"Import Test"];
-        [blockSelf.manager saveDocument:document];
-        [[NSNotificationCenter defaultCenter] postNotificationName:SGMainViewControllerDidFinishCreatingDocumentNotification object:nil];
-    }];
 }
 
 #pragma mark - UI Actions
@@ -181,18 +184,24 @@ NSString *SGMainViewControllerDidFinishCreatingFolderNotification = @"SGMainView
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
 	[picker dismissViewControllerAnimated:YES completion:nil];
+    UIImage *image = [SGUtility imageWithImage:info[UIImagePickerControllerOriginalImage] scaledToWidth:968.0f];
+    [self createDocumentWithImages:@[image]];
+}
+
+#pragma mark - Helpers
+
+- (void)createDocumentWithImages:(NSArray *)images
+{
+   [[NSNotificationCenter defaultCenter] postNotificationName:SGMainViewControllerDidStartCreatingDocumentNotification object:nil];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:SGMainViewControllerDidStartCreatingDocumentNotification object:nil];
-    
-	UIImage *image = [SGUtility imageWithImage:info[UIImagePickerControllerOriginalImage] scaledToWidth:968.0f];
     __block SGMainViewController *blockSelf = self;
-    [SGTextRecognizer recognizeTextOnImages:@[image] completion:^(NSData *pdfWithRecognizedText, NSArray *recognizedText, NSArray *recognizedRects) {
+    [SGTextRecognizer recognizeTextOnImages:images completion:^(NSData *pdfWithRecognizedText, NSArray *recognizedText, NSArray *recognizedRects) {
         SGDocument *document = [[SGDocument alloc] initWithURL:blockSelf.manager.currentURL pdfData:pdfWithRecognizedText title:blockSelf.theNewDocumentName];
         [blockSelf.manager saveDocument:document atURL:blockSelf.saveURL];
         blockSelf.saveURL = nil;
+        blockSelf.importedImages = nil;
         [[NSNotificationCenter defaultCenter] postNotificationName:SGMainViewControllerDidFinishCreatingDocumentNotification object:nil];
     }];
 }
-
 
 @end

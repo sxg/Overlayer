@@ -9,6 +9,10 @@
 
 extern NSString * const kSGFontAmoon;
 
+extern NSString * const SGImportedImagesKey;
+
+extern NSString * const SGAppDelegateDidImportImagesNotification;
+
 
 @interface SGAppDelegate : UIResponder <UIApplicationDelegate>
 

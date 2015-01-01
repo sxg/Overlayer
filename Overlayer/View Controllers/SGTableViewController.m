@@ -119,7 +119,6 @@ NSString *SGURLKey = @"SGURLKey";
         }
         [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
         cell.userInteractionEnabled = NO;
-        self.processingDocumentCell = (SGDocumentCell *)cell;
     } else {
         if (indexPath.row < [[self.manager contentsOfCurrentFolder] count]) {
             if (indexPath.row < [[self.manager folderNames] count]) {
@@ -143,6 +142,8 @@ NSString *SGURLKey = @"SGURLKey";
                 cell = [tableView dequeueReusableCellWithIdentifier:@"SGDocumentCell"];
             }
             cell.textLabel.text = self.theNewDocumentName;
+            self.processingDocumentCell = (SGDocumentCell *)cell;
+            self.processingDocumentCell.userInteractionEnabled = NO;
         }
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];

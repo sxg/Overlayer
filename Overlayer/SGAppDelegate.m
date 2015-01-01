@@ -25,6 +25,10 @@
 
 NSString * const kSGFontAmoon = @"Amoon1";
 
+NSString * const SGImportedImagesKey = @"SGImportedImagesKey";
+
+NSString * const SGAppDelegateDidImportImagesNotification = @"SGAppDelegateDidImportImagesNotification";
+
 
 @implementation SGAppDelegate
 
@@ -55,8 +59,7 @@ NSString * const kSGFontAmoon = @"Amoon1";
 		}
 
 		if (images.count > 0) {
-			SGMainViewController *mainVC = (SGMainViewController *)self.window.rootViewController;
-			[mainVC createDocumentWithImages:images];
+            [[NSNotificationCenter defaultCenter] postNotificationName:SGAppDelegateDidImportImagesNotification object:nil userInfo:@{SGImportedImagesKey: images}];
 			return YES;
 		}
 	}
