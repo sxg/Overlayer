@@ -80,7 +80,7 @@ NSString *SGMainViewControllerDidFinishCreatingFolderNotification = @"SGMainView
         blockSelf.saveURL = note.userInfo[SGURLKey];
         if (blockSelf.importedImages) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                sleep(3);
+                sleep(1);
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [blockSelf createDocumentWithImages:blockSelf.importedImages];
                 });
