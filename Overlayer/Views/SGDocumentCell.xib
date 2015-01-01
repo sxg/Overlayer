@@ -14,7 +14,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tbk-w1-Lzh" customClass="UIActivityIndicatorView">
-                        <rect key="frame" x="150" y="0.0" width="44" height="35.5"/>
+                        <rect key="frame" x="150" y="0.0" width="44" height="44"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="hidesWhenStopped" value="YES"/>
@@ -31,7 +31,7 @@
                     <constraint firstItem="Tbk-w1-Lzh" firstAttribute="top" secondItem="yot-7Z-WMv" secondAttribute="top" id="GO0-Rz-6db"/>
                     <constraint firstItem="Tbk-w1-Lzh" firstAttribute="leading" secondItem="1hv-i5-g0Q" secondAttribute="leading" constant="150" id="Tjk-Ew-td5"/>
                     <constraint firstAttribute="trailing" secondItem="Tbk-w1-Lzh" secondAttribute="trailing" id="YqM-nu-2aV"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Tbk-w1-Lzh" secondAttribute="bottom" id="l4A-jx-bry"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Tbk-w1-Lzh" secondAttribute="bottom" constant="-8.5" id="l4A-jx-bry"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
