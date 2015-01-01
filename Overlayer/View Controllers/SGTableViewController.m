@@ -67,6 +67,10 @@ NSString *SGURLKey = @"SGURLKey";
         blockSelf.isCreatingNewDocument = YES;
         [blockSelf.tableView reloadData];
     }];
+    [[NSNotificationCenter defaultCenter] addObserverForName:SGAppDelegateDidImportImagesNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        blockSelf.isCreatingNewDocument = YES;
+        [blockSelf.tableView reloadData];
+    }];
     [[NSNotificationCenter defaultCenter] addObserverForName:SGMainViewControllerDidStartCreatingDocumentNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         blockSelf.processingDocumentCell.activityIndicatorView.hidden = NO;
         [blockSelf.processingDocumentCell.activityIndicatorView startAnimating];
@@ -115,6 +119,7 @@ NSString *SGURLKey = @"SGURLKey";
         }
         [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
         cell.userInteractionEnabled = NO;
+        self.processingDocumentCell = (SGDocumentCell *)cell;
     } else {
         if (indexPath.row < [[self.manager contentsOfCurrentFolder] count]) {
             if (indexPath.row < [[self.manager folderNames] count]) {
@@ -138,8 +143,6 @@ NSString *SGURLKey = @"SGURLKey";
                 cell = [tableView dequeueReusableCellWithIdentifier:@"SGDocumentCell"];
             }
             cell.textLabel.text = self.theNewDocumentName;
-            self.processingDocumentCell = (SGDocumentCell *)cell;
-            self.processingDocumentCell.userInteractionEnabled = NO;
         }
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];
@@ -156,9 +159,16 @@ NSString *SGURLKey = @"SGURLKey";
 {
     switch (editingStyle) {
         case UITableViewCellEditingStyleDelete: {
-            NSString *documentName = [self.manager contentsOfCurrentFolder][indexPath.row];
-            NSString *documentFolderName = [documentName stringByAppendingString:@".overlayer"];
-            [self.manager destroyDocumentAtURL:[self.manager.currentURL URLByAppendingPathComponent:documentFolderName isDirectory:YES]];
+            if (indexPath.row < [[self.manager folderNames] count]) {
+                NSString *folderName = [self.manager contentsOfCurrentFolder][indexPath.row];
+                NSURL *folderURL = [self.manager.currentURL URLByAppendingPathComponent:folderName isDirectory:YES];
+                [self.manager destroyDocumentAtURL:folderURL];
+            } else {
+                NSString *documentName = [self.manager contentsOfCurrentFolder][indexPath.row];
+                NSString *documentFolderName = [documentName stringByAppendingPathExtension:@"overlayer"];
+                NSURL *documentURL = [self.manager.currentURL URLByAppendingPathComponent:documentFolderName isDirectory:YES];
+                [self.manager destroyDocumentAtURL:documentURL];
+            }
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
         }
