@@ -66,7 +66,6 @@ NSString *SGMainViewControllerDidFinishCreatingFolderNotification = @"SGMainView
 	// Do any additional setup after loading the view.
 
 	self.displayingSidePane = YES;
-    
     self.manager = [[SGDocumentManager alloc] init];
     
     __block SGMainViewController *blockSelf = self;
@@ -78,10 +77,10 @@ NSString *SGMainViewControllerDidFinishCreatingFolderNotification = @"SGMainView
     [[NSNotificationCenter defaultCenter] addObserverForName:SGTableViewControllerDidNameNewDocumentNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         blockSelf.theNewDocumentName = note.userInfo[SGDocumentNameKey];
         blockSelf.saveURL = note.userInfo[SGURLKey];
-		UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-		picker.delegate = blockSelf;
-		picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-		[blockSelf presentViewController:picker animated:YES completion:nil];
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = blockSelf;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [blockSelf presentViewController:picker animated:YES completion:nil];
     }];
     [[NSNotificationCenter defaultCenter] addObserverForName:SGTableViewControllerDidNameNewFolderNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         [blockSelf.manager createFolder:note.userInfo[SGFolderNameKey] atURL:note.userInfo[SGURLKey]];
@@ -194,5 +193,6 @@ NSString *SGMainViewControllerDidFinishCreatingFolderNotification = @"SGMainView
         [[NSNotificationCenter defaultCenter] postNotificationName:SGMainViewControllerDidFinishCreatingDocumentNotification object:nil];
     }];
 }
+
 
 @end

@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I4x-ph-CDw">
+                            <webView opaque="NO" contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I4x-ph-CDw">
                                 <rect key="frame" x="56" y="0.0" width="968" height="768"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                             </webView>
@@ -85,7 +85,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="I4x-ph-CDw" firstAttribute="leading" secondItem="TkF-su-UVg" secondAttribute="leading" constant="56" id="2WT-VU-VYy"/>
                             <constraint firstItem="wob-LE-Rgd" firstAttribute="top" secondItem="TkF-su-UVg" secondAttribute="top" id="BzE-30-XXb"/>
