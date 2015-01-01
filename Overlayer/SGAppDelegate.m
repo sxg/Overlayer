@@ -34,19 +34,6 @@ NSString * const kSGFontAmoon = @"Amoon1";
     
     [Crashlytics startWithAPIKey:@"c0946e755af032a6ed749d647f73248bc823fb73"];
     
-//    SGDocumentManager *manager = [[SGDocumentManager alloc] init];
-//    SGDocument *doc = [SGDocument documentWithContentsOfURL:[NSURL URLWithString:[manager documents][0] relativeToURL:manager.currentURL]];
-//    [doc pdfData];
-//    UIImage *image1 = [UIImage imageNamed:@"TestImage1"];
-//    UIImage *image2 = [UIImage imageNamed:@"TestImage2"];
-//    [SGTextRecognizer recognizeTextOnImages:@[image1, image2] completion:^(NSData *pdfWithRecognizedText, NSArray *recognizedText, NSArray *recognizedRects) {
-//        NSLog(@"done with ocr");
-//        
-//        SGDocumentManager *manager = [[SGDocumentManager alloc] init];
-//        SGDocument *doc = [[SGDocument alloc] initWithURL:manager.currentURL pdfData:pdfWithRecognizedText title:@"Test"];
-//        [manager saveDocument:doc];
-//    }];
-
 	return YES;
 }
 
