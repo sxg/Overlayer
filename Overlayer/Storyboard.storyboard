@@ -43,10 +43,10 @@
                                         </connections>
                                     </containerView>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wm4-al-gmD" userLabel="Disclosure Button">
-                                        <rect key="frame" x="212" y="348" width="21" height="72"/>
+                                        <rect key="frame" x="210" y="364" width="25" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="21" id="Ki9-1g-A0m"/>
-                                            <constraint firstAttribute="height" constant="72" id="Tpt-Za-piN"/>
+                                            <constraint firstAttribute="width" constant="25" id="Ki9-1g-A0m"/>
+                                            <constraint firstAttribute="height" constant="40" id="Tpt-Za-piN"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="Chevron">
@@ -72,7 +72,7 @@
                                     <constraint firstAttribute="bottom" secondItem="vwP-bI-ch6" secondAttribute="bottom" constant="20" id="1AW-xG-xxb"/>
                                     <constraint firstAttribute="bottom" secondItem="xIu-9A-wy3" secondAttribute="bottom" id="57c-ja-rtL"/>
                                     <constraint firstItem="jf0-UI-8fd" firstAttribute="bottom" secondItem="xIu-9A-wy3" secondAttribute="bottom" id="9nl-qK-MZQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="Wm4-al-gmD" secondAttribute="trailing" constant="17" id="Ckp-Jh-1WS"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wm4-al-gmD" secondAttribute="trailing" constant="15" id="Ckp-Jh-1WS"/>
                                     <constraint firstItem="vwP-bI-ch6" firstAttribute="trailing" secondItem="xIu-9A-wy3" secondAttribute="trailing" id="EW3-Hj-NWZ"/>
                                     <constraint firstItem="jf0-UI-8fd" firstAttribute="top" secondItem="wob-LE-Rgd" secondAttribute="top" constant="20" id="GvC-ih-8uH"/>
                                     <constraint firstItem="vwP-bI-ch6" firstAttribute="leading" secondItem="jf0-UI-8fd" secondAttribute="trailing" id="MKx-MD-2Jf"/>
@@ -154,7 +154,7 @@
     </scenes>
     <resources>
         <image name="AddButton" width="56" height="30"/>
-        <image name="Chevron" width="42" height="134"/>
+        <image name="Chevron" width="25" height="40"/>
         <image name="PDFButton" width="56" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
