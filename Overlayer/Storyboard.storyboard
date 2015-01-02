@@ -20,38 +20,28 @@
                                 <rect key="frame" x="56" y="0.0" width="968" height="768"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                             </webView>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wob-LE-Rgd" userLabel="Side Pane">
+                            <view opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wob-LE-Rgd" userLabel="Side Pane">
                                 <rect key="frame" x="0.0" y="0.0" width="250" height="768"/>
                                 <subviews>
-                                    <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xIu-9A-wy3" userLabel="Side Pane Background">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="768"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRP-uX-eTk" userLabel="New Folder Button">
-                                                <rect key="frame" x="193" y="666" width="56" height="30"/>
-                                                <state key="normal" image="AddButton"/>
-                                                <connections>
-                                                    <action selector="didTapNewFolderButton:" destination="tyv-HM-mie" eventType="touchUpInside" id="Gnh-at-Tkd"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwP-bI-ch6" userLabel="Camera Button">
-                                                <rect key="frame" x="200" y="716" width="44" height="44"/>
-                                                <state key="normal" image="Camera">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="didTapCameraButton:" destination="tyv-HM-mie" eventType="touchUpInside" id="X3T-dl-wjJ"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jf0-UI-8fd">
                                         <rect key="frame" x="0.0" y="20" width="194" height="748"/>
                                         <connections>
                                             <segue destination="KVA-lE-sGz" kind="embed" id="qHr-h5-u4v"/>
                                         </connections>
                                     </containerView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwP-bI-ch6" userLabel="Camera Button">
+                                        <rect key="frame" x="200" y="716" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="nbt-Wb-7XI"/>
+                                        </constraints>
+                                        <state key="normal" image="Camera">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapCameraButton:" destination="tyv-HM-mie" eventType="touchUpInside" id="X3T-dl-wjJ"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wm4-al-gmD" userLabel="Disclosure Button">
                                         <rect key="frame" x="210" y="364" width="25" height="40"/>
                                         <constraints>
@@ -66,20 +56,33 @@
                                             <action selector="didTapToggleSidePaneButton:" destination="tyv-HM-mie" eventType="touchUpInside" id="AVH-1r-AZN"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRP-uX-eTk" userLabel="New Folder Button">
+                                        <rect key="frame" x="194" y="678" width="56" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="0on-Lp-Kav"/>
+                                        </constraints>
+                                        <state key="normal" image="AddButton"/>
+                                        <connections>
+                                            <action selector="didTapNewFolderButton:" destination="tyv-HM-mie" eventType="touchUpInside" id="Gnh-at-Tkd"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="xIu-9A-wy3" secondAttribute="bottom" id="57c-ja-rtL"/>
-                                    <constraint firstItem="jf0-UI-8fd" firstAttribute="bottom" secondItem="xIu-9A-wy3" secondAttribute="bottom" id="9nl-qK-MZQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="jf0-UI-8fd" secondAttribute="bottom" id="6AS-zE-AUu"/>
+                                    <constraint firstAttribute="trailing" secondItem="vwP-bI-ch6" secondAttribute="trailing" constant="6" id="8fH-Jc-YsB"/>
                                     <constraint firstAttribute="trailing" secondItem="Wm4-al-gmD" secondAttribute="trailing" constant="15" id="Ckp-Jh-1WS"/>
                                     <constraint firstItem="jf0-UI-8fd" firstAttribute="top" secondItem="wob-LE-Rgd" secondAttribute="top" constant="20" id="GvC-ih-8uH"/>
-                                    <constraint firstItem="xIu-9A-wy3" firstAttribute="top" secondItem="wob-LE-Rgd" secondAttribute="top" id="QHV-Jq-p2C"/>
-                                    <constraint firstItem="xIu-9A-wy3" firstAttribute="leading" secondItem="wob-LE-Rgd" secondAttribute="leading" id="TQn-bO-1Uv"/>
+                                    <constraint firstAttribute="bottom" secondItem="vwP-bI-ch6" secondAttribute="bottom" constant="8" id="ND0-sw-ytF"/>
+                                    <constraint firstItem="vwP-bI-ch6" firstAttribute="top" secondItem="PRP-uX-eTk" secondAttribute="bottom" constant="8" id="NHe-gW-uSH"/>
+                                    <constraint firstItem="jf0-UI-8fd" firstAttribute="leading" secondItem="wob-LE-Rgd" secondAttribute="leading" id="OTx-8V-c1q"/>
                                     <constraint firstItem="Wm4-al-gmD" firstAttribute="leading" secondItem="jf0-UI-8fd" secondAttribute="trailing" constant="16" id="Zfb-EM-2DV"/>
+                                    <constraint firstItem="vwP-bI-ch6" firstAttribute="leading" secondItem="jf0-UI-8fd" secondAttribute="trailing" constant="6" id="fyW-CO-jne"/>
+                                    <constraint firstAttribute="trailing" secondItem="PRP-uX-eTk" secondAttribute="trailing" id="hok-dd-Er0"/>
                                     <constraint firstAttribute="width" constant="250" id="k8q-m9-ZEi"/>
-                                    <constraint firstAttribute="trailing" secondItem="xIu-9A-wy3" secondAttribute="trailing" id="kCU-xO-oaw"/>
+                                    <constraint firstItem="PRP-uX-eTk" firstAttribute="leading" secondItem="jf0-UI-8fd" secondAttribute="trailing" id="qh4-SV-miQ"/>
                                     <constraint firstAttribute="centerY" secondItem="Wm4-al-gmD" secondAttribute="centerY" id="qst-Cs-pP7"/>
-                                    <constraint firstItem="jf0-UI-8fd" firstAttribute="leading" secondItem="xIu-9A-wy3" secondAttribute="leading" id="zDx-mq-if7"/>
                                 </constraints>
                             </view>
                         </subviews>
