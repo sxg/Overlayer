@@ -8,18 +8,11 @@
 
 #import "SGMainViewController.h"
 
-//  Frameworks
-#import <MBProgressHUD/MBProgressHUD.h>
-#import <StandardPaths/StandardPaths.h>
-
 //  App Delegate
 #import "SGAppDelegate.h"
 
 //  Models
 #import "SGDocument.h"
-
-//  Views
-#import "SGDocumentTitlePromptView.h"
 
 //  Utility
 #import "SGUtility.h"
@@ -45,10 +38,6 @@ NSString *SGMainViewControllerDidFinishCreatingFolderNotification = @"SGMainView
 @property (readwrite, weak, nonatomic) IBOutlet UIButton *toggleSidePaneViewButton;
 @property (readwrite, weak, nonatomic) IBOutlet NSLayoutConstraint *sidePaneLeadingConstraint;
 @property (readwrite, assign, getter = isDisplayingSidePane) BOOL displayingSidePane;
-
-@property (readwrite, strong, nonatomic) SGDocumentTitlePromptView *documentTitlePromptView;
-
-@property (readwrite, strong, nonatomic) MBProgressHUD *hud;
 
 @property (readwrite, strong, nonatomic) UIImage *lastImage;
 
