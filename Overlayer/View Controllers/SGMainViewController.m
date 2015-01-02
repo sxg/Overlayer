@@ -33,6 +33,7 @@
 NSString *SGMainViewControllerDidTapNewDocumentButtonNotification = @"SGMainViewControllerDidTapNewDocumentButtonNotification";
 NSString *SGMainViewControllerDidStartCreatingDocumentNotification = @"SGMainViewControllerDidStartCreatingDocumentNotification";
 NSString *SGMainViewControllerDidFinishCreatingDocumentNotification = @"SGMainViewControllerDidFinishCreatingDocumentNotification";
+NSString *SGMainViewControllerDidCancelCreatingDocumentNotification = @"SGMainViewControllerDidCancelCreatingDocumentNotification";
 NSString *SGMainViewControllerDidTapNewFolderButtonNotification = @"SGMainViewControllerDidTapNewFolderButtonNotification";
 NSString *SGMainViewControllerDidFinishCreatingFolderNotification = @"SGMainViewControllerDidFinishCreatingFolderNotification";
 
@@ -187,6 +188,12 @@ NSString *SGMainViewControllerDidFinishCreatingFolderNotification = @"SGMainView
 	[picker dismissViewControllerAnimated:YES completion:nil];
     UIImage *image = [SGUtility imageWithImage:info[UIImagePickerControllerOriginalImage] scaledToWidth:968.0f];
     [self createDocumentWithImages:@[image]];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:SGMainViewControllerDidCancelCreatingDocumentNotification object:nil];
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Helpers

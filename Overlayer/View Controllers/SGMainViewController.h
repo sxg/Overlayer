@@ -12,6 +12,7 @@
 extern NSString *SGMainViewControllerDidTapNewDocumentButtonNotification;
 extern NSString *SGMainViewControllerDidStartCreatingDocumentNotification;
 extern NSString *SGMainViewControllerDidFinishCreatingDocumentNotification;
+extern NSString *SGMainViewControllerDidCancelCreatingDocumentNotification;
 extern NSString *SGMainViewControllerDidTapNewFolderButtonNotification;
 extern NSString *SGMainViewControllerDidFinishCreatingFolderNotification;
 

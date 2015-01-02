@@ -93,6 +93,14 @@ NSString *SGURLKey = @"SGURLKey";
         blockSelf.didTextFieldReturn = NO;
         [blockSelf.tableView reloadData];
     }];
+    [[NSNotificationCenter defaultCenter] addObserverForName:SGMainViewControllerDidCancelCreatingDocumentNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        blockSelf.isCreatingNewDocument = NO;
+        blockSelf.isCreatingNewFolder = NO;
+        blockSelf.didNameNewDocument = NO;
+        blockSelf.theNewDocumentName = nil;
+        blockSelf.didTextFieldReturn = NO;
+        blockSelf.processingDocumentCell = nil;
+    }];
 }
 
 #pragma mark - Table View Data Source
