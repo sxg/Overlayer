@@ -85,7 +85,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="I4x-ph-CDw" firstAttribute="leading" secondItem="TkF-su-UVg" secondAttribute="leading" constant="56" id="2WT-VU-VYy"/>
                             <constraint firstItem="wob-LE-Rgd" firstAttribute="top" secondItem="TkF-su-UVg" secondAttribute="top" id="BzE-30-XXb"/>
