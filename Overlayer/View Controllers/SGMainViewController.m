@@ -149,7 +149,7 @@ NSString *SGMainViewControllerDidFinishCreatingFolderNotification = @"SGMainView
     [[NSNotificationCenter defaultCenter] postNotificationName:SGMainViewControllerDidTapNewFolderButtonNotification object:nil];
 }
 
-- (IBAction)didTapPDFButton:(id)sender
+- (IBAction)didTapDocument:(id)sender
 {
 	if (self.currentDocument) {
 		QLPreviewController *quickLookVC = [[QLPreviewController alloc] init];

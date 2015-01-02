@@ -19,6 +19,10 @@
                             <webView opaque="NO" contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I4x-ph-CDw">
                                 <rect key="frame" x="56" y="0.0" width="968" height="768"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Xjg-aP-u0x" appends="YES" id="0oz-1A-cu3"/>
+                                </connections>
                             </webView>
                             <view opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wob-LE-Rgd" userLabel="Side Pane">
                                 <rect key="frame" x="0.0" y="0.0" width="250" height="768"/>
@@ -109,6 +113,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J79-eL-huF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Xjg-aP-u0x">
+                    <connections>
+                        <action selector="didTapDocument:" destination="tyv-HM-mie" id="8WA-qp-aWN"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-757" y="96"/>
         </scene>
