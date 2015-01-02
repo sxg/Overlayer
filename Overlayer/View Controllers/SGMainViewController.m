@@ -42,6 +42,7 @@ NSString *SGMainViewControllerDidFinishCreatingFolderNotification = @"SGMainView
 
 @property (readwrite, weak, nonatomic) IBOutlet UIView *sidePaneView;
 @property (readwrite, weak, nonatomic) IBOutlet UIButton *toggleSidePaneViewButton;
+@property (readwrite, weak, nonatomic) IBOutlet NSLayoutConstraint *sidePaneLeadingConstraint;
 @property (readwrite, assign, getter = isDisplayingSidePane) BOOL displayingSidePane;
 
 @property (readwrite, strong, nonatomic) SGDocumentTitlePromptView *documentTitlePromptView;
@@ -113,21 +114,21 @@ NSString *SGMainViewControllerDidFinishCreatingFolderNotification = @"SGMainView
 {
 	//  Setup
 	CGFloat animationDuration = 0.4;
-    CGRect newFrame;
+    CGFloat sidePaneLeadingSpace;
 	if (self.isDisplayingSidePane) {
-        newFrame = CGRectMake(-1.0f * self.sidePaneView.frame.size.width + 56.0f, self.sidePaneView.frame.origin.y, self.sidePaneView.frame.size.width, self.sidePaneView.frame.size.height);
+        sidePaneLeadingSpace = -194.0f;
 	} else {
-        newFrame = CGRectMake(0.0f, self.sidePaneView.frame.origin.y, self.sidePaneView.frame.size.width, self.sidePaneView.frame.size.height);
+        sidePaneLeadingSpace = 0.0f;
 	}
 
 	//  Animate
 	__block SGMainViewController *blockSelf = self;
 	[UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        [blockSelf.view layoutIfNeeded];
         //  Mirror the toggle side pane button
         CGFloat scale = blockSelf.displayingSidePane ? -1.0f : 1.0f;
         blockSelf.toggleSidePaneViewButton.transform = CGAffineTransformMakeScale(scale, 1.0f);
-        [blockSelf.sidePaneView setFrame:newFrame];
+        blockSelf.sidePaneLeadingConstraint.constant = sidePaneLeadingSpace;
+        [blockSelf.view layoutIfNeeded];
 	 } completion:^(BOOL finished) {
          blockSelf.displayingSidePane = !blockSelf.isDisplayingSidePane;
 	 }];

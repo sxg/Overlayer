@@ -99,6 +99,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="sidePaneLeadingConstraint" destination="rO9-PI-RXT" id="Guq-Ze-Eis"/>
                         <outlet property="sidePaneView" destination="wob-LE-Rgd" id="e3d-Hl-V8A"/>
                         <outlet property="toggleSidePaneViewButton" destination="Wm4-al-gmD" id="qan-jU-J2v"/>
                         <outlet property="webView" destination="I4x-ph-CDw" id="zgS-ZM-N0a"/>
