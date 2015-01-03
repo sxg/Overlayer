@@ -61,7 +61,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRP-uX-eTk" userLabel="New Folder Button">
-                                        <rect key="frame" x="194" y="678" width="56" height="30"/>
+                                        <rect key="frame" x="194" y="670" width="56" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="0on-Lp-Kav"/>
                                         </constraints>
@@ -79,7 +79,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Wm4-al-gmD" secondAttribute="trailing" constant="15" id="Ckp-Jh-1WS"/>
                                     <constraint firstItem="jf0-UI-8fd" firstAttribute="top" secondItem="wob-LE-Rgd" secondAttribute="top" constant="20" id="GvC-ih-8uH"/>
                                     <constraint firstAttribute="bottom" secondItem="vwP-bI-ch6" secondAttribute="bottom" constant="8" id="ND0-sw-ytF"/>
-                                    <constraint firstItem="vwP-bI-ch6" firstAttribute="top" secondItem="PRP-uX-eTk" secondAttribute="bottom" constant="8" id="NHe-gW-uSH"/>
+                                    <constraint firstItem="vwP-bI-ch6" firstAttribute="top" secondItem="PRP-uX-eTk" secondAttribute="bottom" constant="16" id="NHe-gW-uSH"/>
                                     <constraint firstItem="jf0-UI-8fd" firstAttribute="leading" secondItem="wob-LE-Rgd" secondAttribute="leading" id="OTx-8V-c1q"/>
                                     <constraint firstItem="Wm4-al-gmD" firstAttribute="leading" secondItem="jf0-UI-8fd" secondAttribute="trailing" constant="16" id="Zfb-EM-2DV"/>
                                     <constraint firstItem="vwP-bI-ch6" firstAttribute="leading" secondItem="jf0-UI-8fd" secondAttribute="trailing" constant="6" id="fyW-CO-jne"/>
