@@ -11,7 +11,6 @@
 //  Frameworks
 #import <GPUImage/GPUImage.h>
 #import <QuartzCore/QuartzCore.h>
-#import <StandardPaths/StandardPaths.h>
 
 //  Views
 #import "SGDoubleStrikethroughView.h"

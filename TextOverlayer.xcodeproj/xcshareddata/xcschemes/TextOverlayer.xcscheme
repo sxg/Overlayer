@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4AE86A2E18F638FA0022E006"
-               BuildableName = "Overlayer.app"
-               BlueprintName = "Overlayer"
-               ReferencedContainer = "container:Overlayer.xcodeproj">
+               BuildableName = "TextOverlayer.app"
+               BlueprintName = "TextOverlayer"
+               ReferencedContainer = "container:TextOverlayer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4AE86A4918F638FA0022E006"
-               BuildableName = "OverlayerTests.xctest"
-               BlueprintName = "OverlayerTests"
-               ReferencedContainer = "container:Overlayer.xcodeproj">
+               BuildableName = "TextOverlayerTests.xctest"
+               BlueprintName = "TextOverlayerTests"
+               ReferencedContainer = "container:TextOverlayer.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4AE86A2E18F638FA0022E006"
-            BuildableName = "Overlayer.app"
-            BlueprintName = "Overlayer"
-            ReferencedContainer = "container:Overlayer.xcodeproj">
+            BuildableName = "TextOverlayer.app"
+            BlueprintName = "TextOverlayer"
+            ReferencedContainer = "container:TextOverlayer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -58,13 +58,14 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4AE86A2E18F638FA0022E006"
-            BuildableName = "Overlayer.app"
-            BlueprintName = "Overlayer"
-            ReferencedContainer = "container:Overlayer.xcodeproj">
+            BuildableName = "TextOverlayer.app"
+            BlueprintName = "TextOverlayer"
+            ReferencedContainer = "container:TextOverlayer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -76,13 +77,14 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4AE86A2E18F638FA0022E006"
-            BuildableName = "Overlayer.app"
-            BlueprintName = "Overlayer"
-            ReferencedContainer = "container:Overlayer.xcodeproj">
+            BuildableName = "TextOverlayer.app"
+            BlueprintName = "TextOverlayer"
+            ReferencedContainer = "container:TextOverlayer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

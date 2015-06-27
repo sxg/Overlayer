@@ -1,19 +1,16 @@
 PODS:
   - GPUImage (0.1.5)
   - MBProgressHUD (0.9)
-  - StandardPaths (1.5.6)
   - UIImage+PDF (1.1.3)
 
 DEPENDENCIES:
   - GPUImage
   - MBProgressHUD
-  - StandardPaths
   - UIImage+PDF
 
 SPEC CHECKSUMS:
   GPUImage: 77ed3c73c7cca4bfb4870b7a89e2bef73ad48882
   MBProgressHUD: d8e7ea388dc1549a42e0d219067cf5f2c898fb66
-  StandardPaths: 009f9c1699e26e46b2fb1a46b8bacc693d34460e
   UIImage+PDF: e2670143b9a404ce7def93cd4f7fd2c532aeba89
 
 COCOAPODS: 0.37.2

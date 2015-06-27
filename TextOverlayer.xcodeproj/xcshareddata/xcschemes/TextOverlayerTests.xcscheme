@@ -17,9 +17,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4AE86A4918F638FA0022E006"
-               BuildableName = "OverlayerTests.xctest"
-               BlueprintName = "OverlayerTests"
-               ReferencedContainer = "container:Overlayer.xcodeproj">
+               BuildableName = "TextOverlayerTests.xctest"
+               BlueprintName = "TextOverlayerTests"
+               ReferencedContainer = "container:TextOverlayer.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

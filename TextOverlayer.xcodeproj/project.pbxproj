@@ -67,20 +67,20 @@
 		4A6D672318F7858500BC82F7 /* SGUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGUtility.h; path = Utility/SGUtility.h; sourceTree = "<group>"; };
 		4A6D672418F7858500BC82F7 /* SGUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGUtility.m; path = Utility/SGUtility.m; sourceTree = "<group>"; };
 		4AC2BE68190301360062C0B2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		4AE86A2F18F638FA0022E006 /* Overlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AE86A2F18F638FA0022E006 /* TextOverlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextOverlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE86A3218F638FA0022E006 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4AE86A3418F638FA0022E006 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		4AE86A3618F638FA0022E006 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		4AE86A3A18F638FA0022E006 /* Overlayer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Overlayer-Info.plist"; sourceTree = "<group>"; };
+		4AE86A3A18F638FA0022E006 /* TextOverlayer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TextOverlayer-Info.plist"; sourceTree = "<group>"; };
 		4AE86A3C18F638FA0022E006 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4AE86A3E18F638FA0022E006 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4AE86A4018F638FA0022E006 /* Overlayer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Overlayer-Prefix.pch"; sourceTree = "<group>"; };
+		4AE86A4018F638FA0022E006 /* TextOverlayer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TextOverlayer-Prefix.pch"; sourceTree = "<group>"; };
 		4AE86A4118F638FA0022E006 /* SGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGAppDelegate.h; sourceTree = "<group>"; };
 		4AE86A4218F638FA0022E006 /* SGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SGAppDelegate.m; sourceTree = "<group>"; };
 		4AE86A4418F638FA0022E006 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		4AE86A4A18F638FA0022E006 /* OverlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OverlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AE86A4A18F638FA0022E006 /* TextOverlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextOverlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE86A4B18F638FA0022E006 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		4AE86A5318F638FA0022E006 /* OverlayerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OverlayerTests-Info.plist"; sourceTree = "<group>"; };
+		4AE86A5318F638FA0022E006 /* TextOverlayerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TextOverlayerTests-Info.plist"; sourceTree = "<group>"; };
 		4AE86A5518F638FA0022E006 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4AE86A5718F638FA0022E006 /* OverlayerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OverlayerTests.m; sourceTree = "<group>"; };
 		4AEAFA2018F63D8700A20350 /* SGTextRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGTextRecognizer.h; path = Utility/SGTextRecognizer.h; sourceTree = "<group>"; };
@@ -198,8 +198,8 @@
 		4AE86A3018F638FA0022E006 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4AE86A2F18F638FA0022E006 /* Overlayer.app */,
-				4AE86A4A18F638FA0022E006 /* OverlayerTests.xctest */,
+				4AE86A2F18F638FA0022E006 /* TextOverlayer.app */,
+				4AE86A4A18F638FA0022E006 /* TextOverlayerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -239,10 +239,10 @@
 			isa = PBXGroup;
 			children = (
 				4A487FDC192089CB00442742 /* Amoon_ComicSans.ttf */,
-				4AE86A3A18F638FA0022E006 /* Overlayer-Info.plist */,
+				4AE86A3A18F638FA0022E006 /* TextOverlayer-Info.plist */,
 				4AE86A3B18F638FA0022E006 /* InfoPlist.strings */,
 				4AE86A3E18F638FA0022E006 /* main.m */,
-				4AE86A4018F638FA0022E006 /* Overlayer-Prefix.pch */,
+				4AE86A4018F638FA0022E006 /* TextOverlayer-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -259,7 +259,7 @@
 		4AE86A5218F638FA0022E006 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4AE86A5318F638FA0022E006 /* OverlayerTests-Info.plist */,
+				4AE86A5318F638FA0022E006 /* TextOverlayerTests-Info.plist */,
 				4AE86A5418F638FA0022E006 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -290,9 +290,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4AE86A2E18F638FA0022E006 /* Overlayer */ = {
+		4AE86A2E18F638FA0022E006 /* TextOverlayer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4AE86A5B18F638FA0022E006 /* Build configuration list for PBXNativeTarget "Overlayer" */;
+			buildConfigurationList = 4AE86A5B18F638FA0022E006 /* Build configuration list for PBXNativeTarget "TextOverlayer" */;
 			buildPhases = (
 				9DCBF28685BD4B25A738B2E4 /* Check Pods Manifest.lock */,
 				4AE86A2B18F638FA0022E006 /* Sources */,
@@ -307,14 +307,14 @@
 			);
 			dependencies = (
 			);
-			name = Overlayer;
+			name = TextOverlayer;
 			productName = Overlayer;
-			productReference = 4AE86A2F18F638FA0022E006 /* Overlayer.app */;
+			productReference = 4AE86A2F18F638FA0022E006 /* TextOverlayer.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4AE86A4918F638FA0022E006 /* OverlayerTests */ = {
+		4AE86A4918F638FA0022E006 /* TextOverlayerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4AE86A5E18F638FA0022E006 /* Build configuration list for PBXNativeTarget "OverlayerTests" */;
+			buildConfigurationList = 4AE86A5E18F638FA0022E006 /* Build configuration list for PBXNativeTarget "TextOverlayerTests" */;
 			buildPhases = (
 				4AE86A4618F638FA0022E006 /* Sources */,
 				4AE86A4718F638FA0022E006 /* Frameworks */,
@@ -325,9 +325,9 @@
 			dependencies = (
 				4AE86A5018F638FA0022E006 /* PBXTargetDependency */,
 			);
-			name = OverlayerTests;
+			name = TextOverlayerTests;
 			productName = OverlayerTests;
-			productReference = 4AE86A4A18F638FA0022E006 /* OverlayerTests.xctest */;
+			productReference = 4AE86A4A18F638FA0022E006 /* TextOverlayerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -348,7 +348,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4AE86A2A18F638FA0022E006 /* Build configuration list for PBXProject "Overlayer" */;
+			buildConfigurationList = 4AE86A2A18F638FA0022E006 /* Build configuration list for PBXProject "TextOverlayer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -360,8 +360,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4AE86A2E18F638FA0022E006 /* Overlayer */,
-				4AE86A4918F638FA0022E006 /* OverlayerTests */,
+				4AE86A2E18F638FA0022E006 /* TextOverlayer */,
+				4AE86A4918F638FA0022E006 /* TextOverlayerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -498,7 +498,7 @@
 /* Begin PBXTargetDependency section */
 		4AE86A5018F638FA0022E006 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4AE86A2E18F638FA0022E006 /* Overlayer */;
+			target = 4AE86A2E18F638FA0022E006 /* TextOverlayer */;
 			targetProxy = 4AE86A4F18F638FA0022E006 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -612,10 +612,10 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Overlayer/Overlayer-Prefix.pch";
-				INFOPLIST_FILE = "Overlayer/Overlayer-Info.plist";
+				GCC_PREFIX_HEADER = "Overlayer/TextOverlayer-Prefix.pch";
+				INFOPLIST_FILE = "Overlayer/TextOverlayer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TextOverlayer;
 				PROVISIONING_PROFILE = "7ad2907b-cca9-46a3-8f7a-f233b67d65ea";
 				WRAPPER_EXTENSION = app;
 			};
@@ -634,10 +634,10 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Overlayer/Overlayer-Prefix.pch";
-				INFOPLIST_FILE = "Overlayer/Overlayer-Info.plist";
+				GCC_PREFIX_HEADER = "Overlayer/TextOverlayer-Prefix.pch";
+				INFOPLIST_FILE = "Overlayer/TextOverlayer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TextOverlayer;
 				PROVISIONING_PROFILE = "7ad2907b-cca9-46a3-8f7a-f233b67d65ea";
 				WRAPPER_EXTENSION = app;
 			};
@@ -658,8 +658,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "OverlayerTests/OverlayerTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "OverlayerTests/TextOverlayerTests-Info.plist";
+				PRODUCT_NAME = TextOverlayerTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -676,8 +676,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Overlayer/Overlayer-Prefix.pch";
-				INFOPLIST_FILE = "OverlayerTests/OverlayerTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "OverlayerTests/TextOverlayerTests-Info.plist";
+				PRODUCT_NAME = TextOverlayerTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -686,7 +686,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4AE86A2A18F638FA0022E006 /* Build configuration list for PBXProject "Overlayer" */ = {
+		4AE86A2A18F638FA0022E006 /* Build configuration list for PBXProject "TextOverlayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4AE86A5918F638FA0022E006 /* Debug */,
@@ -695,7 +695,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4AE86A5B18F638FA0022E006 /* Build configuration list for PBXNativeTarget "Overlayer" */ = {
+		4AE86A5B18F638FA0022E006 /* Build configuration list for PBXNativeTarget "TextOverlayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4AE86A5C18F638FA0022E006 /* Debug */,
@@ -704,7 +704,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4AE86A5E18F638FA0022E006 /* Build configuration list for PBXNativeTarget "OverlayerTests" */ = {
+		4AE86A5E18F638FA0022E006 /* Build configuration list for PBXNativeTarget "TextOverlayerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4AE86A5F18F638FA0022E006 /* Debug */,

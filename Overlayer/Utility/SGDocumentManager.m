@@ -8,9 +8,6 @@
 
 #import "SGDocumentManager.h"
 
-//  Frameworks
-#import <StandardPaths/StandardPaths.h>
-
 //  Models
 #import "SGDocument.h"
 
